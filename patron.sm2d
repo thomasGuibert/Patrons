@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pattern>
+    <!--Pattern created with Seamly2D v2026.7.13.214 (https://seamly.io).-->
+    <version>0.7.4</version>
+    <unit>cm</unit>
+    <description/>
+    <notes/>
+    <measurements>../mesures/multi-tailles/measurements.smms</measurements>
+    <variables/>
+    <draftBlock name="Bloc de brouillon 1">
+        <calculation>
+            <point id="1" mx="-0.926041" my="-3.14854" name="X" showPointName="true" type="single" x="0" y="0"/>
+            <point angle="-90" basePoint="1" id="2" length="180" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="Y" showPointName="true" type="endLine"/>
+            <point angle="-90" basePoint="1" id="3" length="(neck_back_to_waist_b+1)-neck_front_to_waist_f" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="E" showPointName="true" type="endLine"/>
+            <point angle="-90" basePoint="3" id="4" length="neck_front_to_waist_f/2+1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="C" showPointName="true" type="endLine"/>
+            <point angle="-90" basePoint="1" id="5" length="(neck_back_to_waist_b+2-neck_front_to_waist_f/2)/2" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="D" showPointName="true" type="endLine"/>
+            <point angle="-90" basePoint="1" id="6" length="neck_back_to_waist_b+1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="B" showPointName="true" type="endLine"/>
+            <point angle="-90" basePoint="6" id="7" length="height_waist_side_to_hip" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="A" showPointName="true" type="endLine"/>
+            <point angle="180" basePoint="7" id="8" length="hip_circ/4+0.5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="A1" showPointName="true" type="endLine"/>
+            <point angle="180" basePoint="6" id="9" length="waist_circ/4+4" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="B1" showPointName="true" type="endLine"/>
+            <point angle="180" basePoint="4" id="10" length="bust_circ/4" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="C1" showPointName="true" type="endLine"/>
+            <point angle="180" basePoint="5" id="11" length="across_chest_f/2+0.3" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="D1" showPointName="true" type="endLine"/>
+            <point angle="180" basePoint="5" id="12" length="across_back_b/2" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="D2" showPointName="true" type="endLine"/>
+            <point angle="180" basePoint="3" id="13" length="neck_circ/5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="G" showPointName="true" type="endLine"/>
+            <point angle="180" basePoint="1" id="14" length="neck_circ/5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="I" showPointName="true" type="endLine"/>
+            <point angle="90" basePoint="13" id="15" length="neck_circ/2/3" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="H" showPointName="true" type="endLine"/>
+            <point angle="90" basePoint="13" id="16" length="neck_circ/2/3/3" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="J" showPointName="true" type="endLine"/>
+        </calculation>
+        <modeling/>
+        <pieces/>
+        <groups/>
+        <images/>
+    </draftBlock>
+</pattern>
