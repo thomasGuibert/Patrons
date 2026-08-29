@@ -5,12 +5,12 @@
     <unit>cm</unit>
     <description/>
     <notes/>
-    <measurements>../mesures/multi-tailles/measurements.smms</measurements>
+    <measurements>measurements.smms</measurements>
     <variables/>
     <draftBlock name="Bloc de brouillon 1">
         <calculation>
-            <point id="1" mx="-0.926041" my="-3.14854" name="X" showPointName="true" type="single" x="0" y="0"/>
-            <point angle="-90" basePoint="1" id="2" length="180" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="Y" showPointName="true" type="endLine"/>
+            <point id="1" mx="0.198063" my="-1.63979" name="F" showPointName="true" type="single" x="0.0767924" y="0.0767924"/>
+            <point angle="-90" basePoint="1" id="2" length="180" lineColor="black" lineType="none" lineWeight="0.35" mx="0.449792" my="-0.9525" name="Y" showPointName="true" type="endLine"/>
             <point angle="-90" basePoint="1" id="3" length="(neck_back_to_waist_b+1)-neck_front_to_waist_f" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="E" showPointName="true" type="endLine"/>
             <point angle="-90" basePoint="3" id="4" length="neck_front_to_waist_f/2+1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="C" showPointName="true" type="endLine"/>
             <point angle="-90" basePoint="1" id="5" length="(neck_back_to_waist_b+2-neck_front_to_waist_f/2)/2" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="D" showPointName="true" type="endLine"/>
@@ -25,6 +25,8 @@
             <point angle="180" basePoint="1" id="14" length="neck_circ/5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="I" showPointName="true" type="endLine"/>
             <point angle="90" basePoint="13" id="15" length="neck_circ/2/3" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="H" showPointName="true" type="endLine"/>
             <point angle="90" basePoint="13" id="16" length="neck_circ/2/3/3" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="J" showPointName="true" type="endLine"/>
+            <point angle="90" basePoint="1" id="17" length="5" lineColor="black" lineType="none" lineWeight="0.35" mx="0.328949" my="-1.06087" name="X" showPointName="true" type="endLine"/>
+            <line firstPoint="17" id="18" lineColor="black" lineType="dashLine" lineWeight="0.35" secondPoint="2"/>
         </calculation>
         <modeling/>
         <pieces/>
