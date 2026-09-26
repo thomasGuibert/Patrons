@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pattern>
+    <!--Pattern created with Seamly2D v2026.7.13.214 (https://seamly.io).-->
+    <version>0.7.4</version>
+    <unit>mm</unit>
+    <description/>
+    <notes/>
+    <measurements/>
+    <variables/>
+    <draftBlock name="Bloc de brouillon 1">
+        <calculation>
+            <point id="1" mx="2.91042" my="0.274159" name="Z" showPointName="true" type="single" x="0" y="0"/>
+            <point angle="0" basePoint="1" id="2" length="50" lineColor="black" lineType="solidLine" lineWeight="0.5" mx="-15.875" my="1.05833" name="Z1" showPointName="true" type="endLine"/>
+            <point angle="0" firstPoint="2" id="3" length="50" lineColor="black" lineType="solidLine" lineWeight="0.5" mx="-16.9334" my="-16.6687" name="Z2" secondPoint="1" showPointName="true" type="normal"/>
+            <point angle="0" firstPoint="3" id="4" length="50" lineColor="black" lineType="solidLine" lineWeight="0.5" mx="3.96875" my="-17.7271" name="Z3" secondPoint="2" showPointName="true" type="normal"/>
+            <line firstPoint="1" id="5" lineColor="black" lineType="solidLine" lineWeight="0.5" secondPoint="4"/>
+        </calculation>
+        <modeling/>
+        <pieces/>
+        <groups/>
+        <images/>
+    </draftBlock>
+</pattern>
