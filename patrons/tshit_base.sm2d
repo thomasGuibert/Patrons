@@ -11,7 +11,7 @@
         <line alignment="4" bold="false" italic="true" sfIncrement="0" text="T%size%"/>
         <line alignment="4" bold="false" italic="false" sfIncrement="0" text="%pName%"/>
     </patternLabel>
-    <measurements>measurements.smms</measurements>
+    <measurements>../mesures/T44.smms</measurements>
     <variables/>
     <draftBlock name="Bloc de brouillon 1">
         <calculation>
@@ -61,27 +61,10 @@
             <point id="72" idObject="15" inUse="true" mx="-0.634983" my="0.586238" showPointName="true" type="modeling"/>
             <spline id="73" idObject="21" inUse="true" type="modelingSpline"/>
             <point id="74" idObject="13" inUse="true" mx="-0.75657" my="0.0695215" showPointName="true" type="modeling"/>
-            <point id="75" idObject="5" inUse="false" mx="-1.54124" my="-0.734192" showPointName="true" type="modeling"/>
-            <point id="76" idObject="7" inUse="false" mx="-1.44702" my="-0.174115" showPointName="true" type="modeling"/>
-            <point id="77" idObject="6" inUse="false" mx="-1.71024" my="-0.612812" showPointName="true" type="modeling"/>
-            <point id="78" idObject="4" inUse="false" mx="-1.4391" my="-0.879621" showPointName="true" type="modeling"/>
             <point id="79" idObject="3" inUse="true" mx="-0.981502" my="-1.71655" showPointName="true" type="modeling"/>
             <point id="80" idObject="8" inUse="true" mx="0.142903" my="-1.49637" showPointName="true" type="modeling"/>
             <point id="81" idObject="9" inUse="true" mx="0.437172" my="-0.910592" showPointName="true" type="modeling"/>
             <point id="82" idObject="10" inUse="true" mx="0.492017" my="-0.705963" showPointName="true" type="modeling"/>
-            <point id="84" idObject="15" inUse="false" mx="-1.16142" my="-1.78273" showPointName="true" type="modeling"/>
-            <spline id="85" idObject="18" inUse="false" type="modelingSpline"/>
-            <point id="86" idObject="5" inUse="false" mx="0.301288" my="-0.821932" showPointName="true" type="modeling"/>
-            <point id="87" idObject="7" inUse="false" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
-            <point id="88" idObject="6" inUse="false" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
-            <point id="89" idObject="4" inUse="false" mx="-1.0004" my="-0.616402" showPointName="true" type="modeling"/>
-            <point id="90" idObject="3" inUse="false" mx="-1.1973" my="-0.680953" showPointName="true" type="modeling"/>
-            <point id="91" idObject="8" inUse="false" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
-            <point id="92" idObject="9" inUse="false" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
-            <point id="93" idObject="10" inUse="false" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
-            <point id="94" idObject="29" inUse="false" mx="-1.71746" my="-0.214983" showPointName="true" type="modeling"/>
-            <point id="95" idObject="30" inUse="false" mx="-2.74512" my="-1.85922" showPointName="true" type="modeling"/>
-            <spline id="96" idObject="32" inUse="false" type="modelingPath"/>
             <point id="97" idObject="15" inUse="true" mx="-0.950833" my="0.135073" showPointName="true" type="modeling"/>
             <spline id="98" idObject="18" inUse="true" type="modelingSpline"/>
             <point id="99" idObject="5" inUse="true" mx="-0.922895" my="-0.233395" showPointName="true" type="modeling"/>
