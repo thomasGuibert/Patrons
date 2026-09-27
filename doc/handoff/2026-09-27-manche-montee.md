@@ -52,12 +52,23 @@ Deux skills avec un fichier intermédiaire validé par l'utilisateur :
    des mesures/variables connues, pas de nombre en dur là où le livre donne une formule,
    unité du fichier, longueurs clés (tête de manche vs emmanchure).
 
-## Manche montée : étapes dans l'ordre Seamly (proposé, à valider)
+## Manche montée : étapes dans l'ordre Seamly (décisions validées, voir plus bas)
 
-Variables : `tour_emm` (devant + dos), `prof_emm`, `long_manche` = 60,
-`haut_coude` = 35, `larg_bas` = 20, `reduc_coude` = 1.
+La manche est un **deuxième bloc de brouillon dans `patrons/tshit_base.sm2d`** (en cm).
 
-1. A départ. B : AB = `tour_emm × 3/4 + 1` (voir question 1). C, D : AC = BD = `long_manche`. Rectangle.
+Variables :
+- `tour_emm` = longueur emmanchure dos (splinePath K-D2-C3, id 31) + devant (K-D1-C3, id 32),
+  calculée en direct depuis le bloc du T-shirt (≈ 43,1 cm en T44, calcul approché).
+- `prof_emm` = `Line_C2_K1`, K1 = pied de la perpendiculaire de K sur la ligne de côté B1–C2
+  prolongée (point d'aide, type `height`) ≈ 19,5 cm. Méthode : vidéo
+  `doc/sources/profondeur-emmanchure/transcription.md`.
+- `frac_largeur` = 3/4.
+- `long_manche` = `arm_shoulder_tip_to_wrist` (64).
+- `haut_coude` = `long_manche × 35/60`.
+- `aisance_poignet` = 2,8 ; `larg_bas` = `arm_wrist_circ + aisance_poignet` (20).
+- `reduc_coude` = 1.
+
+1. A départ. B : AB = `tour_emm × frac_largeur + 1` (≈ 33,3). C, D : AC = BD = `long_manche`. Rectangle.
 2. E = milieu AB, F = milieu CD, EF en tirets.
 3. G = milieu AE, G' sur CD. H = milieu EB, H' sur CD.
 4. I sur AC, AI = `prof_emm × 2/3` ; I' sur BD ; II'.
@@ -68,8 +79,10 @@ Variables : `tour_emm` (devant + dos), `prof_emm`, `long_manche` = 60,
 9. **Déplacé depuis la p. 72** : J3 = J1 + 1 cm vers le milieu, J4 = J2 + 1 cm vers le milieu.
    Dessous de manche final : F1-J3 droite, J3-I droite creusée de 0,5 cm à la moitié
    puis courbe ; idem F2-J4-I'.
-10. G2 sur GG1, GG2 = GG1/3 ; G3 = perpendiculaire de 1 cm au milieu de G2I.
-11. H2 = milieu HH1 ; H3 = perpendiculaire de 1,5 cm au milieu de H2I'.
+10. G2 sur GG1, GG2 = GG1/3 ; G3 = perpendiculaire de 1 cm au milieu de G2I, **vers
+    l'extérieur** (tête bombée côté dos).
+11. H2 = milieu HH1 ; H3 = perpendiculaire de 1,5 cm au milieu de H2I', **vers
+    l'intérieur** (tête creusée côté devant).
 12. Tête de manche : courbe (splinePath) I-G3-G2-E-H2-H3-I'. Les « platitudes » sont
     les poignées de la courbe : en I perpendiculaire au dessous de manche, 1 cm ; en I'
     1,5 cm ; en E horizontale, 1,5 cm côté dos, 1 cm côté devant.
@@ -78,22 +91,27 @@ Variables : `tour_emm` (devant + dos), `prof_emm`, `long_manche` = 60,
 14. Crans : dos à `7 + embu/2` depuis I ; devant à `8 + embu/2` et `9 + embu/2` depuis
     I' ; un cran en E. Crans coupés ≤ 4 mm (jersey).
 
-## Questions ouvertes (à poser à l'utilisateur avant de tracer)
+## Décisions (grilling du 2026-09-27)
 
-1. AB : 3/4 (anglais, plausible) ou 1/3 (français) du tour d'emmanchure ? Hypothèse : 3/4.
-2. D'où viennent `tour_emm` et `prof_emm` : mesurer l'emmanchure de
-   `tshit_base.sm2d` (si c'est le corps associé) ou valeurs fournies ?
-   Seamly ne peut pas lire une longueur dans un autre `.sm2d` : passer par des variables.
-3. 60 / 35 / 20 cm : valeurs du livre, ou longueur de manche depuis
-   `arm_shoulder_tip_to_wrist` (64 cm dans T44) ?
-4. Sens des creusements : G3 et H3 sous la droite, dessous de manche creusé vers
-   l'intérieur (lecture du schéma) : à confirmer.
+1. AB = 3/4 du tour d'emmanchure + 1 (colonne anglaise), fraction en variable `frac_largeur`.
+2. Manche dans un 2e bloc de `tshit_base.sm2d`, `tour_emm` calculé en direct sur les
+   courbes d'emmanchure (vérifier dans Seamly qu'une formule lit bien un autre bloc).
+3. `prof_emm` = C2–K1 (méthode de la vidéo : milieu des bouts d'épaule → dessous de bras ;
+   devant et dos partagent K, donc milieu = K1). Hauteur de tête AI = 2/3 × `prof_emm`
+   (livre, jersey), **pas** les 4/5 de la vidéo (chaîne et trame). Limite : si les bouts
+   d'épaule devant et dos diffèrent un jour, repasser par leur milieu.
+4. Longueurs reliées aux mesures (voir variables).
+5. Sens lus sur les schémas p. 71 et 73 : G3 vers l'extérieur, H3 vers l'intérieur, J3/J4
+   vers le milieu, creusement 0,5 cm vers l'intérieur. Signe de l'angle des `normal` à
+   vérifier visuellement.
+
+Valeurs T44 attendues (calcul approché hors Seamly) : `tour_emm` ≈ 43,1, AB ≈ 33,3,
+`prof_emm` ≈ 19,5, AI ≈ 13,0.
 
 ## Prochaines étapes
 
-1. Obtenir les réponses aux questions ci-dessus.
-2. Tracer `patrons/manche_montee.sm2d` (en cm) à la main en suivant les étapes, pour
-   valider l'approche sur un cas réel.
+1. Tracer la manche (bloc « Manche » de `patrons/tshit_base.sm2d`, en cm) à la main en
+   suivant les étapes, pour valider l'approche sur un cas réel.
 3. En tirer les skills `lire-patronage` et `tracer-sm2d`, le lexique des mesures et le
    script de contrôle.
 
