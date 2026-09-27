@@ -19,7 +19,7 @@
         <variable description="Aisance au bas de manche" formula="2.8" name="#aisance_poignet"/>
         <variable description="Largeur de bas de manche F1F2" formula="arm_wrist_circ+#aisance_poignet" name="#larg_bas"/>
     </variables>
-    <draftBlock name="Bloc de brouillon 1">
+    <draftBlock name="T-shirt">
         <calculation>
             <point id="1" mx="-1.11936" my="-0.758805" name="X" showPointName="true" type="single" x="0" y="0"/>
             <point angle="-90" basePoint="1" id="2" length="100" lineColor="black" lineType="dashDotLine" lineWeight="0.5" mx="0.536689" my="-0.69338" name="Y" showPointName="true" type="endLine"/>
