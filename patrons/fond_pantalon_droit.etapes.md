@@ -174,8 +174,11 @@ Vérifications du livre (p. 242)
 17. **Adoucissements** : garder droites et angles en C1, B4, C4 ; B1A2 en courbe à poignées
     douces ; juger sur le PNG (B4 ≈ 8° en T44, à surveiller) (option a).
 18. **Variante avec ouverture à la taille** : non tracée (option a).
+19. **Écart d'entrejambe** (≈ 0,9 en droites, T44 : 73,12 / 72,19) : garder le tracé du livre,
+    mesurer l'écart réel avec `verifier.py`, puis décider (option a).
 ## Questions ouvertes
-À poser une à la fois, dans cet ordre (les premières conditionnent les suivantes).
+Toutes tranchées le 2026-09-27 (voir Décisions). Texte d'origine conservé pour le contexte ;
+les chiffres y sont en T38.
 1. **Fichier de mesures.** Le livre est en T38 (tableau p. 239) ; le dépôt n'a que
    `mesures/T44.smms`.
    - a) Créer `mesures/T38.smms` avec les valeurs du livre (`waist_circ` 68, `hip_circ` 92,
