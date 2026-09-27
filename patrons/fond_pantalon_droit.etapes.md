@@ -150,6 +150,8 @@ Vérifications du livre (p. 242)
    `#garde_sol` = 12 (option c ; 100,1 en T44).
 4. **Largeurs genou et bas** : variables fixes `#larg_genou` = 48, `#larg_bas_pant` = 40
    (option a).
+5. **Aisances** : variables `#aisance_taille` = 4, `#descente_taille` = 4, `#aisance_hanches` = 2
+   (option a).
 ## Questions ouvertes
 À poser une à la fois, dans cet ordre (les premières conditionnent les suivantes).
 1. **Fichier de mesures.** Le livre est en T38 (tableau p. 239) ; le dépôt n'a que

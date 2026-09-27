@@ -29,8 +29,9 @@ ligne ici. Statut : **validé** (décidé avec l'utilisateur) ou **proposé** (�
 | Largeur du bas de manche | `#larg_bas` | `arm_wrist_circ+#aisance_poignet` (2,8) | validé |
 | Largeur du genou (pantalon) | `#larg_genou` | 48 | validé |
 | Largeur du bas de pantalon | `#larg_bas_pant` | 40 | validé |
-| Aisance taille (pantalon) | à créer | 4, taille descendue de 4 | proposé |
-| Aisance hanches (pantalon) | à créer | 2 | proposé |
+| Aisance taille (pantalon) | `#aisance_taille` | 4 | validé |
+| Taille descendue (pantalon) | `#descente_taille` | 4 | validé |
+| Aisance hanches (pantalon) | `#aisance_hanches` | 2 | validé |
 
 ## Fichiers de mesures
 
