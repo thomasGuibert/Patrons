@@ -161,6 +161,7 @@ Vérifications du livre (p. 242)
    16,10 en T44).
 9. **A2** sur la ligne F, A1A2 = 21 mesuré le long de F depuis A1 (option a ; A2 à −13,20 en
    T44, au-delà de B1 −13,14 : côté presque droit, effet des mesures T44).
+10. **A4** sur l'axe, 3 au-dessus de F (1 sous A) (option a).
 ## Questions ouvertes
 À poser une à la fois, dans cet ordre (les premières conditionnent les suivantes).
 1. **Fichier de mesures.** Le livre est en T38 (tableau p. 239) ; le dépôt n'a que
