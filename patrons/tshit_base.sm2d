@@ -205,4 +205,17 @@
         <groups/>
         <images/>
     </draftBlock>
+    <draftBlock name="Carré 5x5">
+        <calculation>
+            <point id="301" mx="0.291042" my="0.0274159" name="Z" showPointName="true" type="single" x="0" y="-15"/>
+            <point angle="0" basePoint="301" id="302" length="5" lineColor="black" lineType="solidLine" lineWeight="0.5" mx="-1.5875" my="0.105833" name="Z1" showPointName="true" type="endLine"/>
+            <point angle="0" firstPoint="302" id="303" length="5" lineColor="black" lineType="solidLine" lineWeight="0.5" mx="-1.69334" my="-1.66687" name="Z2" secondPoint="301" showPointName="true" type="normal"/>
+            <point angle="0" firstPoint="303" id="304" length="5" lineColor="black" lineType="solidLine" lineWeight="0.5" mx="0.396875" my="-1.77271" name="Z3" secondPoint="302" showPointName="true" type="normal"/>
+            <line firstPoint="301" id="305" lineColor="black" lineType="solidLine" lineWeight="0.5" secondPoint="304"/>
+        </calculation>
+        <modeling/>
+        <pieces/>
+        <groups/>
+        <images/>
+    </draftBlock>
 </pattern>
