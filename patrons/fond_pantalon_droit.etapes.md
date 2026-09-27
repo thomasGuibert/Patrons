@@ -168,6 +168,7 @@ Vérifications du livre (p. 242)
     dépasse B4 (−16,10) de 2,2 : côté dos évasé vers la taille, à revoir au tracé (mesures T44).
 13. **Rentrer de 0,5 sur D2C2** : vers l'intérieur de la pièce, vers l'axe (option a).
 14. **Rentrer de 0,5 sur D4C5** : vers l'intérieur de la pièce, vers l'axe (option a).
+15. **Rentrer de 0,5 sur A5B5** : vers l'intérieur de la pièce, vers le bas (option a).
 ## Questions ouvertes
 À poser une à la fois, dans cet ordre (les premières conditionnent les suivantes).
 1. **Fichier de mesures.** Le livre est en T38 (tableau p. 239) ; le dépôt n'a que
