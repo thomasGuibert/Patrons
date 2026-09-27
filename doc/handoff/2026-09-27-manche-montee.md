@@ -11,7 +11,7 @@ bonnes mesures, bon vocabulaire XML Seamly.
 Une tentative précédente (dans une autre session) avait échoué sur trois points :
 l'ordre des étapes n'était pas suivi, les mesures étaient fausses, et le vocabulaire
 `.sm2d` manquait. Le troisième point est couvert par les fichiers existants
-(`patrons/tshit_base.sm2d` sert de référence).
+(`patrons/fond_base_maille.sm2d` sert de référence).
 
 ## État du dépôt
 
@@ -19,7 +19,7 @@ l'ordre des étapes n'était pas suivi, les mesures étaient fausses, et le voca
   (commit `c55ee46`, voir `.claude/skills/README.md`). Aucun skill de patronage n'existe
   ni dans ces skills ni sur skills.sh (recherche faite : sewing, patternmaking,
   seamly2d, valentina, couture… rien d'utile).
-- `patrons/tshit_base.sm2d` : T-shirt maille de base, **en cm**, utilise
+- `patrons/fond_base_maille.sm2d` : T-shirt maille de base, **en cm**, utilise
   `../mesures/T44.smms`. Référence pour le vocabulaire XML (`endLine`, `alongLine`,
   `normal`, `curveIntersectAxis`, `spline simpleInteractive`, `arcWithLength`, pièces…).
 - `patrons/template.sm2d` : squelette vide, **en mm**. Piège : ne pas en partir tel quel
@@ -47,14 +47,16 @@ Deux skills avec un fichier intermédiaire validé par l'utilisateur :
    À tenir dans un `CONTEXT.md` (skill `domain-modeling`). Terme absent → demander.
 3. **`tracer-sm2d`** : `.etapes.md` validé → `.sm2d`, un élément par étape, même ordre,
    mêmes noms de points que le livre. Aide-mémoire geste → type XML tiré de
-   `tshit_base.sm2d`. Les valeurs du livre deviennent des variables (increments).
+   `fond_base_maille.sm2d`. Les valeurs du livre deviennent des variables (increments).
 4. **Script de contrôle** (sans IA) : ordre étapes ↔ éléments, formules n'utilisant que
    des mesures/variables connues, pas de nombre en dur là où le livre donne une formule,
    unité du fichier, longueurs clés (tête de manche vs emmanchure).
 
 ## Manche montée : étapes dans l'ordre Seamly (décisions validées, voir plus bas)
 
-La manche est un **deuxième bloc de brouillon dans `patrons/tshit_base.sm2d`** (en cm).
+La manche est un **deuxième bloc de brouillon dans `patrons/fond_base_maille.sm2d`** (en cm).
+Fichier renommé depuis `tshit_base.sm2d` : c'est un fond de base maille, pas un T-shirt. Blocs :
+« Fond de base maille », « Manche », « Carré 5x5 » (pièce de contrôle d'échelle, sans marge).
 
 Variables :
 - `tour_emm` = longueur emmanchure dos (splinePath K-D2-C3, id 31) + devant (K-D1-C3, id 32),
@@ -94,7 +96,7 @@ est retiré du tracé (J3/J4, creusement 0,5 cm, crans, variable `reduc_coude`).
 ## Décisions (grilling du 2026-09-27)
 
 1. AB = 3/4 du tour d'emmanchure + 1 (colonne anglaise), fraction en variable `frac_largeur`.
-2. Manche dans un 2e bloc de `tshit_base.sm2d`, `tour_emm` calculé en direct sur les
+2. Manche dans un 2e bloc de `fond_base_maille.sm2d`, `tour_emm` calculé en direct sur les
    courbes d'emmanchure (vérifier dans Seamly qu'une formule lit bien un autre bloc).
 3. `prof_emm` = C2–K1 (méthode de la vidéo : milieu des bouts d'épaule → dessous de bras ;
    devant et dos partagent K, donc milieu = K1). Hauteur de tête AI = 2/3 × `prof_emm`
@@ -107,7 +109,7 @@ est retiré du tracé (J3/J4, creusement 0,5 cm, crans, variable `reduc_coude`).
 Valeurs T44 attendues (calcul approché hors Seamly) : `tour_emm` ≈ 43,1, AB ≈ 33,3,
 `prof_emm` ≈ 19,5, AI ≈ 13,0.
 
-## Tracé réalisé (bloc « Manche » de `patrons/tshit_base.sm2d`)
+## Tracé réalisé (bloc « Manche » de `patrons/fond_base_maille.sm2d`)
 
 Vérifié par export en ligne de commande
 (`seamly2d.exe -b x -d <dossier> -f 0 --exportOnlyDetails <fichier>`) et mesure du SVG :

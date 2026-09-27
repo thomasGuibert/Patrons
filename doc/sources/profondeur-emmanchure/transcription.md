@@ -37,7 +37,7 @@ Parole transcrite automatiquement (Whisper) puis corrigée ; gestes relevés sur
 - Le trait mesuré (X) correspond à la `prof_emm` du livre (manche montée jersey).
 - Les 13,8 cm de la vidéo sont en réalité une **hauteur de tête de manche** (4/5 de X).
   Le livre utilise 2/3 de X pour le jersey : **on garde 2/3** (décision du 2026-09-27).
-- Dans `patrons/tshit_base.sm2d`, devant et dos partagent le bout d'épaule K : le milieu
+- Dans `patrons/fond_base_maille.sm2d`, devant et dos partagent le bout d'épaule K : le milieu
   des deux bouts d'épaule devient K1 = pied de la perpendiculaire de K sur la ligne de côté
   B1–C2 prolongée, et `prof_emm = Line_C2_K1` (≈ 19,5 cm en T44, calcul approché).
   Si les bouts d'épaule devant et dos diffèrent un jour, revenir au milieu des deux.

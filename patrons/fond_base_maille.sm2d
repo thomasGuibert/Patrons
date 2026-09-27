@@ -6,7 +6,7 @@
     <description/>
     <notes/>
     <patternLabel>
-        <line alignment="1" bold="true" italic="false" sfIncrement="3" text="T-SHIRT MAILLE"/>
+        <line alignment="1" bold="true" italic="false" sfIncrement="3" text="FOND DE BASE MAILLE"/>
         <line alignment="4" bold="false" italic="true" sfIncrement="0" text="Base"/>
         <line alignment="4" bold="false" italic="true" sfIncrement="0" text="T%size%"/>
         <line alignment="4" bold="false" italic="false" sfIncrement="0" text="%pName%"/>
@@ -19,7 +19,7 @@
         <variable description="Aisance au bas de manche" formula="2.8" name="#aisance_poignet"/>
         <variable description="Largeur de bas de manche F1F2" formula="arm_wrist_circ+#aisance_poignet" name="#larg_bas"/>
     </variables>
-    <draftBlock name="T-shirt">
+    <draftBlock name="Fond de base maille">
         <calculation>
             <point id="1" mx="-1.11936" my="-0.758805" name="X" showPointName="true" type="single" x="0" y="0"/>
             <point angle="-90" basePoint="1" id="2" length="100" lineColor="black" lineType="dashDotLine" lineWeight="0.5" mx="0.536689" my="-0.69338" name="Y" showPointName="true" type="endLine"/>
@@ -227,6 +227,9 @@
         </modeling>
         <pieces>
             <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="310" inLayout="true" locked="false" mx="0" my="0" name="Carré 5x5" seamAllowance="false" united="false" version="2" width="0">
+                <data annotation="" foldPosition="" fontSize="0" height="1.5" letter="" mx="7.559" my="-529.134" onFold="false" orientation="Indéfini" quantity="1" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="4">
+                    <line alignment="4" bold="false" italic="false" sfIncrement="0" text="%pName%"/>
+                </data>
                 <nodes>
                     <node idObject="306" type="NodePoint"/>
                     <node idObject="307" type="NodePoint"/>
