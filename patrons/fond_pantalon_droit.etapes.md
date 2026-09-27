@@ -159,6 +159,8 @@ Vérifications du livre (p. 242)
    droite (entrejambe) A1, A3, B2, C2, D2, E2 / A5, B3, C3, C5, D4, E4.
 8. **CC3** = `#hanches_ais/6*21/20` : hanches (français), plus 1/20 du sixième (option a ;
    16,10 en T44).
+9. **A2** sur la ligne F, A1A2 = 21 mesuré le long de F depuis A1 (option a ; A2 à −13,20 en
+   T44, au-delà de B1 −13,14 : côté presque droit, effet des mesures T44).
 ## Questions ouvertes
 À poser une à la fois, dans cet ordre (les premières conditionnent les suivantes).
 1. **Fichier de mesures.** Le livre est en T38 (tableau p. 239) ; le dépôt n'a que
