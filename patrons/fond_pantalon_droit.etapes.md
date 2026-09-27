@@ -166,6 +166,7 @@ Vérifications du livre (p. 242)
 12. **B5** sur la ligne F, A5B5 = `#taille_ais/4 - 1` (19 en T44), outil Seamly « point
     d'intersection d'un arc et d'une droite » (`pointOfContact`) (option a). En T44, B5 à −18,26
     dépasse B4 (−16,10) de 2,2 : côté dos évasé vers la taille, à revoir au tracé (mesures T44).
+13. **Rentrer de 0,5 sur D2C2** : vers l'intérieur de la pièce, vers l'axe (option a).
 ## Questions ouvertes
 À poser une à la fois, dans cet ordre (les premières conditionnent les suivantes).
 1. **Fichier de mesures.** Le livre est en T38 (tableau p. 239) ; le dépôt n'a que
