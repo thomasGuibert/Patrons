@@ -81,7 +81,7 @@ formules : ce sont des données du livre, pas des calculs.
 ### Dos : taille (p. 240)
 35. A4 : point à distance depuis F, vers le haut (90), sur l'axe — FA4 = 3 [p. 240] (position sur l'axe lue sur le schéma, question 10)
 36. A5 : perpendiculaire à l'axe passant par A4, vers la droite (0) — A4A5 = 0.5 [p. 240] (sens lu sur le schéma, question 11)
-37. B5 : intersection du cercle de centre A5 et de rayon `#taille_ais/4 - 1` avec la ligne F, du côté gauche [p. 240] (« en appui sur la ligne de taille descendue » ; geste absent de gestes.md, question 12)
+37. B5 : intersection du cercle de centre A5 et de rayon `#taille_ais/4 - 1` avec la ligne F, du côté gauche [p. 240] (« en appui sur la ligne de taille descendue » ; outil `pointOfContact`, décision 12)
 38. Droite A5B5 (ligne de taille dos droite, construction en tirets) [p. 242]
 ### Dos : jambe (p. 242)
 39. D3 : perpendiculaire à l'axe passant par D, vers la gauche (180) — DD3 = `#larg_genou/4 + 1` [p. 242]
@@ -162,6 +162,10 @@ Vérifications du livre (p. 242)
 9. **A2** sur la ligne F, A1A2 = 21 mesuré le long de F depuis A1 (option a ; A2 à −13,20 en
    T44, au-delà de B1 −13,14 : côté presque droit, effet des mesures T44).
 10. **A4** sur l'axe, 3 au-dessus de F (1 sous A) (option a).
+11. **A5** à 0,5 à droite de A4 (découle de la décision 7).
+12. **B5** sur la ligne F, A5B5 = `#taille_ais/4 - 1` (19 en T44), outil Seamly « point
+    d'intersection d'un arc et d'une droite » (`pointOfContact`) (option a). En T44, B5 à −18,26
+    dépasse B4 (−16,10) de 2,2 : côté dos évasé vers la taille, à revoir au tracé (mesures T44).
 ## Questions ouvertes
 À poser une à la fois, dans cet ordre (les premières conditionnent les suivantes).
 1. **Fichier de mesures.** Le livre est en T38 (tableau p. 239) ; le dépôt n'a que

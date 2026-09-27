@@ -14,6 +14,7 @@ Vocabulaire fermé partagé par les skills `lire-patronage` (une étape = un ges
 | Parallèle / perpendiculaire à l'axe passant par un point | « tracer II' parallèle à AB » | `endLine` depuis le point, ou `alongLine` sur le côté opposé du cadre |
 | Intersection de deux droites | « G1 = GG' ∩ II' » | `lineIntersect` |
 | Intersection d'une droite partant d'un point avec une autre droite | « axe de la platitude jusqu'à HH1 » | `lineIntersectAxis` |
+| Intersection d'un cercle (point, rayon) et d'une droite | « porter B5 à 17 cm de A5, en appui sur la ligne F » | `pointOfContact` (Point d'intersection d'un arc et d'une droite) |
 | Pied de la perpendiculaire (projection) | « K1 = projeté de K sur le côté » | `height` |
 | Point sur une courbe à une distance | « cran à 7 cm de I » | `cutSpline` / `cutSplinePath` |
 | Droite | « joindre IF1 en ligne droite » | `<line>` (ou le trait de l'outil qui crée le point) |
