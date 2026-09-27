@@ -1,6 +1,6 @@
 # Fond de pantalon droit : étapes
 Sources : doc/sources/pantalon/fond-pantalon-droit/ (p. 238-243), transcription.md (corrigée, commit cbd946d), relecture.md
-Fichier cible : patrons/fond_pantalon_droit.sm2d, bloc « Fond de pantalon droit » (en cm) — proposition, voir question 6
+Fichier cible : patrons/fond_pantalon_droit.sm2d, bloc « Fond de pantalon droit » (en cm) — décision 6
 Mesures : mesures/T44.smms existant (décision 1)
 Conventions de ce fichier : axe XY vertical, A en haut. Angles Seamly : 0 droite, 90 haut,
 180 gauche, 270 bas. **Gauche = côté** (indices 1 devant, 4 et 3 dos), **droite = entrejambe /
@@ -152,6 +152,9 @@ Vérifications du livre (p. 242)
    (option a).
 5. **Aisances** : variables `#aisance_taille` = 4, `#descente_taille` = 4, `#aisance_hanches` = 2
    (option a).
+6. **Fichier** : nouveau `patrons/fond_pantalon_droit.sm2d` (cm, `mesures/T44.smms`) ; bloc
+   « Fond de pantalon droit », devant et dos superposés sur le même axe ; pièces Devant et Dos
+   séparées, **Dos sans miroir** ; bloc et pièce « Carré 5x5 » ; X et Y non tracés.
 ## Questions ouvertes
 À poser une à la fois, dans cet ordre (les premières conditionnent les suivantes).
 1. **Fichier de mesures.** Le livre est en T38 (tableau p. 239) ; le dépôt n'a que
