@@ -171,6 +171,8 @@ Vérifications du livre (p. 242)
 15. **Rentrer de 0,5 sur A5B5** : vers l'intérieur de la pièce, vers le bas (option a).
 16. **Platitude en A3** : segment droit de 0,5 perpendiculaire à B2A3 vers A2, puis courbe
     jusqu'à A2 (option a).
+17. **Adoucissements** : garder droites et angles en C1, B4, C4 ; B1A2 en courbe à poignées
+    douces ; juger sur le PNG (B4 ≈ 8° en T44, à surveiller) (option a).
 ## Questions ouvertes
 À poser une à la fois, dans cet ordre (les premières conditionnent les suivantes).
 1. **Fichier de mesures.** Le livre est en T38 (tableau p. 239) ; le dépôt n'a que
