@@ -173,8 +173,7 @@
             <point angle="180" firstPoint="239" id="240" length="1.5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="-2.18261" my="0.131031" name="mH3" secondPoint="218" showPointName="true" type="normal"/>
             <point angle="(AngleLine_mI_mF1+180)-90" basePoint="217" id="241" length="1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.354879" my="-0.00252038" name="mI1" showPointName="true" type="endLine"/>
             <point angle="(AngleLine_mIp_mF2+180)+90" basePoint="218" id="242" length="1.5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mIp1" showPointName="true" type="endLine"/>
-            <spline angle1="7.5836" angle2="229.123" color="darkBlue" id="243" length1="3.25" length2="3.94036" lineWeight="0.35" penStyle="solidLine" point1="241" point4="232" type="simpleInteractive"/>
-            <spline angle1="40" angle2="180" color="darkBlue" id="244" length1="3.1491" length2="4.1975" lineWeight="0.35" penStyle="solidLine" point1="232" point4="206" type="simpleInteractive"/>
+            <spline angle1="7.4423" angle2="180" color="darkBlue" id="243" length1="4.5" length2="9.5" lineWeight="0.35" penStyle="solidLine" point1="241" point4="206" type="simpleInteractive"/>
             <spline angle1="172.4164" angle2="0" color="darkBlue" id="245" length1="6.9691" length2="8.395" lineWeight="0.35" penStyle="solidLine" point1="242" point4="206" type="simpleInteractive"/>
         </calculation>
         <modeling>
@@ -182,8 +181,6 @@
             <point id="247" idObject="217" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
             <point id="248" idObject="241" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
             <spline id="249" idObject="243" inUse="true" type="modelingSpline"/>
-            <point id="250" idObject="232" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
-            <spline id="251" idObject="244" inUse="true" type="modelingSpline"/>
             <point id="252" idObject="206" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
             <spline id="253" idObject="245" inUse="true" type="modelingSpline"/>
             <point id="254" idObject="242" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
@@ -197,8 +194,6 @@
                     <node idObject="247" type="NodePoint"/>
                     <node idObject="248" type="NodePoint"/>
                     <node idObject="249" reverse="0" type="NodeSpline"/>
-                    <node idObject="250" type="NodePoint"/>
-                    <node idObject="251" reverse="0" type="NodeSpline"/>
                     <node idObject="252" type="NodePoint"/>
                     <node idObject="253" reverse="1" type="NodeSpline"/>
                     <node idObject="254" type="NodePoint"/>

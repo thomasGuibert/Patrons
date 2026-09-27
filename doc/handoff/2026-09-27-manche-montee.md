@@ -111,7 +111,7 @@ Valeurs T44 attendues (calcul approché hors Seamly) : `tour_emm` ≈ 43,1, AB �
 
 Vérifié par export en ligne de commande
 (`seamly2d.exe -b x -d <dossier> -f 0 --exportOnlyDetails <fichier>`) et mesure du SVG :
-AB = 33,32, `tour_emm` = 43,10, AI = 13,0, tête de manche = 44,54, **embu ≈ 1,44 cm** (hors plage).
+AB = 33,32, `tour_emm` = 43,10, AI = 13,0, tête de manche = 44,53, **embu ≈ 1,43 cm** (hors plage).
 ⚠ Les embus annoncés avant ce commit (0,54, 1,04, 1,06, 1,08) utilisaient à tort un tour de 43,44
 (largeur faussée par l'ancien dessous de manche courbe qui débordait de I') : ils sont
 sous-estimés d'environ 0,35 cm. Mesurer AB entre les coins I et I' de la pièce.
@@ -130,15 +130,14 @@ Enseignements Seamly (à reporter dans le skill `tracer-sm2d`) :
   du point dans la liste des nœuds ; crans `notchType="slit"`, `notchLength="0.4"`.
 - **Tête de manche (version actuelle, choix utilisateur)** : platitudes = segments droits
   I→`mI1` (1 cm) et I'→`mIp1` (1,5 cm) perpendiculaires au dessous de manche, puis
-  3 courbes interactives (`simpleInteractive`, variables `Spl_<p1>_<p4>`), poignées en
+  2 courbes interactives (`simpleInteractive`, variables `Spl_<p1>_<p4>`), poignées en
   **nombres** pour pouvoir les régler à la souris (Seamly bloque les poignées définies par
   formule) ; valeurs calculées pour la T44, elles ne suivent donc pas un changement de taille :
-  - dos 1 : `mI1` (angle 7,5836 = axe de la platitude, 3,25) → `mG2` (angle 229,123,
-    3,94036 : courbure retouchée par l'utilisateur dans Seamly), passe près de G3 ;
-  - dos 2 : `mG2` (angle 40, 3,1491) → `mE` (angle 180, 4,1975) ;
+  - dos : `mI1` (angle 7,4423 = axe de la platitude, 4,5) → `mE` (angle 180, 9,5), passe
+    à ~0,03 de G2 et G3 ;
   - devant : `mIp1` (angle 172,4164, 6,9691) → `mE` (angle 0, 8,395), passe par H2 et H3
     (validé par l'utilisateur).
-  Tête validée visuellement par l'utilisateur. **Embu ≈ 1,44 cm (> 1)** : à régler (hauteur de tête, largeur ou bombé), décision reportée.
+  Tête validée visuellement par l'utilisateur. **Embu ≈ 1,43 cm (> 1)** : à régler (hauteur de tête, largeur ou bombé), décision reportée.
 - Historique : une courbe continue à 7 points (poignées 1/3 en E) donnait un embu de 0,54 ;
   une version `cubicBezier` avec points de contrôle construits (formules) donnait 1,04 ; une seule courbe au dos ne peut pas passer par G3 si elle part à plat de I1 ; prendre G
   comme point de contrôle de G2→E créait une bosse.
