@@ -26,7 +26,7 @@ l'ordre des étapes n'était pas suivi, les mesures étaient fausses, et le voca
   pour un patron en cm, sinon les longueurs fixes sont 10× trop petites.
 - `mesures/T44.smms` : mesures T44 en cm. Ne contient **ni** tour ni profondeur
   d'emmanchure, **ni** tour de bras.
-- `doc/sources/manche-montee/` : photos des pages 68-73 du livre + `transcription.md`
+- `doc/sources/manche/manche-montee/` : photos des pages 68-73 du livre + `transcription.md`
   (texte français recopié, écarts FR/EN signalés). C'est la source de vérité pour la
   manche : lire ce fichier plutôt que de re-transcrire les photos.
 
@@ -63,7 +63,7 @@ Variables :
   calculée en direct depuis le bloc du T-shirt (≈ 43,1 cm en T44, calcul approché).
 - `prof_emm` = `Line_C2_K1`, K1 = pied de la perpendiculaire de K sur la ligne de côté B1–C2
   prolongée (point d'aide, type `height`) ≈ 19,5 cm. Méthode : vidéo
-  `doc/sources/profondeur-emmanchure/transcription.md`.
+  `doc/sources/manche/profondeur-emmanchure/transcription.md`.
 - `frac_largeur` = 3/4.
 - `long_manche` = `arm_shoulder_tip_to_wrist` (64).
 - `haut_coude` = `long_manche × 35/60`.
