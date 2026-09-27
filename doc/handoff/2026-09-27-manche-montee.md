@@ -26,7 +26,7 @@ l'ordre des étapes n'était pas suivi, les mesures étaient fausses, et le voca
   pour un patron en cm, sinon les longueurs fixes sont 10× trop petites.
 - `mesures/T44.smms` : mesures T44 en cm. Ne contient **ni** tour ni profondeur
   d'emmanchure, **ni** tour de bras.
-- `docs/sources/manche-montee/` : photos des pages 68-73 du livre + `transcription.md`
+- `doc/sources/manche-montee/` : photos des pages 68-73 du livre + `transcription.md`
   (texte français recopié, écarts FR/EN signalés). C'est la source de vérité pour la
   manche : lire ce fichier plutôt que de re-transcrire les photos.
 
