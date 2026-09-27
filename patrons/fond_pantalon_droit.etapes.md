@@ -12,7 +12,8 @@ sont superposés sur le même axe, comme dans le livre.
   - `waist_circ` (tour de taille ; T38 livre 68)
   - `hip_circ` (tour de hanches ; T38 livre 92)
   - `height_waist_side_to_hip` (hauteur taille-hanches, AB ; T38 livre 22)
-  - `rise_length_side_sitting` (hauteur taille-montant, AC ; T38 livre 27)
+  - `height_waist_side - leg_crotch_to_floor` (hauteur taille-montant, AC, mesurée debout ;
+    T38 livre 27, T44 27,1)
   - `height_waist_side_to_knee` (hauteur taille-genou, AD ; T38 livre 58)
   - `leg_knee_circ` (tour de genou ; T38 livre 38) : **non utilisé** par la construction (elle
     utilise la largeur du genou, valeur de vêtement).
@@ -32,7 +33,7 @@ formules : ce sont des données du livre, pas des calculs.
 ### Cadre (p. 238)
 1. A : point de départ — ligne de taille morphologique sur l'axe XY (DL, milieu de jambe) [p. 238]
 2. B : point à distance, vers le bas (270) — AB = `height_waist_side_to_hip` [p. 238]
-3. C : point à distance, vers le bas (270) — AC = `rise_length_side_sitting` [p. 238]
+3. C : point à distance, vers le bas (270) — AC = `height_waist_side - leg_crotch_to_floor` [p. 238]
 4. D : point à distance, vers le bas (270) — AD = `height_waist_side_to_knee` [p. 238]
 5. E : point à distance, vers le bas (270) — AE = `#haut_pantalon` [p. 238] (exemple, question 3)
 6. F : point à distance, vers le bas (270) — AF = `#descente_taille` [p. 238]
@@ -142,6 +143,8 @@ Vérifications du livre (p. 242)
 ## Décisions
 1. **Fichier de mesures** : tracer directement en T44, avec le fichier `mesures/T44.smms`
    existant (option b). Pas de T38. Les contrôles T38 restent un repère de calcul.
+2. **Hauteurs** : AB = `height_waist_side_to_hip`, AD = `height_waist_side_to_knee`, AC =
+   montant debout `height_waist_side - leg_crotch_to_floor` (option b).
 ## Questions ouvertes
 À poser une à la fois, dans cet ordre (les premières conditionnent les suivantes).
 1. **Fichier de mesures.** Le livre est en T38 (tableau p. 239) ; le dépôt n'a que
