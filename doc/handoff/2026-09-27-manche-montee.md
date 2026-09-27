@@ -66,7 +66,6 @@ Variables :
 - `long_manche` = `arm_shoulder_tip_to_wrist` (64).
 - `haut_coude` = `long_manche × 35/60`.
 - `aisance_poignet` = 2,8 ; `larg_bas` = `arm_wrist_circ + aisance_poignet` (20).
-- `reduc_coude` = 1.
 
 1. A départ. B : AB = `tour_emm × frac_largeur + 1` (≈ 33,3). C, D : AC = BD = `long_manche`. Rectangle.
 2. E = milieu AB, F = milieu CD, EF en tirets.
@@ -75,12 +74,11 @@ Variables :
 5. G1 = GG' ∩ II', H1 = HH' ∩ II'.
 6. J sur AC, AJ = `haut_coude` ; J' ; JJ'.
 7. F1, F2 : FF1 = FF2 = `larg_bas / 2`.
-8. J1 = IF1 ∩ JJ', J2 = I'F2 ∩ JJ' (IF1/I'F2 servent de construction seulement).
-9. **Déplacé depuis la p. 72** : J3 = J1 + 1 cm vers le milieu, J4 = J2 + 1 cm vers le milieu.
-   Dessous de manche final : F1-J3 droite, J3-I droite creusée de 0,5 cm à la moitié
-   puis courbe ; idem F2-J4-I'.
+8. Dessous de manche : droites IF1 et I'F2 (p. 70). J1 = IF1 ∩ JJ', J2 = I'F2 ∩ JJ'
+   (schéma p. 71).
+9. (supprimé : réduction au coude J3/J4 de la p. 72, reportée)
 10. G2 sur GG1, GG2 = GG1/3 ; G3 = perpendiculaire de 1 cm au milieu de G2I, **vers
-    l'extérieur** (tête bombée côté dos).
+    l'intérieur** (correction utilisateur).
 11. H2 = milieu HH1 ; H3 = perpendiculaire de 1,5 cm au milieu de H2I', **vers
     l'intérieur** (tête creusée côté devant).
 12. Tête de manche : courbe (splinePath) I-G3-G2-E-H2-H3-I'. Les « platitudes » sont
@@ -88,8 +86,10 @@ Variables :
     1,5 cm ; en E horizontale, 1,5 cm côté dos, 1 cm côté devant.
 13. Contrôle : `embu` = longueur tête de manche − `tour_emm`, attendu 0,5 à 1 cm, sinon
     s'arrêter.
-14. Crans : dos à `7 + embu/2` depuis I ; devant à `8 + embu/2` et `9 + embu/2` depuis
-    I' ; un cran en E. Crans coupés ≤ 4 mm (jersey).
+14. (supprimé : crans de montage de la p. 72, reportés)
+
+**Page 72-73 (crans de montage, largeur au coude) : partagée trop tôt, tout ce qui en venait
+est retiré du tracé (J3/J4, creusement 0,5 cm, crans, variable `reduc_coude`). À rediscuter.**
 
 ## Décisions (grilling du 2026-09-27)
 
@@ -101,9 +101,8 @@ Variables :
    (livre, jersey), **pas** les 4/5 de la vidéo (chaîne et trame). Limite : si les bouts
    d'épaule devant et dos diffèrent un jour, repasser par leur milieu.
 4. Longueurs reliées aux mesures (voir variables).
-5. Sens lus sur les schémas p. 71 et 73 : G3 vers l'extérieur, H3 vers l'intérieur, J3/J4
-   vers le milieu, creusement 0,5 cm vers l'intérieur. Signe de l'angle des `normal` à
-   vérifier visuellement.
+5. G3 et H3 **tous deux vers l'intérieur** (G3 d'abord mis vers l'extérieur d'après ma
+   lecture du schéma, corrigé par l'utilisateur).
 
 Valeurs T44 attendues (calcul approché hors Seamly) : `tour_emm` ≈ 43,1, AB ≈ 33,3,
 `prof_emm` ≈ 19,5, AI ≈ 13,0.
@@ -112,15 +111,14 @@ Valeurs T44 attendues (calcul approché hors Seamly) : `tour_emm` ≈ 43,1, AB �
 
 Vérifié par export en ligne de commande
 (`seamly2d.exe -b x -d <dossier> -f 0 --exportOnlyDetails <fichier>`) et mesure du SVG :
-AB = 33,58, `tour_emm` = 43,44, AI = 13,0, tête de manche = 44,50, **embu = 1,06 cm** (hors plage).
+AB = 33,58, `tour_emm` = 43,44, AI = 13,0, tête de manche ≈ 44,5, **embu ≈ 1,08 cm** (hors plage).
 
 Enseignements Seamly (à reporter dans le skill `tracer-sm2d`) :
 - Les noms de points sont uniques dans **tout** le fichier : points de la manche préfixés
   `m` (`mA`, `mB`…), prime → `p` (`mIp` = I'), l'apostrophe est interdite.
 - Les variables (`<variables>`) sont calculées **avant** les objets : une variable qui lit
   `Line_…`/`SplPath_…` vaut 0 sans erreur. Ces formules vont directement dans les outils
-  (tour d'emmanchure `(SplPath_K_C3+SplPath_K_C3_1)`, profondeur `Line_C2_K1`, embu dans
-  les crans). `SplPath_K_C3_1` = courbe dupliquée (`duplicate="1"`).
+  (tour d'emmanchure `(SplPath_K_C3+SplPath_K_C3_1)`, profondeur `Line_C2_K1`). `SplPath_K_C3_1` = courbe dupliquée (`duplicate="1"`).
 - `Line_X_Y` / `AngleLine_X_Y` n'existent que si un segment X→Y existe (outil ou `<line>`,
   éventuellement `lineType="none"`), dans ce sens-là.
 - `normal` : direction premier→second point tournée de +90° (sens trigonométrique à
@@ -132,21 +130,20 @@ Enseignements Seamly (à reporter dans le skill `tracer-sm2d`) :
   3 courbes interactives (`simpleInteractive`, variables `Spl_<p1>_<p4>`), poignées en
   **nombres** pour pouvoir les régler à la souris (Seamly bloque les poignées définies par
   formule) ; valeurs calculées pour la T44, elles ne suivent donc pas un changement de taille :
-  - dos 1 : `mI1` (angle 9,8836 = axe de la platitude, 1) → `mG2` (angle 200, 6,5156),
+  - dos 1 : `mI1` (angle 7,5836 = axe de la platitude, 3,25) → `mG2` (angle 220, 3,25),
     passe par G3 ;
-  - dos 2 : `mG2` (angle 20, 3,1491) → `mE` (angle 180, 4,1975) ;
-  - devant : `mIp1` (angle 170,1164, 7,0215) → `mE` (angle 0, 8,395), passe à ~0,15 de H2
-    et H3.
-  **Embu = 1,06 cm (> 1)** : à régler (hauteur de tête, largeur ou bombé), décision reportée.
+  - dos 2 : `mG2` (angle 40, 3,1491) → `mE` (angle 180, 4,1975) ;
+  - devant : `mIp1` (angle 172,4164, 6,9691) → `mE` (angle 0, 8,395), passe par H2 et H3
+    (validé par l'utilisateur).
+  **Embu ≈ 1,08 cm (> 1)** : à régler (hauteur de tête, largeur ou bombé), décision reportée.
 - Historique : une courbe continue à 7 points (poignées 1/3 en E) donnait un embu de 0,54 ;
   une version `cubicBezier` avec points de contrôle construits (formules) donnait 1,04 ; une seule courbe au dos ne peut pas passer par G3 si elle part à plat de I1 ; prendre G
   comme point de contrôle de G2→E créait une bosse.
-- Sujets reportés : supprimer les milieux (`mMilG`, `mMilH`, `mMilJ3`, `mMilJ4`) et
-  simplifier le dessous de manche.
+- Sujets reportés : supprimer les milieux (`mMilG`, `mMilH`) ; page 72 (crans, coude).
 
 ## Prochaines étapes
 
-1. Contrôler la manche dans Seamly (aspect, crans, montage avec l'emmanchure).
+1. Contrôler la manche dans Seamly (aspect, montage avec l'emmanchure), régler l'embu.
 2. En tirer les skills `lire-patronage` et `tracer-sm2d`, le lexique des mesures et le
    script de contrôle (reprendre la mesure SVG ci-dessus).
 
