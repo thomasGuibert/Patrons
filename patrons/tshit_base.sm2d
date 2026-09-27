@@ -59,7 +59,7 @@
                 <pathPoint angle1="86.3238" angle2="266.324" length1="2.78188" length2="2.92593" pSpline="11"/>
                 <pathPoint angle1="346.866" angle2="166.866" length1="1.02803" length2="0" pSpline="30"/>
             </spline>
-            <point basePoint="26" id="258" lineColor="black" lineType="dotLine" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true" name="K1" p1Line="9" p2Line="29" type="height"/>
+            <point basePoint="26" id="258" lineColor="black" lineType="dotLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="K1" p1Line="9" p2Line="29" showPointName="true" type="height"/>
             <line firstPoint="29" id="259" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="258"/>
         </calculation>
         <modeling>
@@ -131,49 +131,49 @@
     </draftBlock>
     <draftBlock name="Manche">
         <calculation>
-            <point x="10" y="0" id="201" mx="0.132292" my="0.264583" showPointName="true" name="mA" type="single"/>
-            <point basePoint="201" angle="0" length="(SplPath_K_C3+SplPath_K_C3_1)*#frac_largeur+1" lineType="solidLine" lineColor="black" lineWeight="0.35" id="202" mx="0.132292" my="0.264583" showPointName="true" name="mB" type="endLine"/>
-            <point basePoint="201" angle="270" length="#long_manche" lineType="solidLine" lineColor="black" lineWeight="0.35" id="203" mx="0.132292" my="0.264583" showPointName="true" name="mC" type="endLine"/>
-            <point basePoint="202" angle="270" length="#long_manche" lineType="solidLine" lineColor="black" lineWeight="0.35" id="204" mx="0.132292" my="0.264583" showPointName="true" name="mD" type="endLine"/>
+            <point id="201" mx="0.132292" my="0.264583" name="mA" showPointName="true" type="single" x="10" y="0"/>
+            <point angle="0" basePoint="201" id="202" length="(SplPath_K_C3+SplPath_K_C3_1)*#frac_largeur+1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mB" showPointName="true" type="endLine"/>
+            <point angle="270" basePoint="201" id="203" length="#long_manche" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mC" showPointName="true" type="endLine"/>
+            <point angle="270" basePoint="202" id="204" length="#long_manche" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mD" showPointName="true" type="endLine"/>
             <line firstPoint="203" id="205" lineColor="black" lineType="solidLine" lineWeight="0.35" secondPoint="204"/>
-            <point firstPoint="201" secondPoint="202" length="Line_mA_mB/2" lineType="none" lineColor="black" lineWeight="0.35" id="206" mx="0.132292" my="0.264583" showPointName="true" name="mE" type="alongLine"/>
-            <point firstPoint="203" secondPoint="204" length="Line_mC_mD/2" lineType="none" lineColor="black" lineWeight="0.35" id="207" mx="0.132292" my="0.264583" showPointName="true" name="mF" type="alongLine"/>
+            <point firstPoint="201" id="206" length="Line_mA_mB/2" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" name="mE" secondPoint="202" showPointName="true" type="alongLine"/>
+            <point firstPoint="203" id="207" length="Line_mC_mD/2" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" name="mF" secondPoint="204" showPointName="true" type="alongLine"/>
             <line firstPoint="206" id="208" lineColor="black" lineType="dashLine" lineWeight="0.35" secondPoint="207"/>
-            <point firstPoint="201" secondPoint="206" length="Line_mA_mE/2" lineType="none" lineColor="black" lineWeight="0.35" id="209" mx="0.132292" my="0.264583" showPointName="true" name="mG" type="alongLine"/>
-            <point firstPoint="203" secondPoint="207" length="Line_mC_mF/2" lineType="none" lineColor="black" lineWeight="0.35" id="210" mx="0.132292" my="0.264583" showPointName="true" name="mGp" type="alongLine"/>
+            <point firstPoint="201" id="209" length="Line_mA_mE/2" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" name="mG" secondPoint="206" showPointName="true" type="alongLine"/>
+            <point firstPoint="203" id="210" length="Line_mC_mF/2" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" name="mGp" secondPoint="207" showPointName="true" type="alongLine"/>
             <line firstPoint="209" id="211" lineColor="black" lineType="dotLine" lineWeight="0.35" secondPoint="210"/>
             <line firstPoint="206" id="212" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="202"/>
-            <point firstPoint="206" secondPoint="202" length="Line_mE_mB/2" lineType="none" lineColor="black" lineWeight="0.35" id="213" mx="0.132292" my="0.264583" showPointName="true" name="mH" type="alongLine"/>
+            <point firstPoint="206" id="213" length="Line_mE_mB/2" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" name="mH" secondPoint="202" showPointName="true" type="alongLine"/>
             <line firstPoint="207" id="214" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="204"/>
-            <point firstPoint="207" secondPoint="204" length="Line_mF_mD/2" lineType="none" lineColor="black" lineWeight="0.35" id="215" mx="0.132292" my="0.264583" showPointName="true" name="mHp" type="alongLine"/>
+            <point firstPoint="207" id="215" length="Line_mF_mD/2" lineColor="black" lineType="none" lineWeight="0.35" mx="-1.20323" my="0.220066" name="mHp" secondPoint="204" showPointName="true" type="alongLine"/>
             <line firstPoint="213" id="216" lineColor="black" lineType="dotLine" lineWeight="0.35" secondPoint="215"/>
-            <point firstPoint="201" secondPoint="203" length="Line_C2_K1*2/3" lineType="none" lineColor="black" lineWeight="0.35" id="217" mx="0.132292" my="0.264583" showPointName="true" name="mI" type="alongLine"/>
-            <point firstPoint="202" secondPoint="204" length="Line_C2_K1*2/3" lineType="none" lineColor="black" lineWeight="0.35" id="218" mx="0.132292" my="0.264583" showPointName="true" name="mIp" type="alongLine"/>
+            <point firstPoint="201" id="217" length="Line_C2_K1*2/3" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" name="mI" secondPoint="203" showPointName="true" type="alongLine"/>
+            <point firstPoint="202" id="218" length="Line_C2_K1*2/3" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" name="mIp" secondPoint="204" showPointName="true" type="alongLine"/>
             <line firstPoint="217" id="219" lineColor="black" lineType="solidLine" lineWeight="0.35" secondPoint="218"/>
-            <point p1Line1="209" p2Line1="210" p1Line2="217" p2Line2="218" id="220" mx="0.132292" my="0.264583" showPointName="true" name="mG1" type="lineIntersect"/>
-            <point p1Line1="213" p2Line1="215" p1Line2="217" p2Line2="218" id="221" mx="0.132292" my="0.264583" showPointName="true" name="mH1" type="lineIntersect"/>
-            <point firstPoint="201" secondPoint="203" length="#haut_coude" lineType="none" lineColor="black" lineWeight="0.35" id="222" mx="0.132292" my="0.264583" showPointName="true" name="mJ" type="alongLine"/>
-            <point firstPoint="202" secondPoint="204" length="#haut_coude" lineType="none" lineColor="black" lineWeight="0.35" id="223" mx="0.132292" my="0.264583" showPointName="true" name="mJp" type="alongLine"/>
+            <point id="220" mx="0.132292" my="0.264583" name="mG1" p1Line1="209" p1Line2="217" p2Line1="210" p2Line2="218" showPointName="true" type="lineIntersect"/>
+            <point id="221" mx="0.132292" my="0.264583" name="mH1" p1Line1="213" p1Line2="217" p2Line1="215" p2Line2="218" showPointName="true" type="lineIntersect"/>
+            <point firstPoint="201" id="222" length="#haut_coude" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" name="mJ" secondPoint="203" showPointName="true" type="alongLine"/>
+            <point firstPoint="202" id="223" length="#haut_coude" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" name="mJp" secondPoint="204" showPointName="true" type="alongLine"/>
             <line firstPoint="222" id="224" lineColor="black" lineType="dotLine" lineWeight="0.35" secondPoint="223"/>
-            <point firstPoint="207" secondPoint="203" length="#larg_bas/2" lineType="none" lineColor="black" lineWeight="0.35" id="225" mx="0.132292" my="0.264583" showPointName="true" name="mF1" type="alongLine"/>
-            <point firstPoint="207" secondPoint="204" length="#larg_bas/2" lineType="none" lineColor="black" lineWeight="0.35" id="226" mx="0.132292" my="0.264583" showPointName="true" name="mF2" type="alongLine"/>
+            <point firstPoint="207" id="225" length="#larg_bas/2" lineColor="black" lineType="none" lineWeight="0.35" mx="-1.11419" my="0.353618" name="mF1" secondPoint="203" showPointName="true" type="alongLine"/>
+            <point firstPoint="207" id="226" length="#larg_bas/2" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" name="mF2" secondPoint="204" showPointName="true" type="alongLine"/>
             <line firstPoint="217" id="227" lineColor="black" lineType="solidLine" lineWeight="0.35" secondPoint="225"/>
             <line firstPoint="218" id="228" lineColor="black" lineType="solidLine" lineWeight="0.35" secondPoint="226"/>
-            <point p1Line1="217" p2Line1="225" p1Line2="222" p2Line2="223" id="229" mx="0.132292" my="0.264583" showPointName="true" name="mJ1" type="lineIntersect"/>
-            <point p1Line1="218" p2Line1="226" p1Line2="222" p2Line2="223" id="230" mx="0.132292" my="0.264583" showPointName="true" name="mJ2" type="lineIntersect"/>
+            <point id="229" mx="0.132292" my="0.264583" name="mJ1" p1Line1="217" p1Line2="222" p2Line1="225" p2Line2="223" showPointName="true" type="lineIntersect"/>
+            <point id="230" mx="0.132292" my="0.264583" name="mJ2" p1Line1="218" p1Line2="222" p2Line1="226" p2Line2="223" showPointName="true" type="lineIntersect"/>
             <line firstPoint="209" id="231" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="220"/>
-            <point firstPoint="209" secondPoint="220" length="Line_mG_mG1/3" lineType="none" lineColor="black" lineWeight="0.35" id="232" mx="0.132292" my="0.264583" showPointName="true" name="mG2" type="alongLine"/>
+            <point firstPoint="209" id="232" length="Line_mG_mG1/3" lineColor="black" lineType="none" lineWeight="0.35" mx="0.221327" my="0.0419965" name="mG2" secondPoint="220" showPointName="true" type="alongLine"/>
             <line firstPoint="232" id="233" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="217"/>
-            <point firstPoint="232" secondPoint="217" length="Line_mG2_mI/2" lineType="none" lineColor="black" lineWeight="0.35" id="234" mx="1.11167" my="1.02138" showPointName="true" name="mMilG" type="alongLine"/>
-            <point firstPoint="234" secondPoint="217" length="1" angle="0" lineType="solidLine" lineColor="black" lineWeight="0.35" id="235" mx="-4.94268" my="-1.02642" showPointName="true" name="mG3" type="normal"/>
+            <point firstPoint="232" id="234" length="Line_mG2_mI/2" lineColor="black" lineType="dotLine" lineWeight="0.35" mx="-2.89489" my="-1.91676" name="mMilG" secondPoint="217" showPointName="true" type="alongLine"/>
+            <point angle="0" firstPoint="234" id="235" length="1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.310362" my="0.0419954" name="mG3" secondPoint="217" showPointName="true" type="normal"/>
             <line firstPoint="213" id="236" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="221"/>
-            <point firstPoint="213" secondPoint="221" length="Line_mH_mH1/2" lineType="none" lineColor="black" lineWeight="0.35" id="237" mx="0.6665" my="-2.22839" showPointName="true" name="mH2" type="alongLine"/>
+            <point firstPoint="213" id="237" length="Line_mH_mH1/2" lineColor="black" lineType="none" lineWeight="0.35" mx="0.087775" my="-1.7387" name="mH2" secondPoint="221" showPointName="true" type="alongLine"/>
             <line firstPoint="237" id="238" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="218"/>
-            <point firstPoint="237" secondPoint="218" length="Line_mH2_mIp/2" lineType="none" lineColor="black" lineWeight="0.35" id="239" mx="0.132292" my="0.264583" showPointName="true" name="mMilH" type="alongLine"/>
-            <point firstPoint="239" secondPoint="218" length="1.5" angle="180" lineType="solidLine" lineColor="black" lineWeight="0.35" id="240" mx="0.132292" my="0.264583" showPointName="true" name="mH3" type="normal"/>
-            <point basePoint="217" angle="(AngleLine_mI_mF1+180)-90" length="1" lineType="solidLine" lineColor="black" lineWeight="0.35" id="241" mx="0.800052" my="1.64462" showPointName="true" name="mI1" type="endLine"/>
-            <point basePoint="218" angle="(AngleLine_mIp_mF2+180)+90" length="1.5" lineType="solidLine" lineColor="black" lineWeight="0.35" id="242" mx="0.132292" my="0.264583" showPointName="true" name="mIp1" type="endLine"/>
-            <spline angle1="7.5836" angle2="220" color="darkBlue" id="243" length1="3.25" length2="3.25" lineWeight="0.35" penStyle="solidLine" point1="241" point4="232" type="simpleInteractive"/>
+            <point firstPoint="237" id="239" length="Line_mH2_mIp/2" lineColor="black" lineType="dotLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mMilH" secondPoint="218" showPointName="true" type="alongLine"/>
+            <point angle="180" firstPoint="239" id="240" length="1.5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="-2.18261" my="0.131031" name="mH3" secondPoint="218" showPointName="true" type="normal"/>
+            <point angle="(AngleLine_mI_mF1+180)-90" basePoint="217" id="241" length="1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.354879" my="-0.00252038" name="mI1" showPointName="true" type="endLine"/>
+            <point angle="(AngleLine_mIp_mF2+180)+90" basePoint="218" id="242" length="1.5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mIp1" showPointName="true" type="endLine"/>
+            <spline angle1="7.5836" angle2="229.123" color="darkBlue" id="243" length1="3.25" length2="3.94036" lineWeight="0.35" penStyle="solidLine" point1="241" point4="232" type="simpleInteractive"/>
             <spline angle1="40" angle2="180" color="darkBlue" id="244" length1="3.1491" length2="4.1975" lineWeight="0.35" penStyle="solidLine" point1="232" point4="206" type="simpleInteractive"/>
             <spline angle1="172.4164" angle2="0" color="darkBlue" id="245" length1="6.9691" length2="8.395" lineWeight="0.35" penStyle="solidLine" point1="242" point4="206" type="simpleInteractive"/>
         </calculation>
