@@ -17,14 +17,15 @@ sont superposés sur le même axe, comme dans le livre.
   - `height_waist_side_to_knee` (hauteur taille-genou, AD ; T38 livre 58)
   - `leg_knee_circ` (tour de genou ; T38 livre 38) : **non utilisé** par la construction (elle
     utilise la largeur du genou, valeur de vêtement).
-  - Hauteur pantalon (AE ; T38 livre 100) : mesure ou variable, question 3.
+  - `height_waist_side` (taille → sol ; T44 112,1), pour la hauteur pantalon AE (décision 3).
 - Variables :
   - `#aisance_taille` = 4 (livre p. 238)
   - `#descente_taille` = 4 (livre p. 238 : taille descendue de 4 cm sous la taille morphologique)
   - `#aisance_hanches` = 2 (livre p. 238)
   - `#taille_ais` = `waist_circ + #aisance_taille` (livre : « tour de taille avec aisance »)
   - `#hanches_ais` = `hip_circ + #aisance_hanches` (livre : « tour de hanches avec aisance »)
-  - `#haut_pantalon` = 100 (livre, **exemple T38**, question 3)
+  - `#garde_sol` = 12 (espace bas du pantalon → sol ; donne AE = 100,1 en T44, le 100 du livre)
+  - `#haut_pantalon` = `height_waist_side - #garde_sol` (livre : hauteur totale du pantalon)
   - `#larg_genou` = 48 (livre, **exemple**, « évoluent selon le modèle et la mode », question 4)
   - `#larg_bas_pant` = 40 (livre, **exemple**, question 4)
 Les nombres fixes du texte (1 cm, 3 cm, 0,5 cm, 1/7, 1/10…) sont recopiés tels quels dans les
@@ -35,7 +36,7 @@ formules : ce sont des données du livre, pas des calculs.
 2. B : point à distance, vers le bas (270) — AB = `height_waist_side_to_hip` [p. 238]
 3. C : point à distance, vers le bas (270) — AC = `height_waist_side - leg_crotch_to_floor` [p. 238]
 4. D : point à distance, vers le bas (270) — AD = `height_waist_side_to_knee` [p. 238]
-5. E : point à distance, vers le bas (270) — AE = `#haut_pantalon` [p. 238] (exemple, question 3)
+5. E : point à distance, vers le bas (270) — AE = `#haut_pantalon` [p. 238]
 6. F : point à distance, vers le bas (270) — AF = `#descente_taille` [p. 238]
 7. Axe A–E : droite en tirets (droit-fil devant et dos) [p. 238]
    - Non tracé : X et Y (bouts de l'axe sans cote dans le livre ; l'axe utile est A–E).
@@ -145,6 +146,8 @@ Vérifications du livre (p. 242)
    existant (option b). Pas de T38. Les contrôles T38 restent un repère de calcul.
 2. **Hauteurs** : AB = `height_waist_side_to_hip`, AD = `height_waist_side_to_knee`, AC =
    montant debout `height_waist_side - leg_crotch_to_floor` (option b).
+3. **Hauteur pantalon AE** : `#haut_pantalon` = `height_waist_side - #garde_sol`,
+   `#garde_sol` = 12 (option c ; 100,1 en T44).
 ## Questions ouvertes
 À poser une à la fois, dans cet ordre (les premières conditionnent les suivantes).
 1. **Fichier de mesures.** Le livre est en T38 (tableau p. 239) ; le dépôt n'a que

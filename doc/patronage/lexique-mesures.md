@@ -14,7 +14,7 @@ ligne ici. Statut : **validé** (décidé avec l'utilisateur) ou **proposé** (�
 | Hauteur taille-hanches | `height_waist_side_to_hip` | validé | fond de pantalon droit |
 | Hauteur taille-montant | `height_waist_side - leg_crotch_to_floor` | validé | montant mesuré debout (pas `rise_length_side_sitting`) |
 | Hauteur taille-genou | `height_waist_side_to_knee` | validé | fond de pantalon droit |
-| Hauteur pantalon | `height_waist_side` | proposé | taille → sol ; le livre donne 100 en T38 |
+| Hauteur pantalon | `#haut_pantalon` = `height_waist_side - #garde_sol` | validé | longueur de vêtement ; `#garde_sol` = 12 (100,1 en T44, livre 100 en T38) |
 | Longueur de manche | `arm_shoulder_tip_to_wrist` | validé | manche montée |
 | Tour de poignet | `arm_wrist_circ` | validé | manche montée |
 | Tour d'emmanchure devant + dos | `(SplPath_K_C3+SplPath_K_C3_1)` | validé | mesuré sur les courbes du fond de base maille (formule dans l'outil, pas en variable) |
