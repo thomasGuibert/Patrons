@@ -188,7 +188,13 @@
             <point id="256" idObject="226" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
         </modeling>
         <pieces>
-            <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="257" inLayout="true" locked="false" mx="0" my="0" name="Manche" seamAllowance="true" united="false" version="2" width="0.7">
+            <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="257" inLayout="true" locked="false" mx="20.8854" my="25.8298" name="Manche" seamAllowance="true" united="false" version="2" width="0.7">
+                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="755.906" my="1322.835" onFold="false" orientation="Indéfini" quantity="2" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
+                    <line alignment="4" bold="false" italic="false" sfIncrement="3" text="%pName%"/>
+                    <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
+                </data>
+                <patternInfo fontSize="63" height="5" mx="680.315" my="831.496" rotation="0" visible="true" width="8"/>
+                <grainline arrowLength="1.27" arrows="0" length="50" mx="1007.622" my="2267.717" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="246" type="NodePoint"/>
                     <node idObject="247" type="NodePoint"/>
