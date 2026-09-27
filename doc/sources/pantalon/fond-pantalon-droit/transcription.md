@@ -8,8 +8,7 @@ Texte français recopié ; écarts avec la colonne anglaise signalés par **⚠*
 
 Ce tracé est un fond de pantalon. Il est déjà considéré comme un vêtement avec un
 élargissement minimum : utilisable tel quel pour un pantalon droit et souple, un fuseau ou un
-jogging, avec une ceinture à même ou rapportée, sans ouverture à la taille, et pour une taille finie par
-une ceinture à même ou rapportée, élastiquée et/ou coulissée. Convient à la
+jogging, sans ouverture à la taille, pour une taille finie par une ceinture à même ou rapportée, élastiquée et/ou coulissée. Convient à la
 plupart des mailles, même non stretch. Mesures du corps en taille 38.
 
 ### Rappel des mesures de base T38 (tableau p. 239)
