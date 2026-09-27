@@ -27,8 +27,8 @@ ligne ici. Statut : **validé** (décidé avec l'utilisateur) ou **proposé** (�
 | Largeur de manche = fraction du tour d'emmanchure | `#frac_largeur` | 3/4 | validé (écart FR 1/3 / EN 3/4) |
 | Hauteur du coude | `#haut_coude` | `#long_manche*35/60` | validé |
 | Largeur du bas de manche | `#larg_bas` | `arm_wrist_circ+#aisance_poignet` (2,8) | validé |
-| Largeur du genou (pantalon) | à créer | 48 (T38) | proposé |
-| Largeur du bas de pantalon | à créer | 40 (T38) | proposé |
+| Largeur du genou (pantalon) | `#larg_genou` | 48 | validé |
+| Largeur du bas de pantalon | `#larg_bas_pant` | 40 | validé |
 | Aisance taille (pantalon) | à créer | 4, taille descendue de 4 | proposé |
 | Aisance hanches (pantalon) | à créer | 2 | proposé |
 

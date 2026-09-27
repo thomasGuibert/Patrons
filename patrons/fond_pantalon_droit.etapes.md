@@ -26,8 +26,8 @@ sont superposés sur le même axe, comme dans le livre.
   - `#hanches_ais` = `hip_circ + #aisance_hanches` (livre : « tour de hanches avec aisance »)
   - `#garde_sol` = 12 (espace bas du pantalon → sol ; donne AE = 100,1 en T44, le 100 du livre)
   - `#haut_pantalon` = `height_waist_side - #garde_sol` (livre : hauteur totale du pantalon)
-  - `#larg_genou` = 48 (livre, **exemple**, « évoluent selon le modèle et la mode », question 4)
-  - `#larg_bas_pant` = 40 (livre, **exemple**, question 4)
+  - `#larg_genou` = 48 (livre, valeur de mode, décision 4)
+  - `#larg_bas_pant` = 40 (livre, valeur de mode, décision 4)
 Les nombres fixes du texte (1 cm, 3 cm, 0,5 cm, 1/7, 1/10…) sont recopiés tels quels dans les
 formules : ce sont des données du livre, pas des calculs.
 ## Étapes
@@ -148,6 +148,8 @@ Vérifications du livre (p. 242)
    montant debout `height_waist_side - leg_crotch_to_floor` (option b).
 3. **Hauteur pantalon AE** : `#haut_pantalon` = `height_waist_side - #garde_sol`,
    `#garde_sol` = 12 (option c ; 100,1 en T44).
+4. **Largeurs genou et bas** : variables fixes `#larg_genou` = 48, `#larg_bas_pant` = 40
+   (option a).
 ## Questions ouvertes
 À poser une à la fois, dans cet ordre (les premières conditionnent les suivantes).
 1. **Fichier de mesures.** Le livre est en T38 (tableau p. 239) ; le dépôt n'a que
