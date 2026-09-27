@@ -108,12 +108,36 @@ Variables :
 Valeurs T44 attendues (calcul approché hors Seamly) : `tour_emm` ≈ 43,1, AB ≈ 33,3,
 `prof_emm` ≈ 19,5, AI ≈ 13,0.
 
+## Tracé réalisé (bloc « Manche » de `patrons/tshit_base.sm2d`)
+
+Vérifié par export en ligne de commande
+(`seamly2d.exe -b x -d <dossier> -f 0 --exportOnlyDetails <fichier>`) et mesure du SVG :
+AB = 33,58, `tour_emm` = 43,44, AI = 13,0, tête de manche = 43,98, **embu = 0,54 cm** ✓.
+
+Enseignements Seamly (à reporter dans le skill `tracer-sm2d`) :
+- Les noms de points sont uniques dans **tout** le fichier : points de la manche préfixés
+  `m` (`mA`, `mB`…), prime → `p` (`mIp` = I'), l'apostrophe est interdite.
+- Les variables (`<variables>`) sont calculées **avant** les objets : une variable qui lit
+  `Line_…`/`SplPath_…` vaut 0 sans erreur. Ces formules vont directement dans les outils
+  (tour d'emmanchure `(SplPath_K_C3+SplPath_K_C3_1)`, profondeur `Line_C2_K1`, embu dans
+  les crans). `SplPath_K_C3_1` = courbe dupliquée (`duplicate="1"`).
+- `Line_X_Y` / `AngleLine_X_Y` n'existent que si un segment X→Y existe (outil ou `<line>`,
+  éventuellement `lineType="none"`), dans ce sens-là.
+- `normal` : direction premier→second point tournée de +90° (sens trigonométrique à
+  l'écran) ; `angle="180"` inverse le côté.
+- Pièce : un point sur une courbe (cran) se place en répétant la courbe de part et d'autre
+  du point dans la liste des nœuds ; crans `notchType="slit"`, `notchLength="0.4"`.
+- **Platitudes ≠ poignées** : des poignées de 1,5 / 1 cm en E donnaient une tête pointue
+  et un embu de 0,20. Retenu : poignées horizontales en E = 1/3 de la distance à G2 / H2
+  (dôme, embu 0,54). Aux points I et I', poignées de 1 / 1,5 cm perpendiculaires au
+  dessous de manche. Les autres points ont des tangentes de type Catmull-Rom.
+- Légère ondulation de la tête vers G2 côté dos : à lisser si besoin.
+
 ## Prochaines étapes
 
-1. Tracer la manche (bloc « Manche » de `patrons/tshit_base.sm2d`, en cm) à la main en
-   suivant les étapes, pour valider l'approche sur un cas réel.
-3. En tirer les skills `lire-patronage` et `tracer-sm2d`, le lexique des mesures et le
-   script de contrôle.
+1. Contrôler la manche dans Seamly (aspect, crans, montage avec l'emmanchure).
+2. En tirer les skills `lire-patronage` et `tracer-sm2d`, le lexique des mesures et le
+   script de contrôle (reprendre la mesure SVG ci-dessus).
 
 ## Skills suggérés pour la prochaine session
 

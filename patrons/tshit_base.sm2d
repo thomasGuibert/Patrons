@@ -12,7 +12,14 @@
         <line alignment="4" bold="false" italic="false" sfIncrement="0" text="%pName%"/>
     </patternLabel>
     <measurements>../mesures/T44.smms</measurements>
-    <variables/>
+    <variables>
+        <variable description="Fraction du tour d'emmanchure pour la largeur AB (colonne anglaise du livre)" formula="3/4" name="#frac_largeur"/>
+        <variable description="Longueur de manche AC" formula="arm_shoulder_tip_to_wrist" name="#long_manche"/>
+        <variable description="Hauteur du coude AJ (proportion 35/60 du livre)" formula="#long_manche*35/60" name="#haut_coude"/>
+        <variable description="Aisance au bas de manche" formula="2.8" name="#aisance_poignet"/>
+        <variable description="Largeur de bas de manche F1F2" formula="arm_wrist_circ+#aisance_poignet" name="#larg_bas"/>
+        <variable description="Reduction au coude par cote J1J3 = J2J4" formula="1" name="#reduc_coude"/>
+    </variables>
     <draftBlock name="Bloc de brouillon 1">
         <calculation>
             <point id="1" mx="-1.11936" my="-0.758805" name="X" showPointName="true" type="single" x="0" y="0"/>
@@ -53,6 +60,8 @@
                 <pathPoint angle1="86.3238" angle2="266.324" length1="2.78188" length2="2.92593" pSpline="11"/>
                 <pathPoint angle1="346.866" angle2="166.866" length1="1.02803" length2="0" pSpline="30"/>
             </spline>
+            <point basePoint="26" id="279" lineColor="black" lineType="dotLine" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true" name="K1" p1Line="9" p2Line="29" type="height"/>
+            <line firstPoint="29" id="280" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="279"/>
         </calculation>
         <modeling>
             <point id="69" idObject="29" inUse="true" mx="-0.0247691" my="0.688053" showPointName="true" type="modeling"/>
@@ -115,6 +124,130 @@
                     <node idObject="80" type="NodePoint"/>
                     <node idObject="81" type="NodePoint"/>
                     <node idObject="82" type="NodePoint"/>
+                </nodes>
+            </piece>
+        </pieces>
+        <groups/>
+        <images/>
+    </draftBlock>
+    <draftBlock name="Manche">
+        <calculation>
+            <point x="10" y="0" id="201" mx="0.132292" my="0.264583" showPointName="true" name="mA" type="single"/>
+            <point basePoint="201" angle="0" length="(SplPath_K_C3+SplPath_K_C3_1)*#frac_largeur+1" lineType="solidLine" lineColor="black" lineWeight="0.35" id="202" mx="0.132292" my="0.264583" showPointName="true" name="mB" type="endLine"/>
+            <point basePoint="201" angle="270" length="#long_manche" lineType="solidLine" lineColor="black" lineWeight="0.35" id="203" mx="0.132292" my="0.264583" showPointName="true" name="mC" type="endLine"/>
+            <point basePoint="202" angle="270" length="#long_manche" lineType="solidLine" lineColor="black" lineWeight="0.35" id="204" mx="0.132292" my="0.264583" showPointName="true" name="mD" type="endLine"/>
+            <line firstPoint="203" id="205" lineColor="black" lineType="solidLine" lineWeight="0.35" secondPoint="204"/>
+            <point firstPoint="201" secondPoint="202" length="Line_mA_mB/2" lineType="none" lineColor="black" lineWeight="0.35" id="206" mx="0.132292" my="0.264583" showPointName="true" name="mE" type="alongLine"/>
+            <point firstPoint="203" secondPoint="204" length="Line_mC_mD/2" lineType="none" lineColor="black" lineWeight="0.35" id="207" mx="0.132292" my="0.264583" showPointName="true" name="mF" type="alongLine"/>
+            <line firstPoint="206" id="208" lineColor="black" lineType="dashLine" lineWeight="0.35" secondPoint="207"/>
+            <point firstPoint="201" secondPoint="206" length="Line_mA_mE/2" lineType="none" lineColor="black" lineWeight="0.35" id="209" mx="0.132292" my="0.264583" showPointName="true" name="mG" type="alongLine"/>
+            <point firstPoint="203" secondPoint="207" length="Line_mC_mF/2" lineType="none" lineColor="black" lineWeight="0.35" id="210" mx="0.132292" my="0.264583" showPointName="true" name="mGp" type="alongLine"/>
+            <line firstPoint="209" id="211" lineColor="black" lineType="dotLine" lineWeight="0.35" secondPoint="210"/>
+            <line firstPoint="206" id="212" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="202"/>
+            <point firstPoint="206" secondPoint="202" length="Line_mE_mB/2" lineType="none" lineColor="black" lineWeight="0.35" id="213" mx="0.132292" my="0.264583" showPointName="true" name="mH" type="alongLine"/>
+            <line firstPoint="207" id="214" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="204"/>
+            <point firstPoint="207" secondPoint="204" length="Line_mF_mD/2" lineType="none" lineColor="black" lineWeight="0.35" id="215" mx="0.132292" my="0.264583" showPointName="true" name="mHp" type="alongLine"/>
+            <line firstPoint="213" id="216" lineColor="black" lineType="dotLine" lineWeight="0.35" secondPoint="215"/>
+            <point firstPoint="201" secondPoint="203" length="Line_C2_K1*2/3" lineType="none" lineColor="black" lineWeight="0.35" id="217" mx="0.132292" my="0.264583" showPointName="true" name="mI" type="alongLine"/>
+            <point firstPoint="202" secondPoint="204" length="Line_C2_K1*2/3" lineType="none" lineColor="black" lineWeight="0.35" id="218" mx="0.132292" my="0.264583" showPointName="true" name="mIp" type="alongLine"/>
+            <line firstPoint="217" id="219" lineColor="black" lineType="solidLine" lineWeight="0.35" secondPoint="218"/>
+            <point p1Line1="209" p2Line1="210" p1Line2="217" p2Line2="218" id="220" mx="0.132292" my="0.264583" showPointName="true" name="mG1" type="lineIntersect"/>
+            <point p1Line1="213" p2Line1="215" p1Line2="217" p2Line2="218" id="221" mx="0.132292" my="0.264583" showPointName="true" name="mH1" type="lineIntersect"/>
+            <point firstPoint="201" secondPoint="203" length="#haut_coude" lineType="none" lineColor="black" lineWeight="0.35" id="222" mx="0.132292" my="0.264583" showPointName="true" name="mJ" type="alongLine"/>
+            <point firstPoint="202" secondPoint="204" length="#haut_coude" lineType="none" lineColor="black" lineWeight="0.35" id="223" mx="0.132292" my="0.264583" showPointName="true" name="mJp" type="alongLine"/>
+            <line firstPoint="222" id="224" lineColor="black" lineType="dotLine" lineWeight="0.35" secondPoint="223"/>
+            <point firstPoint="207" secondPoint="203" length="#larg_bas/2" lineType="none" lineColor="black" lineWeight="0.35" id="225" mx="0.132292" my="0.264583" showPointName="true" name="mF1" type="alongLine"/>
+            <point firstPoint="207" secondPoint="204" length="#larg_bas/2" lineType="none" lineColor="black" lineWeight="0.35" id="226" mx="0.132292" my="0.264583" showPointName="true" name="mF2" type="alongLine"/>
+            <line firstPoint="217" id="227" lineColor="black" lineType="dotLine" lineWeight="0.35" secondPoint="225"/>
+            <line firstPoint="218" id="228" lineColor="black" lineType="dotLine" lineWeight="0.35" secondPoint="226"/>
+            <point p1Line1="217" p2Line1="225" p1Line2="222" p2Line2="223" id="229" mx="0.132292" my="0.264583" showPointName="true" name="mJ1" type="lineIntersect"/>
+            <point p1Line1="218" p2Line1="226" p1Line2="222" p2Line2="223" id="230" mx="0.132292" my="0.264583" showPointName="true" name="mJ2" type="lineIntersect"/>
+            <point firstPoint="229" secondPoint="230" length="#reduc_coude" lineType="none" lineColor="black" lineWeight="0.35" id="231" mx="0.132292" my="0.264583" showPointName="true" name="mJ3" type="alongLine"/>
+            <point firstPoint="230" secondPoint="229" length="#reduc_coude" lineType="none" lineColor="black" lineWeight="0.35" id="232" mx="0.132292" my="0.264583" showPointName="true" name="mJ4" type="alongLine"/>
+            <line firstPoint="225" id="233" lineColor="black" lineType="solidLine" lineWeight="0.35" secondPoint="231"/>
+            <line firstPoint="226" id="234" lineColor="black" lineType="solidLine" lineWeight="0.35" secondPoint="232"/>
+            <line firstPoint="231" id="235" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="217"/>
+            <point firstPoint="231" secondPoint="217" length="Line_mJ3_mI/2" lineType="none" lineColor="black" lineWeight="0.35" id="236" mx="0.132292" my="0.264583" showPointName="true" name="mMilJ3" type="alongLine"/>
+            <point firstPoint="236" secondPoint="217" length="0.5" angle="180" lineType="none" lineColor="black" lineWeight="0.35" id="237" mx="0.132292" my="0.264583" showPointName="true" name="mCreuxJ3" type="normal"/>
+            <line firstPoint="232" id="238" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="218"/>
+            <point firstPoint="232" secondPoint="218" length="Line_mJ4_mIp/2" lineType="none" lineColor="black" lineWeight="0.35" id="239" mx="0.132292" my="0.264583" showPointName="true" name="mMilJ4" type="alongLine"/>
+            <point firstPoint="239" secondPoint="218" length="0.5" angle="0" lineType="none" lineColor="black" lineWeight="0.35" id="240" mx="0.132292" my="0.264583" showPointName="true" name="mCreuxJ4" type="normal"/>
+            <spline color="black" id="241" lineWeight="0.35" penStyle="solidLine" type="pathInteractive">
+                <pathPoint angle1="AngleLine_mF1_mJ3+180" angle2="AngleLine_mF1_mJ3" length1="0" length2="Line_mJ3_mI/4" pSpline="231"/>
+                <pathPoint angle1="AngleLine_mJ3_mI+180" angle2="AngleLine_mJ3_mI" length1="Line_mJ3_mI/6" length2="Line_mJ3_mI/6" pSpline="237"/>
+                <pathPoint angle1="AngleLine_mJ3_mI+180" angle2="AngleLine_mJ3_mI" length1="Line_mJ3_mI/6" length2="0" pSpline="217"/>
+            </spline>
+            <spline color="black" id="242" lineWeight="0.35" penStyle="solidLine" type="pathInteractive">
+                <pathPoint angle1="AngleLine_mF2_mJ4+180" angle2="AngleLine_mF2_mJ4" length1="0" length2="Line_mJ4_mIp/4" pSpline="232"/>
+                <pathPoint angle1="AngleLine_mJ4_mIp+180" angle2="AngleLine_mJ4_mIp" length1="Line_mJ4_mIp/6" length2="Line_mJ4_mIp/6" pSpline="240"/>
+                <pathPoint angle1="AngleLine_mJ4_mIp+180" angle2="AngleLine_mJ4_mIp" length1="Line_mJ4_mIp/6" length2="0" pSpline="218"/>
+            </spline>
+            <line firstPoint="209" id="243" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="220"/>
+            <point firstPoint="209" secondPoint="220" length="Line_mG_mG1/3" lineType="none" lineColor="black" lineWeight="0.35" id="244" mx="0.132292" my="0.264583" showPointName="true" name="mG2" type="alongLine"/>
+            <line firstPoint="244" id="245" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="217"/>
+            <point firstPoint="244" secondPoint="217" length="Line_mG2_mI/2" lineType="none" lineColor="black" lineWeight="0.35" id="246" mx="0.132292" my="0.264583" showPointName="true" name="mMilG" type="alongLine"/>
+            <point firstPoint="246" secondPoint="217" length="1" angle="180" lineType="solidLine" lineColor="black" lineWeight="0.35" id="247" mx="0.132292" my="0.264583" showPointName="true" name="mG3" type="normal"/>
+            <line firstPoint="213" id="248" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="221"/>
+            <point firstPoint="213" secondPoint="221" length="Line_mH_mH1/2" lineType="none" lineColor="black" lineWeight="0.35" id="249" mx="0.132292" my="0.264583" showPointName="true" name="mH2" type="alongLine"/>
+            <line firstPoint="249" id="250" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="218"/>
+            <point firstPoint="249" secondPoint="218" length="Line_mH2_mIp/2" lineType="none" lineColor="black" lineWeight="0.35" id="251" mx="0.132292" my="0.264583" showPointName="true" name="mMilH" type="alongLine"/>
+            <point firstPoint="251" secondPoint="218" length="1.5" angle="180" lineType="solidLine" lineColor="black" lineWeight="0.35" id="252" mx="0.132292" my="0.264583" showPointName="true" name="mH3" type="normal"/>
+            <line firstPoint="247" id="253" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="206"/>
+            <line firstPoint="244" id="254" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="206"/>
+            <line firstPoint="206" id="255" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="249"/>
+            <line firstPoint="206" id="256" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="252"/>
+            <spline color="darkBlue" id="257" lineWeight="0.35" penStyle="solidLine" type="pathInteractive">
+                <pathPoint angle1="AngleLine_mJ3_mI+90" angle2="AngleLine_mJ3_mI-90" length1="0" length2="1" pSpline="217"/>
+                <pathPoint angle1="(AngleLine_mG2_mI+180)+180" angle2="(AngleLine_mG2_mI+180)" length1="Line_mG2_mI/6" length2="Line_mG2_mI/6" pSpline="247"/>
+                <pathPoint angle1="AngleLine_mG3_mE+180" angle2="AngleLine_mG3_mE" length1="Line_mG3_mE/6" length2="Line_mG3_mE/6" pSpline="244"/>
+                <pathPoint angle1="180" angle2="0" length1="Line_mG2_mE*1/3" length2="Line_mE_mH2*1/3" pSpline="206"/>
+                <pathPoint angle1="AngleLine_mE_mH3+180" angle2="AngleLine_mE_mH3" length1="Line_mE_mH3/6" length2="Line_mE_mH3/6" pSpline="249"/>
+                <pathPoint angle1="AngleLine_mH2_mIp+180" angle2="AngleLine_mH2_mIp" length1="Line_mH2_mIp/6" length2="Line_mH2_mIp/6" pSpline="252"/>
+                <pathPoint angle1="AngleLine_mJ4_mIp-90" angle2="AngleLine_mJ4_mIp+90" length1="1.5" length2="0" pSpline="218"/>
+            </spline>
+            <point id="258" length="7+(SplPath_mI_mIp-(SplPath_K_C3+SplPath_K_C3_1))/2" mx="0.132292" my="0.264583" showPointName="true" name="mCranDos" splinePath="257" type="cutSplinePath"/>
+            <point id="259" length="SplPath_mI_mIp-(8+(SplPath_mI_mIp-(SplPath_K_C3+SplPath_K_C3_1))/2)" mx="0.132292" my="0.264583" showPointName="true" name="mCranDev1" splinePath="257" type="cutSplinePath"/>
+            <point id="260" length="SplPath_mI_mIp-(9+(SplPath_mI_mIp-(SplPath_K_C3+SplPath_K_C3_1))/2)" mx="0.132292" my="0.264583" showPointName="true" name="mCranDev2" splinePath="257" type="cutSplinePath"/>
+        </calculation>
+        <modeling>
+            <point id="261" idObject="225" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
+            <point id="262" idObject="231" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
+            <spline id="263" idObject="241" inUse="true" type="modelingPath"/>
+            <point id="264" idObject="217" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
+            <spline id="265" idObject="257" inUse="true" type="modelingPath"/>
+            <point id="266" idObject="258" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
+            <spline id="267" idObject="257" inUse="true" type="modelingPath"/>
+            <point id="268" idObject="206" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
+            <spline id="269" idObject="257" inUse="true" type="modelingPath"/>
+            <point id="270" idObject="260" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
+            <spline id="271" idObject="257" inUse="true" type="modelingPath"/>
+            <point id="272" idObject="259" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
+            <spline id="273" idObject="257" inUse="true" type="modelingPath"/>
+            <point id="274" idObject="218" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
+            <spline id="275" idObject="242" inUse="true" type="modelingPath"/>
+            <point id="276" idObject="232" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
+            <point id="277" idObject="226" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
+        </modeling>
+        <pieces>
+            <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="278" inLayout="true" locked="false" mx="0" my="0" name="Manche" seamAllowance="true" united="false" version="2" width="0.7">
+                <nodes>
+                    <node idObject="261" type="NodePoint"/>
+                    <node idObject="262" type="NodePoint"/>
+                    <node idObject="263" reverse="0" type="NodeSplinePath"/>
+                    <node idObject="264" type="NodePoint"/>
+                    <node idObject="265" reverse="0" type="NodeSplinePath"/>
+                    <node idObject="266" notch="true" notchAngle="0" notchCount="1" notchLength="0.4" notchSubtype="straightforward" notchType="slit" notchWidth="0.25" showNotch="true" showSecondNotch="true" type="NodePoint"/>
+                    <node idObject="267" reverse="0" type="NodeSplinePath"/>
+                    <node idObject="268" notch="true" notchAngle="0" notchCount="1" notchLength="0.4" notchSubtype="straightforward" notchType="slit" notchWidth="0.25" showNotch="true" showSecondNotch="true" type="NodePoint"/>
+                    <node idObject="269" reverse="0" type="NodeSplinePath"/>
+                    <node idObject="270" notch="true" notchAngle="0" notchCount="1" notchLength="0.4" notchSubtype="straightforward" notchType="slit" notchWidth="0.25" showNotch="true" showSecondNotch="true" type="NodePoint"/>
+                    <node idObject="271" reverse="0" type="NodeSplinePath"/>
+                    <node idObject="272" notch="true" notchAngle="0" notchCount="1" notchLength="0.4" notchSubtype="straightforward" notchType="slit" notchWidth="0.25" showNotch="true" showSecondNotch="true" type="NodePoint"/>
+                    <node idObject="273" reverse="0" type="NodeSplinePath"/>
+                    <node idObject="274" type="NodePoint"/>
+                    <node idObject="275" reverse="1" type="NodeSplinePath"/>
+                    <node idObject="276" type="NodePoint"/>
+                    <node idObject="277" type="NodePoint"/>
                 </nodes>
             </piece>
         </pieces>
