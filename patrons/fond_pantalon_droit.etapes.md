@@ -155,6 +155,8 @@ Vérifications du livre (p. 242)
 6. **Fichier** : nouveau `patrons/fond_pantalon_droit.sm2d` (cm, `mesures/T44.smms`) ; bloc
    « Fond de pantalon droit », devant et dos superposés sur le même axe ; pièces Devant et Dos
    séparées, **Dos sans miroir** ; bloc et pièce « Carré 5x5 » ; X et Y non tracés.
+7. **Côtés des indices** validés : gauche (côté) A2, B1, C1, D1, E1 / B5, B4, C4, D3, E3 ;
+   droite (entrejambe) A1, A3, B2, C2, D2, E2 / A5, B3, C3, C5, D4, E4.
 ## Questions ouvertes
 À poser une à la fois, dans cet ordre (les premières conditionnent les suivantes).
 1. **Fichier de mesures.** Le livre est en T38 (tableau p. 239) ; le dépôt n'a que
