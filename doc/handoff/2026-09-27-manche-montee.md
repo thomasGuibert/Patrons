@@ -112,7 +112,7 @@ Valeurs T44 attendues (calcul approché hors Seamly) : `tour_emm` ≈ 43,1, AB �
 
 Vérifié par export en ligne de commande
 (`seamly2d.exe -b x -d <dossier> -f 0 --exportOnlyDetails <fichier>`) et mesure du SVG :
-AB = 33,58, `tour_emm` = 43,44, AI = 13,0, tête de manche = 43,98, **embu = 0,54 cm** ✓.
+AB = 33,58, `tour_emm` = 43,44, AI = 13,0, tête de manche = 44,48, **embu = 1,04 cm** (hors plage).
 
 Enseignements Seamly (à reporter dans le skill `tracer-sm2d`) :
 - Les noms de points sont uniques dans **tout** le fichier : points de la manche préfixés
@@ -127,11 +127,21 @@ Enseignements Seamly (à reporter dans le skill `tracer-sm2d`) :
   l'écran) ; `angle="180"` inverse le côté.
 - Pièce : un point sur une courbe (cran) se place en répétant la courbe de part et d'autre
   du point dans la liste des nœuds ; crans `notchType="slit"`, `notchLength="0.4"`.
-- **Platitudes ≠ poignées** : des poignées de 1,5 / 1 cm en E donnaient une tête pointue
-  et un embu de 0,20. Retenu : poignées horizontales en E = 1/3 de la distance à G2 / H2
-  (dôme, embu 0,54). Aux points I et I', poignées de 1 / 1,5 cm perpendiculaires au
-  dessous de manche. Les autres points ont des tangentes de type Catmull-Rom.
-- Légère ondulation de la tête vers G2 côté dos : à lisser si besoin.
+- **Tête de manche (version actuelle, choix utilisateur)** : platitudes = segments droits
+  I→`mI1` (1 cm) et I'→`mIp1` (1,5 cm) perpendiculaires au dessous de manche, puis
+  3 Bézier à 4 points (`cubicBezier`, variables `Spl_<p1>_<p4>`) :
+  - dos 1 : `mI1`, `mI1c` (1 cm dans l'axe de la platitude), `mG2a` (depuis G2, angle 200,
+    `Line_mG2_mI*0.54`), `mG2` → passe par G3 ;
+  - dos 2 : `mG2`, `mG2b` (angle 20, `Line_mG2_mE/3`), `mEc` (milieu de E–G), `mE` ;
+  - devant : `mIp1`, `mIp1c` (axe de la platitude ∩ HH1), `mH`, `mE` → passe à ~0,15 de
+    H2 et H3.
+  Coefficients (0,54, angle 20/200) ajustés numériquement pour la T44.
+  **Embu = 1,04 cm (> 1)** : à régler (hauteur de tête, largeur ou bombé), décision reportée.
+- Historique : une courbe continue à 7 points (poignées 1/3 en E) donnait un embu de 0,54 ;
+  une seule Bézier au dos ne peut pas passer par G3 si elle part à plat de I1 ; prendre G
+  comme point de contrôle de G2→E créait une bosse.
+- Sujets reportés : supprimer les milieux (`mMilG`, `mMilH`, `mMilJ3`, `mMilJ4`) et
+  simplifier le dessous de manche.
 
 ## Prochaines étapes
 
