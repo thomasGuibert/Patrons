@@ -213,8 +213,22 @@
             <point angle="0" firstPoint="303" id="304" length="5" lineColor="black" lineType="solidLine" lineWeight="0.5" mx="0.396875" my="-1.77271" name="Z3" secondPoint="302" showPointName="true" type="normal"/>
             <line firstPoint="301" id="305" lineColor="black" lineType="solidLine" lineWeight="0.5" secondPoint="304"/>
         </calculation>
-        <modeling/>
-        <pieces/>
+        <modeling>
+            <point id="306" idObject="301" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
+            <point id="307" idObject="302" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
+            <point id="308" idObject="303" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
+            <point id="309" idObject="304" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
+        </modeling>
+        <pieces>
+            <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="310" inLayout="true" locked="false" mx="0" my="0" name="Carré 5x5" seamAllowance="false" united="false" version="2" width="0">
+                <nodes>
+                    <node idObject="306" type="NodePoint"/>
+                    <node idObject="307" type="NodePoint"/>
+                    <node idObject="308" type="NodePoint"/>
+                    <node idObject="309" type="NodePoint"/>
+                </nodes>
+            </piece>
+        </pieces>
         <groups/>
         <images/>
     </draftBlock>
