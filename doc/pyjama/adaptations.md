@@ -52,8 +52,10 @@ Point d'attention hérité du fond : côté dos évasé de B4 à B5 en T44 (`wai
 - 2026-10-07 : pantalon → modèle a (souple p. 246, élargissements p. 244) avec la ceinture du
   jogging coupée dans le même jersey (le fond seul serait trop près du corps pour un pyjama).
 
-## Questions ouvertes
+## État
 
-Haut : tracé (`patrons/haut_pyjama.sm2d`), à vérifier dans Seamly.
-Pantalon : modèle a + ceinture jersey du jogging décidés ; suite dans
-`patrons/bas_pyjama.etapes.md`.
+- Haut : tracé, `patrons/haut_pyjama.sm2d` (embu 0,89), aperçu `apercu-haut-hors-seamly.png`.
+- Pantalon : tracé, `patrons/bas_pyjama.sm2d` (modèle a, sans poches, élastique 3 cm), aperçu
+  `apercu-bas-hors-seamly.png`.
+- Les deux fichiers sont à ouvrir et vérifier dans Seamly (calculés hors Seamly).
+- Restent : numéros des pages encolure V, introduction aux élargissements et jogging.
