@@ -6,10 +6,13 @@ sont pas tranchées (chaîne `lire-patronage` → `.etapes.md` validé → `trac
 
 ## État de départ
 
-| Pièce | Ce qui existe | Manque |
+Matière : **jersey** (décidé le 2026-10-07), le cadre du livre : le fond de pantalon sans
+ouverture passe les hanches, aucune adaptation hors livre n'est nécessaire.
+
+| Pièce | Base dans le dépôt | Manque |
 |---|---|---|
 | Haut | `patrons/fond_base_maille.sm2d` : devant, dos, manche (embu 1,43 à régler) | page du livre sur l'encolure V |
-| Pantalon | transcription du fond droit (p. 238-243), des élargissements (p. 244-245) et du modèle souple (p. 246-247) | **aucun `.sm2d`** ; page 256 (ceinture plate) |
+| Pantalon | `patrons/fond_pantalon_droit.sm2d` + `.etapes.md` (T44, 19 décisions, vérifié) ; transcriptions p. 244-247 | page 256 (ceinture plate) |
 
 ## 1. Pantalon de pyjama
 
@@ -17,28 +20,36 @@ Le livre présente le fond droit (p. 238) comme « utilisable tel quel pour un p
 souple, un fuseau ou un jogging […] sans ouverture à la taille ». Le modèle p. 246 en est
 presque un bas de pyjama ; il suffit de retirer les poches (ou de les garder).
 
-Enchaînement (source entre crochets) :
+Enchaînement (source entre crochets). Proposition : nouveau fichier
+`patrons/pantalon_pyjama.sm2d` qui repart d'une copie de `fond_pantalon_droit.sm2d` (le fond
+reste intact) ; les élargissements s'ajoutent comme nouveaux points, noms du fond + suffixe `e`.
 
-1. Tracer le **fond de pantalon droit** devant + dos superposés [p. 238-243], nouveau fichier
-   `patrons/pantalon.sm2d` (en cm, `mesures/T44.smms`). Trancher d'abord l'écart CC3
-   hanches/taille (voir transcription).
-2. **Élargissements** [p. 244-245] — seule la taille milieu reste à 0 :
-   - pointe d'enfourchure devant et dos : +1 à 2,5 cm vers l'entrejambe, −1 à 3 cm vers le bas
-     (variables `#elarg_enf_h`, `#elarg_enf_v`) ;
-   - côté à la taille : +0,5 cm ;
-   - côté au montant (A), au genou (B), au bas (C) : valeurs libres, le livre n'en donne pas
-     (variables `#elarg_A`, `#elarg_B`, `#elarg_C`) ;
-   - retracer enfourchure, hanches et jambes, puis vérifier entrejambe et côtés assemblés.
-3. **Descendre la taille** de 2 cm devant et dos [p. 247, lu sur le schéma].
+1. **Base** : le fond droit tracé, devant et dos superposés [p. 238-243, déjà fait].
+2. **Élargissements** [p. 244-245] — seule la taille milieu (A3 devant, A5 dos) reste à 0 :
+
+   | Endroit (livre) | Devant | Dos | Valeur |
+   |---|---|---|---|
+   | Pointe d'enfourchure, vers l'entrejambe | C2 → C2e | C5 → C5e | `#elarg_enf_h` : 1 à 2,5 |
+   | Pointe d'enfourchure, vers le bas | idem | idem | `#elarg_enf_v` : 1 à 3 |
+   | Taille côté | A2 → A2e | B5 → B5e | 0,5 |
+   | A : côté au montant | C1 → C1e | C4 → C4e | `#elarg_A` : libre |
+   | B : côté au genou | D1 → D1e | D3 → D3e | `#elarg_B` : libre |
+   | C : côté au bas | E1 → E1e | E3 → E3e | `#elarg_C` : libre |
+
+   Côté entrejambe (D2, E2, D4, E4) : le schéma ne montre pas de flèche, mais le livre dit
+   « dessiner les jambes dos et devant symétriquement » → à confirmer (question).
+   Puis retracer enfourchure (B2→C2e, B3→C5e), hanches aplaties, jambes ; vérifier entrejambes
+   et côtés assemblés (`verifier.py`).
+3. **Descendre la taille** de 2 cm devant et dos [p. 247, lu sur le schéma] : nouvelle ligne de
+   taille parallèle à l'ancienne (`#descente_pyjama` = 2).
 4. **Poches** [p. 246-247] : optionnelles pour un pyjama.
 5. **Ceinture élastiquée** sur le 1/2 tour de taille descendue [p. 256, page manquante].
    Alternative sans la page 256 : coulisse à même (prolonger le haut de 2 × largeur de
    l'élastique + 1 cm, replier, piquer).
 6. Couturages 0,7 cm, ourlet 2,5 cm [p. 246].
 
-Point d'attention : sans ouverture, le haut du pantalon doit **passer les hanches**. En jersey
-c'est le cas (c'est le cadre du livre). En tissu chaîne et trame (popeline, flanelle), il faut
-élargir le haut jusqu'au tour de hanches + aisance et laisser l'élastique froncer : hors livre.
+Point d'attention hérité du fond (handoff pantalon) : côté dos évasé de B4 à B5 en T44
+(`waist_circ` 76 à vérifier). L'élargissement de 0,5 en B5 l'accentue : à regarder sur le PNG.
 
 ## 2. T-shirt col V
 
@@ -66,15 +77,20 @@ d'encolure dos H→F1 (id 21), ligne de milieu devant E→A (pliure).
 Hors encolure, pour un pyjama : manche longue (déjà tracée) ou courte (couper à la hauteur
 voulue), éventuellement bord-côtes aux poignets.
 
+## Décisions
+
+- 2026-10-07 : matière → jersey.
+- 2026-10-07 : base du pantalon → `patrons/fond_pantalon_droit.sm2d` (branche
+  `claude/recuperer-skills-vavt5l`, fusionnée ici).
+
 ## Questions ouvertes
 
-1. Matière du pyjama : jersey (cadre du livre) ou tissu chaîne et trame ?
-2. Le livre a-t-il une page « encolure V » (ou « encolure en pointe ») ? Si oui, la photographier.
-3. Ceinture : photographier la p. 256, ou coulisse à même ?
-4. Poches : avec ou sans ?
-5. Valeurs d'élargissement : enfourchure (1-2,5 / 1-3), côtés A, B, C.
-6. Profondeur du V (`#prof_v`) et élargissement d'encolure (`#elarg_encolure`).
-7. Haut : manche longue ou courte ?
-8. Écart CC3 du fond de pantalon (1/6 tour de hanches FR / tour de taille EN).
-9. Fichier de mesures : `T44.smms` a un tour de hanches de 90, moins que le T38 du livre (92).
-   Bonnes mesures pour la personne qui portera le pyjama ?
+1. Le livre a-t-il une page « encolure V » (ou « encolure en pointe ») ? Si oui, la photographier.
+2. Ceinture : photographier la p. 256, ou coulisse à même ?
+3. Poches : avec ou sans ?
+4. Valeurs d'élargissement : enfourchure (1-2,5 / 1-3), côtés A, B, C ; élargir aussi
+   l'entrejambe (symétrie) ou seulement le côté ?
+5. Profondeur du V (`#prof_v`) et élargissement d'encolure (`#elarg_encolure`).
+6. Haut : manche longue ou courte ?
+7. Fichier : `patrons/pantalon_pyjama.sm2d` copié du fond (proposé), ou un 2e bloc dans
+   `fond_pantalon_droit.sm2d` ? Idem pour le haut : `tshirt_col_v.sm2d` ou bloc supplémentaire.
