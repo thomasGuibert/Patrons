@@ -8,7 +8,7 @@ Texte français recopié ; écarts avec la colonne anglaise signalés par **⚠*
 
 Ce tracé est un fond de pantalon. Il est déjà considéré comme un vêtement avec un
 élargissement minimum : utilisable tel quel pour un pantalon droit et souple, un fuseau ou un
-jogging, avec une ceinture à même ou rapportée, sans ouverture à la taille. Convient à la
+jogging, sans ouverture à la taille, pour une taille finie par une ceinture à même ou rapportée, élastiquée et/ou coulissée. Convient à la
 plupart des mailles, même non stretch. Mesures du corps en taille 38.
 
 ### Rappel des mesures de base T38 (tableau p. 239)
@@ -84,8 +84,8 @@ B2A3 (milieu devant).
 ### Dos
 Largeur au niveau de l'enfourchure, sur la ligne C :
 - CC3 = (1/6 du tour de hanches avec aisance) + son 1/20.
-  **⚠ L'anglais dit « 1/6th of waist measurement with ease ».** Le devant utilise les
-  hanches : le français est probablement juste. À trancher.
+  **⚠ L'anglais dit « 1/6th of waist measurement with ease ».** Le schéma p. 241 donne
+  raison au français (CC4 ≈ 1,3 × CC1 ; hanches → 1,22, taille → 0,94). À confirmer.
 - CC4 = CC3.
 - Descendre C3 en C5 de 1 cm, perpendiculairement à la ligne C.
 
@@ -98,6 +98,8 @@ Largeur au niveau des hanches, sur la ligne B :
 - Perpendiculairement à l'axe XY, porter A5 tel que A4A5 = 0,5 cm.
 - Depuis A5, porter B5 en ligne droite, en appui sur la ligne de taille descendue, tel que
   A5B5 = 1/4 du tour de taille avec aisance − 1 cm.
+  **⚠ L'anglais dit « imitating the dropped waist line »** ; le schéma confirme le français
+  (B5 posé sur la ligne F).
 
 ## Page 242 : jambe dos, vérifications
 
@@ -121,17 +123,31 @@ la ligne de taille dos en courbe.
 
 ### Vérifications
 - Relever séparément le devant et le dos (le dos est retourné pour obtenir un dos droit).
-- Vérifier le tour de taille avec aisance, pour la taille descendue.
+- Vérifier le tour de taille avec aisance, pour la taille descendue (le tour de taille ne
+  sera plus prévu pour le passage des hanches).
 - Assembler les lignes d'entrejambe devant et dos pour vérifier l'enfourchure ; retracer au
   besoin.
 - Vérifier les longueurs des lignes de côté devant et dos.
 - Variante avec ouverture à la taille (braguette, zip côté, boutonnage) : le tour de taille
-  peut être réduit de 2 à 4 cm au total selon l'épaisseur de la matière (schéma : 0,5 cm
-  retiré à chaque bord de taille pour une réduction de 4 cm).
+  peut être réduit de 2 à 4 cm au total selon l'épaisseur de la matière. Schéma : 0,5 cm
+  retiré à chacun des quatre bords (milieu dos, côté dos, côté devant, milieu devant), soit
+  2 cm par demi-pantalon et 4 cm au total ; chaque bord repris en pointillé jusqu'à la ligne
+  des hanches B (probable).
 
 ## Points des schémas non définis explicitement
-- A2 et B5 sont sur la ligne de taille descendue F (côté gauche).
-- A4 est sur l'axe XY entre A et F (FA4 = 3 cm, AF = 4 cm : A4 à 1 cm sous A).
-- Côté (à gauche de XY) : devant B1, C1, D1, E1 ; dos B4, C4, D3, E3.
-- Entrejambe / enfourchure (à droite de XY) : devant B2, C2, D2, E2 ; dos B3, C5, D4, E4.
-- Devant et dos sont tracés superposés sur le même axe XY.
+Vérifiés par la relecture (`relecture.md`). Gauche de l'axe XY = côté, droite = entrejambe.
+- A2 et B5 sont sur la ligne de taille descendue F, à gauche de l'axe, B5 plus à gauche que A2.
+- A4 est sur l'axe XY, 1 cm sous A (3 cm au-dessus de F).
+- A5 est à 0,5 cm **à droite** de A4, à la même hauteur.
+- A1 est **à droite** de F ; A3 est 1 cm sous A1.
+- C5 est à la verticale de C3, 1 cm sous la ligne C ; C3 est au-delà de C2.
+- B3 est entre l'axe et B2.
+- Côté (à gauche de XY) : devant B1, C1, D1, E1 ; dos B4, C4, D3, E3 (B4, C4, D3, E3 à
+  gauche de leurs homologues devant).
+- Entrejambe / enfourchure (à droite de XY) : devant A1, A3, B2, C2, D2, E2 ; dos A5, B3, C3,
+  C5, D4, E4 (D4 et E4 à droite de leurs homologues devant).
+- « Rentrer de 0,5 cm » : toujours vers l'intérieur de la pièce (probable, mesure des
+  pixels). D2C2 et D4C5 : la courbe part vers la gauche, vers l'axe ; A5B5 : la courbe passe
+  sous la droite.
+- Devant et dos sont tracés superposés sur le même axe XY. Le schéma p. 243 ne montre que le
+  devant.
