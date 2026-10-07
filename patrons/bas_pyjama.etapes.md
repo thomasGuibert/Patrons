@@ -5,7 +5,7 @@ Sources (transcriptions à côté des photos) :
 - `doc/sources/pantalon/elargissements/` : élargissements (p. 244-245) ;
 - `doc/sources/pantalon/modele-pantalon-souple/` : modèle souple (p. 246-247) ;
 - `doc/sources/pantalon/jogging-jersey/` : ceinture élastiquée, note « ceinture en jersey ».
-Fichier cible : à décider (question 1) — en cm. Mesures : `mesures/T44.smms`.
+Fichier cible : `patrons/bas_pyjama.sm2d`, copie de `fond_pantalon_droit.sm2d` (décision) — en cm. Mesures : `mesures/T44.smms`.
 
 Ordre du livre (p. 246) : fond droit devant et dos superposés → élargissements (p. 244) →
 descendre la taille → (poches) → ceinture sur la 1/2 taille descendue → coutures, ourlets, crans.
@@ -42,7 +42,7 @@ Conventions : points du fond (gauche = côté, droite = entrejambe ; devant indi
    points cA3 (milieu devant), cA2e (côté devant), cA5 (milieu dos), cB5e (côté dos), sur les
    milieux et les côtés retracés ; courbes de taille retracées
 
-### 3. Poches (p. 246-247) : selon la question 2
+### 3. Poches (p. 246-247) : non tracées (décision)
 
 ### 4. Ceinture en jersey (page jogging, note)
 9. Mesurer la 1/2 taille descendue : courbe devant + courbe dos (étape 8)
@@ -51,7 +51,7 @@ Conventions : points du fond (gauche = côté, droite = entrejambe ; devant indi
 11. Élastique : longueur finie + 2 cm (longueur finie à mesurer sur la personne)
 
 ### Pièces
-12. Devant ×2, Dos ×2, Ceinture ×1 (+ poches ×2 si oui). Couture 0,7 ; ourlet 2,5 ; crans de
+12. Devant ×2, Dos ×2, Ceinture ×1. Couture 0,7 ; ourlet 2,5 ; crans de
     montage (milieux, côtés de la ceinture).
 
 ## Contrôles
@@ -66,9 +66,11 @@ Conventions : points du fond (gauche = côté, droite = entrejambe ; devant indi
 - 2026-10-07 : ceinture → **même jersey que le pyjama** (note de la page jogging : AB = 1/2 tour
   de taille, AC = (hauteur élastique + 0,5) × 2), pas de bord-côtes.
 
+- 2026-10-07 : fichier → `patrons/bas_pyjama.sm2d`, copie du fond (comme le haut, sans objection).
+- 2026-10-07 : poches → sans.
+
 ## Questions ouvertes
-1. Fichier cible : copie de `fond_pantalon_droit.sm2d` en `patrons/bas_pyjama.sm2d` ?
-2. Poches : avec ou sans ?
+1. ~~Fichier cible~~, 2. ~~Poches~~ : tranchées (voir Décisions).
 3. Valeurs d'élargissement : enfourchure (1-2,5 / 1-3) et côtés A, B, C.
 4. Entrejambe : élargi comme le côté (jambe « symétrique ») ou inchangé ?
 5. Hauteur de l'élastique : 4 cm (exemple du livre) ?
