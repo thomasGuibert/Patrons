@@ -22,7 +22,7 @@ Conventions : points du fond (gauche = côté, droite = entrejambe ; devant indi
     `#el_enf_h` (1 à 2,5), `#el_enf_v` (1 à 3), `#el_taille_cote` = 0,5, `#el_A`, `#el_B`,
     `#el_C` (côté au montant, au genou, au bas : non chiffrés par le livre).
   - `#desc_taille_pyj` = 2 (p. 247, lu sur le schéma).
-  - Ceinture (page jogging) : `#haut_elastique` = 4 (exemple), ceinture jersey
+  - Ceinture (page jogging) : `#haut_elastique` = 3 (décision ; 4 au livre), ceinture jersey
     AB = 1/2 tour de taille, AC = (`#haut_elastique` + 0,5) × 2.
 
 ## Étapes
@@ -76,8 +76,11 @@ Conventions : points du fond (gauche = côté, droite = entrejambe ; devant indi
 - 2026-10-07 : entrejambe → élargi aussi au genou et au bas (`#el_B`, `#el_C` = 1,5), comme
   sur le schéma p. 245 : bas de jambe ≈ 46, genou + 6 en T44.
 
+- 2026-10-07 : élastique → 3 cm (`#haut_elastique`), ceinture coupée 7, finie 3,5. Fichier
+  d'étapes validé, tracé demandé.
+
 ## Questions ouvertes
 1. ~~Fichier cible~~, 2. ~~Poches~~ : tranchées (voir Décisions).
 3. ~~Valeurs d'élargissement~~ : tranchée (voir Décisions).
 4. ~~Entrejambe~~ : tranchée (voir Décisions).
-5. Hauteur de l'élastique : 4 cm (exemple du livre) ?
+5. ~~Hauteur de l'élastique~~ : tranchée (voir Décisions).
