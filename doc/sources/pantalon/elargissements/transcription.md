@@ -33,7 +33,8 @@ Ligne ». Tracé noir = fond de base, tracé vert = pantalon élargi.
 
 ## Points des schémas non définis dans le texte
 
-- **A, B, C** : élargissements du côté au montant, au genou et au bas. Le schéma ne donne aucune
+- **A, B, C** : élargissements du côté au montant, au genou et au bas ; **B et C sont aussi
+  fléchés à l'entrejambe** (relecture du 2026-10-07 : flèches des deux côtés de chaque jambe). Le schéma ne donne aucune
   valeur : ce sont des réglages libres (question à poser à l'utilisateur).
 - **Pointe d'enfourchure** : le nouveau point est décalé de 1 à 2,5 cm vers l'extérieur
   (entrejambe) et de 1 à 3 cm vers le bas ; la nouvelle enfourchure rejoint le milieu devant /

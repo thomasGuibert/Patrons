@@ -30,7 +30,8 @@ Conventions : points du fond (gauche = côté, droite = entrejambe ; devant indi
 1. Pointe d'enfourchure devant C2e : C2 + `#el_enf_h` vers l'entrejambe, puis `#el_enf_v` vers le bas ; dos C5e : idem depuis C5
 2. Taille côté : A2e = A2 + `#el_taille_cote` vers le côté ; dos B5e = B5 + `#el_taille_cote`
 3. Côté : C1e, D1e, E1e (devant) et C4e, D3e, E3e (dos) = points du fond + `#el_A`, `#el_B`, `#el_C` vers le côté
-4. Entrejambe : D2e, E2e, D4e, E4e selon la question 4 (symétrie des jambes)
+4. Entrejambe : D2e, E2e (devant) et D4e, E4e (dos) = points du fond + `#el_B` (genou) et `#el_C`
+   (bas) vers l'entrejambe (flèches B et C des deux côtés sur le schéma p. 245, décision)
 5. Retracer l'enfourchure B2 → C2e (devant) et B3 → C5e (dos), milieux devant et dos inchangés
 6. Retracer les côtés en aplatissant la hanche, sans bosse avec la jambe ; retracer les jambes
    « symétriquement en suivant les courbes du fond »
@@ -70,10 +71,13 @@ Conventions : points du fond (gauche = côté, droite = entrejambe ; devant indi
 - 2026-10-07 : poches → sans.
 
 - 2026-10-07 : élargissements → `#el_enf_h` = 2, `#el_enf_v` = 2, `#el_taille_cote` = 0,5,
-  `#el_A` = `#el_B` = `#el_C` = 1,5 (hanches ≈ 98, bas de jambe ≈ 43 en T44).
+  `#el_A` = `#el_B` = `#el_C` = 1,5 (hanches ≈ 98 en T44).
+
+- 2026-10-07 : entrejambe → élargi aussi au genou et au bas (`#el_B`, `#el_C` = 1,5), comme
+  sur le schéma p. 245 : bas de jambe ≈ 46, genou + 6 en T44.
 
 ## Questions ouvertes
 1. ~~Fichier cible~~, 2. ~~Poches~~ : tranchées (voir Décisions).
 3. ~~Valeurs d'élargissement~~ : tranchée (voir Décisions).
-4. Entrejambe : élargi comme le côté (jambe « symétrique ») ou inchangé ?
+4. ~~Entrejambe~~ : tranchée (voir Décisions).
 5. Hauteur de l'élastique : 4 cm (exemple du livre) ?
