@@ -56,8 +56,8 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
 
 ### 3. Déplacement de l'épaule (p. 48)
 15. vHp, vKp : parallèle à vH–vK côté devant à `#decal_epaule`, intersections avec l'encolure devant
-    (droite vH–vE) et l'emmanchure devant (courbe vK–vD1–vC3d) [p. 48, fig. 1 ; le texte dit
-    « dos », le schéma montre le devant : question 4]
+    (droite vH2–vE2) et l'emmanchure devant (courbe vK–vD1–vC3d) [p. 48, fig. 1 ; côté devant,
+    décision 4]
 16. vHpp, vKpp : symétriques de vHp, vKp par rapport à vH–vK (côté dos) [p. 48, fig. 2]
 17. Pièce Devant : épaule vHp–vKp ; pièce Dos : épaule vHpp–vKpp, angles adoucis au bout d'épaule
     et à l'encolure [fig. 3]
@@ -107,14 +107,14 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
 - 2026-10-07 : question 3 → 3 / 2 / 13 = encolure finie, puis lignes de couture décalées de
   `#larg_bande` vers l'extérieur.
 
+- 2026-10-07 : question 4 → parallèle à 1,8 tracée **côté devant** (p. 47 + schéma p. 48 ; le
+  « dos » du texte p. 48 est tenu pour une coquille), reportée au dos par symétrie.
+
 ## Questions ouvertes
 1. ~~Fichier cible~~ : tranchée (voir Décisions).
 2. ~~Élargissements p. 56 + encolure V~~ : tranchée (voir Décisions).
 3. ~~Retirer la valeur de la bande~~ : tranchée (voir Décisions).
-4. **Côté de la parallèle à 1,8** : le texte p. 48 dit « intersections avec l'encolure dos et
-   l'emmanchure dos » ; la p. 47 dit « sur le devant » et le schéma montre la bande dans le devant,
-   reportée au dos par symétrie. Recommandation : **côté devant** (p. 47 + schéma ; « dos » serait
-   une coquille, la colonne anglaise dit aussi « back »).
+4. ~~Côté de la parallèle à 1,8~~ : tranchée (voir Décisions).
 5. **Bas** : droit (recommandé pour un pyjama) ou arrondi liquette ?
 6. **Manches** : longues (déjà tracées, `#long_manche` = 64) ou courtes (longueur à choisir) ?
    Poignet : ourlet 2,5 (recommandé, dans le livre) ou bord-côtes (pas de page « poignet » : règle
