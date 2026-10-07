@@ -55,6 +55,36 @@ Conventions : points du fond (gauche = côté, droite = entrejambe ; devant indi
 12. Devant ×2, Dos ×2, Ceinture ×1. Couture 0,7 ; ourlet 2,5 ; crans de
     montage (milieux, côtés de la ceinture).
 
+## Réalisation (2026-10-07, `patrons/bas_pyjama.sm2d`)
+
+Généré par script, contrôlé avec `evaluer_hors_seamly.py` (pas de Seamly dans la session cloud :
+**à ouvrir et vérifier dans Seamly**). Blocs : « Pantalon » (fond + élargissements, pièces
+Devant ×2 et Dos ×2), « Ceinture », « Carré 5x5 ». Aperçu : `doc/pyjama/apercu-bas-hors-seamly.png`.
+Choix de tracé :
+- Pointes d'enfourchure : point d'aide C2a / C5a (+2 vers l'entrejambe), puis C2e / C5e (−2).
+- Côté : une courbe C1e → A2e (devant) et C4e → B5e (dos), départ dans l'axe de la jambe,
+  arrivée presque verticale (hanche aplatie). Taille descendue : cA2e, cB5e coupés sur ces
+  courbes à 2 cm du haut ; cA3, cA5 sur les milieux à 2 cm.
+- Taille devant : platitude 0,5 en cA3 (comme le fond) puis courbe ; taille dos : creux 0,5 à
+  mi-longueur (comme le fond).
+- Entrejambes : droites bas → genou, puis courbe creusée de 0,5 à mi-hauteur (comme le fond).
+- Ceinture : rectangle entier (2 × 1/2 taille) × (3 + 0,5) × 2 ; A et B2 = milieu dos (couture),
+  pli DB = milieu devant ; crans aux côtés et au milieu devant sur le bord CD ; pliure en tirets.
+- Ourlets 2,5 posés en largeur de couture sur les nœuds du bas : à vérifier dans Seamly.
+
+Valeurs T44 mesurées hors Seamly :
+
+| Grandeur | Valeur |
+|---|---|
+| Tour de taille descendue (patron) = longueur de ceinture | 83,92 (devant 21,83, dos 20,13, ×2) |
+| Tour de hanches (ligne B) | 98,74 (fond 93,33) |
+| Tour de cuisse (ligne de montant) | 65,49 (fond 58,48) |
+| Genou / bas de jambe | 54,0 / 46,0 |
+| Côtés devant / dos | 94,27 / 94,37 (écart −0,10) |
+| Entrejambes devant / dos | 71,18 / 70,27 (écart 0,90, comme le fond : décision 19 du fond) |
+| Enfourchure totale (devant + dos) | 58,87 |
+| Ceinture coupée | 83,92 × 7,0 |
+
 ## Contrôles
 - Entrejambes devant / dos : écart à mesurer (0,92 sur le fond, décision 19 du fond).
 - Côtés devant / dos : même longueur.

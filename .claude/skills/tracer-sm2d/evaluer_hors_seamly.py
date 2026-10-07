@@ -179,6 +179,18 @@ class Pattern:
             elif t == 'lineIntersectAxis':
                 b = self.g(el, 'basePoint')
                 self.put(el, inter(b, polar(b, self.ev(el.get('angle')), 10), self.g(el, 'p1Line'), self.g(el, 'p2Line')), el.get('basePoint'))
+            elif t == 'pointOfContact':
+                c = self.g(el, 'center'); r = self.ev(el.get('radius'))
+                a, b = self.g(el, 'firstPoint'), self.g(el, 'secondPoint')
+                dx, dy = b[0] - a[0], b[1] - a[1]
+                fx, fy = a[0] - c[0], a[1] - c[1]
+                A = dx * dx + dy * dy; B = 2 * (fx * dx + fy * dy); C = fx * fx + fy * fy - r * r
+                disc = B * B - 4 * A * C
+                if disc < 0:
+                    raise ValueError('cercle sans intersection')
+                sols = [(-B + sg * math.sqrt(disc)) / (2 * A) for sg in (-1, 1)]
+                pts = [(a[0] + t_ * dx, a[1] + t_ * dy) for t_ in sols]
+                self.put(el, min(pts, key=lambda q: math.dist(q, a)))  # le plus proche du premier point
             elif t in ('cutSplinePath', 'cutSpline'):
                 pts = self.curve_by_id[el.get('splinePath') or el.get('spline')]
                 self.put(el, cut(pts, self.ev(el.get('length'))))
