@@ -65,8 +65,8 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
 ### 4. Milieu devant et bas (p. 60)
 18. Devant : prolonger le milieu devant vers le bas de `#prolong_devant` (vA), bas devant retracé
     de vA à vA1 avec platitude perpendiculaire au milieu ; dos : bas droit A–vA1
-19. Bas : droit (pyjama) ; la liquette (point à 4 cm sur le côté, deux courbes inversées) n'est
-    pas reprise (question 5)
+19. Bas droit, ourlet 2,5 (décision 5) ; le bas liquette (point à 4 cm, courbes inversées) n'est
+    pas repris
 
 ### 5. Manche (p. 60 fig. 2, p. 68-72)
 20. Manche de base reconstruite sur la nouvelle emmanchure : les formules du bloc « Manche » lisent
@@ -110,12 +110,14 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
 - 2026-10-07 : question 4 → parallèle à 1,8 tracée **côté devant** (p. 47 + schéma p. 48 ; le
   « dos » du texte p. 48 est tenu pour une coquille), reportée au dos par symétrie.
 
+- 2026-10-07 : question 5 → bas droit, ourlet 2,5 ; milieu devant prolongé de 1,5 conservé.
+
 ## Questions ouvertes
 1. ~~Fichier cible~~ : tranchée (voir Décisions).
 2. ~~Élargissements p. 56 + encolure V~~ : tranchée (voir Décisions).
 3. ~~Retirer la valeur de la bande~~ : tranchée (voir Décisions).
 4. ~~Côté de la parallèle à 1,8~~ : tranchée (voir Décisions).
-5. **Bas** : droit (recommandé pour un pyjama) ou arrondi liquette ?
+5. ~~Bas~~ : tranchée (voir Décisions).
 6. **Manches** : longues (déjà tracées, `#long_manche` = 64) ou courtes (longueur à choisir) ?
    Poignet : ourlet 2,5 (recommandé, dans le livre) ou bord-côtes (pas de page « poignet » : règle
    du bas de jambe jogging, 3/4 du tour) ?
