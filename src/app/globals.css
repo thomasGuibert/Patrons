@@ -1,0 +1,30 @@
+:root {
+  --paper: #f5f3ef;
+  --ink: #1d1c1a;
+  --ink-muted: #6b6862;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #17161a;
+    --ink: #ecebe6;
+    --ink-muted: #9a978f;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Noto Serif", serif;
+}
+
+main {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+}
+
+p {
+  color: var(--ink-muted);
+}
