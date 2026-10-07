@@ -75,8 +75,9 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
     vC2) ; même construction, mêmes variables (`#frac_largeur` 3/4…)
 21. Longueur : `#long_manche` = `arm_shoulder_tip_to_wrist` (manche longue, décision 6) ; bas
     perpendiculaire au milieu, largeur `#larg_bas` existante ; ourlet 2,5
-22. Contrôle embu (0,5 à 1 attendu ; 1,43 sur le fond actuel) : à reprendre sur la nouvelle
-    emmanchure (question 7)
+22. Contrôle embu (0,5 à 1 attendu ; 1,43 sur le fond actuel) : mesurer sur la nouvelle
+    emmanchure dans `haut_pyjama.sm2d` ; si hors plage, s'arrêter et proposer un réglage chiffré
+    (hauteur ou bombé de tête) avant de modifier (décision 7)
 23. Crans [p. 72] : emmanchure dos 1 cran à 7 de la couture de côté ; devant 2 crans à 8 et 9 ;
     manche : dos 7 + 1/2 embu depuis I, devant 8 + 1/2 embu depuis I' et 1 cm plus loin ; cran de
     tête **décalé de `#decal_epaule`** depuis E (épaule déplacée) ; longueur des crans 0,4
@@ -115,6 +116,9 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
 
 - 2026-10-07 : question 6 → manches longues (`#long_manche` inchangé), ourlet 2,5 au poignet.
 
+- 2026-10-07 : question 7 → embu recalculé sur la nouvelle emmanchure dans le nouveau fichier,
+  réglage seulement s'il sort de 0,5 à 1 (proposition chiffrée d'abord).
+
 ## Questions ouvertes
 1. ~~Fichier cible~~ : tranchée (voir Décisions).
 2. ~~Élargissements p. 56 + encolure V~~ : tranchée (voir Décisions).
@@ -122,6 +126,5 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
 4. ~~Côté de la parallèle à 1,8~~ : tranchée (voir Décisions).
 5. ~~Bas~~ : tranchée (voir Décisions).
 6. ~~Manches~~ : tranchée (voir Décisions).
-7. **Embu** : la nouvelle emmanchure change le tour ; recalculer, puis ne régler (hauteur ou
-   bombé de tête) que s'il reste hors de 0,5 à 1 ? Recommandation : **oui**.
+7. ~~Embu~~ : tranchée (voir Décisions).
 8. **Page de l'encolure V** et page de l'introduction aux élargissements : numéros.
