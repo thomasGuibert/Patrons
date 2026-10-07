@@ -47,7 +47,8 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
 10. vH : sur H→K, HvH = `#degag_epaule`
 11. vF : sur l'axe F→A, FvF = `#desc_dos` ; vE : sur l'axe E→A, EvE = `#desc_devant`
 12. Encolure dos : platitude perpendiculaire au milieu dos depuis vF, puis courbe jusqu'à vH
-13. Encolure devant : droite vH → vE
+13. Encolure devant : courbe vH2 → vVc → vE2, creusée de `#creux_v` = 1 vers le côté à
+    mi-longueur (lu sur le schéma de l'encolure V, fig. 1 ; décision 9)
 14. Retirer la largeur de bande (décision 3) : 3 / 2 / 13 = ligne finie ; lignes de couture décalées
     de `#larg_bande` vers l'extérieur : vH2 sur H→K à `#degag_epaule + #larg_bande` de H ; vF2 sur
     l'axe à `#desc_dos + #larg_bande` de F ; vE2 = intersection de l'axe et de la parallèle à vH–vE
@@ -120,10 +121,10 @@ Valeurs T44 mesurées hors Seamly :
 | Largeur de manche AB | 37,54 (33,32 sur le fond) |
 | Tête de manche | 49,60 |
 | **Embu** | **0,89** (0,31 avant la décision 8) |
-| Épaules devant / dos | 9,93 / 9,93 |
-| Demi-encolure (couture) / encolure totale | 36,54 / 73,08 |
+| Épaules devant / dos | 9,57 / 9,57 |
+| Demi-encolure (couture) / encolure totale | 36,96 / 73,92 |
 | V : fini / couture sous E | 13,00 / 16,04 |
-| Recul du bout de bande | 2,65 |
+| Recul du bout de bande | 2,57 (tangente de la courbe en vE2) |
 | Côté | 40,98 (commun devant / dos) |
 
 Réglages d'embu évalués (poignées recalculées à chaque fois) : creux G3 1 → 1,5 : 0,62 ;
@@ -158,6 +159,11 @@ Réglages d'embu évalués (poignées recalculées à chaque fois) : creux G3 1 
 - 2026-10-07 : décision 8 (réglage d'embu, suite de la décision 7) → creux de la tête côté dos
   en G3 porté de 1 à 2 (`#creux_tete_dos`) : embu 0,89. Tour d'emmanchure compté platitudes
   comprises (proposé avec ce réglage, non contesté).
+
+- 2026-10-07 : décision 9 → encolure devant légèrement courbe (remarque de l'utilisateur,
+  confirmée par le schéma fig. 1 : creux ≈ 1 cm à mi-longueur, `#creux_v`). vHp = intersection
+  de la parallèle à 1,8 avec cette courbe ; bout de bande calculé sur la tangente en vE2 (point
+  vTg, angle recopié de la poignée : à refaire si la poignée est déplacée dans Seamly).
 
 ## Questions ouvertes
 1. ~~Fichier cible~~ : tranchée (voir Décisions).
