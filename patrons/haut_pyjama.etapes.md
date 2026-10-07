@@ -48,8 +48,11 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
 11. vF : sur l'axe F→A, FvF = `#desc_dos` ; vE : sur l'axe E→A, EvE = `#desc_devant`
 12. Encolure dos : platitude perpendiculaire au milieu dos depuis vF, puis courbe jusqu'à vH
 13. Encolure devant : droite vH → vE
-14. Retirer la largeur de bande (question 3) : si 3 / 2 / 13 = ligne finie, décaler l'encolure de
-    `#larg_bande` vers l'extérieur (vH2, vF2, vE2), lignes de couture = nouvelles lignes
+14. Retirer la largeur de bande (décision 3) : 3 / 2 / 13 = ligne finie ; lignes de couture décalées
+    de `#larg_bande` vers l'extérieur : vH2 sur H→K à `#degag_epaule + #larg_bande` de H ; vF2 sur
+    l'axe à `#desc_dos + #larg_bande` de F ; vE2 = intersection de l'axe et de la parallèle à vH–vE
+    décalée de `#larg_bande` vers l'extérieur. Courbe dos vH2→vF2 (avec platitude), droite vH2→vE2.
+    Les étapes 15 à 17 et la bande partent de ces lignes de couture.
 
 ### 3. Déplacement de l'épaule (p. 48)
 15. vHp, vKp : parallèle à vH–vK côté devant à `#decal_epaule`, intersections avec l'encolure devant
@@ -101,11 +104,13 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
 - 2026-10-07 : question 2 → corps élargi avec les valeurs du T-shirt souple (p. 56), encolure
   avec les valeurs du V (3 / 2 / 13) à la place de l'encolure ronde de la p. 56.
 
+- 2026-10-07 : question 3 → 3 / 2 / 13 = encolure finie, puis lignes de couture décalées de
+  `#larg_bande` vers l'extérieur.
+
 ## Questions ouvertes
 1. ~~Fichier cible~~ : tranchée (voir Décisions).
 2. ~~Élargissements p. 56 + encolure V~~ : tranchée (voir Décisions).
-3. **« Retirer la valeur de la bande »** : 3 / 2 / 13 = ligne finie, puis décaler de 1,5 ?
-   Recommandation : **ligne finie, puis décaler** (lecture littérale de « puis seulement ensuite »).
+3. ~~Retirer la valeur de la bande~~ : tranchée (voir Décisions).
 4. **Côté de la parallèle à 1,8** : le texte p. 48 dit « intersections avec l'encolure dos et
    l'emmanchure dos » ; la p. 47 dit « sur le devant » et le schéma montre la bande dans le devant,
    reportée au dos par symétrie. Recommandation : **côté devant** (p. 47 + schéma ; « dos » serait
