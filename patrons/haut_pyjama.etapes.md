@@ -6,7 +6,7 @@ Sources (transcriptions à côté des photos) :
 - `doc/sources/buste/deplacement-epaule/` : déplacement de la ligne d'épaule (p. 48-49) ;
 - `doc/sources/buste/tshirt-liquette/` : enchaînement d'un T-shirt complet (p. 60-61) ;
 - `doc/sources/manche/manche-montee/` : manche (p. 68-71) et crans (p. 72).
-Fichier cible : à décider (question 1) — en cm. Mesures : `mesures/T44.smms`.
+Fichier cible : `patrons/haut_pyjama.sm2d`, copie de `fond_base_maille.sm2d` (décision 1) — en cm. Mesures : `mesures/T44.smms`.
 
 Ordre du livre (p. 60) : élargissements → côté → emmanchure → encolure → épaule → milieu devant →
 bas → manche sur la nouvelle emmanchure → crans, coutures, ourlets.
@@ -96,12 +96,13 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
 - Bande : longueur = 1/2 encolure ± 0,1 (jersey non réduit).
 
 ## Décisions
+- 2026-10-07 : question 1 → nouveau fichier `patrons/haut_pyjama.sm2d`, copie de
+  `fond_base_maille.sm2d` ; le fond reste intact, la manche est copiée et reconstruite.
 - 2026-10-07 : question 2 → corps élargi avec les valeurs du T-shirt souple (p. 56), encolure
   avec les valeurs du V (3 / 2 / 13) à la place de l'encolure ronde de la p. 56.
 
 ## Questions ouvertes
-1. **Fichier cible** : nouveau `patrons/haut_pyjama.sm2d` (copie de `fond_base_maille.sm2d`,
-   le fond reste intact, la manche suit) ou blocs ajoutés au fond ? Recommandation : **copie**.
+1. ~~Fichier cible~~ : tranchée (voir Décisions).
 2. ~~Élargissements p. 56 + encolure V~~ : tranchée (voir Décisions).
 3. **« Retirer la valeur de la bande »** : 3 / 2 / 13 = ligne finie, puis décaler de 1,5 ?
    Recommandation : **ligne finie, puis décaler** (lecture littérale de « puis seulement ensuite »).
