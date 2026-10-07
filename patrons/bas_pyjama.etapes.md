@@ -69,8 +69,11 @@ Conventions : points du fond (gauche = côté, droite = entrejambe ; devant indi
 - 2026-10-07 : fichier → `patrons/bas_pyjama.sm2d`, copie du fond (comme le haut, sans objection).
 - 2026-10-07 : poches → sans.
 
+- 2026-10-07 : élargissements → `#el_enf_h` = 2, `#el_enf_v` = 2, `#el_taille_cote` = 0,5,
+  `#el_A` = `#el_B` = `#el_C` = 1,5 (hanches ≈ 98, bas de jambe ≈ 43 en T44).
+
 ## Questions ouvertes
 1. ~~Fichier cible~~, 2. ~~Poches~~ : tranchées (voir Décisions).
-3. Valeurs d'élargissement : enfourchure (1-2,5 / 1-3) et côtés A, B, C.
+3. ~~Valeurs d'élargissement~~ : tranchée (voir Décisions).
 4. Entrejambe : élargi comme le côté (jambe « symétrique ») ou inchangé ?
 5. Hauteur de l'élastique : 4 cm (exemple du livre) ?
