@@ -1,7 +1,7 @@
 # Élargissements de pantalon : transcription du livre
 
 Source : `p244-245-elargissements.jpg` (« Élargissements de pantalon / Trouser enlargements »,
-p. 244-245, numéro déduit du renvoi « voir page 244 » de la p. 246).
+p. 244-245, numéros confirmés par une 2e photo du 2026-10-07).
 Texte français recopié ; écarts avec la colonne anglaise signalés par **⚠**.
 
 ## Texte (p. 244)
