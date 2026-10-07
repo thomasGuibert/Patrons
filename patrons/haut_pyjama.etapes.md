@@ -73,7 +73,8 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
     l'emmanchure devant + dos des étapes 9 et 15-17 (au lieu de `SplPath_K_C3` et
     `SplPath_K_C3_1`) et la nouvelle profondeur d'emmanchure (`prof_emm`, méthode vidéo, depuis
     vC2) ; même construction, mêmes variables (`#frac_largeur` 3/4…)
-21. Longueur : `#long_manche` (longue) ou courte (question 6) ; bas perpendiculaire au milieu
+21. Longueur : `#long_manche` = `arm_shoulder_tip_to_wrist` (manche longue, décision 6) ; bas
+    perpendiculaire au milieu, largeur `#larg_bas` existante ; ourlet 2,5
 22. Contrôle embu (0,5 à 1 attendu ; 1,43 sur le fond actuel) : à reprendre sur la nouvelle
     emmanchure (question 7)
 23. Crans [p. 72] : emmanchure dos 1 cran à 7 de la couture de côté ; devant 2 crans à 8 et 9 ;
@@ -112,15 +113,15 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
 
 - 2026-10-07 : question 5 → bas droit, ourlet 2,5 ; milieu devant prolongé de 1,5 conservé.
 
+- 2026-10-07 : question 6 → manches longues (`#long_manche` inchangé), ourlet 2,5 au poignet.
+
 ## Questions ouvertes
 1. ~~Fichier cible~~ : tranchée (voir Décisions).
 2. ~~Élargissements p. 56 + encolure V~~ : tranchée (voir Décisions).
 3. ~~Retirer la valeur de la bande~~ : tranchée (voir Décisions).
 4. ~~Côté de la parallèle à 1,8~~ : tranchée (voir Décisions).
 5. ~~Bas~~ : tranchée (voir Décisions).
-6. **Manches** : longues (déjà tracées, `#long_manche` = 64) ou courtes (longueur à choisir) ?
-   Poignet : ourlet 2,5 (recommandé, dans le livre) ou bord-côtes (pas de page « poignet » : règle
-   du bas de jambe jogging, 3/4 du tour) ?
+6. ~~Manches~~ : tranchée (voir Décisions).
 7. **Embu** : la nouvelle emmanchure change le tour ; recalculer, puis ne régler (hauteur ou
    bombé de tête) que s'il reste hors de 0,5 à 1 ? Recommandation : **oui**.
 8. **Page de l'encolure V** et page de l'introduction aux élargissements : numéros.
