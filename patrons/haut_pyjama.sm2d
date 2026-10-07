@@ -32,6 +32,7 @@
         <variable description="Encolure V : descente du milieu devant, ligne finie (exemple)" formula="13" name="#desc_devant"/>
         <variable description="Largeur de la bande d'encolure finie (maximum du livre en jersey)" formula="1.5" name="#larg_bande"/>
         <variable description="Déplacement de la ligne d'épaule vers l'avant (p. 48)" formula="1.8" name="#decal_epaule"/>
+        <variable description="Creux de la tête de manche côté dos en G3 (1 au livre ; 2 pour un embu de 0,5 à 1, décision 8)" formula="2" name="#creux_tete_dos"/>
         <variable description="Prolongement du milieu devant vers le bas (p. 60, 1 à 1,5)" formula="1.5" name="#prolong_devant"/>
     </variables>
     <draftBlock name="Corps">
@@ -256,7 +257,7 @@
             <point firstPoint="209" id="232" length="Line_mG_mG1/3" lineColor="black" lineType="none" lineWeight="0.35" mx="0.221327" my="0.0419965" name="mG2" secondPoint="220" showPointName="true" type="alongLine"/>
             <line firstPoint="232" id="233" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="217"/>
             <point firstPoint="232" id="234" length="Line_mG2_mI/2" lineColor="black" lineType="dotLine" lineWeight="0.35" mx="-2.89489" my="-1.91676" name="mMilG" secondPoint="217" showPointName="true" type="alongLine"/>
-            <point angle="0" firstPoint="234" id="235" length="1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.310362" my="0.0419954" name="mG3" secondPoint="217" showPointName="true" type="normal"/>
+            <point angle="0" firstPoint="234" id="235" length="#creux_tete_dos" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.310362" my="0.0419954" name="mG3" secondPoint="217" showPointName="true" type="normal"/>
             <line firstPoint="213" id="236" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="221"/>
             <point firstPoint="213" id="237" length="Line_mH_mH1/2" lineColor="black" lineType="none" lineWeight="0.35" mx="0.087775" my="-1.7387" name="mH2" secondPoint="221" showPointName="true" type="alongLine"/>
             <line firstPoint="237" id="238" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="218"/>
@@ -264,7 +265,7 @@
             <point angle="180" firstPoint="239" id="240" length="1.5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="-2.18261" my="0.131031" name="mH3" secondPoint="218" showPointName="true" type="normal"/>
             <point angle="(AngleLine_mI_mF1+180)-90" basePoint="217" id="241" length="1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.354879" my="-0.00252038" name="mI1" showPointName="true" type="endLine"/>
             <point angle="(AngleLine_mIp_mF2+180)+90" basePoint="218" id="242" length="1.5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mIp1" showPointName="true" type="endLine"/>
-            <spline angle1="9.9613" angle2="180" color="darkBlue" id="243" length1="5.1000" length2="10.5000" lineWeight="0.35" penStyle="solidLine" point1="241" point4="206" type="simpleInteractive"/>
+            <spline angle1="9.9613" angle2="180" color="darkBlue" id="243" length1="9.5000" length2="13.0000" lineWeight="0.35" penStyle="solidLine" point1="241" point4="206" type="simpleInteractive"/>
             <spline angle1="170.0387" angle2="0" color="darkBlue" id="245" length1="7.9000" length2="8.5000" lineWeight="0.35" penStyle="solidLine" point1="242" point4="206" type="simpleInteractive"/>
             <point id="487" name="mCr7" type="cutSpline" spline="243" length="7+((Line_mI_mI1+Spl_mI1_mE+Spl_mIp1_mE+Line_mIp_mIp1)-(#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vK_vC3d-Line_vK_vKp))/2-Line_mI_mI1" mx="0.132292" my="0.264583" showPointName="true"/>
             <point id="488" name="mCr8" type="cutSpline" spline="245" length="8+((Line_mI_mI1+Spl_mI1_mE+Spl_mIp1_mE+Line_mIp_mIp1)-(#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vK_vC3d-Line_vK_vKp))/2-Line_mIp_mIp1" mx="0.132292" my="0.264583" showPointName="true"/>

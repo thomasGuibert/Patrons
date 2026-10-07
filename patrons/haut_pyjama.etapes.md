@@ -118,8 +118,8 @@ Valeurs T44 mesurées hors Seamly :
 | Tour d'emmanchure | 48,72 (46,22 sans platitudes) |
 | Profondeur d'emmanchure / hauteur de tête AI | 21,11 / 14,07 |
 | Largeur de manche AB | 37,54 (33,32 sur le fond) |
-| Tête de manche | 49,02 |
-| **Embu** | **0,31 (hors 0,5-1 : réglage à décider, décision 7)** |
+| Tête de manche | 49,60 |
+| **Embu** | **0,89** (0,31 avant la décision 8) |
 | Épaules devant / dos | 9,93 / 9,93 |
 | Demi-encolure (couture) / encolure totale | 36,54 / 73,08 |
 | V : fini / couture sous E | 13,00 / 16,04 |
@@ -154,6 +154,10 @@ Réglages d'embu évalués (poignées recalculées à chaque fois) : creux G3 1 
 
 - 2026-10-07 : question 7 → embu recalculé sur la nouvelle emmanchure dans le nouveau fichier,
   réglage seulement s'il sort de 0,5 à 1 (proposition chiffrée d'abord).
+
+- 2026-10-07 : décision 8 (réglage d'embu, suite de la décision 7) → creux de la tête côté dos
+  en G3 porté de 1 à 2 (`#creux_tete_dos`) : embu 0,89. Tour d'emmanchure compté platitudes
+  comprises (proposé avec ce réglage, non contesté).
 
 ## Questions ouvertes
 1. ~~Fichier cible~~ : tranchée (voir Décisions).
