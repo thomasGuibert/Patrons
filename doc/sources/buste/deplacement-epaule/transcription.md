@@ -20,6 +20,8 @@ la plupart des pièces de base avec une manche montée (ex : T-shirts…). La co
 - Tracer les lignes d'encolure et d'emmanchure élargies.
 - À 1,8 cm de l'épaule de base, tracer en parallèle la nouvelle ligne d'épaule. Placer le point
   A' et B' aux intersections avec l'encolure dos et l'emmanchure dos.
+  **⚠ « dos » (FR et EN) contredit la p. 47 (« sur le devant ») et le schéma** : décidé côté
+  devant le 2026-10-07 (`patrons/haut_pyjama.etapes.md`, décision 4).
 
 ## Figure 2 : développement
 - Plier sur AB et reporter A'B' en symétrie. Placer les points A'' et B''.
