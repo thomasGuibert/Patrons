@@ -49,14 +49,11 @@ Point d'attention hérité du fond : côté dos évasé de B4 à B5 en T44 (`wai
 - 2026-10-07 : base du pantalon → `patrons/fond_pantalon_droit.sm2d` (branche
   `claude/recuperer-skills-vavt5l`, fusionnée ici).
 - 2026-10-07 : encolure V → méthode du livre (bande jersey piquée milieu devant).
+- 2026-10-07 : pantalon → modèle a (souple p. 246, élargissements p. 244) avec la ceinture du
+  jogging coupée dans le même jersey (le fond seul serait trop près du corps pour un pyjama).
 
 ## Questions ouvertes
 
-1. Modèle de pantalon : a, b ou c ? Recommandation : **c** pour un pantalon « normal » (jambe
-   droite, ourlet) ; **b** si un bas resserré en bord-côtes convient. a n'est complet qu'avec la
-   p. 256.
-2. Ceinture : bord-côtes (3/4) ou jersey du pyjama (1/2, note du livre) ?
-3. Élargissements p. 244 : oui / non, et valeurs.
-4. Haut : manche longue ou courte ?
-5. Questions du haut : `patrons/haut_pyjama.etapes.md`.
-6. Numéros des pages jogging et encolure V.
+Haut : tracé (`patrons/haut_pyjama.sm2d`), à vérifier dans Seamly.
+Pantalon : modèle a + ceinture jersey du jogging décidés ; suite dans
+`patrons/bas_pyjama.etapes.md`.
