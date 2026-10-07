@@ -55,6 +55,12 @@ sommets. Il signale toute erreur Seamly.
 Terminé quand : export sans erreur, chaque contrôle chiffré dans sa tolérance (ou l'écart
 signalé à l'utilisateur), PNG examiné.
 
+Sans Seamly (session cloud) : `python3 .claude/skills/tracer-sm2d/evaluer_hors_seamly.py
+<fichier> --dump` évalue les formules et les points (outils usuels, repère y vers le haut) et
+signale les `Line_` lus sans segment ; `rendre_hors_seamly.py <fichier> <sortie.png>` dessine
+les contours des pièces et les crans. Validé sur `fond_base_maille.sm2d` (tour 43,10, embu
+1,43). Ne remplace pas l'export Seamly : le signaler à l'utilisateur.
+
 ### 4. Livrer
 
 - Commit du `.sm2d` (et du fichier d'étapes s'il a évolué).

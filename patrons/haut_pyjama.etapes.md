@@ -93,6 +93,42 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
 27. Devant (×1, au pli), Dos (×1, au pli), Manche (×2), Bande (×1, au pli). Couture 0,7 ;
     ourlets bas et manches 2,5.
 
+## Réalisation (2026-10-07, `patrons/haut_pyjama.sm2d`)
+
+Généré par script, contrôlé avec `evaluer_hors_seamly.py` (pas de Seamly dans la session cloud :
+**à ouvrir et vérifier dans Seamly**). Blocs : « Corps » (fond + étapes 1-19, pièces Devant et
+Dos), « Manche » (formules repointées, crans, ourlet), « Bande d'encolure », « Carré 5x5 ».
+Écarts au fichier d'étapes :
+- Étape 9 dos et 12 : l'emmanchure dos et l'encolure dos sont tracées directement depuis vKpp et
+  vHpp (après le déplacement d'épaule) ; la version avant déplacement n'est pas tracée.
+- Étape 20 : `tour_emm` inclut les **platitudes d'emmanchure** (1 dos + 1,5 devant), qui font
+  partie de la couture, comme les platitudes de la tête de manche (1 et 1,5) comptées dans la
+  tête. Le fond comparait la tête avec platitudes à l'emmanchure sans : son embu de 1,43 vaut
+  en réalité −0,57 (44,53 − 45,10). À confirmer.
+- Bout d'épaule pour la profondeur d'emmanchure : vKf, milieu de vKp et vKpp (pied sur l'épaule).
+- Points techniques : vC2a, vEn, vEn2 (parallèle du V fini), vQ, vQ2 (parallèle à 1,8), vHf,
+  vKf (pieds pour la symétrie), vPl, vPl2, vBm, vBf (bout de bande), vCr7-9, mCr7-9, mCrE (crans).
+- Ourlets 2,5 posés en largeur de couture sur les nœuds du bas : à vérifier dans Seamly.
+
+Valeurs T44 mesurées hors Seamly :
+
+| Grandeur | Valeur |
+|---|---|
+| Emmanchure dos / devant (couture, platitudes comprises) | 25,25 / 23,47 |
+| Tour d'emmanchure | 48,72 (46,22 sans platitudes) |
+| Profondeur d'emmanchure / hauteur de tête AI | 21,11 / 14,07 |
+| Largeur de manche AB | 37,54 (33,32 sur le fond) |
+| Tête de manche | 49,02 |
+| **Embu** | **0,31 (hors 0,5-1 : réglage à décider, décision 7)** |
+| Épaules devant / dos | 9,93 / 9,93 |
+| Demi-encolure (couture) / encolure totale | 36,54 / 73,08 |
+| V : fini / couture sous E | 13,00 / 16,04 |
+| Recul du bout de bande | 2,65 |
+| Côté | 40,98 (commun devant / dos) |
+
+Réglages d'embu évalués (poignées recalculées à chaque fois) : creux G3 1 → 1,5 : 0,62 ;
+→ 2 : 0,89 ; hauteur de tête AI 2/3 → 0,70 : 1,25 (≈ 0,68 pour 0,75).
+
 ## Contrôles
 - Épaules devant et dos de même longueur (vHpvKp = vHppvKpp).
 - Emmanchure devant + dos (après déplacement d'épaule) = tour lu par la manche ; embu 0,5 à 1.
