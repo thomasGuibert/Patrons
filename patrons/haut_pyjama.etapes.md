@@ -43,7 +43,7 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
 8. Platitudes d'emmanchure en vC2, perpendiculaires au côté : vC3d (devant) = 1,5 ; vC3b (dos) = 1 [p. 56]
 9. Emmanchure devant : courbe vK – vD1 – vC3d ; emmanchure dos : courbe vK – vD2 – vC3b
 
-### 2. Encolure V (remplace l'élargissement d'encolure de la p. 56 : question 2)
+### 2. Encolure V (remplace l'élargissement d'encolure de la p. 56, décision du 2026-10-07)
 10. vH : sur H→K, HvH = `#degag_epaule`
 11. vF : sur l'axe F→A, FvF = `#desc_dos` ; vE : sur l'axe E→A, EvE = `#desc_devant`
 12. Encolure dos : platitude perpendiculaire au milieu dos depuis vF, puis courbe jusqu'à vH
@@ -96,15 +96,13 @@ manche). Côté = vers la droite du fond (C1, D1…), « extérieur » = en s'é
 - Bande : longueur = 1/2 encolure ± 0,1 (jersey non réduit).
 
 ## Décisions
-(aucune)
+- 2026-10-07 : question 2 → corps élargi avec les valeurs du T-shirt souple (p. 56), encolure
+  avec les valeurs du V (3 / 2 / 13) à la place de l'encolure ronde de la p. 56.
 
 ## Questions ouvertes
 1. **Fichier cible** : nouveau `patrons/haut_pyjama.sm2d` (copie de `fond_base_maille.sm2d`,
    le fond reste intact, la manche suit) ou blocs ajoutés au fond ? Recommandation : **copie**.
-2. **Élargissements p. 56 + encolure V** : le corps prend les valeurs T-shirt (0,5 / 0,5 / 1,5…),
-   l'encolure prend celles du V (3 / 2 / 13) au lieu de celles du T-shirt (2 / 1,5 / 2,5) ?
-   Recommandation : **oui** : le V dit « élargir l'encolure selon le modèle », la p. 56 donne une
-   encolure ronde ; plus ample (sweater p. 57) seulement si vous voulez un pyjama plus large.
+2. ~~Élargissements p. 56 + encolure V~~ : tranchée (voir Décisions).
 3. **« Retirer la valeur de la bande »** : 3 / 2 / 13 = ligne finie, puis décaler de 1,5 ?
    Recommandation : **ligne finie, puis décaler** (lecture littérale de « puis seulement ensuite »).
 4. **Côté de la parallèle à 1,8** : le texte p. 48 dit « intersections avec l'encolure dos et
