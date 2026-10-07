@@ -8,20 +8,22 @@ Rien n'est tracé tant que les questions ne sont pas tranchées (chaîne `lire-p
 
 | Pièce | Base tracée | Pages du livre transcrites |
 |---|---|---|
-| Haut | `patrons/fond_base_maille.sm2d` (devant, dos, manche ; embu 1,43 à régler) | encolure V en bande jersey (`col/encolure-v-bande-jersey/`) |
+| Haut | `patrons/fond_base_maille.sm2d` (devant, dos, manche ; embu 1,43 à régler) | élargissements maille p. 56-57, épaule p. 48-49, T-shirt liquette p. 60-61, encolure V, crans p. 72 |
 | Pantalon | `patrons/fond_pantalon_droit.sm2d` (T44, vérifié) | élargissements p. 244-245, pantalon souple p. 246-247, jogging jersey (`pantalon/jogging-jersey/`) |
 
-## 1. T-shirt col V
+## 1. Haut : T-shirt col V
 
-Étapes détaillées et questions : `patrons/tshirt_col_v.etapes.md`. En résumé, sur le fond de
-base maille :
-1. dégager le point d'encolure H de 3 cm le long de l'épaule (devant et dos) ;
-2. descendre le milieu dos de 2 cm, retracer l'encolure dos en courbe ;
-3. descendre le milieu devant de 13 cm sous E, encolure devant en droite ;
-4. retirer la largeur de la bande (≤ 1,5 cm en jersey) ;
-5. bande jersey pliée en deux : rectangle 1/2 encolure × largeur finie, pointe en onglet piquée
-   au milieu devant, milieu dos au pli ; couture 0,7.
-Valeurs 3 / 2 / 13 : exemples du livre.
+Étapes détaillées et questions : `patrons/haut_pyjama.etapes.md`. Le livre enchaîne (p. 60,
+T-shirt liquette) :
+1. élargir le fond pour un T-shirt souple (p. 56 : épaule +0,5, carrure +0,5, dessous de bras
+   +1,5 et −1,5, taille +0,5, bas +1) ;
+2. encolure V (3 à l'épaule, −2 au dos, −13 au devant ; bande jersey ≤ 1,5, pointe en onglet) ;
+3. déplacer la ligne d'épaule de 1,8 vers l'avant (p. 48) ;
+4. prolonger le milieu devant de 1 à 1,5 vers le bas ;
+5. **manche reconstruite sur la nouvelle emmanchure** (même méthode p. 68-71, le bloc Manche
+   existant suit en changeant les courbes lues), crans p. 72 avec le cran de tête décalé de 1,8 ;
+6. couture 0,7, ourlet 2,5.
+Valeurs : exemples du livre.
 
 ## 2. Pantalon : trois modèles possibles
 
@@ -56,5 +58,5 @@ Point d'attention hérité du fond : côté dos évasé de B4 à B5 en T44 (`wai
 2. Ceinture : bord-côtes (3/4) ou jersey du pyjama (1/2, note du livre) ?
 3. Élargissements p. 244 : oui / non, et valeurs.
 4. Haut : manche longue ou courte ?
-5. Questions du col V : `patrons/tshirt_col_v.etapes.md`.
+5. Questions du haut : `patrons/haut_pyjama.etapes.md`.
 6. Numéros des pages jogging et encolure V.
