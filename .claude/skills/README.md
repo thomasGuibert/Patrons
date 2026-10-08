@@ -16,4 +16,6 @@ Pour mettre à jour : recopier les dossiers depuis le dépôt source.
   validé question par question avec l'utilisateur.
 - `tracer-sm2d` : étapes validées → `.sm2d`, vérifié par `tracer-sm2d/verifier.py`
   (export Seamly en ligne de commande). Pièges Seamly : `tracer-sm2d/SEAMLY.md`.
+- `changer-taille` : photo d'un tableau de tailles → `transcription.md` validée →
+  `mesures/T<n>.smms`, patrons vérifiés dans la nouvelle taille.
 - Références partagées : `doc/patronage/gestes.md`, `doc/patronage/lexique-mesures.md`.
