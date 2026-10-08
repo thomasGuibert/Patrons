@@ -1,4 +1,4 @@
-"""Patron imprimable (PDF A4 à l'échelle 1) à partir de l'export SVG des pièces fait par Seamly.
+"""Patron imprimable (PDF A4 ou A3 à l'échelle 1) à partir de l'export SVG des pièces fait par Seamly.
 
 La géométrie n'est pas recalculée : les tracés de Seamly (coupe, couture, crans, droit-fil,
 étiquettes) sont recopiés tels quels, chaque pièce seulement déplacée et, si cela économise des
@@ -7,13 +7,13 @@ choisi pour le moins de feuilles puis le moins de raccords ; les petites pièces
 la place libre. Page 1 : notice, carré de contrôle de Seamly et plan d'assemblage.
 
 Export Seamly (sur le PC) : seamly2d.exe -b <nom> -d <dossier> -f 0 --exportOnlyDetails <nom>.sm2d
-Usage : python3 pdf_depuis_seamly.py <nom>_pieces.svg sortie.pdf "Titre" [fichier.sm2d]
+Usage : python3 pdf_depuis_seamly.py <nom>_pieces.svg sortie.pdf "Titre" [fichier.sm2d] [--a3]
 Le .sm2d, facultatif, ne sert qu'au texte de la notice (taille, quantités).
 """
 import math, os, re, sys
 import xml.etree.ElementTree as ET
 from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import A3, A4
 from reportlab.lib.utils import simpleSplit
 
 NS = '{http://www.w3.org/2000/svg}'
@@ -100,6 +100,7 @@ def infos_sm2d(path):
     return taille, coupe
 
 
+FORMATS = {'A4': A4, 'A3': A3}
 FEUILLES = {'portrait': A4, 'paysage': A4[::-1]}
 
 
@@ -198,7 +199,9 @@ def touchees(bloc):
     return res
 
 
-def exporter(svg, dst, titre, sm2d=None):
+def exporter(svg, dst, titre, sm2d=None, format='A4'):
+    global FEUILLES
+    FEUILLES = {'portrait': FORMATS[format], 'paysage': FORMATS[format][::-1]}
     pieces = lire_svg(svg)
     taille, coupe = infos_sm2d(sm2d)
     carre = next((pc for pc in pieces if pc['nom'].lower().startswith('carr')), None)
@@ -217,9 +220,9 @@ def exporter(svg, dst, titre, sm2d=None):
         b.setdefault('num', {})[(r, k)] = i + 2
     nomp = lambda r, k: '%s%d' % (chr(65 + r), k + 1)
 
-    c = canvas.Canvas(dst, pagesize=A4)
-    c.setTitle('%s, taille %s' % (titre, taille) if taille else titre)
-    W0, H0 = A4
+    c = canvas.Canvas(dst, pagesize=FORMATS[format])
+    c.setTitle(('%s, taille %s' % (titre, taille) if taille else titre) + ', ' + format)
+    W0, H0 = FORMATS[format]
     y = H0 - 1.8 * CM
     c.setFont('Helvetica-Bold', 20); c.drawString(1.8 * CM, y, titre); y -= 22
     c.setFont('Helvetica', 12)
@@ -237,7 +240,7 @@ def exporter(svg, dst, titre, sm2d=None):
         carre['l0'], carre['h0'] = taille_cm(carre)
         dessiner(c, [carre], W0 - 1.8 * CM - carre['l0'] * CM, H0 - 1.8 * CM)
     y -= 8
-    c.setFont('Helvetica-Bold', 11); c.drawString(1.8 * CM, y, 'Pièces et assemblages (%d feuilles)' % len(pages)); y -= 15
+    c.setFont('Helvetica-Bold', 11); c.drawString(1.8 * CM, y, 'Pièces et assemblages (%d feuilles %s)' % (len(pages), format)); y -= 15
     c.setFont('Helvetica', 10)
     for b in blocs:
         n = len(b['pleines'])
@@ -313,5 +316,7 @@ def exporter(svg, dst, titre, sm2d=None):
 
 
 if __name__ == '__main__':
-    n = exporter(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4] if len(sys.argv) > 4 else None)
+    fmt = 'A3' if '--a3' in sys.argv else 'A4'
+    args = [a for a in sys.argv[1:] if a != '--a3']
+    n = exporter(args[0], args[1], args[2], args[3] if len(args) > 3 else None, fmt)
     print(sys.argv[2], n, 'pages')
