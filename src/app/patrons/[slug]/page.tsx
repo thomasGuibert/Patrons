@@ -49,7 +49,12 @@ export default async function FichePatron({ params }: Props) {
             </dl>
           )}
           <div className="boutons">
-            <span className="bouton bouton-inactif" aria-disabled="true">PDF bientôt disponible</span>
+            <a href={`/pdf/${patron.slug}.pdf`} className="bouton bouton-plein" download>
+              Télécharger le PDF (A4)
+            </a>
+            <a href={`/pdf/${patron.slug}-a3.pdf`} className="bouton bouton-contour" download>
+              Version A3
+            </a>
           </div>
         </div>
       </section>

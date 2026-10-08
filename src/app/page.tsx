@@ -4,9 +4,9 @@ import { libellesStatut, patrons, trouverPatron } from "@/patrons";
 import { Vignette } from "./Vignette";
 
 const etapes = [
-  { titre: "Lire le livre", texte: "Les pages de construction sont photographiées et relues." },
+  { titre: "Relever la construction", texte: "Chaque pièce part d'une méthode de construction éprouvée." },
   { titre: "Écrire les étapes", texte: "Chaque geste devient une étape chiffrée, validée avant tout tracé." },
-  { titre: "Tracer dans Seamly2D", texte: "Le patron est construit sur les mesures, donc il suit la taille." },
+  { titre: "Tracer sur les mesures", texte: "Le patron est construit sur les mesures, donc il suit la taille." },
   { titre: "Vérifier à l'export", texte: "Les longueurs de couture sont comparées avant publication." },
 ];
 
@@ -17,11 +17,11 @@ export default function Accueil() {
     <main>
       <section className="conteneur intro">
         <div className="intro-texte">
-          <p className="surtitre">Patrons de couture tracés à la main, puis au propre</p>
-          <h1>Du livre de patronage au patron prêt à imprimer.</h1>
+          <p className="surtitre">Patrons de couture</p>
+          <h1>Des patrons tracés sur mesures, prêts à imprimer.</h1>
           <p className="chapeau">
-            Chaque pièce part d&apos;une construction lue dans un livre, transcrite étape par étape, puis
-            tracée dans Seamly2D et vérifiée par export.
+            Chaque pièce est construite étape par étape à partir d&apos;un tableau de mesures, puis
+            vérifiée avant d&apos;être proposée en PDF, en A4 ou en A3.
           </p>
           <div className="boutons">
             <a href="#catalogue" className="bouton bouton-plein">Voir les patrons</a>

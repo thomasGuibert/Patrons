@@ -29,12 +29,11 @@ export const patrons: Patron[] = [
     statut: "verifie",
     vignette: fondPantalonDroit,
     description:
-      "La base de tous les pantalons du catalogue : un devant et un dos, superposés sur le même axe comme dans le livre, puis relevés séparément.",
+      "La base de tous les pantalons du catalogue : un devant et un dos, tracés sur le même axe, puis relevés séparément.",
     caracteristiques: [
       { libelle: "Taille", valeur: "44" },
       { libelle: "Pièces", valeur: "Devant ×2, dos ×2" },
       { libelle: "Hauteur", valeur: "100,1 cm" },
-      { libelle: "Source", valeur: "Livre, p. 238 à 243" },
     ],
     valeurs: {
       titre: "Aisances et valeurs de mode",
