@@ -1,7 +1,7 @@
 # Skills
 
 Skills importés depuis [mattpocock/skills](https://github.com/mattpocock/skills)
-(commit `c55ee46`, version du plugin 1.2.3), licence MIT (voir `LICENSE-mattpocock-skills`).
+(commit `b0618bc`, version du plugin 1.3.1), licence MIT (voir `LICENSE-mattpocock-skills`).
 
 Seuls les skills publiés dans le plugin officiel (catégories `engineering` et
 `productivity`) sont inclus ; les dossiers `in-progress`, `misc` et `deprecated` ne le sont pas.
