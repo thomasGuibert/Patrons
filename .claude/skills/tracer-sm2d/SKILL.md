@@ -60,6 +60,10 @@ Sans Seamly (session cloud) : `python3 .claude/skills/tracer-sm2d/evaluer_hors_s
 signale les `Line_` lus sans segment ; `rendre_hors_seamly.py <fichier> <sortie.png>` dessine
 les contours des pièces et les crans. Validé sur `fond_base_maille.sm2d` (tour 43,10, embu
 1,43). Ne remplace pas l'export Seamly : le signaler à l'utilisateur.
+`exporter_pdf.py <fichier> <sortie.pdf> [titre]` (lancé depuis `patrons/`) produit le patron
+imprimable : notice avec carré 5 × 5 et plan d'assemblage, puis pages A4 à l'échelle 1 (coupe
+coutures comprises, couture en tirets, crans, droit-fil, étiquettes, pli). Sortie rangée dans
+`public/pdf/<slug>.pdf` pour le site (ticket #18). Géométrie relue hors Seamly : le dire.
 
 ### 4. Livrer
 
