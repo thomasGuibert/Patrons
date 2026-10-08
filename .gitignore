@@ -11,3 +11,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 *.locked
+*.mp4
+
+# Claude Code
+.claude/worktrees/
+__pycache__/
