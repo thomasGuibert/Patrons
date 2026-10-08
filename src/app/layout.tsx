@@ -17,7 +17,7 @@ const karla = Karla({
 
 export const metadata: Metadata = {
   title: "Patrons",
-  description: "Patrons de couture tracés avec Seamly2D.",
+  description: "Patrons de couture tracés sur mesures, à imprimer en A4 ou en A3.",
 };
 
 export default function RootLayout({
