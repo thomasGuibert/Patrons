@@ -118,41 +118,41 @@
         </modeling>
         <pieces>
             <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="77" inLayout="true" locked="false" mx="0" my="0" name="Devant" seamAllowance="true" united="false" version="2" width="1">
-                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="-340.155" my="1511.800" onFold="false" orientation="Indéfini" quantity="2" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
+                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="47.355" my="1874.632" onFold="false" orientation="Indéfini" quantity="2" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
                     <line alignment="4" bold="false" italic="false" sfIncrement="3" text="%pName%"/>
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
-                <patternInfo fontSize="44" height="5" mx="-340.155" my="1814.160" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="50" mx="0" my="3401.550" rotation="90" visible="true"/>
+                <patternInfo fontSize="44" height="5" mx="-349.492" my="1874.632" rotation="0" visible="true" width="8"/>
+                <grainline arrowLength="1.27" arrows="0" length="76.1" mx="-1.969" my="3422.716" rotation="90" visible="true"/>
                 <nodes>
-                    <node idObject="59" type="NodePoint"/>
-                    <node idObject="60" type="NodePoint"/>
-                    <node idObject="61" reverse="0" type="NodeSpline"/>
-                    <node idObject="62" reverse="1" type="NodeSpline"/>
-                    <node idObject="63" type="NodePoint"/>
-                    <node idObject="64" type="NodePoint"/>
-                    <node idObject="65" type="NodePoint"/>
+                    <node idObject="68" reverse="1" type="NodeSpline"/>
+                    <node idObject="67" reverse="1" type="NodeSplinePath"/>
                     <node idObject="66" type="NodePoint"/>
-                    <node idObject="67" reverse="0" type="NodeSplinePath"/>
-                    <node idObject="68" reverse="0" type="NodeSpline"/>
+                    <node idObject="65" type="NodePoint"/>
+                    <node idObject="64" type="NodePoint"/>
+                    <node idObject="63" type="NodePoint"/>
+                    <node idObject="62" reverse="0" type="NodeSpline"/>
+                    <node idObject="61" reverse="1" type="NodeSpline"/>
+                    <node idObject="60" type="NodePoint"/>
+                    <node idObject="59" type="NodePoint"/>
                 </nodes>
             </piece>
             <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="78" inLayout="true" locked="false" mx="45" my="0" name="Dos" seamAllowance="true" united="false" version="2" width="1">
-                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="-340.155" my="1511.800" onFold="false" orientation="Indéfini" quantity="2" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
+                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="31.651" my="1817.939" onFold="false" orientation="Indéfini" quantity="2" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
                     <line alignment="4" bold="false" italic="false" sfIncrement="3" text="%pName%"/>
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
-                <patternInfo fontSize="44" height="5" mx="-340.155" my="1814.160" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="50" mx="0" my="3401.550" rotation="90" visible="true"/>
+                <patternInfo fontSize="44" height="5" mx="-365.197" my="1817.939" rotation="0" visible="true" width="8"/>
+                <grainline arrowLength="1.27" arrows="0" length="79" mx="-20.080" my="3409.860" rotation="90" visible="true"/>
                 <nodes>
-                    <node idObject="69" reverse="0" type="NodeSplinePath"/>
-                    <node idObject="70" type="NodePoint"/>
-                    <node idObject="71" type="NodePoint"/>
-                    <node idObject="72" type="NodePoint"/>
-                    <node idObject="73" type="NodePoint"/>
+                    <node idObject="76" reverse="1" type="NodeSpline"/>
+                    <node idObject="75" reverse="1" type="NodeSplinePath"/>
                     <node idObject="74" type="NodePoint"/>
-                    <node idObject="75" reverse="0" type="NodeSplinePath"/>
-                    <node idObject="76" reverse="0" type="NodeSpline"/>
+                    <node idObject="73" type="NodePoint"/>
+                    <node idObject="72" type="NodePoint"/>
+                    <node idObject="71" type="NodePoint"/>
+                    <node idObject="70" type="NodePoint"/>
+                    <node idObject="69" reverse="1" type="NodeSplinePath"/>
                 </nodes>
             </piece>
         </pieces>

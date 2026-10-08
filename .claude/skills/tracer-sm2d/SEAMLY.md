@@ -118,6 +118,10 @@ lineWeight="0.35"`.
 
 - Les nœuds référencent les copies de `<modeling>`, pas les objets de `<calculation>`.
 - Contour dans l'ordre ; `reverse="1"` parcourt la courbe à l'envers.
+- **Sens du contour** : à l'écran (y vers le bas), parcourir la pièce dans le sens des aiguilles
+  d'une montre (aire signée négative en y vers le haut, comme `fond_base_maille`). Dans l'autre
+  sens, la couture est posée **à l'intérieur** et le plan de coupe superpose les pièces (haut de
+  pyjama, 2026-10-08). Pour inverser : ordre des nœuds inversé, `reverse` 0↔1, `before`↔`after`.
 - Point sur une courbe (cran) : répéter la courbe de part et d'autre du point dans la liste des
   nœuds ; Seamly coupe la courbe entre les points voisins.
 - Cran : attributs de nœud `notch="true" notchType="slit" notchSubtype="straightforward"
@@ -125,6 +129,10 @@ lineWeight="0.35"`.
   showSecondNotch="true"` (jersey : cran ≤ 4 mm).
 - `data`, `patternInfo`, `grainline` : `mx`/`my` en **pixels** (37,795 px/cm) dans le repère
   du brouillon ; le droit-fil part de (`mx`,`my`) et monte de `length` cm si `rotation="90"`.
+- Étiquettes (`data`, `patternInfo`, `mx`/`my` = coin haut gauche, `width`/`height` en cm) et
+  droit-fil : **toujours dans la pièce**, sans se superposer ni croiser le droit-fil. Une
+  étiquette posée hors de la pièce est recentrée par Seamly, par-dessus l'autre. Pièce étroite
+  (bande, ceinture) : étiquettes côte à côte, `arrowLength` réduit (0,5).
 - Pièce de contrôle d'échelle (carré 5×5) : `seamAllowance="false"` pour une ligne imprimée
   exacte.
 
