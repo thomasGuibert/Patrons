@@ -191,11 +191,11 @@
         </modeling>
         <pieces>
             <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="470" inLayout="true" locked="false" mx="0" my="0" name="Devant" seamAllowance="true" united="false" version="2" width="0.7">
-                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="-226.772" my="1889.764" onFold="false" orientation="Indéfini" quantity="2" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
+                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="-163.158" my="1912.427" onFold="false" orientation="Indéfini" quantity="2" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
                     <line alignment="4" bold="false" italic="false" sfIncrement="3" text="%pName%"/>
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
-                <patternInfo fontSize="40" height="5" mx="-226.772" my="2192.126" rotation="0" visible="true" width="8"/>
+                <patternInfo fontSize="40" height="5" mx="44.715" my="1912.427" rotation="0" visible="true" width="8"/>
                 <grainline arrowLength="1.27" arrows="0" length="74.4" mx="6.159" my="3432.016" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="469" type="NodePoint"/>
@@ -215,11 +215,11 @@
                 </nodes>
             </piece>
             <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="484" inLayout="true" locked="false" mx="0" my="0" name="Dos" seamAllowance="true" united="false" version="2" width="0.7">
-                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="-226.772" my="1889.764" onFold="false" orientation="Indéfini" quantity="2" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
+                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="-176.632" my="1855.734" onFold="false" orientation="Indéfini" quantity="2" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
                     <line alignment="4" bold="false" italic="false" sfIncrement="3" text="%pName%"/>
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
-                <patternInfo fontSize="40" height="5" mx="-226.772" my="2192.126" rotation="0" visible="true" width="8"/>
+                <patternInfo fontSize="40" height="5" mx="31.241" my="1855.734" rotation="0" visible="true" width="8"/>
                 <grainline arrowLength="1.27" arrows="0" length="77.4" mx="-10.836" my="3417.612" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="483" type="NodePoint"/>
@@ -267,12 +267,12 @@
         </modeling>
         <pieces>
             <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="492" inLayout="true" locked="false" mx="0" my="0" name="Ceinture" seamAllowance="true" united="false" version="2" width="0.7">
-                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="1700.787" my="1020.472" onFold="false" orientation="Indéfini" quantity="1" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
+                <data annotation="" foldPosition="" fontSize="0" height="4.6" letter="" mx="1889.750" my="-899.521" onFold="false" orientation="Indéfini" quantity="1" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="9">
                     <line alignment="4" bold="false" italic="false" sfIncrement="3" text="%pName%"/>
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
-                <patternInfo fontSize="40" height="5" mx="1700.787" my="1322.835" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="5" mx="2719.820" my="-718.105" rotation="90" visible="true"/>
+                <patternInfo fontSize="40" height="5.6" mx="1247.235" my="-918.419" rotation="0" visible="true" width="14"/>
+                <grainline arrowLength="0.6" arrows="0" length="6" mx="2418.880" my="-699.207" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="491" type="NodePoint"/>
                     <node idObject="490" type="NodePoint"/>

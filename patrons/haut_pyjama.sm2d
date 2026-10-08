@@ -182,11 +182,11 @@
         </modeling>
         <pieces>
             <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="478" inLayout="true" locked="false" mx="0" my="0" name="Devant" seamAllowance="true" united="false" version="2" width="0.7">
-                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="-529.134" my="2267.717" onFold="true" orientation="Indéfini" quantity="1" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
+                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="-623.617" my="2135.418" onFold="true" orientation="Indéfini" quantity="1" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
                     <line alignment="4" bold="false" italic="false" sfIncrement="3" text="%pName%"/>
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
-                <patternInfo fontSize="40" height="5" mx="-529.134" my="2570.079" rotation="0" visible="true" width="8"/>
+                <patternInfo fontSize="40" height="5" mx="-415.745" my="2135.418" rotation="0" visible="true" width="8"/>
                 <grainline arrowLength="1.27" arrows="0" length="51" mx="-453.540" my="3190.791" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="477" after="2.5" before="0" type="NodePoint"/>
@@ -207,11 +207,11 @@
                 </nodes>
             </piece>
             <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="492" inLayout="true" locked="false" mx="0" my="0" name="Dos" seamAllowance="true" united="false" version="2" width="0.7">
-                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="-529.134" my="2267.717" onFold="true" orientation="Indéfini" quantity="1" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
+                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="-415.745" my="2040.930" onFold="true" orientation="Indéfini" quantity="1" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
                     <line alignment="4" bold="false" italic="false" sfIncrement="3" text="%pName%"/>
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
-                <patternInfo fontSize="40" height="5" mx="-529.134" my="2570.079" rotation="0" visible="true" width="8"/>
+                <patternInfo fontSize="40" height="5" mx="-812.592" my="2040.930" rotation="0" visible="true" width="8"/>
                 <grainline arrowLength="1.27" arrows="0" length="53.3" mx="-471.682" my="3150.232" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="491" after="2.5" before="0" type="NodePoint"/>
@@ -305,11 +305,11 @@
         </modeling>
         <pieces>
             <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="257" inLayout="true" locked="false" mx="20.8854" my="25.8298" name="Manche" seamAllowance="true" united="false" version="2" width="0.7">
-                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="755.906" my="1322.835" onFold="false" orientation="Indéfini" quantity="2" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
+                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="925.978" my="1114.953" onFold="false" orientation="Indéfini" quantity="2" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
                     <line alignment="4" bold="false" italic="false" sfIncrement="3" text="%pName%"/>
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
-                <patternInfo fontSize="63" height="5" mx="680.315" my="831.496" rotation="0" visible="true" width="8"/>
+                <patternInfo fontSize="63" height="5" mx="1133.850" my="1114.953" rotation="0" visible="true" width="8"/>
                 <grainline arrowLength="1.27" arrows="0" length="51.2" mx="1087.310" my="2176.992" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="497" before="2.5" type="NodePoint"/>
@@ -355,12 +355,12 @@
         </modeling>
         <pieces>
             <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="520" inLayout="true" locked="false" mx="0" my="0" name="Bande d'encolure" seamAllowance="true" united="false" version="2" width="0.7">
-                <data annotation="" foldPosition="" fontSize="0" height="5" letter="" mx="2267.717" my="755.906" onFold="true" orientation="Indéfini" quantity="1" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="3">
+                <data annotation="" foldPosition="" fontSize="0" height="2.4" letter="" mx="2192.110" my="-612.279" onFold="true" orientation="Indéfini" quantity="1" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="6">
                     <line alignment="4" bold="false" italic="false" sfIncrement="3" text="%pName%"/>
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
-                <patternInfo fontSize="40" height="5" mx="2267.717" my="1058.268" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="2.1" mx="2399.217" my="-527.240" rotation="90" visible="true"/>
+                <patternInfo fontSize="40" height="2.6" mx="1757.467" my="-616.059" rotation="0" visible="true" width="10"/>
+                <grainline arrowLength="0.5" arrows="0" length="2.4" mx="2494.470" my="-521.571" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="519" type="NodePoint"/>
                     <node idObject="518" type="NodePoint"/>
