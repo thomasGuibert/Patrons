@@ -1,9 +1,10 @@
 """Patron imprimable (PDF A4 à l'échelle 1) à partir de l'export SVG des pièces fait par Seamly.
 
 La géométrie n'est pas recalculée : les tracés de Seamly (coupe, couture, crans, droit-fil,
-étiquettes) sont recopiés tels quels, chaque pièce seulement déplacée (translation) pour ne pas
-se superposer. Page 1 : notice, carré de contrôle 5 × 5 cm et plan d'assemblage ; puis les
-pages A4 à scotcher bord à bord.
+étiquettes) sont recopiés tels quels, chaque pièce seulement déplacée et, si cela économise des
+feuilles, tournée d'un quart de tour. Chaque grande pièce a son propre assemblage de feuilles,
+choisi pour le moins de feuilles puis le moins de raccords ; les petites pièces se logent dans
+la place libre. Page 1 : notice, carré de contrôle de Seamly et plan d'assemblage.
 
 Export Seamly (sur le PC) : seamly2d.exe -b <nom> -d <dossier> -f 0 --exportOnlyDetails <nom>.sm2d
 Usage : python3 pdf_depuis_seamly.py <nom>_pieces.svg sortie.pdf "Titre" [fichier.sm2d]
@@ -18,8 +19,9 @@ from reportlab.lib.utils import simpleSplit
 NS = '{http://www.w3.org/2000/svg}'
 PT_PX = 72 / 96          # Seamly exporte en pixels à 96 ppp
 CM = 72 / 2.54           # points PDF par cm
-MARGE = 1.0              # marge de page (cm)
-ECART = 1.5              # écart entre pièces (cm)
+MARGE = 0.5              # marge de page (cm) : imprimable par les imprimantes courantes
+JEU = 0.2                # jeu minimal entre une grande pièce et le bord de son assemblage (cm)
+ECART = 0.5              # écart autour des petites pièces logées dans la place libre (cm)
 PX_CM = 96 / 2.54
 
 
@@ -98,38 +100,77 @@ def infos_sm2d(path):
     return taille, coupe
 
 
-def ranger(pieces, largeur):
-    """Étagères, sans rotation : seule une translation (dx, dy en cm) est appliquée."""
+FEUILLES = {'portrait': A4, 'paysage': A4[::-1]}
+
+
+def taille_cm(pc):
+    x0, y0, x1, y1 = pc['bb']
+    return (x1 - x0) / PX_CM, (y1 - y0) / PX_CM
+
+
+def local(pc, px, py):
+    """Point SVG (px) -> repère de la pièce posée (cm, origine en haut à gauche, y vers le bas).
+    Quart de tour horaire si pc['rot'] : déplacement rigide, la forme est inchangée."""
+    u, v = (px - pc['bb'][0]) / PX_CM, (py - pc['bb'][1]) / PX_CM
+    if pc.get('rot'):
+        u, v = pc['h0'] - v, u
+    return u + pc['x'], v + pc['y']
+
+
+def assemblages(pieces):
+    """Un bloc de feuilles par grande pièce ; les petites se logent dans la place libre."""
     for pc in pieces:
-        x0, y0, x1, y1 = pc['bb']
-        pc['l'], pc['h'] = (x1 - x0) / PX_CM, (y1 - y0) / PX_CM
-    x = y = ECART; haut = 0
-    for pc in sorted(pieces, key=lambda pc: -pc['h']):
-        if x + pc['l'] + ECART > largeur and x > ECART:
-            x = ECART; y += haut + ECART; haut = 0
-        pc['x'], pc['y'] = x, y              # coin haut-gauche sur le plan (cm, y vers le bas)
-        x += pc['l'] + ECART; haut = max(haut, pc['h'])
-    return max(largeur, max(pc['x'] + pc['l'] for pc in pieces) + ECART), y + haut + ECART
+        pc['l0'], pc['h0'] = taille_cm(pc)
+    restantes = sorted(pieces, key=lambda pc: -pc['l0'] * pc['h0'])
+    blocs = []
+    while restantes:
+        pc = restantes.pop(0)
+        choix = []
+        for nom, (pw, ph) in FEUILLES.items():
+            uw, uh = pw / CM - 2 * MARGE, ph / CM - 2 * MARGE
+            for rot in (False, True):
+                l, h = (pc['h0'], pc['l0']) if rot else (pc['l0'], pc['h0'])
+                nc, nl = math.ceil((l + 2 * JEU) / uw), math.ceil((h + 2 * JEU) / uh)
+                raccords = nl * (nc - 1) + nc * (nl - 1)
+                choix.append((nc * nl, raccords, rot, nom, nc, nl, uw, uh, l, h))
+        n, rac, rot, nom, nc, nl, uw, uh, l, h = min(choix)
+        bloc = dict(feuille=nom, nc=nc, nl=nl, uw=uw, uh=uh, pieces=[pc])
+        pc['rot'] = rot
+        pc['x'], pc['y'] = (nc * uw - l) / 2, (nl * uh - h) / 2     # centrée dans le bloc
+        # place libre : bandes au-dessus/au-dessous et à gauche/droite de la pièce
+        libres = [(0, 0, nc * uw, pc['y']), (0, pc['y'] + h, nc * uw, nl * uh),
+                  (0, 0, pc['x'], nl * uh), (pc['x'] + l, 0, nc * uw, nl * uh)]
+        for pt in list(restantes):
+            for r in (False, True):
+                pl, ph_ = (pt['h0'], pt['l0']) if r else (pt['l0'], pt['h0'])
+                zone = next((z for z in libres if z[2] - z[0] >= pl + 2 * ECART and z[3] - z[1] >= ph_ + 2 * ECART), None)
+                if zone:
+                    pt['rot'] = r; pt['x'], pt['y'] = zone[0] + ECART, zone[1] + ECART
+                    bloc['pieces'].append(pt); restantes.remove(pt)
+                    libres.remove(zone)
+                    libres += [(zone[0], pt['y'] + ph_ + ECART, zone[2], zone[3]),
+                               (pt['x'] + pl + ECART, zone[1], zone[2], pt['y'] + ph_ + ECART)]
+                    break
+        blocs.append(bloc)
+    return blocs
 
 
 def dessiner(c, pieces, ox, oy, e=1.0, detail=True):
-    """Plan -> PDF : (ox, oy) = position PDF du coin haut-gauche du plan, e = échelle."""
+    """Bloc -> PDF : (ox, oy) = position PDF du coin haut-gauche du bloc, e = échelle."""
     for pc in pieces:
-        bx, by = pc['bb'][0], pc['bb'][1]
-        X = lambda px: ox + ((px - bx) / PX_CM + pc['x']) * CM * e
-        Y = lambda py: oy - ((py - by) / PX_CM + pc['y']) * CM * e
+        P = lambda px, py: (lambda q: (ox + q[0] * CM * e, oy - q[1] * CM * e))(local(pc, px, py))
         for style, cmds in pc['chemins']:
-            remplir = style.get('fill', 'black') not in ('none',)
+            remplir = style.get('fill', 'black') != 'none'
             if not detail and remplir:
                 continue                      # pas de texte sur le plan réduit
             p = c.beginPath()
             for op, v in cmds:
                 if op == 'M':
-                    p.moveTo(X(v[0]), Y(v[1]))
+                    p.moveTo(*P(v[0], v[1]))
                 elif op == 'L':
-                    p.lineTo(X(v[0]), Y(v[1]))
+                    p.lineTo(*P(v[0], v[1]))
                 elif op == 'C':
-                    p.curveTo(X(v[0]), Y(v[1]), X(v[2]), Y(v[3]), X(v[4]), Y(v[5]))
+                    p.curveTo(*P(v[0], v[1]), *P(v[2], v[3]), *P(v[4], v[5]))
                 else:
                     p.close()
             c.setLineWidth(float(style.get('stroke-width', 1)) * PT_PX * (1 if detail else 0.5))
@@ -139,114 +180,136 @@ def dessiner(c, pieces, ox, oy, e=1.0, detail=True):
                 c.drawPath(p, stroke=1, fill=0)
 
 
-def exporter(svg, dst, titre, sm2d=None):
-    pieces = lire_svg(svg)
-    taille, coupe = infos_sm2d(sm2d)
-    meilleur = None
-    for pw, ph in (A4, A4[::-1]):
-        uw, uh = pw / CM - 2 * MARGE, ph / CM - 2 * MARGE
-        for nc in range(1, 7):
-            W, H = ranger(pieces, nc * uw)
-            pleines = pages_pleines(pieces, uw, uh)
-            score = (len(pleines), math.ceil(W / uw) * math.ceil(H / uh))
-            if meilleur is None or score < meilleur[0]:
-                meilleur = (score, (pw, ph), nc, uw, uh)
-    _, (pw, ph), nc, uw, uh = meilleur
-    W, H = ranger(pieces, nc * uw)
-    ncol, nlig = math.ceil(W / uw), math.ceil(H / uh)
-    pleines = pages_pleines(pieces, uw, uh)
-    nomp = lambda r, k: '%s%d' % (chr(65 + r), k + 1)
-    pages = [(r, k) for r in range(nlig) for k in range(ncol) if (r, k) in pleines]
-
-    c = canvas.Canvas(dst, pagesize=A4)
-    c.setTitle('%s, taille %s' % (titre, taille) if taille else titre)
-    W0, H0 = A4
-    y = H0 - 2 * CM
-    c.setFont('Helvetica-Bold', 20); c.drawString(2 * CM, y, titre); y -= 22
-    c.setFont('Helvetica', 12)
-    c.drawString(2 * CM, y, ('Taille %s · ' % taille if taille else '') + 'tracé et export Seamly2D'); y -= 26
-    notice = ("Imprimer à 100 % (« taille réelle », sans ajustement à la page). Vérifier le carré de "
-              "contrôle ci-contre : il doit mesurer 5 cm de côté. Couper chaque page sur le cadre gris, "
-              "côtés droit et bas, puis scotcher bord à bord en suivant le plan d'assemblage "
-              "(lettre = rangée, chiffre = colonne).")
-    c.setFont('Helvetica', 10)
-    for t in simpleSplit(notice, 'Helvetica', 10, 11.5 * CM) + [
-            'Tracé extérieur : ligne de coupe, coutures comprises.', 'Tracé intérieur : ligne de couture.']:
-        c.drawString(2 * CM, y, t); y -= 14
-    y -= 8
-    c.setFont('Helvetica-Bold', 11); c.drawString(2 * CM, y, 'Pièces'); y -= 15
-    c.setFont('Helvetica', 10)
-    for pc in pieces:
-        c.drawString(2.3 * CM, y, pc['nom'] + (' : ' + coupe[pc['nom']] if pc['nom'] in coupe else '')); y -= 13
-    sx, sy = W0 - 7 * CM, H0 - 7 * CM
-    c.setLineWidth(1); c.rect(sx, sy, 5 * CM, 5 * CM)
-    c.setFont('Helvetica', 9); c.drawCentredString(sx + 2.5 * CM, sy + 2.5 * CM, '5 cm × 5 cm')
-    y -= 10
-    c.setFont('Helvetica-Bold', 11); c.drawString(2 * CM, y, "Plan d'assemblage (%d pages)" % len(pages)); y -= 10
-    e = min((W0 - 4 * CM) / (ncol * uw * CM), (y - 2 * CM) / (nlig * uh * CM))
-    num = {pg: i + 2 for i, pg in enumerate(pages)}
-    for r in range(nlig):
-        for k in range(ncol):
-            X, Y = 2 * CM + k * uw * CM * e, y - (r + 1) * uh * CM * e
-            c.setLineWidth(0.4); c.setStrokeGray(0.6 if (r, k) in num else 0.85)
-            c.rect(X, Y, uw * CM * e, uh * CM * e)
-            c.setFillGray(0.5 if (r, k) in num else 0.8); c.setFont('Helvetica', 7)
-            c.drawString(X + 2, Y + uh * CM * e - 8, nomp(r, k) + (' (p. %d)' % num[(r, k)] if (r, k) in num else ' vide'))
-    c.setStrokeGray(0); c.setFillGray(0)
-    dessiner(c, pieces, 2 * CM, y, e, detail=False)
-    for pc in pieces:
-        c.setFont('Helvetica', 7)
-        c.drawCentredString(2 * CM + (pc['x'] + pc['l'] / 2) * CM * e, y - (pc['y'] + pc['h'] / 2) * CM * e, pc['nom'])
-    c.showPage()
-
-    for i, (r, k) in enumerate(pages):
-        c.setPageSize((pw, ph))
-        c.saveState()
-        p = c.beginPath(); p.rect(MARGE * CM, MARGE * CM, uw * CM, uh * CM)
-        c.clipPath(p, stroke=0, fill=0)
-        x0, x1, y0, y1 = k * uw, (k + 1) * uw, r * uh, (r + 1) * uh
-        vues = [pc for pc in pieces if pc['x'] < x1 and pc['x'] + pc['l'] > x0 and pc['y'] < y1 and pc['y'] + pc['h'] > y0]
-        dessiner(c, vues, MARGE * CM - x0 * CM, ph - MARGE * CM + y0 * CM)
-        c.restoreState()
-        c.setLineWidth(0.3); c.setStrokeGray(0.55)
-        c.rect(MARGE * CM, MARGE * CM, uw * CM, uh * CM)
-        c.setStrokeGray(0); c.setFillGray(0.35); c.setFont('Helvetica', 8)
-        c.drawString(MARGE * CM, ph - MARGE * CM + 8, '%s%s · page %s (%d/%d)' % (
-            titre, ' · taille ' + taille if taille else '', nomp(r, k), i + 2, len(pages) + 1))
-        for (rr, kk), cote in (((r - 1, k), 'haut'), ((r + 1, k), 'bas'), ((r, k - 1), 'gauche'), ((r, k + 1), 'droite')):
-            if (rr, kk) not in pleines:
-                continue
-            t = nomp(rr, kk)
-            if cote == 'haut':
-                c.drawCentredString(pw / 2, ph - MARGE * CM + 8, t)
-            elif cote == 'bas':
-                c.drawCentredString(pw / 2, MARGE * CM - 12, t)
-            else:
-                c.saveState()
-                c.translate(MARGE * CM - 6 if cote == 'gauche' else MARGE * CM + uw * CM + 12, ph / 2)
-                c.rotate(90); c.drawCentredString(0, 0, t); c.restoreState()
-        c.setFillGray(0)
-        c.showPage()
-    c.save()
-    return len(pages) + 1
-
-
-def pages_pleines(pieces, uw, uh):
-    """Pages A4 touchées par un tracé (échantillonnage des chemins)."""
+def touchees(bloc):
+    """Feuilles du bloc traversées par un tracé (les autres ne sont pas imprimées)."""
     res = set()
-    for pc in pieces:
-        bx, by = pc['bb'][0], pc['bb'][1]
+    for pc in bloc['pieces']:
         for _, cmds in pc['chemins']:
             prev = None
             for op, v in cmds:
                 if not v:
                     continue
-                q = ((v[-2] - bx) / PX_CM + pc['x'], (v[-1] - by) / PX_CM + pc['y'])
-                pts = [q] if prev is None else [(prev[0] + (q[0] - prev[0]) * t / 8, prev[1] + (q[1] - prev[1]) * t / 8) for t in range(9)]
-                for x, y in pts:
-                    res.add((int(y // uh), int(x // uw)))
+                q = local(pc, v[-2], v[-1])
+                for t in range(9 if prev else 1):
+                    x = q[0] if prev is None else prev[0] + (q[0] - prev[0]) * t / 8
+                    y = q[1] if prev is None else prev[1] + (q[1] - prev[1]) * t / 8
+                    res.add((min(int(y // bloc['uh']), bloc['nl'] - 1), min(int(x // bloc['uw']), bloc['nc'] - 1)))
                 prev = q
     return res
+
+
+def exporter(svg, dst, titre, sm2d=None):
+    pieces = lire_svg(svg)
+    taille, coupe = infos_sm2d(sm2d)
+    carre = next((pc for pc in pieces if pc['nom'].lower().startswith('carr')), None)
+    if carre:
+        pieces.remove(carre)                  # imprimé sur la notice, à l'échelle 1
+    blocs = assemblages(pieces)
+    pages = []
+    for b in blocs:
+        b['pleines'] = touchees(b)
+        b['nom'] = ' + '.join(pc['nom'] for pc in b['pieces'])
+        for r in range(b['nl']):
+            for k in range(b['nc']):
+                if (r, k) in b['pleines']:
+                    pages.append((b, r, k))
+    for i, (b, r, k) in enumerate(pages):
+        b.setdefault('num', {})[(r, k)] = i + 2
+    nomp = lambda r, k: '%s%d' % (chr(65 + r), k + 1)
+
+    c = canvas.Canvas(dst, pagesize=A4)
+    c.setTitle('%s, taille %s' % (titre, taille) if taille else titre)
+    W0, H0 = A4
+    y = H0 - 1.8 * CM
+    c.setFont('Helvetica-Bold', 20); c.drawString(1.8 * CM, y, titre); y -= 22
+    c.setFont('Helvetica', 12)
+    c.drawString(1.8 * CM, y, ('Taille %s · ' % taille if taille else '') + 'tracé et export Seamly2D'); y -= 24
+    notice = ("Imprimer à 100 % (« taille réelle », sans ajustement à la page). Vérifier le carré de "
+              "contrôle ci-contre : 5 cm de côté. Chaque pièce a ses propres feuilles : couper chaque "
+              "feuille sur le cadre gris là où elle touche une voisine, puis scotcher bord à bord selon "
+              "le plan (lettre = rangée, chiffre = colonne). Tracé extérieur : ligne de coupe, coutures "
+              "comprises ; tracé intérieur : ligne de couture.")
+    c.setFont('Helvetica', 10)
+    for t in simpleSplit(notice, 'Helvetica', 10, 12 * CM):
+        c.drawString(1.8 * CM, y, t); y -= 13
+    if carre:
+        carre['rot'] = False; carre['x'] = carre['y'] = 0
+        carre['l0'], carre['h0'] = taille_cm(carre)
+        dessiner(c, [carre], W0 - 1.8 * CM - carre['l0'] * CM, H0 - 1.8 * CM)
+    y -= 8
+    c.setFont('Helvetica-Bold', 11); c.drawString(1.8 * CM, y, 'Pièces et assemblages (%d feuilles)' % len(pages)); y -= 15
+    c.setFont('Helvetica', 10)
+    for b in blocs:
+        n = len(b['pleines'])
+        rac = sum(1 for (r, k) in b['pleines'] for (rr, kk) in ((r + 1, k), (r, k + 1)) if (rr, kk) in b['pleines'])
+        quoi = ', '.join(pc['nom'] + (' (' + coupe[pc['nom']].lower() + ')' if pc['nom'] in coupe else '') for pc in b['pieces'])
+        pp = sorted(b['num'].values())
+        ligne = '%s : %d feuille%s %s, %d raccord%s, pages %s' % (
+            quoi, n, 's' if n > 1 else '', b['feuille'], rac, 's' if rac > 1 else '',
+            '%d à %d' % (pp[0], pp[-1]) if len(pp) > 1 else pp[0])
+        larg = 12 * CM if carre and y > H0 - 2.5 * CM - carre['h0'] * CM else W0 - 3.6 * CM
+        for t in simpleSplit(ligne, 'Helvetica', 10, larg):
+            c.drawString(2.1 * CM, y, t); y -= 13
+    # plans d'assemblage, à la même échelle, rangés en lignes
+    y -= 14
+    dispo = W0 - 3.6 * CM - 0.8 * CM * (len(blocs) - 1)
+    e = min(0.12, dispo / CM / sum(max(b['nc'] * b['uw'], 2 / 0.12) for b in blocs),
+            (y - 2 * CM) / CM / max(b['nl'] * b['uh'] for b in blocs))
+    x, haut = 1.8 * CM, 0
+    for b in blocs:
+        bw, bh = b['nc'] * b['uw'] * CM * e, b['nl'] * b['uh'] * CM * e
+        if x + bw > W0 - 1.8 * CM:
+            x, y, haut = 1.8 * CM, y - haut - 22, 0
+        c.setFillGray(0)
+        lignes = simpleSplit(b['nom'], 'Helvetica-Bold', 8, max(bw, 2 * CM))
+        for j, t in enumerate(lignes):
+            c.setFont('Helvetica-Bold', 8); c.drawString(x, y - 9 - 9 * j + 9 * (len(lignes) - 1), t)
+        for r in range(b['nl']):
+            for k in range(b['nc']):
+                X, Y = x + k * b['uw'] * CM * e, y - 14 - (r + 1) * b['uh'] * CM * e
+                ok = (r, k) in b['pleines']
+                c.setLineWidth(0.4); c.setStrokeGray(0.55 if ok else 0.85)
+                c.rect(X, Y, b['uw'] * CM * e, b['uh'] * CM * e)
+                c.setFillGray(0.45 if ok else 0.75); c.setFont('Helvetica', 6.5)
+                c.drawString(X + 2, Y + b['uh'] * CM * e - 8, nomp(r, k) + (' p. %d' % b['num'][(r, k)] if ok else ' vide'))
+        c.setStrokeGray(0); c.setFillGray(0)
+        dessiner(c, b['pieces'], x, y - 14, e, detail=False)
+        x += max(bw, 2 * CM) + 0.8 * CM; haut = max(haut, bh + 14)
+    c.showPage()
+
+    for i, (b, r, k) in enumerate(pages):
+        pw, ph = FEUILLES[b['feuille']]
+        uw, uh = b['uw'], b['uh']
+        c.setPageSize((pw, ph))
+        c.saveState()
+        p = c.beginPath(); p.rect(MARGE * CM, MARGE * CM, uw * CM, uh * CM)
+        c.clipPath(p, stroke=0, fill=0)
+        dessiner(c, b['pieces'], (MARGE - k * uw) * CM, ph - (MARGE - r * uh) * CM)
+        c.restoreState()
+        c.setLineWidth(0.3); c.setStrokeGray(0.55)
+        c.rect(MARGE * CM, MARGE * CM, uw * CM, uh * CM)
+        c.setStrokeGray(0); c.setFillGray(0.3); c.setFont('Helvetica', 7)
+        c.drawString(MARGE * CM + 4, ph - MARGE * CM - 9, '%s · %s · feuille %s · page %d/%d' % (
+            titre, b['nom'], nomp(r, k), i + 2, len(pages) + 1))
+        # nom de la voisine sur chaque bord à raccorder
+        for (rr, kk), cote in (((r - 1, k), 'haut'), ((r + 1, k), 'bas'), ((r, k - 1), 'gauche'), ((r, k + 1), 'droite')):
+            if (rr, kk) not in b['pleines']:
+                continue
+            t = 'raccord ' + nomp(rr, kk)
+            c.saveState()
+            if cote == 'haut':
+                c.translate(pw / 2, ph - MARGE * CM - 9)
+            elif cote == 'bas':
+                c.translate(pw / 2, MARGE * CM + 3)
+            elif cote == 'gauche':
+                c.translate(MARGE * CM + 9, ph / 2); c.rotate(90)
+            else:
+                c.translate(MARGE * CM + uw * CM - 3, ph / 2); c.rotate(90)
+            c.drawCentredString(0, 0, t); c.restoreState()
+        c.setFillGray(0)
+        c.showPage()
+    c.save()
+    return len(pages) + 1
 
 
 if __name__ == '__main__':

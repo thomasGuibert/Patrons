@@ -64,7 +64,7 @@ PDF imprimables : jamais de géométrie recalculée hors Seamly (1 mm compte en 
 les pièces avec Seamly (`seamly2d.exe -b <nom> -d <dossier> -f 0 --exportOnlyDetails <nom>.sm2d`),
 ranger le SVG dans `export/seamly/`, puis `pdf_depuis_seamly.py <nom>_pieces.svg public/pdf/<slug>.pdf
 "<Titre>" patrons/<nom>.sm2d` : tracés Seamly recopiés tels quels (pièces seulement déplacées),
-notice + carré 5 × 5 + plan d'assemblage, pages A4 à l'échelle 1. Slugs : ceux du site (ticket #18).
+un assemblage de feuilles A4 par grande pièce (le moins de feuilles puis de raccords, quart de tour permis), marges 5 mm, carré de Seamly sur la notice. Slugs : ceux du site (ticket #18).
 
 ### 4. Livrer
 
