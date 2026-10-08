@@ -189,21 +189,21 @@
                 <patternInfo fontSize="40" height="5" mx="-529.134" my="2570.079" rotation="0" visible="true" width="8"/>
                 <grainline arrowLength="1.27" arrows="0" length="50" mx="-226.772" my="3212.598" rotation="90" visible="true"/>
                 <nodes>
-                    <node idObject="463" before="0" type="NodePoint"/>
-                    <node idObject="464" reverse="1" type="NodeSplinePath"/>
-                    <node idObject="465" type="NodePoint"/>
-                    <node idObject="466" type="NodePoint"/>
-                    <node idObject="467" reverse="0" type="NodeSplinePath"/>
-                    <node idObject="468" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.4" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true" type="NodePoint"/>
-                    <node idObject="469" reverse="0" type="NodeSplinePath"/>
-                    <node idObject="470" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.4" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true" type="NodePoint"/>
-                    <node idObject="471" reverse="0" type="NodeSplinePath"/>
-                    <node idObject="472" type="NodePoint"/>
+                    <node idObject="477" after="2.5" before="0" type="NodePoint"/>
+                    <node idObject="476" reverse="0" type="NodeSpline"/>
+                    <node idObject="475" before="2.5" type="NodePoint"/>
+                    <node idObject="474" reverse="1" type="NodeSplinePath"/>
                     <node idObject="473" type="NodePoint"/>
-                    <node idObject="474" reverse="0" type="NodeSplinePath"/>
-                    <node idObject="475" after="2.5" type="NodePoint"/>
-                    <node idObject="476" reverse="1" type="NodeSpline"/>
-                    <node idObject="477" before="2.5" after="0" type="NodePoint"/>
+                    <node idObject="472" type="NodePoint"/>
+                    <node idObject="471" reverse="1" type="NodeSplinePath"/>
+                    <node idObject="470" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.4" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true" type="NodePoint"/>
+                    <node idObject="469" reverse="1" type="NodeSplinePath"/>
+                    <node idObject="468" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.4" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true" type="NodePoint"/>
+                    <node idObject="467" reverse="1" type="NodeSplinePath"/>
+                    <node idObject="466" type="NodePoint"/>
+                    <node idObject="465" type="NodePoint"/>
+                    <node idObject="464" reverse="0" type="NodeSplinePath"/>
+                    <node idObject="463" after="0" type="NodePoint"/>
                 </nodes>
             </piece>
             <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="492" inLayout="true" locked="false" mx="0" my="0" name="Dos" seamAllowance="true" united="false" version="2" width="0.7">
@@ -214,19 +214,19 @@
                 <patternInfo fontSize="40" height="5" mx="-529.134" my="2570.079" rotation="0" visible="true" width="8"/>
                 <grainline arrowLength="1.27" arrows="0" length="50" mx="-226.772" my="3212.598" rotation="90" visible="true"/>
                 <nodes>
-                    <node idObject="479" before="0" type="NodePoint"/>
-                    <node idObject="480" type="NodePoint"/>
-                    <node idObject="481" reverse="0" type="NodeSpline"/>
-                    <node idObject="482" type="NodePoint"/>
-                    <node idObject="483" type="NodePoint"/>
-                    <node idObject="484" reverse="0" type="NodeSplinePath"/>
-                    <node idObject="485" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.4" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true" type="NodePoint"/>
-                    <node idObject="486" reverse="0" type="NodeSplinePath"/>
-                    <node idObject="487" type="NodePoint"/>
+                    <node idObject="491" after="2.5" before="0" type="NodePoint"/>
+                    <node idObject="490" before="2.5" type="NodePoint"/>
+                    <node idObject="489" reverse="1" type="NodeSplinePath"/>
                     <node idObject="488" type="NodePoint"/>
-                    <node idObject="489" reverse="0" type="NodeSplinePath"/>
-                    <node idObject="490" after="2.5" type="NodePoint"/>
-                    <node idObject="491" before="2.5" after="0" type="NodePoint"/>
+                    <node idObject="487" type="NodePoint"/>
+                    <node idObject="486" reverse="1" type="NodeSplinePath"/>
+                    <node idObject="485" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.4" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true" type="NodePoint"/>
+                    <node idObject="484" reverse="1" type="NodeSplinePath"/>
+                    <node idObject="483" type="NodePoint"/>
+                    <node idObject="482" type="NodePoint"/>
+                    <node idObject="481" reverse="1" type="NodeSpline"/>
+                    <node idObject="480" type="NodePoint"/>
+                    <node idObject="479" after="0" type="NodePoint"/>
                 </nodes>
             </piece>
         </pieces>
@@ -362,11 +362,11 @@
                 <patternInfo fontSize="40" height="5" mx="2267.717" my="1058.268" rotation="0" visible="true" width="8"/>
                 <grainline arrowLength="1.27" arrows="0" length="1" mx="1889.764" my="661.417" rotation="90" visible="true"/>
                 <nodes>
-                    <node idObject="515" after="0" type="NodePoint"/>
-                    <node idObject="516" before="0" type="NodePoint"/>
-                    <node idObject="517" type="NodePoint"/>
-                    <node idObject="518" type="NodePoint"/>
                     <node idObject="519" type="NodePoint"/>
+                    <node idObject="518" type="NodePoint"/>
+                    <node idObject="517" type="NodePoint"/>
+                    <node idObject="516" after="0" type="NodePoint"/>
+                    <node idObject="515" before="0" type="NodePoint"/>
                 </nodes>
             </piece>
         </pieces>

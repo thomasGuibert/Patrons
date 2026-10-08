@@ -118,6 +118,10 @@ lineWeight="0.35"`.
 
 - Les nœuds référencent les copies de `<modeling>`, pas les objets de `<calculation>`.
 - Contour dans l'ordre ; `reverse="1"` parcourt la courbe à l'envers.
+- **Sens du contour** : à l'écran (y vers le bas), parcourir la pièce dans le sens des aiguilles
+  d'une montre (aire signée négative en y vers le haut, comme `fond_base_maille`). Dans l'autre
+  sens, la couture est posée **à l'intérieur** et le plan de coupe superpose les pièces (haut de
+  pyjama, 2026-10-08). Pour inverser : ordre des nœuds inversé, `reverse` 0↔1, `before`↔`after`.
 - Point sur une courbe (cran) : répéter la courbe de part et d'autre du point dans la liste des
   nœuds ; Seamly coupe la courbe entre les points voisins.
 - Cran : attributs de nœud `notch="true" notchType="slit" notchSubtype="straightforward"
