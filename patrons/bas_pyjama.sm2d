@@ -196,7 +196,7 @@
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
                 <patternInfo fontSize="40" height="5" mx="-226.772" my="2192.126" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="50" mx="0.000" my="3401.575" rotation="90" visible="true"/>
+                <grainline arrowLength="1.27" arrows="0" length="74.4" mx="6.159" my="3432.016" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="469" type="NodePoint"/>
                     <node idObject="468" reverse="1" type="NodeSpline"/>
@@ -220,7 +220,7 @@
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
                 <patternInfo fontSize="40" height="5" mx="-226.772" my="2192.126" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="50" mx="0.000" my="3401.575" rotation="90" visible="true"/>
+                <grainline arrowLength="1.27" arrows="0" length="77.4" mx="-10.836" my="3417.612" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="483" type="NodePoint"/>
                     <node idObject="482" reverse="1" type="NodeSpline"/>
@@ -272,7 +272,7 @@
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
                 <patternInfo fontSize="40" height="5" mx="1700.787" my="1322.835" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="1" mx="1322.835" my="1096.063" rotation="90" visible="true"/>
+                <grainline arrowLength="1.27" arrows="0" length="5" mx="2719.820" my="-718.105" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="491" type="NodePoint"/>
                     <node idObject="490" type="NodePoint"/>

@@ -91,7 +91,7 @@
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
                 <patternInfo fontSize="63" height="5" mx="-355.998" my="1690.41" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="60 " mx="-396.904" my="3332.59" rotation="90" visible="true"/>
+                <grainline arrowLength="1.27" arrows="0" length="52.9" mx="-295.557" my="3152.120" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="97" type="NodePoint"/>
                     <node idObject="98" reverse="0" type="NodeSpline"/>
@@ -111,7 +111,7 @@
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
                 <patternInfo fontSize="44" height="5.32501" mx="-414.402" my="1723.02" rotation="0" visible="true" width="7.813"/>
-                <grainline arrowLength="1.27" arrows="0" length="54.4765" mx="-454.627" my="3226.02" rotation="90" visible="true"/>
+                <grainline arrowLength="1.27" arrows="0" length="51.7" mx="-434.642" my="3158.241" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="69" type="NodePoint"/>
                     <node idObject="70" type="NodePoint"/>
@@ -194,7 +194,7 @@
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
                 <patternInfo fontSize="63" height="5" mx="680.315" my="831.496" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="50" mx="1007.622" my="2267.717" rotation="90" visible="true"/>
+                <grainline arrowLength="1.27" arrows="0" length="51.2" mx="1007.680" my="2176.992" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="246" type="NodePoint"/>
                     <node idObject="247" type="NodePoint"/>

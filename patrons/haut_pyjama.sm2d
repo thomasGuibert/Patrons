@@ -187,7 +187,7 @@
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
                 <patternInfo fontSize="40" height="5" mx="-529.134" my="2570.079" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="50" mx="-226.772" my="3212.598" rotation="90" visible="true"/>
+                <grainline arrowLength="1.27" arrows="0" length="51" mx="-453.540" my="3190.791" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="477" after="2.5" before="0" type="NodePoint"/>
                     <node idObject="476" reverse="0" type="NodeSpline"/>
@@ -212,7 +212,7 @@
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
                 <patternInfo fontSize="40" height="5" mx="-529.134" my="2570.079" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="50" mx="-226.772" my="3212.598" rotation="90" visible="true"/>
+                <grainline arrowLength="1.27" arrows="0" length="53.3" mx="-471.682" my="3150.232" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="491" after="2.5" before="0" type="NodePoint"/>
                     <node idObject="490" before="2.5" type="NodePoint"/>
@@ -310,7 +310,7 @@
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
                 <patternInfo fontSize="63" height="5" mx="680.315" my="831.496" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="50" mx="1007.622" my="2267.717" rotation="90" visible="true"/>
+                <grainline arrowLength="1.27" arrows="0" length="51.2" mx="1087.310" my="2176.992" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="497" before="2.5" type="NodePoint"/>
                     <node idObject="498" type="NodePoint"/>
@@ -360,7 +360,7 @@
                     <line alignment="4" bold="false" italic="true" sfIncrement="0" text="%mFabric% X%pQuantity%"/>
                 </data>
                 <patternInfo fontSize="40" height="5" mx="2267.717" my="1058.268" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="1" mx="1889.764" my="661.417" rotation="90" visible="true"/>
+                <grainline arrowLength="1.27" arrows="0" length="2.1" mx="2399.217" my="-527.240" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="519" type="NodePoint"/>
                     <node idObject="518" type="NodePoint"/>
