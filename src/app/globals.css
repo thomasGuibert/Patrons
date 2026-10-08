@@ -53,7 +53,6 @@ p { margin: 0; }
 .bouton-plein:hover { background: var(--terracotta-fonce); color: var(--blanc); }
 .bouton-contour { border: 1.5px solid var(--encre); }
 .statut { align-self: flex-start; padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; }
-.statut-verifie, .statut-trace { background: var(--sauge); color: var(--sauge-encre); }
 .statut-en-cours { background: var(--rose); color: var(--rose-encre); }
 
 /* Sections */

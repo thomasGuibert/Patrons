@@ -4,23 +4,15 @@ import fondPantalonDroit from "../vignettes/fond_pantalon_droit_fiche.png";
 import hautPyjama from "../vignettes/haut_pyjama_fiche.png";
 import basPyjama from "../vignettes/bas_pyjama_fiche.png";
 
-export type Statut = "verifie" | "trace" | "en-cours";
-
 export type Patron = {
   slug: string;
   nom: string;
   resume: string;
-  statut: Statut;
+  enCours?: boolean;
   vignette?: StaticImageData;
   description?: string;
   caracteristiques?: { libelle: string; valeur: string }[];
   valeurs?: { titre: string; lignes: { libelle: string; cm: string }[] };
-};
-
-export const libellesStatut: Record<Statut, string> = {
-  verifie: "Tracé et vérifié",
-  trace: "Tracé",
-  "en-cours": "En cours",
 };
 
 export const patrons: Patron[] = [
@@ -28,7 +20,6 @@ export const patrons: Patron[] = [
     slug: "fond-pantalon-droit",
     nom: "Fond de pantalon droit",
     resume: "Devant et dos, base de tous les pantalons.",
-    statut: "verifie",
     vignette: fondPantalonDroit,
     description:
       "La base de tous les pantalons du catalogue : un devant et un dos, tracés sur le même axe, puis relevés séparément.",
@@ -52,7 +43,6 @@ export const patrons: Patron[] = [
     slug: "fond-base-maille",
     nom: "Fond de base maille",
     resume: "Devant, dos et manche pour le jersey.",
-    statut: "trace",
     vignette: fondBaseMaille,
     description:
       "Le fond des hauts en jersey : un devant, un dos et une manche, d'où part le haut de pyjama.",
@@ -65,7 +55,6 @@ export const patrons: Patron[] = [
     slug: "haut-pyjama",
     nom: "Haut de pyjama col V",
     resume: "T-shirt souple en jersey, tiré du fond maille.",
-    statut: "en-cours",
     vignette: hautPyjama,
     description:
       "Un T-shirt souple à encolure V, élargi à partir du fond de base maille, avec une manche reconstruite sur la nouvelle emmanchure.",
@@ -74,7 +63,6 @@ export const patrons: Patron[] = [
     slug: "bas-pyjama",
     nom: "Bas de pyjama",
     resume: "Pantalon à taille élastique, tiré du fond droit.",
-    statut: "en-cours",
     vignette: basPyjama,
     description:
       "Un pantalon en jersey à taille élastique, adapté du fond de pantalon droit.",

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { libellesStatut, patrons, trouverPatron } from "@/patrons";
+import { patrons, trouverPatron } from "@/patrons";
 import { Vignette } from "./Vignette";
 
 const etapes = [
@@ -51,7 +51,7 @@ export default function Accueil() {
                 <Link href={`/patrons/${patron.slug}`} className="carte">
                   <Vignette patron={patron} />
                   <div className="carte-corps">
-                    <span className={`statut statut-${patron.statut}`}>{libellesStatut[patron.statut]}</span>
+                    {patron.enCours && <span className="statut statut-en-cours">En cours</span>}
                     <h3>{patron.nom}</h3>
                     <p>{patron.resume}</p>
                   </div>
