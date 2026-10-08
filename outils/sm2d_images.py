@@ -221,6 +221,18 @@ class Patron:
             s = sur[0] if len(sur) == 1 else min(sur or sols, key=lambda s: abs(s))
             p = (a[0] + s * vx, a[1] + s * vy)
             self.ajouter_point(e, p)
+        elif t in ('cutSpline', 'cutSplinePath'):
+            pts = self.courbes[e.get('spline') or e.get('splinePath')]['pts']
+            reste = g('length')
+            p = pts[-1]
+            for a, b in zip(pts, pts[1:]):
+                L = math.dist(a, b)
+                if L >= reste:
+                    s = reste / L if L else 0
+                    p = (a[0] + s * (b[0] - a[0]), a[1] + s * (b[1] - a[1]))
+                    break
+                reste -= L
+            self.ajouter_point(e, p)
         else:
             raise NotImplementedError(f'outil point {t}')
 
@@ -290,7 +302,51 @@ class Patron:
                     av = float(n.get('before')) if n.get('before') not in (None, '') else largeur
                     ap = float(n.get('after')) if n.get('after') not in (None, '') else largeur
                     contour.append((n.get('type'), pts, av, ap))
-                yield bloc.get('name'), piece, contour, largeur
+                yield bloc.get('name'), piece, rogner(contour), largeur
+
+
+def projeter(pts, q):
+    """(distance, abscisse continue i + s) du point de la polyligne le plus proche de q."""
+    best = (math.inf, 0.0)
+    for i, (a, b) in enumerate(zip(pts, pts[1:])):
+        vx, vy = b[0] - a[0], b[1] - a[1]
+        L2 = vx * vx + vy * vy
+        s = 0.0 if L2 == 0 else max(0.0, min(1.0, ((q[0] - a[0]) * vx + (q[1] - a[1]) * vy) / L2))
+        dd = math.dist(q, (a[0] + s * vx, a[1] + s * vy))
+        if dd < best[0]:
+            best = (dd, i + s)
+    return best
+
+
+def tronquer(pts, t0, t1):
+    """Portion de la polyligne entre les abscisses t0 < t1."""
+    def pt(t):
+        i = min(int(t), len(pts) - 2)
+        s = t - i
+        return (pts[i][0] + s * (pts[i + 1][0] - pts[i][0]), pts[i][1] + s * (pts[i + 1][1] - pts[i][1]))
+    return [pt(t0)] + [pts[k] for k in range(math.floor(t0) + 1, math.ceil(t1))] + [pt(t1)]
+
+
+def rogner(contour, tol=0.05):
+    """Comme Seamly : une courbe d'une pièce ne garde que la portion entre les points voisins posés dessus."""
+    n = len(contour)
+    out = []
+    for i, (typ, pts, av, ap) in enumerate(contour):
+        if typ != 'NodePoint' and len(pts) > 1:
+            voisins = []
+            for pas in (-1, 1):
+                j = (i + pas) % n
+                if contour[j][0] == 'NodePoint':
+                    dd, t = projeter(pts, contour[j][1][0])
+                    voisins.append(t if dd < tol else None)
+                else:
+                    voisins.append(None)
+            t0 = voisins[0] if voisins[0] is not None else 0.0
+            t1 = voisins[1] if voisins[1] is not None else len(pts) - 1.0
+            if t1 > t0:
+                pts = tronquer(pts, t0, t1)
+        out.append((typ, pts, av, ap))
+    return out
 
 
 def assembler(contour):
@@ -546,12 +602,8 @@ def main_dessins(argv):
     for f in a.fichiers:
         base = os.path.splitext(os.path.basename(f))[0]
         p = Patron(f)
-        noms = {n for n, _ in p.points.values()}
-        if {'mE', 'K', 'E1', 'F1'} <= noms:
-            vues = dessin.haut(p)
-        elif {'A5', 'B5', 'E3', 'E4'} <= noms:
-            vues = dessin.pantalon(p)
-        else:
+        vues = vues_dessin(p)
+        if vues is None:
             print('pas de modèle de dessin pour', base)
             continue
         dessin.rendre(vues, os.path.join(a.sortie, base + '_dessin'), a.taille, a.style)
@@ -603,6 +655,10 @@ def main_fiches(argv):
 def vues_dessin(p):
     import dessin
     noms = {n for n, _ in p.points.values()}
+    if {'vHp', 'vHpp', 'vE2', 'vF2'} <= noms:
+        return dessin.haut_pyjama(p)
+    if {'cA3', 'cA5', 'cA2e', 'cB5e'} <= noms:
+        return dessin.pantalon(p, pyjama=True)
     if {'mE', 'K', 'E1', 'F1'} <= noms:
         return dessin.haut(p)
     if {'A5', 'B5', 'E3', 'E4'} <= noms:

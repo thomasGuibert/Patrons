@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { libellesStatut, patrons, trouverPatron } from "@/patrons";
+import { patrons, trouverPatron } from "@/patrons";
 import { Vignette } from "../../Vignette";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -35,7 +35,7 @@ export default async function FichePatron({ params }: Props) {
           <Vignette patron={patron} priorite />
         </figure>
         <div className="fiche-texte">
-          <span className={`statut statut-${patron.statut}`}>{libellesStatut[patron.statut]}</span>
+          {patron.enCours && <span className="statut statut-en-cours">En cours</span>}
           <h1>{patron.nom}</h1>
           {patron.description && <p className="chapeau">{patron.description}</p>}
           {patron.caracteristiques && (

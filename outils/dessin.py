@@ -183,16 +183,18 @@ def haut(p):
 
 
 # ---------------- pantalon (fond de pantalon droit) ----------------
-def pantalon(p):
+def pantalon(p, pyjama=False):
     N = {n: q for n, q in p.points.values()}
     L = lambda a, b: math.dist(N[a], N[b])
-    yA = N['F'][1]
+    e = 'e' if pyjama else ''
+    yA = N['cA3'][1] if pyjama else N['F'][1]
+    taille = (L('cA2e', 'cA3') + L('cA5', 'cB5e')) / 2 if pyjama else (L('A2', 'A3') + L('A5', 'B5')) / 2
     niv = {
-        'taille': (yA, (L('A2', 'A3') + L('A5', 'B5')) / 2),
+        'taille': (yA, taille),
         'hanches': (N['B'][1], (L('B1', 'B2') + L('B4', 'B3')) / 2),
-        'fourche': (N['C'][1], (L('C1', 'C2') + L('C4', 'C3')) / 2),
-        'genou': (N['D'][1], (L('D1', 'D2') + L('D3', 'D4')) / 2),
-        'bas': (N['E'][1], (L('E1', 'E2') + L('E3', 'E4')) / 2),
+        'fourche': (N['C'][1], (L('C1' + e, 'C2' + e) + L('C4' + e, 'C5' + e if pyjama else 'C3')) / 2),
+        'genou': (N['D'][1], (L('D1' + e, 'D2' + e) + L('D3' + e, 'D4' + e)) / 2),
+        'bas': (N['E'][1], (L('E1' + e, 'E2' + e) + L('E3' + e, 'E4' + e)) / 2),
     }
     yt, wt = niv['taille']; yh, wh = niv['hanches']; yf, wf = niv['fourche']
     yg, wg = niv['genou']; yb, wb = niv['bas']
@@ -206,10 +208,74 @@ def pantalon(p):
         d = Dessin()
         corps = jambe + list(reversed(miroir(jambe)))[1:-1]
         d.forme(corps)
-        # pas de ceinture : le patron n'a pas de pièce de ceinture
+        if pyjama:
+            # ceinture élastiquée, froncée : bande de la hauteur de l'élastique au-dessus de la taille
+            hb = p.vars.get('#haut_elastique', 3)
+            d.forme([(-wt, yt), (-wt, yt + hb), (wt, yt + hb), (wt, yt)])
+            for i in range(1, 16):
+                x = -wt + 2 * wt * i / 16
+                d.ligne([(x, yt + hb * 0.2), (x, yt + hb * 0.8)])
         # couture milieu devant / dos, ourlets
         d.ligne([(0, yt), (0, yf)])
         for sg in (1, -1):
             d.piqure([(sg * (xb_ext + 0.4), yb + 3), (sg * (xb_int - 0.4), yb + 3)])
+        vues.append(d)
+    return vues
+
+
+# ---------------- haut de pyjama (T-shirt col V, épaule déplacée) ----------------
+def haut_pyjama(p):
+    N = {n: q for n, q in p.points.values()}
+    C = {c['nom']: list(c['pts']) for c in p.courbes.values()}
+    larg_bande = p.vars.get('#larg_bande', 1.5)
+
+    def depuis(courbe, point):
+        """Portion de la courbe à partir du sommet le plus proche du point."""
+        i = min(range(len(courbe)), key=lambda k: math.dist(courbe[k], point))
+        return [point] + courbe[i + 1:]
+
+    def jusqua_axe(pts):
+        """Coupe une polyligne qui finit au milieu (x = 0) à son passage sur l'axe."""
+        for i, (a, b) in enumerate(zip(pts, pts[1:])):
+            if a[0] <= 0 <= b[0] and b[0] != a[0]:
+                s = -a[0] / (b[0] - a[0])
+                return pts[:i + 1] + [(0.0, a[1] + s * (b[1] - a[1]))]
+        return pts
+
+    manche_long = math.dist(N['mA'], N['mC'])
+    manche_bas = math.dist(N['mF1'], N['mF2']) / 2
+    vues = []
+    for nom in ('devant', 'dos'):
+        if nom == 'devant':
+            Hs, Ks, C3 = N['vHp'], N['vKp'], 'vC3d'
+            col = depuis(C['SplPath_vH2_vE2'], Hs) + [N['vE2']]          # épaule -> milieu
+            emm = depuis(C['SplPath_vK_vC3d'], Ks)
+            bas = list(reversed(C['Spl_vAp_vA1']))                        # côté -> milieu
+        else:
+            Hs, Ks, C3 = N['vHpp'], N['vKpp'], 'vC3b'
+            col = [Hs] + list(reversed(C['Spl_vF3_vHpp']))[1:] + [N['vF2']]
+            emm = C['SplPath_vKpp_vC3b']
+            bas = [N['vA1'], N['A']]
+        cote = [N['vC2']] + C['SplPath_vC2_vA1'][1:]
+        demi = list(reversed(col)) + emm + cote[1:] + bas[1:]
+        d = Dessin()
+        d.forme(demi + list(reversed(miroir(demi)))[1:-1])
+        # bande d'encolure : de la couture à la ligne finie, côté encolure
+        fini = jusqua_axe(decale(col, larg_bande))
+        d.forme(col + list(reversed(miroir(col)))[1:] + miroir(fini) + list(reversed(fini))[1:])
+        # manches (gauche puis miroir), comme le fond
+        a = math.radians(243)
+        u = (math.cos(a), math.sin(a)); n = (-u[1], u[0])
+        pe = (Ks[0] + manche_long * u[0], Ks[1] + manche_long * u[1])
+        pi_ = (pe[0] + manche_bas * n[0], pe[1] + manche_bas * n[1])
+        manche = [Ks, pe, pi_, emm[-1]] + list(reversed(emm))[1:-1]
+        poignet = [(pe[0] - 2.5 * u[0], pe[1] - 2.5 * u[1]), (pi_[0] - 2.5 * u[0], pi_[1] - 2.5 * u[1])]
+        for f in (lambda L: L, miroir):
+            d.forme(f(manche))
+            d.piqure(f(poignet))
+        # ourlet du bas
+        yb = bas[-1][1] + 2.5
+        xa = N['vA1'][0]
+        d.piqure([(xa + 0.3, yb), (-xa - 0.3, yb)])
         vues.append(d)
     return vues
