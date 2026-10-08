@@ -129,6 +129,10 @@ lineWeight="0.35"`.
   showSecondNotch="true"` (jersey : cran ≤ 4 mm).
 - `data`, `patternInfo`, `grainline` : `mx`/`my` en **pixels** (37,795 px/cm) dans le repère
   du brouillon ; le droit-fil part de (`mx`,`my`) et monte de `length` cm si `rotation="90"`.
+- Étiquettes (`data`, `patternInfo`, `mx`/`my` = coin haut gauche, `width`/`height` en cm) et
+  droit-fil : **toujours dans la pièce**, sans se superposer ni croiser le droit-fil. Une
+  étiquette posée hors de la pièce est recentrée par Seamly, par-dessus l'autre. Pièce étroite
+  (bande, ceinture) : étiquettes côte à côte, `arrowLength` réduit (0,5).
 - Pièce de contrôle d'échelle (carré 5×5) : `seamAllowance="false"` pour une ligne imprimée
   exacte.
 
