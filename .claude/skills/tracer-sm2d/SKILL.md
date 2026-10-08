@@ -60,11 +60,8 @@ Sans Seamly (session cloud) : `python3 .claude/skills/tracer-sm2d/evaluer_hors_s
 signale les `Line_` lus sans segment ; `rendre_hors_seamly.py <fichier> <sortie.png>` dessine
 les contours des pièces et les crans. Validé sur `fond_base_maille.sm2d` (tour 43,10, embu
 1,43). Ne remplace pas l'export Seamly : le signaler à l'utilisateur.
-PDF imprimables : jamais de géométrie recalculée hors Seamly (1 mm compte en couture). Exporter
-les pièces avec Seamly (`seamly2d.exe -b <nom> -d <dossier> -f 0 --exportOnlyDetails <nom>.sm2d`),
-ranger le SVG dans `export/seamly/`, puis `pdf_depuis_seamly.py <nom>_pieces.svg public/pdf/<slug>.pdf
-"<Titre>" patrons/<nom>.sm2d` : tracés Seamly recopiés tels quels (pièces seulement déplacées),
-un assemblage de feuilles A4 par grande pièce (le moins de feuilles puis de raccords, quart de tour permis), marges 5 mm, carré de Seamly sur la notice. Ajouter `--a3` pour la version A3 (`public/pdf/<slug>-a3.pdf`). Slugs : ceux du site (ticket #18).
+PDF imprimables : skill `imprimer-patron`, à partir de l'export Seamly (jamais de géométrie
+recalculée hors Seamly).
 
 ### 4. Livrer
 
