@@ -18,4 +18,6 @@ Pour mettre à jour : recopier les dossiers depuis le dépôt source.
   (export Seamly en ligne de commande). Pièges Seamly : `tracer-sm2d/SEAMLY.md`.
 - `changer-taille` : photo d'un tableau de tailles → `transcription.md` validée →
   `mesures/T<n>.smms`, patrons vérifiés dans la nouvelle taille.
+- `exporter-pdf` : pièces exportées en SVG par Seamly → PDF A4 et A3 à l'échelle 1 dans
+  `public/pdf/`, téléchargeables sur le site.
 - Références partagées : `doc/patronage/gestes.md`, `doc/patronage/lexique-mesures.md`.
