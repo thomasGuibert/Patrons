@@ -1,10 +1,10 @@
-/* Charte Atelier AT : encre sur papier blanc, rouge garance, bleu de travail. */
+/* Charte Atelier AT : encre sur kraft, planches sur papier blanc, rouge garance, bleu de travail. */
 :root {
-  --fond: #fffcf5;
-  --kraft: #e2d6bd;
+  --fond: #fffcf5;          /* papier des planches et des boutons */
+  --kraft: #d8c6a2;         /* fond du site, kraft soutenu */
   --encre: #14110e;
   --sepia: #4f473c;
-  --filet: #cbbd9f;
+  --filet: #a99470;
   --garance: #a8321f;
   --garance-fonce: #862717;
   --bleu: #1c2f4d;
@@ -20,7 +20,7 @@
 
 body {
   margin: 0;
-  background: var(--fond);
+  background: var(--kraft);
   color: var(--encre);
   font-family: var(--texte);
   font-size: 17px;
