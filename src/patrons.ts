@@ -1,15 +1,25 @@
 import type { StaticImageData } from "next/image";
 import fondBaseMaille from "../vignettes/fond_base_maille_fiche.png";
+import fondBaseMaillePlanche from "../vignettes/fond_base_maille_planche.png";
 import fondPantalonDroit from "../vignettes/fond_pantalon_droit_fiche.png";
+import fondPantalonDroitPlanche from "../vignettes/fond_pantalon_droit_planche.png";
 import hautPyjama from "../vignettes/haut_pyjama_fiche.png";
 import basPyjama from "../vignettes/bas_pyjama_fiche.png";
+
+export type Famille = "vetement" | "base";
 
 export type Patron = {
   slug: string;
   nom: string;
+  famille: Famille;
+  /** Référence de catalogue : « Réf. 101 » pour un vêtement, « Planche n° 001 » pour une base. */
+  ref: string;
   resume: string;
   enCours?: boolean;
+  /** Le patron puis le vêtement cousu, en largeur. */
   vignette?: StaticImageData;
+  /** Les pièces seules, pour le rayon des bases. */
+  planche?: StaticImageData;
   description?: string;
   caracteristiques?: { libelle: string; valeur: string }[];
   valeurs?: { titre: string; lignes: { libelle: string; cm: string }[] };
@@ -17,12 +27,42 @@ export type Patron = {
 
 export const patrons: Patron[] = [
   {
+    slug: "haut-pyjama",
+    nom: "Haut de pyjama col V",
+    famille: "vetement",
+    ref: "Réf. 101",
+    resume: "T-shirt souple en jersey, à manches longues.",
+    vignette: hautPyjama,
+    description:
+      "Un T-shirt souple à encolure V et manches longues, à coudre dans un jersey.",
+    caracteristiques: [
+      { libelle: "Taille", valeur: "44" },
+      { libelle: "Pièces", valeur: "Devant, dos, manche ×2, bande d'encolure" },
+    ],
+  },
+  {
+    slug: "bas-pyjama",
+    nom: "Bas de pyjama",
+    famille: "vetement",
+    ref: "Réf. 102",
+    resume: "Pantalon en jersey à taille élastique.",
+    vignette: basPyjama,
+    description: "Un pantalon en jersey à taille élastique, droit et confortable.",
+    caracteristiques: [
+      { libelle: "Taille", valeur: "44" },
+      { libelle: "Pièces", valeur: "Devant ×2, dos ×2, ceinture" },
+    ],
+  },
+  {
     slug: "fond-pantalon-droit",
     nom: "Fond de pantalon droit",
-    resume: "Devant et dos, base de tous les pantalons.",
+    famille: "base",
+    ref: "Planche n° 001",
+    resume: "Devant et dos, à adapter à son propre modèle.",
     vignette: fondPantalonDroit,
+    planche: fondPantalonDroitPlanche,
     description:
-      "La base de tous les pantalons du catalogue : un devant et un dos, tracés sur le même axe, puis relevés séparément.",
+      "La base de tous les pantalons du catalogue : un devant et un dos, à transformer pour dessiner son propre modèle.",
     caracteristiques: [
       { libelle: "Taille", valeur: "44" },
       { libelle: "Pièces", valeur: "Devant ×2, dos ×2" },
@@ -42,31 +82,23 @@ export const patrons: Patron[] = [
   {
     slug: "fond-base-maille",
     nom: "Fond de base maille",
-    resume: "Devant, dos et manche pour le jersey.",
+    famille: "base",
+    ref: "Planche n° 002",
+    resume: "Devant, dos et manche, pour les hauts en jersey.",
     vignette: fondBaseMaille,
+    planche: fondBaseMaillePlanche,
     description:
-      "Le fond des hauts en jersey : un devant, un dos et une manche, d'où part le haut de pyjama.",
+      "Le fond des hauts en jersey : un devant, un dos et une manche, à transformer pour dessiner son propre modèle.",
     caracteristiques: [
       { libelle: "Taille", valeur: "44" },
-      { libelle: "Pièces", valeur: "Devant, dos, manche" },
+      { libelle: "Pièces", valeur: "Devant, dos, manche ×2" },
     ],
   },
-  {
-    slug: "haut-pyjama",
-    nom: "Haut de pyjama col V",
-    resume: "T-shirt souple en jersey, tiré du fond maille.",
-    vignette: hautPyjama,
-    description:
-      "Un T-shirt souple à encolure V, élargi à partir du fond de base maille, avec une manche reconstruite sur la nouvelle emmanchure.",
-  },
-  {
-    slug: "bas-pyjama",
-    nom: "Bas de pyjama",
-    resume: "Pantalon à taille élastique, tiré du fond droit.",
-    vignette: basPyjama,
-    description:
-      "Un pantalon en jersey à taille élastique, adapté du fond de pantalon droit.",
-  },
+];
+
+export const rayons: { famille: Famille; titre: string; script: string; note: string }[] = [
+  { famille: "vetement", titre: "Vêtements", script: "à coudre", note: "" },
+  { famille: "base", titre: "Bases", script: "à transformer", note: "Des fonds à adapter à son propre modèle" },
 ];
 
 export function trouverPatron(slug: string): Patron | undefined {

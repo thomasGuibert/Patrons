@@ -1,23 +1,39 @@
 import type { Metadata } from "next";
-import { Fraunces, Karla } from "next/font/google";
+import { Courier_Prime, IM_Fell_French_Canon, Pinyon_Script, Sorts_Mill_Goudy } from "next/font/google";
 import Link from "next/link";
+import { Ecusson } from "./Ecusson";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const titres = IM_Fell_French_Canon({
   subsets: ["latin"],
-  weight: ["500", "700"],
+  weight: "400",
+  style: ["normal", "italic"],
   variable: "--font-titre",
 });
 
-const karla = Karla({
+const texte = Sorts_Mill_Goudy({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: "400",
+  style: ["normal", "italic"],
   variable: "--font-texte",
 });
 
+const manuscrite = Pinyon_Script({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-manuscrite",
+});
+
+const machine = Courier_Prime({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-machine",
+});
+
 export const metadata: Metadata = {
-  title: "Patrons",
-  description: "Patrons de couture tracés sur mesures, à imprimer en A4 ou en A3.",
+  title: "Atelier AT",
+  description:
+    "Patrons de vêtements faits pour durer, à imprimer chez soi en A4 ou en A3.",
 };
 
 export default function RootLayout({
@@ -26,27 +42,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${fraunces.variable} ${karla.variable}`}>
+    <html
+      lang="fr"
+      className={`${titres.variable} ${texte.variable} ${manuscrite.variable} ${machine.variable}`}
+    >
       <body>
         <header className="entete">
           <div className="conteneur entete-ligne">
-            <Link href="/" className="logo">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                <path d="M8 4h11l5 7-3 17H9L7 11z" />
-              </svg>
-              Patrons
+            <Link href="/" className="marque">
+              <Ecusson className="ecusson" />
             </Link>
             <nav aria-label="Navigation principale" className="nav">
-              <Link href="/#catalogue">Catalogue</Link>
-              <Link href="/#methode">La méthode</Link>
-              <Link href="/#mesures">Mesures</Link>
+              <Link href="/#vetements">Vêtements</Link>
+              <Link href="/#bases">Bases</Link>
             </nav>
           </div>
         </header>
         {children}
-        <footer className="conteneur pied">
-          <span>Patrons, par Thomas Guibert</span>
-          <a href="https://github.com/thomasGuibert/Patrons">Sources sur GitHub</a>
+        <footer className="pied">
+          <div className="conteneur pied-ligne">
+            <span>Atelier AT · Fait pour durer</span>
+            <span>Patrons à imprimer chez soi</span>
+          </div>
         </footer>
       </body>
     </html>
