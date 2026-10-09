@@ -3,6 +3,15 @@ import math, os
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib.font_manager import FontProperties
+
+POLICES = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'polices')
+
+
+def police(nom):
+    """Police de la charte Atelier AT (fichiers dans outils/polices), ou None pour la police par défaut."""
+    chemin = os.path.join(POLICES, nom)
+    return FontProperties(fname=chemin) if os.path.exists(chemin) else None
 
 STYLES = {
     'papier':    dict(fond='#f6f1e7', tissu='#ffffff', trait='#2b2b2b', piqure='#8a8a8a'),
@@ -13,6 +22,9 @@ STYLES = {
     'sauge':     dict(fond='#dfe6dc', tissu='#c96f4a', trait='#3b2a22', piqure='#f3d9cb', ombre='#b9c4b5'),
     'indigo':    dict(fond='#f4f1ec', tissu='#2e4a7d', trait='#16243d', piqure='#a9bde0', ombre='#e2ddd4'),
     'moutarde':  dict(fond='#1f2a2e', tissu='#d9a441', trait='#1f2a2e', piqure='#7a5a1c'),
+    # charte Atelier AT : bleu de travail sur papier blanc, coutures garance
+    'atelier':   dict(fond='#fffcf5', tissu='#1c2f4d', trait='#14110e', piqure='#d8735d', ombre='#e2d6bd',
+                      accent='#a8321f', titre='IMFeENsc28P.ttf', legende='SortsMillGoudy-Italic.ttf'),
 }
 
 
@@ -111,7 +123,8 @@ def rendre(vues, chemin_base, taille_px=800, style='papier', ax=None, legendes=F
         for v, txt in zip(places, ('devant', 'dos')):
             xmin, xmax, ymin, _ = v.bornes()
             ax.text((xmin + xmax) / 2, ymin - cote * 0.03, txt, ha='center', va='top',
-                    fontsize=taille_px / 62, color=st['trait'])
+                    fontsize=taille_px / 62 * (1.15 if 'legende' in st else 1), color=st['trait'],
+                    fontproperties=police(st['legende']) if 'legende' in st else None)
     if seul:
         for ext in ('png', 'svg'):
             fig.savefig(f'{chemin_base}.{ext}', dpi=100, facecolor=st['fond'])

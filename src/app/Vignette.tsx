@@ -1,17 +1,16 @@
-import Image from "next/image";
-import type { Patron } from "@/patrons";
+import Image, { type StaticImageData } from "next/image";
 
-export function Vignette({ patron, priorite = false }: { patron: Patron; priorite?: boolean }) {
-  if (!patron.vignette) {
+export function Vignette({
+  image,
+  priorite = false,
+  sizes = "(max-width: 700px) 100vw, 600px",
+}: {
+  image?: StaticImageData;
+  priorite?: boolean;
+  sizes?: string;
+}) {
+  if (!image) {
     return <div className="vignette vignette-vide">Vignette à venir</div>;
   }
-  return (
-    <Image
-      src={patron.vignette}
-      alt=""
-      className="vignette"
-      sizes="(max-width: 700px) 100vw, 600px"
-      priority={priorite}
-    />
-  );
+  return <Image src={image} alt="" className="vignette" sizes={sizes} priority={priorite} />;
 }

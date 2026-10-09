@@ -518,7 +518,8 @@ def main():
 
 # ---------- vignettes pour un site ----------
 def dessiner_vignette(p, base, sortie, taille_px=800, fond='#f6f1e7', papier='#ffffff',
-                      trait='#2b2b2b', accent='#c8553d', ax=None, legendes=False, cadre=1.18, haut=0.0):
+                      trait='#2b2b2b', accent='#c8553d', ax=None, legendes=False, cadre=1.18, haut=0.0,
+                      police=None):
     """Vignette carrée : pièces seules, sans texte ni cotes (le carré de contrôle est exclu)."""
     items = []
     for bloc, piece, contour, largeur in p.pieces():
@@ -565,9 +566,10 @@ def dessiner_vignette(p, base, sortie, taille_px=800, fond='#f6f1e7', papier='#f
     if legendes:
         for (pts, sa, nom, qte, pli), (_, _, dx, dy) in zip(items, places):
             X = [x + dx for x, _ in sa]; Y = [y + dy for _, y in sa]
-            txt = nom + (f' ×{qte}' if qte != '1' else '') + (' · au pli' if pli else '')
+            txt = nom + (f' ×{qte}' if qte != '1' else '') + ('\nau pli' if pli else '')
             ax.text((min(X) + max(X)) / 2, min(Y) - cote * 0.03, txt, ha='center', va='top',
-                    fontsize=taille_px / 62, color=trait)
+                    fontsize=taille_px / 62 * (1.15 if police else 1), color=trait,
+                    fontproperties=police, linespacing=1.1)
     if seul:
         for ext in ('png', 'svg'):
             fig.savefig(os.path.join(sortie, f'{base}.{ext}'), dpi=100, facecolor=fond)
@@ -610,26 +612,73 @@ def main_dessins(argv):
         print('dessin', base)
 
 
-def dessiner_fiche(p, vues, chemin_base, taille_px=800, style='sauge'):
+def dessiner_fiche(p, vues, chemin_base, taille_px=800, style='atelier'):
     """Une image : le patron (style papier) -> le vêtement cousu (style choisi)."""
     import dessin
     st = dessin.STYLES[style]
+    atelier = 'titre' in st
+    encre = st['trait'] if atelier else '#2b2b2b'
+    fond = st['fond'] if atelier else '#f6f1e7'
     fig = plt.figure(figsize=(2 * taille_px / 100, taille_px / 100), dpi=100)
+    fig.patch.set_facecolor(fond)
     gauche = fig.add_axes([0, 0, 0.5, 1]); droite = fig.add_axes([0.5, 0, 0.5, 1])
-    dessiner_vignette(p, None, None, taille_px, ax=gauche, legendes=True, cadre=1.45, haut=0.06)
+    opts = dict(fond=fond, trait=encre, accent=st['accent'], papier='#ffffff',
+                police=dessin.police(st['legende'])) if atelier else {}
+    dessiner_vignette(p, None, None, taille_px, ax=gauche, legendes=True, cadre=1.45, haut=0.06, **opts)
     dessin.rendre(vues, None, taille_px, style, ax=droite, legendes=True, cadre=1.45, haut=0.06)
-    for ax, txt, coul in ((gauche, 'LE PATRON', '#2b2b2b'), (droite, 'UNE FOIS COUSU', st['trait'])):
-        ax.text(0.5, 0.93, txt, transform=ax.transAxes, ha='center', va='center',
-                fontsize=taille_px / 40, color=coul, weight='bold')
+    titres = ('Le patron', 'Une fois cousu') if atelier else ('LE PATRON', 'UNE FOIS COUSU')
+    for ax, txt, coul in ((gauche, titres[0], encre), (droite, titres[1], st['trait'])):
+        if atelier:
+            ax.text(0.5, 0.93, txt, transform=ax.transAxes, ha='center', va='center',
+                    fontsize=taille_px / 30, color=coul, fontproperties=dessin.police(st['titre']))
+        else:
+            ax.text(0.5, 0.93, txt, transform=ax.transAxes, ha='center', va='center',
+                    fontsize=taille_px / 40, color=coul, weight='bold')
+    if atelier:
+        # filet pointillé entre les deux moitiés, interrompu par la pastille
+        for y0, y1 in ((0.06, 0.40), (0.60, 0.88)):
+            fig.add_artist(plt.Line2D([0.5, 0.5], [y0, y1], transform=fig.transFigure, color=encre,
+                                      lw=taille_px / 800, linestyle=(0, (2, 3))))
     # pastille flèche à la jonction
     sur = fig.add_axes([0.5 - 0.035, 0.5 - 0.07, 0.07, 0.14]); sur.axis('off')
     sur.set_xlim(-1, 1); sur.set_ylim(-1, 1); sur.set_aspect('equal')
-    sur.add_patch(plt.Circle((0, 0), 0.95, fc='#ffffff', ec='#2b2b2b', lw=taille_px / 400))
+    sur.add_patch(plt.Circle((0, 0), 0.95, fc='#ffffff', ec=encre, lw=taille_px / 400))
     sur.annotate('', xy=(0.55, 0), xytext=(-0.55, 0),
-                 arrowprops=dict(arrowstyle='-|>', color='#2b2b2b', lw=taille_px / 300, mutation_scale=taille_px / 40))
+                 arrowprops=dict(arrowstyle='-|>', color=st['accent'] if atelier else encre,
+                                 lw=taille_px / 300, mutation_scale=taille_px / 40))
     for ext in ('png', 'svg'):
-        fig.savefig(f'{chemin_base}.{ext}', dpi=100)
+        fig.savefig(f'{chemin_base}.{ext}', dpi=100, facecolor=fond)
     plt.close(fig)
+
+
+def dessiner_planche(p, chemin_base, taille_px=800, style='atelier'):
+    """Planche technique d'une base : les pièces seules, légendées, sous un titre."""
+    import dessin
+    st = dessin.STYLES[style]
+    fig = plt.figure(figsize=(taille_px / 100, taille_px / 100), dpi=100)
+    fig.patch.set_facecolor('#ffffff')
+    ax = fig.add_axes([0, 0, 1, 1])
+    dessiner_vignette(p, None, None, taille_px, ax=ax, legendes=True, cadre=1.42, haut=0.05,
+                      fond='#ffffff', trait=st['trait'], accent=st['accent'], papier='#ffffff',
+                      police=dessin.police(st['legende']))
+    ax.text(0.5, 0.92, 'Le patron', transform=ax.transAxes, ha='center', va='center',
+            fontsize=taille_px / 22, color=st['trait'], fontproperties=dessin.police(st['titre']))
+    for ext in ('png', 'svg'):
+        fig.savefig(f'{chemin_base}.{ext}', dpi=100, facecolor='#ffffff')
+    plt.close(fig)
+
+
+def main_planches(argv):
+    ap = argparse.ArgumentParser()
+    ap.add_argument('fichiers', nargs='+')
+    ap.add_argument('--sortie', default='vignettes')
+    ap.add_argument('--taille', type=int, default=800)
+    a = ap.parse_args(argv)
+    os.makedirs(a.sortie, exist_ok=True)
+    for f in a.fichiers:
+        base = os.path.splitext(os.path.basename(f))[0]
+        dessiner_planche(Patron(f), os.path.join(a.sortie, base + '_planche'), a.taille)
+        print('planche', base)
 
 
 def main_fiches(argv):
@@ -638,7 +687,7 @@ def main_fiches(argv):
     ap.add_argument('fichiers', nargs='+')
     ap.add_argument('--sortie', default='vignettes')
     ap.add_argument('--taille', type=int, default=800)
-    ap.add_argument('--style', default='sauge', choices=list(dessin.STYLES))
+    ap.add_argument('--style', default='atelier', choices=list(dessin.STYLES))
     a = ap.parse_args(argv)
     os.makedirs(a.sortie, exist_ok=True)
     for f in a.fichiers:
@@ -672,6 +721,9 @@ if __name__ == '__main__':
     elif len(sys.argv) > 1 and sys.argv[1] == 'fiches':
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         main_fiches(sys.argv[2:])
+    elif len(sys.argv) > 1 and sys.argv[1] == 'planches':
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        main_planches(sys.argv[2:])
     elif len(sys.argv) > 1 and sys.argv[1] == 'dessins':
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         main_dessins(sys.argv[2:])
