@@ -149,6 +149,22 @@ p { margin: 0; }
 .mesures td:last-child, .mesures th:last-child { text-align: right; }
 .tailles-corps td + td, .tailles-corps th + th { text-align: right; }
 
+/* Vos mesures : le tableau des tailles, avec une colonne à remplir */
+.vos-mesures .note { max-width: 62ch; color: var(--sepia); }
+.vos-mesures th select { font: inherit; letter-spacing: 0; background: var(--fond); border: 1px solid var(--filet); padding: 1px 2px; margin-left: 4px; }
+.vos-mesures td:nth-child(2), .vos-mesures th:nth-child(2) { text-align: right; color: var(--sepia); }
+.vos-mesures input { font: inherit; width: 6em; text-align: right; padding: 5px 8px; border: 1px solid var(--filet); background: var(--fond); color: var(--encre); }
+.vos-mesures input::placeholder { color: var(--filet); }
+.vos-mesures input:focus { outline: 2px solid var(--garance); outline-offset: 1px; border-color: var(--encre); }
+.vos-mesures input[aria-invalid="true"] { border-color: var(--garance); color: var(--garance); }
+.vos-mesures .compte { font-family: var(--machine); font-size: 14px; }
+.vos-mesures .boutons { align-items: center; }
+.vos-mesures .bouton { background: var(--fond); cursor: pointer; }
+.vos-mesures .bouton:disabled { opacity: .45; cursor: default; }
+.lien { font: inherit; font-size: 15px; background: none; border: 0; padding: 0; color: var(--sepia); text-decoration: underline; cursor: pointer; }
+.lien:hover { color: var(--garance); }
+.vos-mesures .message { min-height: 1.5em; font-style: italic; color: var(--sepia); }
+
 /* Pied de page en bleu de travail */
 .pied { background: var(--bleu); color: var(--bleu-clair); font-size: 14px; }
 .pied-ligne { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding-block: 20px; }

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { patrons, trouverPatron } from "@/patrons";
-import { mesuresCorps, tailles } from "@/tailles";
+import { enCm, mesuresCorps, tailles } from "@/tailles";
+import { VosMesures } from "../../VosMesures";
 import { ChoixTaille } from "../../ChoixTaille";
 import { Vignette } from "../../Vignette";
 
@@ -74,7 +75,7 @@ export default async function FichePatron({ params }: Props) {
                 <tr key={m}>
                   <td>{mesuresCorps[m].libelle}</td>
                   {mesuresCorps[m].cm.map((cm, i) => (
-                    <td key={tailles[i]}>{cm}</td>
+                    <td key={tailles[i]}>{enCm(cm)}</td>
                   ))}
                 </tr>
               ))}
@@ -82,6 +83,8 @@ export default async function FichePatron({ params }: Props) {
           </table>
         </div>
       </section>
+
+      <VosMesures mesures={patron.saisie} />
 
       {patron.valeurs && (
         <section className="conteneur mesures">

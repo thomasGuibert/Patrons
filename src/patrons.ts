@@ -5,7 +5,7 @@ import fondPantalonDroit from "../vignettes/fond_pantalon_droit_fiche.png";
 import fondPantalonDroitPlanche from "../vignettes/fond_pantalon_droit_planche.png";
 import hautPyjama from "../vignettes/haut_pyjama_fiche.png";
 import basPyjama from "../vignettes/bas_pyjama_fiche.png";
-import type { Mesure } from "./tailles";
+import { mesuresBas, mesuresHaut, type Mesure } from "./tailles";
 
 export type Famille = "vetement" | "base";
 
@@ -26,6 +26,8 @@ export type Patron = {
   valeurs?: { titre: string; lignes: { libelle: string; cm: string }[] };
   /** Mesures du corps montrées dans le tableau des tailles. */
   mesures: Mesure[];
+  /** Toutes les mesures du corps dont le patron a besoin, à saisir pour le sur-mesure. */
+  saisie: Mesure[];
 };
 
 export const patrons: Patron[] = [
@@ -39,6 +41,7 @@ export const patrons: Patron[] = [
     description:
       "Un T-shirt souple à encolure V et manches longues, à coudre dans un jersey.",
     mesures: ["poitrine", "taille", "hanches"],
+    saisie: mesuresHaut,
     caracteristiques: [
       { libelle: "Pièces", valeur: "Devant, dos, manche ×2, bande d'encolure" },
     ],
@@ -52,6 +55,7 @@ export const patrons: Patron[] = [
     vignette: basPyjama,
     description: "Un pantalon en jersey à taille élastique, droit et confortable.",
     mesures: ["taille", "hanches", "tailleSol"],
+    saisie: mesuresBas,
     caracteristiques: [
       { libelle: "Pièces", valeur: "Devant ×2, dos ×2, ceinture" },
     ],
@@ -67,6 +71,7 @@ export const patrons: Patron[] = [
     description:
       "La base de tous les pantalons du catalogue : un devant et un dos, à transformer pour dessiner son propre modèle.",
     mesures: ["taille", "hanches", "tailleSol"],
+    saisie: mesuresBas,
     caracteristiques: [
       { libelle: "Pièces", valeur: "Devant ×2, dos ×2" },
     ],
@@ -92,6 +97,7 @@ export const patrons: Patron[] = [
     description:
       "Le fond des hauts en jersey : un devant, un dos et une manche, à transformer pour dessiner son propre modèle.",
     mesures: ["poitrine", "taille", "hanches"],
+    saisie: mesuresHaut,
     caracteristiques: [
       { libelle: "Pièces", valeur: "Devant, dos, manche ×2" },
     ],
