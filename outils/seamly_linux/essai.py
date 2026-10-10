@@ -75,13 +75,17 @@ def exporter(seamly, travail, nom, mesures, options=()):
 def chemins(svg, texte=False):
     """{pièce: [nombres de chaque <path>, coordonnées locales à la pièce]}.
 
-    Les tracés (coupe, couture, crans, droit-fil) n'ont que des segments M/L ; les étiquettes
-    sont du texte converti en courbes (C), qui dépend des polices installées.
+    Tracés (coupe, couture, crans, droit-fil) : groupes placés comme le premier groupe de la
+    pièce. Étiquettes : texte converti en chemins, chacune dans un groupe placé à part, dont
+    le dessin dépend des polices installées.
     """
     res = {}
     for g in ET.parse(svg).getroot().findall(NS + 'g'):
+        sous = g.findall(NS + 'g')
+        base = sous[0].get('transform') if sous else None
         res[g.get('id')] = [[float(x) for x in re.findall(r'-?[\d.]+(?:e[-+]?\d+)?', p.get('d'))]
-                            for p in g.iter(NS + 'path') if ('C' in p.get('d')) == texte]
+                            for s in sous if (s.get('transform') != base) == texte
+                            for p in s.iter(NS + 'path')]
     return res
 
 
