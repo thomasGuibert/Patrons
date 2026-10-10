@@ -3,7 +3,7 @@
     <!--Measurements created with SeamlyMe v2026.7.13.214 (https://seamly.io/).-->
     <version>0.4.5</version>
     <read-only>false</read-only>
-    <notes/>
+    <notes>Tableau des tailles 36 à 44 (doc/sources/tailles/tableau-36-44). Mesures absentes du tableau : déduites de l'ancien T44.</notes>
     <unit>cm</unit>
     <pm_system>998</pm_system>
     <size base="44"/>
@@ -11,25 +11,25 @@
     <body-measurements>
         <m base="170" height_increase="0" name="height" size_increase="0"/>
         <m base="44" height_increase="0" name="size" size_increase="2"/>
-        <m base="88" height_increase="0" name="bust_circ" size_increase="4"/>
-        <m base="76" height_increase="0" name="waist_circ" size_increase="4"/>
-        <m base="90" height_increase="0" name="hip_circ" size_increase="4"/>
-        <m base="44.1" height_increase="0" name="neck_back_to_waist_b" size_increase="0.3"/>
-        <m base="39.9" height_increase="0" name="neck_front_to_waist_f" size_increase="0.3"/>
+        <m base="100" height_increase="0" name="bust_circ" size_increase="4"/>
+        <m base="80" height_increase="0" name="waist_circ" size_increase="4"/>
+        <m base="106" height_increase="0" name="hip_circ" size_increase="4"/>
+        <m base="42.5" height_increase="0" name="neck_back_to_waist_b" size_increase="0.5"/>
+        <m base="38.5" height_increase="0" name="neck_front_to_waist_f" size_increase="0.5"/>
         <m base="55.1" height_increase="0" name="neck_back_to_waist_front" size_increase="1"/>
-        <m base="38" height_increase="0" name="neck_circ" size_increase="1"/>
-        <m base="37" height_increase="0" name="across_back_b" size_increase="1"/>
-        <m base="32" height_increase="0" name="across_chest_f" size_increase="1"/>
-        <m base="13.7" height_increase="0" name="shoulder_length" size_increase="0.3"/>
-        <m base="64" height_increase="0" name="arm_shoulder_tip_to_wrist" size_increase="0"/>
-        <m base="17.2" height_increase="0" name="arm_wrist_circ" size_increase="0.2"/>
+        <m base="39" height_increase="0" name="neck_circ" size_increase="1"/>
+        <m base="36.5" height_increase="0" name="across_back_b" size_increase="0.5"/>
+        <m base="34.5" height_increase="0" name="across_chest_f" size_increase="0.5"/>
+        <m base="13.2" height_increase="0" name="shoulder_length" size_increase="0.4"/>
+        <m base="60" height_increase="0" name="arm_shoulder_tip_to_wrist" size_increase="0"/>
+        <m base="16.75" height_increase="0" name="arm_wrist_circ" size_increase="0.25"/>
         <m base="154.4" height_increase="0" name="height_neck_back" size_increase="0.2"/>
-        <m base="112.1" height_increase="0" name="height_waist_side" size_increase="-0.2"/>
-        <m base="20" height_increase="0" name="height_waist_side_to_hip" size_increase="0"/>
-        <m base="27.1" height_increase="0" name="rise_length_side_sitting" size_increase="0.2"/>
+        <m base="107.5" height_increase="0" name="height_waist_side" size_increase="0.5"/>
+        <m base="22" height_increase="0" name="height_waist_side_to_hip" size_increase="0"/>
+        <m base="28" height_increase="0" name="rise_length_side_sitting" size_increase="0.5"/>
         <m base="67.9" height_increase="0" name="crotch_length" size_increase="1.6"/>
-        <m base="62" height_increase="0" name="height_waist_side_to_knee" size_increase="0"/>
-        <m base="85" height_increase="0" name="leg_crotch_to_floor" size_increase="-0.4"/>
+        <m base="61" height_increase="0" name="height_waist_side_to_knee" size_increase="1"/>
+        <m base="79.5" height_increase="0" name="leg_crotch_to_floor" size_increase="0"/>
         <m base="52.7" height_increase="0" name="leg_thigh_upper_circ" size_increase="1.8"/>
         <m base="35.1" height_increase="0" name="leg_calf_circ" size_increase="0.9"/>
         <m base="32.6" height_increase="0" name="leg_knee_circ" size_increase="0.7"/>

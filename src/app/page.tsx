@@ -37,8 +37,7 @@ export default function Accueil() {
         </p>
         <p className="mention">
           <span>Patrons en A4 et A3</span>
-          <span>Taille 44</span>
-          <span>D&apos;autres tailles à venir</span>
+          <span>Tailles 36 à 44</span>
         </p>
       </section>
 

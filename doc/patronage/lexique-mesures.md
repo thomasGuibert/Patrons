@@ -9,7 +9,7 @@ ligne ici. Statut : **validé** (décidé avec l'utilisateur) ou **proposé** (�
 | Terme du livre | Seamly | Statut | Remarque |
 |---|---|---|---|
 | Tour de taille | `waist_circ` | proposé | |
-| Tour de hanches | `hip_circ` | proposé | T44.smms : 90, plus petit que le T38 du livre (92) : fichier à revoir ? |
+| Tour de hanches | `hip_circ` | proposé | tableau p. 29, ligne 8 (bassin) ; T44 corrigé : 106 |
 | Tour de genou | `leg_knee_circ` | proposé | non utilisé par le fond de pantalon droit |
 | Hauteur taille-hanches | `height_waist_side_to_hip` | validé | fond de pantalon droit |
 | Hauteur taille-montant | `height_waist_side - leg_crotch_to_floor` | validé | montant mesuré debout (pas `rise_length_side_sitting`) |
@@ -35,5 +35,7 @@ ligne ici. Statut : **validé** (décidé avec l'utilisateur) ou **proposé** (�
 
 ## Fichiers de mesures
 
-- `mesures/T44.smms` (cm) : utilisé par `patrons/fond_base_maille.sm2d`. Ne contient ni tour
-  ni profondeur d'emmanchure, ni tour de bras, ni largeur genou/bas de vêtement.
+- `mesures/T36.smms`, `T38.smms`, `T40.smms`, `T42.smms`, `T44.smms` (cm) : tableau des tailles
+  du livre p. 29 ; correspondances dans `doc/sources/tailles/tableau-36-44/transcription.md`.
+  Les patrons restent reliés à `T44.smms`. Ne contiennent ni tour ni profondeur d'emmanchure,
+  ni tour de bras, ni largeur genou/bas de vêtement.

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { patrons, trouverPatron } from "@/patrons";
+import { mesuresCorps, tailles } from "@/tailles";
+import { ChoixTaille } from "../../ChoixTaille";
 import { Vignette } from "../../Vignette";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -48,15 +50,36 @@ export default async function FichePatron({ params }: Props) {
                 ))}
               </dl>
             )}
-            <div className="boutons">
-              <a href={`/pdf/${patron.slug}.pdf`} className="bouton plein" download>
-                Télécharger · A4
-              </a>
-              <a href={`/pdf/${patron.slug}-a3.pdf`} className="bouton contour" download>
-                Télécharger · A3
-              </a>
-            </div>
+            <ChoixTaille slug={patron.slug} />
           </div>
+        </div>
+      </section>
+
+      <section className="conteneur mesures">
+        <h2>Tableau des tailles</h2>
+        <div className="tableau">
+          <table className="tailles-corps">
+            <thead>
+              <tr>
+                <th scope="col">Mesure du corps</th>
+                {tailles.map((t) => (
+                  <th scope="col" key={t}>
+                    {t}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {patron.mesures.map((m) => (
+                <tr key={m}>
+                  <td>{mesuresCorps[m].libelle}</td>
+                  {mesuresCorps[m].cm.map((cm, i) => (
+                    <td key={tailles[i]}>{cm}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 
