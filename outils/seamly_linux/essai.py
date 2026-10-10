@@ -72,12 +72,16 @@ def exporter(seamly, travail, nom, mesures, options=()):
     return (os.path.join(dossier, svgs[0]) if svgs else None), duree, journal, copie
 
 
-def chemins(svg):
-    """{pièce: [liste de nombres de chaque <path>, coordonnées locales à la pièce]}."""
+def chemins(svg, texte=False):
+    """{pièce: [nombres de chaque <path>, coordonnées locales à la pièce]}.
+
+    Les tracés (coupe, couture, crans, droit-fil) n'ont que des segments M/L ; les étiquettes
+    sont du texte converti en courbes (C), qui dépend des polices installées.
+    """
     res = {}
     for g in ET.parse(svg).getroot().findall(NS + 'g'):
         res[g.get('id')] = [[float(x) for x in re.findall(r'-?[\d.]+(?:e[-+]?\d+)?', p.get('d'))]
-                            for p in g.iter(NS + 'path')]
+                            for p in g.iter(NS + 'path') if ('C' in p.get('d')) == texte]
     return res
 
 
@@ -90,18 +94,20 @@ def largeur(svg, piece):
 def comparer(svg_a, svg_b):
     """Écart maximal (mm) entre les tracés de mêmes pièces, chemin par chemin."""
     a, b = chemins(svg_a), chemins(svg_b)
+    ta, tb = chemins(svg_a, texte=True), chemins(svg_b, texte=True)
     lignes = []
     for piece in sorted(set(a) | set(b)):
         if piece not in a or piece not in b:
-            lignes.append('| %s | absente d\'un côté | |' % piece)
+            lignes.append('| %s | absente d\'un côté | | |' % piece)
             continue
         if len(a[piece]) != len(b[piece]) or any(len(x) != len(y) for x, y in zip(a[piece], b[piece])):
-            lignes.append('| %s | structure différente (%d / %d chemins) | |' % (
+            lignes.append('| %s | structure différente (%d / %d tracés) | | |' % (
                 piece, len(a[piece]), len(b[piece])))
             continue
         ecart = max((abs(x - y) for pa, pb in zip(a[piece], b[piece]) for x, y in zip(pa, pb)),
                     default=0) / PX_CM * 10
-        lignes.append('| %s | %d chemins | %.3f mm |' % (piece, len(a[piece]), ecart))
+        etiquettes = 'identiques' if ta.get(piece) == tb.get(piece) else 'différentes'
+        lignes.append('| %s | %d tracés | %.3f mm | %s |' % (piece, len(a[piece]), ecart, etiquettes))
     return lignes
 
 
@@ -135,11 +141,11 @@ def main():
     windows = os.path.join(RACINE, 'export', 'seamly', PATRON + '_pieces.svg')
     if 'T44' in svgs:
         print('\n### T44 Linux comparé au Seamly Windows (export/seamly)\n')
-        print('| Pièce | Chemins | Écart max |\n|---|---|---|')
+        print('| Pièce | Tracés | Écart max | Étiquettes |\n|---|---|---|---|')
         print('\n'.join(comparer(svgs['T44'], windows)))
     if 'T40' in svgs and 'T40-gsize' in svgs:
         print('\n### T40 par fichier comparé à T40 par --gsize\n')
-        print('| Pièce | Chemins | Écart max |\n|---|---|---|')
+        print('| Pièce | Tracés | Écart max | Étiquettes |\n|---|---|---|---|')
         print('\n'.join(comparer(svgs['T40'], svgs['T40-gsize'])))
     print('\n## Journaux Seamly\n')
     print('\n'.join(journaux))
