@@ -15,6 +15,7 @@ construction. Les numéros de page sont ceux du livre.
 | Pantalon | `pantalon/elargissements/` : élargissements de pantalon (numéros vus sur la 2e photo) | 244-245 | oui | – |
 | Pantalon | `pantalon/jogging-jersey/` : jogging jersey ou molleton, ceinture et bas en bord-côtes | à confirmer | oui | – |
 | Col | `col/encolure-v-bande-jersey/` : encolure V finie en bande jersey piquée milieu devant | à confirmer | oui | – |
+| Tailles | `tailles/tableau-36-44/` : tableau des mesures du corps, tailles 36 à 44 | 29 | oui | `mesures/T36.smms` à `T44.smms` |
 | Pantalon | `pantalon/modele-pantalon-souple/` : modèle pantalon souple, ceinture bord-côtes, poches | 246-247 | oui | – |
 
 Nouvelle source : créer `<pièce>/<construction>/`, nommer les photos

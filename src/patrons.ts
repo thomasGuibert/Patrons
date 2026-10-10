@@ -5,6 +5,7 @@ import fondPantalonDroit from "../vignettes/fond_pantalon_droit_fiche.png";
 import fondPantalonDroitPlanche from "../vignettes/fond_pantalon_droit_planche.png";
 import hautPyjama from "../vignettes/haut_pyjama_fiche.png";
 import basPyjama from "../vignettes/bas_pyjama_fiche.png";
+import type { Mesure } from "./tailles";
 
 export type Famille = "vetement" | "base";
 
@@ -23,6 +24,8 @@ export type Patron = {
   description?: string;
   caracteristiques?: { libelle: string; valeur: string }[];
   valeurs?: { titre: string; lignes: { libelle: string; cm: string }[] };
+  /** Mesures du corps montrées dans le tableau des tailles. */
+  mesures: Mesure[];
 };
 
 export const patrons: Patron[] = [
@@ -35,8 +38,8 @@ export const patrons: Patron[] = [
     vignette: hautPyjama,
     description:
       "Un T-shirt souple à encolure V et manches longues, à coudre dans un jersey.",
+    mesures: ["poitrine", "taille", "hanches"],
     caracteristiques: [
-      { libelle: "Taille", valeur: "44" },
       { libelle: "Pièces", valeur: "Devant, dos, manche ×2, bande d'encolure" },
     ],
   },
@@ -48,8 +51,8 @@ export const patrons: Patron[] = [
     resume: "Pantalon en jersey à taille élastique.",
     vignette: basPyjama,
     description: "Un pantalon en jersey à taille élastique, droit et confortable.",
+    mesures: ["taille", "hanches", "tailleSol"],
     caracteristiques: [
-      { libelle: "Taille", valeur: "44" },
       { libelle: "Pièces", valeur: "Devant ×2, dos ×2, ceinture" },
     ],
   },
@@ -63,10 +66,9 @@ export const patrons: Patron[] = [
     planche: fondPantalonDroitPlanche,
     description:
       "La base de tous les pantalons du catalogue : un devant et un dos, à transformer pour dessiner son propre modèle.",
+    mesures: ["taille", "hanches", "tailleSol"],
     caracteristiques: [
-      { libelle: "Taille", valeur: "44" },
       { libelle: "Pièces", valeur: "Devant ×2, dos ×2" },
-      { libelle: "Hauteur", valeur: "100,1 cm" },
     ],
     valeurs: {
       titre: "Aisances et valeurs de mode",
@@ -89,8 +91,8 @@ export const patrons: Patron[] = [
     planche: fondBaseMaillePlanche,
     description:
       "Le fond des hauts en jersey : un devant, un dos et une manche, à transformer pour dessiner son propre modèle.",
+    mesures: ["poitrine", "taille", "hanches"],
     caracteristiques: [
-      { libelle: "Taille", valeur: "44" },
       { libelle: "Pièces", valeur: "Devant, dos, manche ×2" },
     ],
   },

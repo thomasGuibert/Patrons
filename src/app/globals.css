@@ -128,6 +128,17 @@ p { margin: 0; }
 .bouton.contour { color: var(--garance); }
 .bouton.contour:hover { color: var(--garance-fonce); border-color: var(--garance-fonce); }
 
+/* Choix de la taille, une rangée de cases comme sur une étiquette */
+.choix-taille { margin: 0; padding: 0; border: 0; display: grid; gap: 10px; }
+.choix-taille legend { padding: 0; margin-bottom: 10px; font-family: var(--display); text-transform: uppercase; letter-spacing: .16em; font-size: 11.5px; }
+.tailles { display: flex; flex-wrap: wrap; gap: 8px; }
+.tailles label { cursor: pointer; }
+.tailles input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.tailles span { display: block; min-width: 3.2em; padding: 8px 0; text-align: center; font-family: var(--machine); font-size: 15px; border: 1px solid var(--filet); background: var(--fond); }
+.tailles label:hover span { border-color: var(--encre); }
+.tailles input:checked + span { border-color: var(--encre); background: var(--encre); color: var(--fond); }
+.tailles input:focus-visible + span { outline: 2px solid var(--garance); outline-offset: 2px; }
+
 /* Les mesures, à la machine à écrire */
 .mesures { padding-block: 4px 56px; display: grid; gap: 12px; }
 .mesures h2 { font-size: 1.4rem; }
@@ -136,6 +147,7 @@ p { margin: 0; }
 .mesures th, .mesures td { text-align: left; padding: 7px 10px 7px 0; border-bottom: 1px dotted var(--filet); }
 .mesures th { text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: 400; border-bottom: 1px solid var(--encre); }
 .mesures td:last-child, .mesures th:last-child { text-align: right; }
+.tailles-corps td + td, .tailles-corps th + th { text-align: right; }
 
 /* Pied de page en bleu de travail */
 .pied { background: var(--bleu); color: var(--bleu-clair); font-size: 14px; }
