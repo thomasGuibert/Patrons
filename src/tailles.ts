@@ -3,11 +3,59 @@ export const tailles = [36, 38, 40, 42, 44] as const;
 export type Taille = (typeof tailles)[number];
 export const tailleParDefaut: Taille = 40;
 
-export type Mesure = "poitrine" | "taille" | "hanches" | "tailleSol";
+export type Mesure =
+  | "poitrine"
+  | "taille"
+  | "hanches"
+  | "encolure"
+  | "longueurDos"
+  | "longueurDevant"
+  | "carrureDos"
+  | "carrureDevant"
+  | "epaule"
+  | "bras"
+  | "poignet"
+  | "tailleSol"
+  | "tailleHanches"
+  | "tailleGenou"
+  | "entrejambeSol";
 
-export const mesuresCorps: Record<Mesure, { libelle: string; cm: string[] }> = {
-  poitrine: { libelle: "Tour de poitrine", cm: ["84", "88", "92", "96", "100"] },
-  taille: { libelle: "Tour de taille", cm: ["64", "68", "72", "76", "80"] },
-  hanches: { libelle: "Tour de hanches", cm: ["90", "94", "98", "102", "106"] },
-  tailleSol: { libelle: "Hauteur taille-sol", cm: ["105,5", "105,5", "106,5", "106,5", "107,5"] },
+export type MesureCorps = {
+  libelle: string;
+  /** Valeur de chaque taille, dans l'ordre de `tailles` (mesures/T36.smms à T44.smms). */
+  cm: number[];
+  /** Nom de la mesure dans les fichiers de mesures, pour tracer le patron sur mesure. Jamais affiché. */
+  seamly: string;
 };
+
+export const mesuresCorps: Record<Mesure, MesureCorps> = {
+  poitrine: { libelle: "Tour de poitrine", cm: [84, 88, 92, 96, 100], seamly: "bust_circ" },
+  taille: { libelle: "Tour de taille", cm: [64, 68, 72, 76, 80], seamly: "waist_circ" },
+  hanches: { libelle: "Tour de hanches", cm: [90, 94, 98, 102, 106], seamly: "hip_circ" },
+  encolure: { libelle: "Tour d'encolure", cm: [35, 36, 37, 38, 39], seamly: "neck_circ" },
+  longueurDos: { libelle: "Longueur taille dos", cm: [40.5, 41, 41.5, 42, 42.5], seamly: "neck_back_to_waist_b" },
+  longueurDevant: { libelle: "Longueur taille devant", cm: [36.5, 37, 37.5, 38, 38.5], seamly: "neck_front_to_waist_f" },
+  carrureDos: { libelle: "Carrure dos", cm: [34.5, 35, 35.5, 36, 36.5], seamly: "across_back_b" },
+  carrureDevant: { libelle: "Carrure devant", cm: [32.5, 33, 33.5, 34, 34.5], seamly: "across_chest_f" },
+  epaule: { libelle: "Longueur d'épaule", cm: [11.6, 12, 12.4, 12.8, 13.2], seamly: "shoulder_length" },
+  bras: { libelle: "Longueur de bras", cm: [60, 60, 60, 60, 60], seamly: "arm_shoulder_tip_to_wrist" },
+  poignet: { libelle: "Tour de poignet", cm: [15.75, 16, 16.25, 16.5, 16.75], seamly: "arm_wrist_circ" },
+  tailleSol: { libelle: "Hauteur taille-sol", cm: [105.5, 105.5, 106.5, 106.5, 107.5], seamly: "height_waist_side" },
+  tailleHanches: { libelle: "Hauteur taille-hanches", cm: [22, 22, 22, 22, 22], seamly: "height_waist_side_to_hip" },
+  tailleGenou: { libelle: "Hauteur taille-genou", cm: [57, 58, 59, 60, 61], seamly: "height_waist_side_to_knee" },
+  entrejambeSol: { libelle: "Hauteur entrejambe-sol", cm: [79.5, 79, 79.5, 79, 79.5], seamly: "leg_crotch_to_floor" },
+};
+
+/** Les mesures des hauts (fond de base maille) et des bas (fond de pantalon droit). */
+export const mesuresHaut: Mesure[] = [
+  "poitrine", "taille", "hanches", "encolure", "longueurDos", "longueurDevant",
+  "carrureDos", "carrureDevant", "epaule", "bras", "poignet", "tailleHanches",
+];
+export const mesuresBas: Mesure[] = [
+  "taille", "hanches", "tailleSol", "tailleHanches", "tailleGenou", "entrejambeSol",
+];
+
+/** « 105,5 » : virgule décimale, sans zéros inutiles. */
+export function enCm(cm: number): string {
+  return String(Math.round(cm * 100) / 100).replace(".", ",");
+}
