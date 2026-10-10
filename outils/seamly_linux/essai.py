@@ -143,6 +143,8 @@ def main():
         print('\n'.join(comparer(svgs['T40'], svgs['T40-gsize'])))
     print('\n## Journaux Seamly\n')
     print('\n'.join(journaux))
+    if len(svgs) < len(variantes):
+        sys.exit(1)
 
 
 if __name__ == '__main__':
