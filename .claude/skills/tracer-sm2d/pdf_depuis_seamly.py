@@ -7,8 +7,9 @@ choisi pour le moins de feuilles puis le moins de raccords ; les petites pièces
 la place libre. Page 1 : notice, carré de contrôle de Seamly et plan d'assemblage.
 
 Export Seamly (sur le PC) : seamly2d.exe -b <nom> -d <dossier> -f 0 --exportOnlyDetails <nom>.sm2d
-Usage : python3 pdf_depuis_seamly.py <nom>_pieces.svg sortie.pdf "Titre" [fichier.sm2d] [--a3]
-Le .sm2d, facultatif, ne sert qu'au texte de la notice (taille, quantités).
+Usage : python3 pdf_depuis_seamly.py <nom>_pieces.svg sortie.pdf "Titre" [fichier.sm2d] [--a3] [--taille <texte>]
+Le .sm2d, facultatif, ne sert qu'au texte de la notice (taille, quantités). --taille remplace la
+taille lue dans le .sm2d quand l'export a été fait avec d'autres mesures (40, sur-mesure…).
 """
 import math, os, re, sys
 import xml.etree.ElementTree as ET
@@ -199,11 +200,13 @@ def touchees(bloc):
     return res
 
 
-def exporter(svg, dst, titre, sm2d=None, format='A4'):
+def exporter(svg, dst, titre, sm2d=None, format='A4', taille=None):
     global FEUILLES
     FEUILLES = {'portrait': FORMATS[format], 'paysage': FORMATS[format][::-1]}
     pieces = lire_svg(svg)
-    taille, coupe = infos_sm2d(sm2d)
+    taille_sm2d, coupe = infos_sm2d(sm2d)
+    taille = taille or taille_sm2d          # les mesures de l'export priment sur celles liées au .sm2d
+    libelle = ('Taille %s' % taille if taille.isdigit() else taille.capitalize()) if taille else ''
     carre = next((pc for pc in pieces if pc['nom'].lower().startswith('carr')), None)
     if carre:
         pieces.remove(carre)                  # imprimé sur la notice, à l'échelle 1
@@ -221,12 +224,12 @@ def exporter(svg, dst, titre, sm2d=None, format='A4'):
     nomp = lambda r, k: '%s%d' % (chr(65 + r), k + 1)
 
     c = canvas.Canvas(dst, pagesize=FORMATS[format])
-    c.setTitle(('%s, taille %s' % (titre, taille) if taille else titre) + ', ' + format)
+    c.setTitle(('%s, %s' % (titre, libelle.lower()) if libelle else titre) + ', ' + format)
     W0, H0 = FORMATS[format]
     y = H0 - 1.8 * CM
     c.setFont('Helvetica-Bold', 20); c.drawString(1.8 * CM, y, titre); y -= 22
     c.setFont('Helvetica', 12)
-    c.drawString(1.8 * CM, y, ('Taille %s · ' % taille if taille else '') + 'tracé et export Seamly2D'); y -= 24
+    c.drawString(1.8 * CM, y, ('%s · ' % libelle if libelle else '') + 'tracé et export Seamly2D'); y -= 24
     notice = ("Imprimer à 100 % (« taille réelle », sans ajustement à la page). Vérifier le carré de "
               "contrôle ci-contre : 5 cm de côté. Chaque pièce a ses propres feuilles : couper chaque "
               "feuille sur le cadre gris là où elle touche une voisine, puis scotcher bord à bord selon "
@@ -318,5 +321,8 @@ def exporter(svg, dst, titre, sm2d=None, format='A4'):
 if __name__ == '__main__':
     fmt = 'A3' if '--a3' in sys.argv else 'A4'
     args = [a for a in sys.argv[1:] if a != '--a3']
-    n = exporter(args[0], args[1], args[2], args[3] if len(args) > 3 else None, fmt)
+    taille = None
+    if '--taille' in args:
+        i = args.index('--taille'); taille = args[i + 1]; del args[i:i + 2]
+    n = exporter(args[0], args[1], args[2], args[3] if len(args) > 3 else None, fmt, taille)
     print(sys.argv[2], n, 'pages')
