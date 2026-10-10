@@ -51,7 +51,7 @@ export default async function FichePatron({ params }: Props) {
                 ))}
               </dl>
             )}
-            <ChoixTaille slug={patron.slug} />
+            <ChoixTaille slug={patron.slug} mesures={patron.saisie} />
           </div>
         </div>
       </section>

@@ -139,6 +139,17 @@ p { margin: 0; }
 .tailles input:checked + span { border-color: var(--encre); background: var(--encre); color: var(--fond); }
 .tailles input:focus-visible + span { outline: 2px solid var(--garance); outline-offset: 2px; }
 
+.tailles span.large { padding-inline: 12px; font-family: var(--display); text-transform: uppercase; letter-spacing: .12em; font-size: 12px; line-height: 1.55; }
+.bouton:disabled { opacity: .45; cursor: default; }
+button.bouton { cursor: pointer; display: inline-flex; align-items: center; gap: 10px; }
+.bouton.contour:is(button) { background: var(--fond); }
+.roue { width: 13px; height: 13px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: roue .8s linear infinite; }
+@keyframes roue { to { transform: rotate(1turn); } }
+@media (prefers-reduced-motion: reduce) { .roue { animation-duration: 2.4s; } }
+.bouton[aria-busy="true"] { opacity: 1; }
+.a-completer, .attente { font-size: 15px; color: var(--sepia); font-style: italic; }
+.a-completer a { color: var(--garance); }
+
 /* Les mesures, à la machine à écrire */
 .mesures { padding-block: 4px 56px; display: grid; gap: 12px; }
 .mesures h2 { font-size: 1.4rem; }
@@ -157,10 +168,20 @@ p { margin: 0; }
 .vos-mesures input::placeholder { color: var(--filet); }
 .vos-mesures input:focus { outline: 2px solid var(--garance); outline-offset: 1px; border-color: var(--encre); }
 .vos-mesures input[aria-invalid="true"] { border-color: var(--garance); color: var(--garance); }
+.saisie { display: grid; grid-template-columns: minmax(0, 640px) minmax(240px, 380px); gap: 16px 48px; align-items: start; }
+@media (max-width: 860px) { .saisie { grid-template-columns: 1fr; } .guide { order: -1; max-width: 420px; position: static; } }
+.vos-mesures tr.actif td:first-child { color: var(--garance); }
+.guide { margin: 0; position: sticky; top: 12px; background: var(--fond); border: 1px solid var(--filet); padding: 14px 14px 16px; display: grid; gap: 10px; }
+.silhouette { display: block; width: 100%; height: auto; }
+.silhouette .corps ellipse, .silhouette .corps path { fill: none; stroke: var(--encre); stroke-width: 1.1; stroke-linejoin: round; }
+.silhouette .vue { font-family: var(--display); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; text-anchor: middle; fill: var(--sepia); }
+.silhouette .repere { stroke: var(--filet); stroke-dasharray: 2 3; }
+.silhouette .trace { fill: none; stroke: var(--bleu); stroke-width: 1.3; opacity: .45; }
+.silhouette .trace.actif { stroke: var(--garance); stroke-width: 2.6; opacity: 1; }
+.guide figcaption { font-size: 15px; line-height: 1.45; }
+.guide strong { display: block; font-family: var(--display); font-weight: 400; font-size: 1.15rem; color: var(--garance); }
 .vos-mesures .compte { font-family: var(--machine); font-size: 14px; }
 .vos-mesures .boutons { align-items: center; }
-.vos-mesures .bouton { background: var(--fond); cursor: pointer; }
-.vos-mesures .bouton:disabled { opacity: .45; cursor: default; }
 .lien { font: inherit; font-size: 15px; background: none; border: 0; padding: 0; color: var(--sepia); text-decoration: underline; cursor: pointer; }
 .lien:hover { color: var(--garance); }
 .vos-mesures .message { min-height: 1.5em; font-style: italic; color: var(--sepia); }
