@@ -2,6 +2,7 @@
 
 import { useRef, useState, useSyncExternalStore } from "react";
 import { enCm, mesuresCorps, tailleParDefaut, tailles, type Mesure, type Taille } from "@/tailles";
+import { Silhouette } from "./Silhouette";
 import {
   abonner, depuisCsv, enregistrer, inhabituelle, lireCm, saisie, saisieServeur, versCsv, type Saisie,
 } from "@/vosMesures";
@@ -12,6 +13,7 @@ export function VosMesures({ mesures }: { mesures: Mesure[] }) {
   const [brouillons, setBrouillons] = useState<Partial<Record<Mesure, string>>>({});
   const [reference, setReference] = useState<Taille>(tailleParDefaut);
   const [message, setMessage] = useState("");
+  const [actif, setActif] = useState<Mesure>(mesures[0]);
   const fichier = useRef<HTMLInputElement>(null);
   const i = tailles.indexOf(reference);
   const remplies = mesures.filter((m) => valeurs[m] !== undefined).length;
@@ -74,6 +76,7 @@ export function VosMesures({ mesures }: { mesures: Mesure[] }) {
         dans ce navigateur et servent pour tous les patrons ; gardez-en une copie en fichier pour
         les retrouver ailleurs.
       </p>
+      <div className="saisie">
       <div className="tableau">
         <table>
           <thead>
@@ -101,7 +104,7 @@ export function VosMesures({ mesures }: { mesures: Mesure[] }) {
               const faux = texte.trim() !== "" && lireCm(texte) === null;
               const douteux = !faux && v !== undefined && inhabituelle(m, v);
               return (
-                <tr key={m}>
+                <tr key={m} className={m === actif ? "actif" : undefined} onMouseEnter={() => setActif(m)}>
                   <td>
                     <label htmlFor={`m-${m}`}>{mesuresCorps[m].libelle}</label>
                   </td>
@@ -115,6 +118,7 @@ export function VosMesures({ mesures }: { mesures: Mesure[] }) {
                       value={texte}
                       aria-invalid={faux || douteux}
                       title={faux ? "Un nombre en cm, par exemple 92,5" : douteux ? "Valeur inhabituelle : à vérifier" : undefined}
+                      onFocus={() => setActif(m)}
                       onChange={(e) => saisir(m, e.target.value)}
                       onBlur={() => setBrouillons((b) => ({ ...b, [m]: undefined }))}
                     />
@@ -124,6 +128,14 @@ export function VosMesures({ mesures }: { mesures: Mesure[] }) {
             })}
           </tbody>
         </table>
+      </div>
+      <figure className="guide">
+        <Silhouette mesures={mesures} actif={actif} />
+        <figcaption>
+          <strong>{mesuresCorps[actif].libelle}</strong>
+          {mesuresCorps[actif].conseil}
+        </figcaption>
+      </figure>
       </div>
       <p className="compte">
         {remplies} / {mesures.length} mesures notées

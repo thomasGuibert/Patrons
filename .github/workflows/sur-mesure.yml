@@ -1,0 +1,62 @@
+# Patron sur mesure demandé depuis le site (src/app/api/sur-mesure) : le site lance ce
+# workflow, attend la fin, puis récupère le PDF de l'artefact et le supprime.
+name: Sur mesure
+run-name: sur-mesure ${{ inputs.demande }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      demande: { description: 'Identifiant donné par le site', required: true }
+      patron: { description: 'Slug du patron (haut-pyjama…)', required: true }
+      format: { description: 'a4 ou a3', required: true }
+      mesures: { description: 'JSON {mesure Seamly: cm}', required: true }
+
+permissions:
+  contents: read
+
+jobs:
+  pdf:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bibliothèques pour Qt sans écran
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q --no-install-recommends libegl1 libgl1 libopengl0 libfontconfig1 \
+            libxkbcommon0 libdbus-1-3 libglib2.0-0t64 libxcb-cursor0 libxkbcommon-x11-0 xvfb \
+            libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 \
+            libxcb-shape0 libxcb-xinerama0 libxcb-xkb1
+          sudo locale-gen fr_FR.UTF-8
+          pip install -q reportlab
+
+      - uses: actions/cache@v4
+        id: seamly
+        with:
+          path: squashfs-root
+          key: seamly-v2026.7.13.214
+
+      - name: Télécharger Seamly2D pour Linux
+        if: steps.seamly.outputs.cache-hit != 'true'
+        run: |
+          curl -sSL -o seamly.AppImage https://github.com/FashionFreedom/Seamly2D/releases/download/v2026.7.13.214/Seamly2D-x86_64.AppImage
+          chmod +x seamly.AppImage
+          ./seamly.AppImage --appimage-extract > /dev/null
+
+      - name: Tracer et mettre en PDF
+        env:
+          LANG: fr_FR.UTF-8
+          LC_ALL: fr_FR.UTF-8
+          SEAMLY2D: ${{ github.workspace }}/squashfs-root/AppRun
+          # passées par l'environnement, jamais interpolées dans le shell
+          PATRON: ${{ inputs.patron }}
+          FORMAT: ${{ inputs.format }}
+          MESURES: ${{ inputs.mesures }}
+        run: xvfb-run -a python3 outils/seamly_linux/sur_mesure.py sortie
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sur-mesure
+          path: sortie/patron.pdf
+          retention-days: 1
