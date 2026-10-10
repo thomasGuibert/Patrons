@@ -9,4 +9,5 @@ npm install
 npm run dev      # serveur de développement
 npm run build    # build de production
 npm run lint     # eslint
+npm test         # tests (node --test)
 ```

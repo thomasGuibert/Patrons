@@ -5,6 +5,7 @@ import fondPantalonDroit from "../vignettes/fond_pantalon_droit_fiche.png";
 import fondPantalonDroitPlanche from "../vignettes/fond_pantalon_droit_planche.png";
 import hautPyjama from "../vignettes/haut_pyjama_fiche.png";
 import basPyjama from "../vignettes/bas_pyjama_fiche.png";
+import type { CodeMesure } from "./mesures";
 import type { Mesure } from "./tailles";
 
 export type Famille = "vetement" | "base";
@@ -26,7 +27,33 @@ export type Patron = {
   valeurs?: { titre: string; lignes: { libelle: string; cm: string }[] };
   /** Mesures du corps montrées dans le tableau des tailles. */
   mesures: Mesure[];
+  /** Toutes les mesures du corps que le tracé (`patrons/*.sm2d`) utilise : le tableau « Mes mesures ». */
+  mesuresTrace: CodeMesure[];
 };
+
+const traceHaut: CodeMesure[] = [
+  "bust_circ",
+  "waist_circ",
+  "hip_circ",
+  "neck_circ",
+  "neck_back_to_waist_b",
+  "neck_front_to_waist_f",
+  "across_back_b",
+  "across_chest_f",
+  "shoulder_length",
+  "arm_shoulder_tip_to_wrist",
+  "arm_wrist_circ",
+  "height_waist_side_to_hip",
+];
+
+const tracePantalon: CodeMesure[] = [
+  "waist_circ",
+  "hip_circ",
+  "height_waist_side",
+  "height_waist_side_to_hip",
+  "height_waist_side_to_knee",
+  "leg_crotch_to_floor",
+];
 
 export const patrons: Patron[] = [
   {
@@ -39,6 +66,7 @@ export const patrons: Patron[] = [
     description:
       "Un T-shirt souple à encolure V et manches longues, à coudre dans un jersey.",
     mesures: ["poitrine", "taille", "hanches"],
+    mesuresTrace: traceHaut,
     caracteristiques: [
       { libelle: "Pièces", valeur: "Devant, dos, manche ×2, bande d'encolure" },
     ],
@@ -52,6 +80,7 @@ export const patrons: Patron[] = [
     vignette: basPyjama,
     description: "Un pantalon en jersey à taille élastique, droit et confortable.",
     mesures: ["taille", "hanches", "tailleSol"],
+    mesuresTrace: tracePantalon,
     caracteristiques: [
       { libelle: "Pièces", valeur: "Devant ×2, dos ×2, ceinture" },
     ],
@@ -67,6 +96,7 @@ export const patrons: Patron[] = [
     description:
       "La base de tous les pantalons du catalogue : un devant et un dos, à transformer pour dessiner son propre modèle.",
     mesures: ["taille", "hanches", "tailleSol"],
+    mesuresTrace: tracePantalon,
     caracteristiques: [
       { libelle: "Pièces", valeur: "Devant ×2, dos ×2" },
     ],
@@ -92,6 +122,7 @@ export const patrons: Patron[] = [
     description:
       "Le fond des hauts en jersey : un devant, un dos et une manche, à transformer pour dessiner son propre modèle.",
     mesures: ["poitrine", "taille", "hanches"],
+    mesuresTrace: traceHaut,
     caracteristiques: [
       { libelle: "Pièces", valeur: "Devant, dos, manche ×2" },
     ],

@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { patrons, trouverPatron } from "@/patrons";
+import { fourchettes } from "@/mesuresTailles";
 import { mesuresCorps, tailles } from "@/tailles";
 import { ChoixTaille } from "../../ChoixTaille";
+import { MesMesures } from "../../MesMesures";
 import { Vignette } from "../../Vignette";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -82,6 +84,8 @@ export default async function FichePatron({ params }: Props) {
           </table>
         </div>
       </section>
+
+      <MesMesures codes={patron.mesuresTrace} fourchettes={fourchettes(patron.mesuresTrace)} />
 
       {patron.valeurs && (
         <section className="conteneur mesures">

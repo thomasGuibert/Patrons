@@ -152,3 +152,25 @@ p { margin: 0; }
 /* Pied de page en bleu de travail */
 .pied { background: var(--bleu); color: var(--bleu-clair); font-size: 14px; }
 .pied-ligne { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding-block: 20px; }
+
+/* Mes mesures : le tableau à remplir */
+.mes-mesures-intro { max-width: 62ch; color: var(--sepia); font-size: 15.5px; }
+.mes-mesures table { max-width: 760px; }
+.mes-mesures td { vertical-align: top; }
+.mes-mesures label { display: block; }
+.mes-mesures .aide { display: block; font-family: var(--texte); font-style: italic; font-size: 13.5px; color: var(--sepia); max-width: 40ch; }
+.mes-mesures .repere { color: var(--sepia); white-space: nowrap; padding-top: 9px; }
+.mes-mesures th:nth-child(2), .mes-mesures td:nth-child(2) { text-align: right; padding-right: 18px; }
+.saisie { width: 5.5em; font: inherit; text-align: right; padding: 5px 8px; border: 1px solid var(--filet); background: var(--fond); color: var(--encre); }
+.saisie:focus-visible { outline: 2px solid var(--garance); outline-offset: 1px; border-color: var(--encre); }
+.saisie[aria-invalid="true"] { border-color: var(--garance); color: var(--garance); }
+.mes-mesures-bilan { font-family: var(--machine); font-size: 13.5px; color: var(--sepia); }
+.mes-mesures .boutons { align-items: center; }
+button.bouton, label.bouton { cursor: pointer; background: none; margin: 0; }
+button.bouton.plein { background: var(--garance); }
+.bouton:disabled { opacity: .45; cursor: default; }
+.bouton.lien { border-color: transparent; color: var(--sepia); text-decoration: underline; text-underline-offset: 3px; }
+.bouton.lien:hover { color: var(--garance); }
+label.bouton:focus-within, .bouton:focus-visible { outline: 2px solid var(--garance); outline-offset: 3px; }
+.cache { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.mes-mesures-message { min-height: 1.5em; font-size: 15px; }
