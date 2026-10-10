@@ -54,6 +54,25 @@ python3 .claude/skills/tracer-sm2d/pdf_depuis_seamly.py export/seamly/<nom>_piec
 
 Ensuite supprimer `.claude/skills/tracer-sm2d/__pycache__/` (non suivi).
 
+## Autre taille ou sur-mesure, en une commande sur le PC
+
+`mesures_vers_pdf.py` enchaîne l'export Seamly avec d'autres mesures et le PDF, sans fenêtre ni
+clic (≈ 3 s par patron). Le `.sm2d` n'est pas modifié et la notice affiche la bonne taille.
+
+```
+python .claude/skills/exporter-pdf/mesures_vers_pdf.py patrons/<nom>.sm2d <sortie> "<Titre>" --taille 40 --a3
+python .claude/skills/exporter-pdf/mesures_vers_pdf.py patrons/<nom>.sm2d <sortie> "<Titre>" --mesure waist_circ=80 --mesure hip_circ=98
+python .claude/skills/exporter-pdf/mesures_vers_pdf.py patrons/<nom>.sm2d <sortie> "<Titre>" --mesures <fichier.vit|.smms>
+```
+
+- `--taille` : taille standard du multitaille lié (`--gsize` de Seamly, tailles paires 22 à 72).
+- `--mesure` : sur-mesure ; le script écrit un `.vit` SeamlyMe avec les valeurs du multitaille
+  (à `--taille` si donnée) dont celles indiquées sont remplacées. Noms : ceux du `.smms`.
+- Sortie : `<sortie>/<nom>-<taille|sur-mesure>.pdf`, et `-a3.pdf` avec `--a3`.
+
+Pour un PDF hors du PC, `pdf_depuis_seamly.py ... --taille <texte>` corrige la taille de la
+notice quand le SVG a été exporté avec d'autres mesures que celles liées au `.sm2d`.
+
 ## 4. Contrôle visuel
 
 `pdftoppm -r 40 -png -f 1 -l 1` sur chaque PDF, puis une mosaïque des feuilles. Regarder : la
