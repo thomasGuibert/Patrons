@@ -1,17 +1,18 @@
 "use client";
 
 import { useRef, useState, useSyncExternalStore } from "react";
-import { enCm, mesuresCorps, tailleParDefaut, tailles, type Mesure, type Taille } from "@/tailles";
+import { enCm, gammes, mesuresCorps, type Gamme, type Mesure, type Taille } from "@/tailles";
 import { Silhouette } from "./Silhouette";
 import {
   abonner, depuisCsv, enregistrer, inhabituelle, lireCm, saisie, saisieServeur, versCsv, type Saisie,
 } from "@/vosMesures";
 
 /** Tableau à remplir avec ses propres mesures, gardées dans le navigateur et en fichier CSV. */
-export function VosMesures({ mesures }: { mesures: Mesure[] }) {
+export function VosMesures({ gamme, mesures }: { gamme: Gamme; mesures: Mesure[] }) {
+  const { tailles, parDefaut } = gammes[gamme];
   const valeurs = useSyncExternalStore(abonner, saisie, saisieServeur);
   const [brouillons, setBrouillons] = useState<Partial<Record<Mesure, string>>>({});
-  const [reference, setReference] = useState<Taille>(tailleParDefaut);
+  const [reference, setReference] = useState<Taille>(parDefaut);
   const [message, setMessage] = useState("");
   const [actif, setActif] = useState<Mesure>(mesures[0]);
   const fichier = useRef<HTMLInputElement>(null);
@@ -30,7 +31,7 @@ export function VosMesures({ mesures }: { mesures: Mesure[] }) {
 
   function partirDeLaTaille() {
     const s: Saisie = { ...valeurs };
-    for (const m of mesures) if (s[m] === undefined) s[m] = mesuresCorps[m].cm[i];
+    for (const m of mesures) if (s[m] === undefined) s[m] = mesuresCorps[m].cm[gamme][i];
     setBrouillons({});
     enregistrer(s);
     setMessage(`Cases vides remplies avec la taille ${reference}.`);
@@ -85,7 +86,7 @@ export function VosMesures({ mesures }: { mesures: Mesure[] }) {
               <th scope="col">
                 <label>
                   Taille{" "}
-                  <select value={reference} onChange={(e) => setReference(Number(e.target.value) as Taille)}>
+                  <select value={reference} onChange={(e) => setReference(Number(e.target.value))}>
                     {tailles.map((t) => (
                       <option key={t} value={t}>
                         {t}
@@ -108,13 +109,13 @@ export function VosMesures({ mesures }: { mesures: Mesure[] }) {
                   <td>
                     <label htmlFor={`m-${m}`}>{mesuresCorps[m].libelle}</label>
                   </td>
-                  <td className="ref-taille">{enCm(mesuresCorps[m].cm[i])}</td>
+                  <td className="ref-taille">{enCm(mesuresCorps[m].cm[gamme][i])}</td>
                   <td>
                     <input
                       id={`m-${m}`}
                       inputMode="decimal"
                       autoComplete="off"
-                      placeholder={enCm(mesuresCorps[m].cm[i])}
+                      placeholder={enCm(mesuresCorps[m].cm[gamme][i])}
                       value={texte}
                       aria-invalid={faux || douteux}
                       title={faux ? "Un nombre en cm, par exemple 92,5" : douteux ? "Valeur inhabituelle : à vérifier" : undefined}

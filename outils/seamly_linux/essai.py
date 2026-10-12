@@ -21,14 +21,14 @@ SUR_MESURE = {'waist_circ': 80, 'hip_circ': 98}
 
 
 def mesures_t44():
-    racine = ET.parse(os.path.join(RACINE, 'mesures', 'T44.smms')).getroot()
+    racine = ET.parse(os.path.join(RACINE, 'mesures', 'femme', 'T44.smms')).getroot()
     return [(m.get('name'), float(m.get('base')), float(m.get('size_increase')))
             for m in racine.iter('m')]
 
 
 def ecrire_taille(chemin, taille):
     """Copie de T44.smms où base = base + (taille - 44) / 2 * size_increase."""
-    texte = open(os.path.join(RACINE, 'mesures', 'T44.smms'), encoding='utf-8').read()
+    texte = open(os.path.join(RACINE, 'mesures', 'femme', 'T44.smms'), encoding='utf-8').read()
     texte = texte.replace('<size base="44"/>', '<size base="%d"/>' % taille)
     def ligne(m):
         base, nom, inc = float(m.group(1)), m.group(2), float(m.group(3))
@@ -119,7 +119,7 @@ def main():
     seamly, sortie = sys.argv[1], os.path.abspath(sys.argv[2])
     os.makedirs(sortie, exist_ok=True)
     pdf = os.path.join(RACINE, '.claude', 'skills', 'tracer-sm2d', 'pdf_depuis_seamly.py')
-    t44 = os.path.join(RACINE, 'mesures', 'T44.smms')
+    t44 = os.path.join(RACINE, 'mesures', 'femme', 'T44.smms')
     t40 = os.path.join(sortie, 'T40.smms')
     perso = os.path.join(sortie, 'perso.vit')
     ecrire_taille(t40, 40)

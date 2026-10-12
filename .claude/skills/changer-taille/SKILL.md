@@ -1,14 +1,15 @@
 ---
 name: changer-taille
-description: Lit la photo d'un tableau de tailles et en tire le fichier de mesures Seamly d'une nouvelle taille (mesures/T40.smms, T46.smms…), puis vérifie les patrons dans cette taille. Use when l'utilisateur envoie un tableau de tailles, veut une autre taille, ou veut grader un patron.
+description: Lit la photo d'un tableau de tailles et en tire le fichier de mesures Seamly d'une nouvelle taille (mesures/femme/T40.smms, mesures/homme/T46.smms…), puis vérifie les patrons dans cette taille. Use when l'utilisateur envoie un tableau de tailles, veut une autre taille, ou veut grader un patron.
 ---
 
-Une taille = un fichier `mesures/T<n>.smms`. Les patrons (`patrons/*.sm2d`) ne sont pas
+Une taille = un fichier `mesures/<gamme>/T<n>.smms`, gamme `femme` ou `homme` (une gamme par
+tableau de tailles ; le site propose les deux). Les patrons (`patrons/*.sm2d`) ne sont pas
 dupliqués : ils sont écrits en formules sur les noms de mesures Seamly et restent reliés à
-`../mesures/T44.smms` tant que l'utilisateur ne décide pas autrement.
+`../mesures/femme/T44.smms` tant que l'utilisateur ne décide pas autrement.
 
 Références :
-- `mesures/T44.smms` : modèle (format, ordre et noms des lignes, incréments par taille).
+- `mesures/femme/T44.smms` : modèle (format, ordre et noms des lignes, incréments par taille).
 - [`doc/patronage/lexique-mesures.md`](../../../doc/patronage/lexique-mesures.md) : terme du tableau → nom Seamly.
 - Skill `tracer-sm2d` (`verifier.py`, `SEAMLY.md`) pour l'export de contrôle.
 
@@ -58,7 +59,7 @@ validation.
 
 Terminé quand : l'utilisateur a validé chaque ligne, ⚠ comprises.
 
-### 4. Écrire `mesures/T<n>.smms`
+### 4. Écrire `mesures/<gamme>/T<n>.smms`
 
 Par un script Python dans le dossier temporaire de session, à partir de `T44.smms` :
 - mêmes lignes, même ordre, mêmes noms ; seules changent `<size base="n"/>`, la ligne `size` et
@@ -87,7 +88,7 @@ Seamly tourne sur le PC de l'utilisateur (Windows) : passer par une session sur 
 dans son clone du dépôt.
 
 Pour chaque patron :
-- copie temporaire `patrons/_<nom>_T<n>.sm2d` avec `<measurements>../mesures/T<n>.smms</measurements>` ;
+- copie temporaire `patrons/_<nom>_T<n>.sm2d` avec `<measurements>../mesures/<gamme>/T<n>.smms</measurements>` ;
 - `python .claude/skills/tracer-sm2d/verifier.py patrons/_<nom>_T<n>.sm2d`, puis supprimer la copie ;
 - comparer aux dimensions de l'export T44 : chaque pièce grandit ou rétrécit dans le sens de la
   taille, sans erreur Seamly ;
@@ -98,7 +99,7 @@ Terminé quand : chaque patron exporte sans erreur et sa forme est examinée.
 
 ### 7. Livrer
 
-- Commit de la photo, de `transcription.md`, de `mesures/T<n>.smms` et du lexique (jamais la
+- Commit de la photo, de `transcription.md`, de `mesures/<gamme>/T<n>.smms` et du lexique (jamais la
   copie temporaire).
 - Rapport : lectures ⚠ et leur résolution, termes sans équivalent, variables revues, dimensions
   principales par pièce en T44 et T<n>.

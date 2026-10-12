@@ -73,6 +73,8 @@ p { margin: 0; }
 .devise { font-family: var(--display); font-style: italic; font-size: clamp(1.25rem, 2.6vw, 1.7rem); max-width: 34ch; }
 .mention { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 26px; }
 .mention span { font-family: var(--display); text-transform: uppercase; letter-spacing: .2em; font-size: 12px; }
+.mention a { font-style: italic; font-size: 15px; }
+.titre-gamme { font-size: clamp(2rem, 4.4vw, 3rem); text-transform: uppercase; letter-spacing: .12em; }
 
 /* Les rayons du catalogue */
 .rayon { padding-block: 36px 8px; display: grid; gap: 20px; }
@@ -98,6 +100,11 @@ p { margin: 0; }
 .rayon.bases .article figure { background: #fff; border: 1px solid var(--encre); outline: 1px solid var(--encre); outline-offset: 3px; margin: 4px; }
 .planche-leg { font-family: var(--machine); font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em; }
 @media (max-width: 520px) { .rayon.bases .article { grid-template-columns: 1fr; } }
+
+/* L'accueil : une entrée par gamme */
+.gammes h2 { font-size: 1.9rem; }
+.gammes .script { font-family: var(--script); font-size: 1.9rem; color: var(--garance); line-height: 1; }
+.gammes .article:hover h2 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 
 .vignette { display: block; width: 100%; height: auto; }
 .vignette-vide { aspect-ratio: 2 / 1; display: grid; place-items: center; color: var(--sepia); font-style: italic; }

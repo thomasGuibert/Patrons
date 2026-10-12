@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useSyncExternalStore } from "react";
-import { tailleParDefaut, tailles, type Mesure, type Taille } from "@/tailles";
+import { gammes, type Gamme, type Mesure, type Taille } from "@/tailles";
 import { abonner, saisie, saisieServeur } from "@/vosMesures";
 
 type Choix = Taille | "sur-mesure";
@@ -10,8 +10,9 @@ type Format = "a4" | "a3";
 const ATTENTE_MAX = 10 * 60 * 1000;
 const pause = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-export function ChoixTaille({ slug, mesures }: { slug: string; mesures: Mesure[] }) {
-  const [taille, setTaille] = useState<Choix>(tailleParDefaut);
+export function ChoixTaille({ gamme, slug, mesures }: { gamme: Gamme; slug: string; mesures: Mesure[] }) {
+  const { tailles, parDefaut } = gammes[gamme];
+  const [taille, setTaille] = useState<Choix>(parDefaut);
   const [enCours, setEnCours] = useState<Format | null>(null);
   const [message, setMessage] = useState("");
   const valeurs = useSyncExternalStore(abonner, saisie, saisieServeur);
@@ -53,7 +54,7 @@ export function ChoixTaille({ slug, mesures }: { slug: string; mesures: Mesure[]
     const libelle = `Télécharger · ${format.toUpperCase()}`;
     if (taille !== "sur-mesure") {
       return (
-        <a href={`/pdf/${slug}-${taille}${format === "a3" ? "-a3" : ""}.pdf`} className={`bouton ${classe}`} download>
+        <a href={`/pdf/${gamme}/${slug}-${taille}${format === "a3" ? "-a3" : ""}.pdf`} className={`bouton ${classe}`} download>
           {libelle}
         </a>
       );

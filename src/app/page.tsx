@@ -1,35 +1,14 @@
 import Link from "next/link";
-import { patrons, rayons } from "@/patrons";
+import { trouverPatron } from "@/patrons";
+import { gammes, listeGammes } from "@/tailles";
+import { Enseigne } from "./Enseigne";
 import { Vignette } from "./Vignette";
 
 export default function Accueil() {
+  const vitrine = trouverPatron("haut-pyjama")!;
   return (
     <main>
-      <div className="conteneur">
-        <div className="enseigne">
-          <div className="enseigne-cadre">
-            <p className="enseigne-cote">
-              Vêtements
-              <br />
-              Patrons
-              <br />à imprimer
-            </p>
-            <div className="enseigne-centre">
-              <h1 className="enseigne-nom">Atelier AT</h1>
-              <p className="enseigne-sous">
-                Sp<small>té</small> de vêtements faits pour durer
-              </p>
-            </div>
-            <p className="enseigne-cote droite">
-              Coupe juste
-              <br />
-              Couture
-              <br />
-              durable
-            </p>
-          </div>
-        </div>
-      </div>
+      <Enseigne />
 
       <section className="conteneur vitrine" aria-label="La maison">
         <p className="devise">
@@ -37,50 +16,39 @@ export default function Accueil() {
         </p>
         <p className="mention">
           <span>Patrons en A4 et A3</span>
-          <span>Tailles 36 à 44</span>
+          {listeGammes.map((g) => {
+            const t = gammes[g].tailles;
+            return (
+              <span key={g}>
+                {gammes[g].nom} {t[0]} à {t[t.length - 1]}
+              </span>
+            );
+          })}
         </p>
       </section>
 
-      {rayons.map((rayon) => {
-        const articles = patrons.filter((p) => p.famille === rayon.famille);
-        const bases = rayon.famille === "base";
-        return (
-          <section
-            key={rayon.famille}
-            id={bases ? "bases" : "vetements"}
-            className={`conteneur rayon${bases ? " bases" : ""}`}
-          >
-            <div className="rayon-tete">
-              <h2>{rayon.titre}</h2>
-              <span className="script">{rayon.script}</span>
-              <p>{rayon.note || `${articles.length} modèles`}</p>
-            </div>
-            <ul className="grille">
-              {articles.map((patron) => (
-                <li key={patron.slug}>
-                  <Link href={`/patrons/${patron.slug}`} className="article">
-                    <figure>
-                      <Vignette
-                        image={bases ? patron.planche : patron.vignette}
-                        sizes={bases ? "(max-width: 520px) 100vw, 300px" : "(max-width: 700px) 100vw, 600px"}
-                      />
-                    </figure>
-                    <div className="article-texte">
-                      {bases && <p className="planche-leg">{patron.ref} · base</p>}
-                      <div className="article-ligne">
-                        <h3>{patron.nom}</h3>
-                        {!bases && <span className="ref">{patron.ref}</span>}
-                      </div>
-                      {patron.enCours && <span className="statut">En cours</span>}
-                      <p>{patron.resume}</p>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        );
-      })}
+      <section className="conteneur rayon" aria-label="Choisir une gamme">
+        <ul className="grille gammes">
+          {listeGammes.map((g) => (
+            <li key={g}>
+              <Link href={`/${g}`} className="article">
+                <figure>
+                  <Vignette image={vitrine.vignette[g]} sizes="(max-width: 700px) 100vw, 600px" />
+                </figure>
+                <div className="article-texte">
+                  <div className="article-ligne">
+                    <h2>Patrons {gammes[g].nom.toLowerCase()}</h2>
+                    <span className="script">entrer</span>
+                  </div>
+                  <p>
+                    Tailles {gammes[g].tailles[0]} à {gammes[g].tailles[gammes[g].tailles.length - 1]}, ou sur mesure.
+                  </p>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
     </main>
   );
 }

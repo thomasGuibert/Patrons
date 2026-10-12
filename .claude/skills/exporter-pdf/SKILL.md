@@ -70,8 +70,11 @@ python .claude/skills/exporter-pdf/mesures_vers_pdf.py patrons/<nom>.sm2d <sorti
   (à `--taille` si donnée) dont celles indiquées sont remplacées. Noms : ceux du `.smms`.
 - Sortie : `<sortie>/<nom>-<taille|sur-mesure>.pdf`, et `-a3.pdf` avec `--a3`.
 
-PDF du site dans toutes les tailles de `mesures/T*.smms` (`public/pdf/<slug>-<taille>[-a3].pdf`) :
-`python .claude/skills/exporter-pdf/toutes_tailles.py [patron ...]`. Marche aussi dans une
+PDF du site dans toutes les tailles de `mesures/<gamme>/T*.smms`, gammes femme et homme
+(`public/pdf/<gamme>/<slug>-<taille>[-a3].pdf`) :
+`python .claude/skills/exporter-pdf/toutes_tailles.py [--gamme femme|homme] [patron ...]`.
+Vignettes de chaque gamme : `python3 outils/sm2d_images.py fiches|planches patrons/<nom>.sm2d
+--mesures mesures/homme/T48.smms --sortie vignettes/homme` (femme : sans `--mesures`, T44). Marche aussi dans une
 session cloud avec Seamly Linux (AppImage extraite, bibliothèques du workflow
 `seamly-linux.yml`, locale fr_FR.UTF-8) :
 `SEAMLY2D=<squashfs-root>/AppRun LANG=fr_FR.UTF-8 LC_ALL=fr_FR.UTF-8 xvfb-run -a python3 ...` ;

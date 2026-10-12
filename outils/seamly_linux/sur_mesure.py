@@ -25,7 +25,7 @@ def main():
         sys.exit(f'patron inconnu : {slug!r}')
     if fmt not in ('a4', 'a3'):
         sys.exit(f'format inconnu : {fmt!r}')
-    connues = set(re.findall(r'name="([a-z_]+)"', open(os.path.join(RACINE, 'mesures', 'T40.smms'), encoding='utf-8').read()))
+    connues = set(re.findall(r'name="([a-z_]+)"', open(os.path.join(RACINE, 'mesures', 'femme', 'T40.smms'), encoding='utf-8').read()))
     try:
         mesures = json.loads(os.environ.get('MESURES', ''))
     except ValueError:
