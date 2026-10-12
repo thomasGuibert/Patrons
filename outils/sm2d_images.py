@@ -60,8 +60,9 @@ def inter_droites(a1, a2, b1, b2):
 
 
 class Patron:
-    def __init__(self, chemin):
+    def __init__(self, chemin, mesures=None):
         self.chemin = chemin
+        self.mesures = mesures  # fichier de mesures à la place de celui lié au patron
         self.racine = ET.parse(chemin).getroot()
         self.unite = self.racine.findtext('unit') or 'cm'
         self.echelle = {'cm': 1.0, 'mm': 0.1, 'inch': 2.54}[self.unite]  # -> cm
@@ -79,9 +80,12 @@ class Patron:
     # ---------- formules ----------
     def lire_mesures(self):
         m = self.racine.findtext('measurements')
-        if not m:
+        if self.mesures:
+            src = self.mesures
+        elif m:
+            src = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(self.chemin)), m.strip()))
+        else:
             return
-        src = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(self.chemin)), m.strip()))
         r = ET.parse(src).getroot()
         for e in r.iter('m'):
             v = e.get('base') or e.get('value')
@@ -673,11 +677,12 @@ def main_planches(argv):
     ap.add_argument('fichiers', nargs='+')
     ap.add_argument('--sortie', default='vignettes')
     ap.add_argument('--taille', type=int, default=800)
+    ap.add_argument('--mesures', help='fichier de mesures à la place de celui lié au patron')
     a = ap.parse_args(argv)
     os.makedirs(a.sortie, exist_ok=True)
     for f in a.fichiers:
         base = os.path.splitext(os.path.basename(f))[0]
-        dessiner_planche(Patron(f), os.path.join(a.sortie, base + '_planche'), a.taille)
+        dessiner_planche(Patron(f, a.mesures), os.path.join(a.sortie, base + '_planche'), a.taille)
         print('planche', base)
 
 
@@ -688,11 +693,12 @@ def main_fiches(argv):
     ap.add_argument('--sortie', default='vignettes')
     ap.add_argument('--taille', type=int, default=800)
     ap.add_argument('--style', default='atelier', choices=list(dessin.STYLES))
+    ap.add_argument('--mesures', help='fichier de mesures à la place de celui lié au patron')
     a = ap.parse_args(argv)
     os.makedirs(a.sortie, exist_ok=True)
     for f in a.fichiers:
         base = os.path.splitext(os.path.basename(f))[0]
-        p = Patron(f)
+        p = Patron(f, a.mesures)
         vues = vues_dessin(p)
         if vues is None:
             print('pas de modèle de dessin pour', base)

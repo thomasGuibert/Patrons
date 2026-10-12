@@ -11,7 +11,7 @@
         <line alignment="4" bold="false" italic="true" sfIncrement="0" text="T%size%"/>
         <line alignment="4" bold="false" italic="false" sfIncrement="0" text="%pName%"/>
     </patternLabel>
-    <measurements>../mesures/T44.smms</measurements>
+    <measurements>../mesures/femme/T44.smms</measurements>
     <variables>
         <variable description="Fraction du tour d'emmanchure pour la largeur AB (colonne anglaise du livre)" formula="3/4" name="#frac_largeur"/>
         <variable description="Longueur de manche AC" formula="arm_shoulder_tip_to_wrist" name="#long_manche"/>

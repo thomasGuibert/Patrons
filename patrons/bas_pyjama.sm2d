@@ -11,7 +11,7 @@
         <line alignment="4" bold="false" italic="true" sfIncrement="0" text="T%size%"/>
         <line alignment="4" bold="false" italic="false" sfIncrement="0" text="%pName%"/>
     </patternLabel>
-    <measurements>../mesures/T44.smms</measurements>
+    <measurements>../mesures/femme/T44.smms</measurements>
     <variables>
         <variable description="Aisance au tour de taille (p. 238)" formula="4" name="#aisance_taille"/>
         <variable description="Taille descendue sous la taille morphologique (p. 238)" formula="4" name="#descente_taille"/>

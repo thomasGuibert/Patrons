@@ -13,7 +13,7 @@ Seamly2D v2026.7, format de fichier `<version>0.7.4</version>`. Exécutable :
     <description/>
     <notes/>
     <patternLabel>…</patternLabel>
-    <measurements>../mesures/T44.smms</measurements>
+    <measurements>../mesures/femme/T44.smms</measurements>
     <variables>
         <variable description="…" formula="3/4" name="#frac_largeur"/>
     </variables>

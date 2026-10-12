@@ -53,8 +53,8 @@ export default function RootLayout({
               <Ecusson className="ecusson" />
             </Link>
             <nav aria-label="Navigation principale" className="nav">
-              <Link href="/#vetements">Vêtements</Link>
-              <Link href="/#bases">Bases</Link>
+              <Link href="/femme">Femme</Link>
+              <Link href="/homme">Homme</Link>
             </nav>
           </div>
         </header>

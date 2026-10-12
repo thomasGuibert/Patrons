@@ -1,11 +1,17 @@
 import type { StaticImageData } from "next/image";
-import fondBaseMaille from "../vignettes/fond_base_maille_fiche.png";
-import fondBaseMaillePlanche from "../vignettes/fond_base_maille_planche.png";
-import fondPantalonDroit from "../vignettes/fond_pantalon_droit_fiche.png";
-import fondPantalonDroitPlanche from "../vignettes/fond_pantalon_droit_planche.png";
-import hautPyjama from "../vignettes/haut_pyjama_fiche.png";
-import basPyjama from "../vignettes/bas_pyjama_fiche.png";
-import { mesuresBas, mesuresHaut, type Mesure } from "./tailles";
+import fondBaseMailleF from "../vignettes/femme/fond_base_maille_fiche.png";
+import fondBaseMaillePlancheF from "../vignettes/femme/fond_base_maille_planche.png";
+import fondPantalonDroitF from "../vignettes/femme/fond_pantalon_droit_fiche.png";
+import fondPantalonDroitPlancheF from "../vignettes/femme/fond_pantalon_droit_planche.png";
+import hautPyjamaF from "../vignettes/femme/haut_pyjama_fiche.png";
+import basPyjamaF from "../vignettes/femme/bas_pyjama_fiche.png";
+import fondBaseMailleH from "../vignettes/homme/fond_base_maille_fiche.png";
+import fondBaseMaillePlancheH from "../vignettes/homme/fond_base_maille_planche.png";
+import fondPantalonDroitH from "../vignettes/homme/fond_pantalon_droit_fiche.png";
+import fondPantalonDroitPlancheH from "../vignettes/homme/fond_pantalon_droit_planche.png";
+import hautPyjamaH from "../vignettes/homme/haut_pyjama_fiche.png";
+import basPyjamaH from "../vignettes/homme/bas_pyjama_fiche.png";
+import { mesuresBas, mesuresHaut, type Gamme, type Mesure } from "./tailles";
 
 export type Famille = "vetement" | "base";
 
@@ -17,10 +23,10 @@ export type Patron = {
   ref: string;
   resume: string;
   enCours?: boolean;
-  /** Le patron puis le vêtement cousu, en largeur. */
-  vignette?: StaticImageData;
+  /** Le patron puis le vêtement cousu, en largeur, tracé dans une taille de chaque gamme. */
+  vignette: Record<Gamme, StaticImageData>;
   /** Les pièces seules, pour le rayon des bases. */
-  planche?: StaticImageData;
+  planche?: Record<Gamme, StaticImageData>;
   description?: string;
   caracteristiques?: { libelle: string; valeur: string }[];
   valeurs?: { titre: string; lignes: { libelle: string; cm: string }[] };
@@ -37,7 +43,7 @@ export const patrons: Patron[] = [
     famille: "vetement",
     ref: "Réf. 101",
     resume: "T-shirt souple en jersey, à manches longues.",
-    vignette: hautPyjama,
+    vignette: { femme: hautPyjamaF, homme: hautPyjamaH },
     description:
       "Un T-shirt souple à encolure V et manches longues, à coudre dans un jersey.",
     mesures: ["poitrine", "taille", "hanches"],
@@ -52,7 +58,7 @@ export const patrons: Patron[] = [
     famille: "vetement",
     ref: "Réf. 102",
     resume: "Pantalon en jersey à taille élastique.",
-    vignette: basPyjama,
+    vignette: { femme: basPyjamaF, homme: basPyjamaH },
     description: "Un pantalon en jersey à taille élastique, droit et confortable.",
     mesures: ["taille", "hanches", "tailleSol"],
     saisie: mesuresBas,
@@ -66,8 +72,8 @@ export const patrons: Patron[] = [
     famille: "base",
     ref: "Planche n° 001",
     resume: "Devant et dos, à adapter à son propre modèle.",
-    vignette: fondPantalonDroit,
-    planche: fondPantalonDroitPlanche,
+    vignette: { femme: fondPantalonDroitF, homme: fondPantalonDroitH },
+    planche: { femme: fondPantalonDroitPlancheF, homme: fondPantalonDroitPlancheH },
     description:
       "La base de tous les pantalons du catalogue : un devant et un dos, à transformer pour dessiner son propre modèle.",
     mesures: ["taille", "hanches", "tailleSol"],
@@ -92,8 +98,8 @@ export const patrons: Patron[] = [
     famille: "base",
     ref: "Planche n° 002",
     resume: "Devant, dos et manche, pour les hauts en jersey.",
-    vignette: fondBaseMaille,
-    planche: fondBaseMaillePlanche,
+    vignette: { femme: fondBaseMailleF, homme: fondBaseMailleH },
+    planche: { femme: fondBaseMaillePlancheF, homme: fondBaseMaillePlancheH },
     description:
       "Le fond des hauts en jersey : un devant, un dos et une manche, à transformer pour dessiner son propre modèle.",
     mesures: ["poitrine", "taille", "hanches"],

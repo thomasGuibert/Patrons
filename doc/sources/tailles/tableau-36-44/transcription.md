@@ -34,7 +34,7 @@ Source : `p29-tableau-tailles.jpg` (même livre que les fonds, p. 29), envoyée 
 Aucune cellule douteuse : la photo est nette et chaque ligne suit exactement son évolution,
 sauf les lignes 23 et 24, qui montent de 1 toutes les deux colonnes (le tableau l'écrit ainsi).
 
-## Traduction en mesures Seamly (`mesures/T36.smms` à `T44.smms`)
+## Traduction en mesures Seamly (`mesures/femme/T36.smms` à `T44.smms`)
 
 | Ligne | Nom Seamly | Formule | T44 avant → après |
 |---|---|---|---|

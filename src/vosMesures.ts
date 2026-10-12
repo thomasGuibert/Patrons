@@ -86,9 +86,9 @@ export function lireCm(t: string): number | null {
   return v > 0 && v < 300 ? v : null;
 }
 
-/** Hors de la plage des tailles proposées, élargie : probablement une erreur de saisie. */
+/** Hors de la plage des tailles proposées (femme et homme), élargie : probablement une erreur de saisie. */
 export function inhabituelle(m: Mesure, cm: number): boolean {
-  const t = mesuresCorps[m].cm;
+  const t = Object.values(mesuresCorps[m].cm).flat();
   return cm < Math.min(...t) * 0.6 || cm > Math.max(...t) * 1.6;
 }
 

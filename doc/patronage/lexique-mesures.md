@@ -35,7 +35,10 @@ ligne ici. Statut : **validé** (décidé avec l'utilisateur) ou **proposé** (�
 
 ## Fichiers de mesures
 
-- `mesures/T36.smms`, `T38.smms`, `T40.smms`, `T42.smms`, `T44.smms` (cm) : tableau des tailles
-  du livre p. 29 ; correspondances dans `doc/sources/tailles/tableau-36-44/transcription.md`.
-  Les patrons restent reliés à `T44.smms`. Ne contiennent ni tour ni profondeur d'emmanchure,
-  ni tour de bras, ni largeur genou/bas de vêtement.
+- `mesures/femme/T36.smms` à `T44.smms` (cm) : tableau des tailles femme du livre p. 29 ;
+  correspondances dans `doc/sources/tailles/tableau-36-44/transcription.md`.
+- `mesures/homme/T44.smms` à `T54.smms` (cm) : tableau des tailles homme (drop 6) ;
+  correspondances dans `doc/sources/tailles/tableau-homme-44-54/transcription.md`. La 44 homme
+  est l'ancien `T44.smms` avec lequel les fonds ont été tracés.
+- Les patrons restent reliés à `femme/T44.smms`. Aucun fichier ne contient de tour ni de
+  profondeur d'emmanchure, de tour de bras, ni de largeur genou/bas de vêtement.
