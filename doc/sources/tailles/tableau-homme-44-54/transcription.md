@@ -10,8 +10,10 @@ entre le 1/2 tour de poitrine et le 1/2 tour de ceinture pour un homme mesurant 
 travailler en drop - 8 ou - 10, il suffit de décaler la prise de mesures. Par exemple, pour un
 drop - 10, prendre le tour de poitrine T50 (100 cm) avec le tour de ceinture T40 (80 cm). »
 
-Colonnes : « 44-38* », « 46-40* », « 48-42* », « 50-44* », « 52-46* », « 54-48* ». Le second
-chiffre (marqué *) n'est pas expliqué sur la page ; les fichiers prennent le premier (44 à 54).
+Colonnes : « 44-38* », « 46-40* », « 48-42* », « 50-44* », « 52-46* », « 54-48* ». Premier
+chiffre = demi-tour de poitrine (88 / 2 = 44), second = demi-tour de ceinture (76 / 2 = 38) :
+leur écart est le drop 6 du texte (l'astérisque y renvoie). Les fichiers sont nommés d'après le
+premier, la taille homme usuelle (44 à 54).
 
 | N° | Mesure | Évol. | 44 | 46 | 48 | 50 | 52 | 54 |
 |---|---|---|---|---|---|---|---|---|
