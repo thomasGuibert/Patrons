@@ -14,17 +14,6 @@ export default function Accueil() {
         <p className="devise">
           Des vêtements qui suivent la mode des saisons plutôt que les saisons de la mode.
         </p>
-        <p className="mention">
-          <span>Patrons en A4 et A3</span>
-          {listeGammes.map((g) => {
-            const t = gammes[g].tailles;
-            return (
-              <span key={g}>
-                {gammes[g].nom} {t[0]} à {t[t.length - 1]}
-              </span>
-            );
-          })}
-        </p>
       </section>
 
       <section className="conteneur rayon" aria-label="Choisir une gamme">
