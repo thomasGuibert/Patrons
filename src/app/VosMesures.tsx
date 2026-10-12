@@ -62,10 +62,13 @@ export function VosMesures({ gamme, mesures }: { gamme: Gamme; mesures: Mesure[]
     if (fichier.current) fichier.current.value = "";
   }
 
+  /** Vide les cases du tableau ; les mesures des autres patrons restent. */
   function effacer() {
-    if (!confirm("Effacer toutes vos mesures de ce navigateur ?")) return;
+    if (!confirm("Effacer toutes les mesures de ce tableau ?")) return;
+    const s: Saisie = { ...valeurs };
+    for (const m of mesures) delete s[m];
     setBrouillons({});
-    enregistrer({});
+    enregistrer(s);
     setMessage("Mesures effacées.");
   }
 
@@ -95,7 +98,24 @@ export function VosMesures({ gamme, mesures }: { gamme: Gamme; mesures: Mesure[]
                   </select>
                 </label>
               </th>
-              <th scope="col">Vous</th>
+              <th scope="col">
+                <span className="vous">
+                  Vous
+                  <button
+                    type="button"
+                    className="gomme"
+                    onClick={effacer}
+                    disabled={remplies === 0}
+                    title="Effacer toutes les mesures du tableau"
+                    aria-label="Effacer toutes les mesures du tableau"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden>
+                      <path d="M16.2 3.6 21 8.4a1.5 1.5 0 0 1 0 2.1L12.3 19.2H7.8L3 14.4a1.5 1.5 0 0 1 0-2.1l9.9-9.9a1.5 1.5 0 0 1 2.1 0Z" />
+                      <path d="m8.4 7.5 8.1 8.1M12.3 19.2H21" />
+                    </svg>
+                  </button>
+                </span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -158,11 +178,6 @@ export function VosMesures({ gamme, mesures }: { gamme: Gamme; mesures: Mesure[]
           hidden
           onChange={(e) => importer(e.target.files?.[0])}
         />
-        {Object.keys(valeurs).length > 0 && (
-          <button type="button" className="lien" onClick={effacer}>
-            Effacer
-          </button>
-        )}
       </div>
       <p className="message" role="status">
         {message}

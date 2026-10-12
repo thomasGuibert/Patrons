@@ -189,8 +189,12 @@ button.bouton { cursor: pointer; display: inline-flex; align-items: center; gap:
 .guide strong { display: block; font-family: var(--display); font-weight: 400; font-size: 1.15rem; color: var(--garance); }
 .vos-mesures .compte { font-family: var(--machine); font-size: 14px; }
 .vos-mesures .boutons { align-items: center; }
-.lien { font: inherit; font-size: 15px; background: none; border: 0; padding: 0; color: var(--sepia); text-decoration: underline; cursor: pointer; }
-.lien:hover { color: var(--garance); }
+.vous { display: inline-flex; align-items: center; gap: 8px; }
+.gomme { display: inline-grid; place-items: center; width: 28px; height: 28px; padding: 0; background: var(--fond); border: 1px solid var(--filet); color: var(--garance); cursor: pointer; }
+.gomme svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.gomme:hover:not(:disabled) { border-color: var(--garance); }
+.gomme:focus-visible { outline: 2px solid var(--garance); outline-offset: 2px; }
+.gomme:disabled { color: var(--filet); cursor: default; }
 .vos-mesures .message { min-height: 1.5em; font-style: italic; color: var(--sepia); }
 
 /* Pied de page en bleu de travail */
