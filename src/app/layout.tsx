@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Courier_Prime, IM_Fell_French_Canon, Pinyon_Script, Sorts_Mill_Goudy } from "next/font/google";
 import Link from "next/link";
 import { Ecusson } from "./Ecusson";
+import { Navigation } from "./Navigation";
 import "./globals.css";
 
 const titres = IM_Fell_French_Canon({
@@ -52,10 +53,7 @@ export default function RootLayout({
             <Link href="/" className="marque">
               <Ecusson className="ecusson" />
             </Link>
-            <nav aria-label="Navigation principale" className="nav">
-              <Link href="/femme">Femme</Link>
-              <Link href="/homme">Homme</Link>
-            </nav>
+            <Navigation />
           </div>
         </header>
         {children}
