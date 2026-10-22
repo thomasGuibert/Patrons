@@ -127,7 +127,12 @@
             <point id="428" name="vQ2" type="endLine" basePoint="427" angle="AngleLine_vH2_vK" length="Line_vH2_vK" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
             <point id="429" name="vHp" type="curveIntersectAxis" basePoint="427" angle="AngleLine_vH2_vK" curve="424" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
             <line id="430" firstPoint="413" secondPoint="429" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <point id="431" name="vKp" type="endLine" basePoint="400" angle="AngleLine_vH2_vK+90" length="#decal_epaule" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <spline id="650" type="pathInteractive" color="black" lineWeight="0.35" penStyle="dotLine">
+                <pathPoint pSpline="400" angle1="136.1860" length1="0.0000" angle2="316.1860" length2="5.3492"/>
+                <pathPoint pSpline="402" angle1="86.3238" length1="2.9679" angle2="266.3238" length2="3.1215"/>
+                <pathPoint pSpline="410" angle1="359.4926" length1="1.0968" angle2="179.4926" length2="0.0000"/>
+            </spline>
+            <point id="431" name="vKp" type="curveIntersectAxis" basePoint="427" angle="AngleLine_vH2_vK" curve="650" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
             <line id="432" firstPoint="429" secondPoint="431" lineColor="darkBlue" lineType="solidLine" lineWeight="0.35"/>
             <point id="434" name="vHf" type="height" basePoint="429" p1Line="413" p2Line="400" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
             <point id="435" name="vHpp" type="endLine" basePoint="434" angle="AngleLine_vHp_vHf" length="Line_vHp_vHf" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
