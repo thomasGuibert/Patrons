@@ -18,7 +18,8 @@
         <variable description="Hauteur du coude AJ (proportion 35/60 du livre)" formula="#long_manche*35/60" name="#haut_coude"/>
         <variable description="Aisance au bas de manche" formula="2.8" name="#aisance_poignet"/>
         <variable description="Largeur de bas de manche F1F2" formula="arm_wrist_circ+#aisance_poignet" name="#larg_bas"/>
-        <variable description="Rondeur du bas d'emmanchure : poignées en fraction des côtés du coin (0,55 ≈ quart de cercle, trop creusé à l'essayage ; 0,3 ≈ l'ancienne courbe)" formula="0.3" name="#rond_emm"/>
+        <variable description="Bas d'emmanchure, poignée au point de carrure (tangente verticale, en fraction de la descente carrure / platitude) : longue pour que la courbe tourne sans coin au point de carrure" formula="0.6" name="#rond_emm"/>
+        <variable description="Bas d'emmanchure, poignée au dessous de bras (en fraction de la largeur jusqu'au coin) : courte pour garder le creux d'origine" formula="0.2" name="#rond_emm_bas"/>
     </variables>
     <draftBlock name="Fond de base maille">
         <calculation>
@@ -60,12 +61,22 @@
             <spline id="31" type="pathInteractive" color="darkBlue" lineWeight="0.35" penStyle="solidLine">
                 <pathPoint pSpline="26" angle1="AngleLine_H_K-90" length1="0" angle2="AngleLine_H_K+90" length2="Line_K_D2/3"/>
                 <pathPoint pSpline="12" angle1="90" length1="Line_K_D2/3" angle2="270" length2="Line_D2_D2c*#rond_emm"/>
-                <pathPoint pSpline="30" angle1="AngleLine_C2_C3" length1="Line_C3_D2c*#rond_emm" angle2="AngleLine_C2_C3+180" length2="0"/>
+                <pathPoint pSpline="30" angle1="AngleLine_C2_C3" length1="Line_C3_D2c*#rond_emm_bas" angle2="AngleLine_C2_C3+180" length2="0"/>
             </spline>
             <spline id="32" type="pathInteractive" color="darkBlue" duplicate="1" lineWeight="0.35" penStyle="solidLine">
                 <pathPoint pSpline="26" angle1="AngleLine_H_K-90" length1="0" angle2="AngleLine_H_K+90" length2="Line_K_D1/3"/>
                 <pathPoint pSpline="11" angle1="90" length1="Line_K_D1/3" angle2="270" length2="Line_D1_D1c*#rond_emm"/>
-                <pathPoint pSpline="30" angle1="AngleLine_C2_C3" length1="Line_C3_D1c*#rond_emm" angle2="AngleLine_C2_C3+180" length2="0"/>
+                <pathPoint pSpline="30" angle1="AngleLine_C2_C3" length1="Line_C3_D1c*#rond_emm_bas" angle2="AngleLine_C2_C3+180" length2="0"/>
+            </spline>
+            <spline id="606" type="pathInteractive" color="black" duplicate="2" lineWeight="0.35" penStyle="dotLine">
+                <pathPoint pSpline="26" angle1="116.45" length1="0" angle2="296.45" length2="6.49318"/>
+                <pathPoint pSpline="12" angle1="90.9383" length1="1.10415" angle2="270.938" length2="0.897601"/>
+                <pathPoint pSpline="30" angle1="14.0258" length1="1.59212" angle2="194.026" length2="0"/>
+            </spline>
+            <spline id="607" type="pathInteractive" color="black" duplicate="3" lineWeight="0.35" penStyle="dotLine">
+                <pathPoint pSpline="26" angle1="136.186" length1="0" angle2="316.186" length2="5.01399"/>
+                <pathPoint pSpline="11" angle1="86.3238" length1="2.78188" angle2="266.324" length2="2.92593"/>
+                <pathPoint pSpline="30" angle1="346.866" length1="1.02803" angle2="166.866" length2="0"/>
             </spline>
             <point basePoint="26" id="258" lineColor="black" lineType="dotLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="K1" p1Line="9" p2Line="29" showPointName="true" type="height"/>
             <line firstPoint="29" id="259" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="258"/>
@@ -140,7 +151,7 @@
     <draftBlock name="Manche">
         <calculation>
             <point id="201" mx="0.132292" my="0.264583" name="mA" showPointName="true" type="single" x="10" y="0"/>
-            <point angle="0" basePoint="201" id="202" length="(SplPath_K_C3+SplPath_K_C3_1)*#frac_largeur+1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mB" showPointName="true" type="endLine"/>
+            <point angle="0" basePoint="201" id="202" length="(SplPath_K_C3_2+SplPath_K_C3_3)*#frac_largeur+1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mB" showPointName="true" type="endLine"/>
             <point angle="270" basePoint="201" id="203" length="#long_manche" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mC" showPointName="true" type="endLine"/>
             <point angle="270" basePoint="202" id="204" length="#long_manche" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mD" showPointName="true" type="endLine"/>
             <line firstPoint="203" id="205" lineColor="black" lineType="solidLine" lineWeight="0.35" secondPoint="204"/>
