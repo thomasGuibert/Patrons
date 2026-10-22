@@ -1,0 +1,48 @@
+# Contrôles de cohérence du fond de pantalon droit : python3 outils/coherence/coherence.py fond_pantalon_droit
+# Un tronçon = [pièce, point de départ, point d'arrivée], le long de la ligne de couture, par le
+# plus court des deux chemins. Points de chaque pièce : python3 outils/coherence/pieces.py patrons/fond_pantalon_droit.sm2d
+
+gammes = ["femme", "homme"]
+profils = true      # jeux sur mesure de mesures/profils-essai.toml
+
+# --- 1. Courbes sans angle (raccords entre tronçons : une fois cousus)
+
+[[courbe]]
+nom = "Fourche"
+troncons = [["Devant", "A3", "C2"], ["Dos", "C5", "A5"]]   # se raccorde à l'entrejambe
+
+[[courbe]]
+nom = "Taille"
+troncons = [["Devant", "A3", "A2"], ["Dos", "B5", "A5"]]
+pli_debut = true    # milieux devant et dos : la jambe gauche est le reflet de la droite
+pli_fin = true
+
+[[courbe]]
+nom = "Entrejambe devant"
+troncons = [["Devant", "C2", "E2"]]
+
+[[courbe]]
+nom = "Entrejambe dos"
+troncons = [["Dos", "C5", "E4"]]
+
+[[courbe]]
+nom = "Côté devant"
+troncons = [["Devant", "E1", "A2"]]
+
+[[courbe]]
+nom = "Côté dos"
+troncons = [["Dos", "E3", "B5"]]
+
+# --- 3 et 4. Coutures (a et b se cousent ensemble, du premier point au dernier)
+
+[[couture]]
+nom = "Entrejambe"
+# dos plus court, étiré au montage : tracé du livre gardé (décision 19 du fond de pantalon)
+ecart = [-1.0, 0.0]
+a = [["Devant", "C2", "E2"]]
+b = [["Dos", "C5", "E4"]]
+
+[[couture]]
+nom = "Côté"
+a = [["Devant", "E1", "A2"]]
+b = [["Dos", "E3", "B5"]]

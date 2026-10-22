@@ -6,8 +6,12 @@ Couvre les outils utilisés dans ce dépôt. Usage : python3 sm2d_eval.py fichie
 import math, re, sys, os
 import xml.etree.ElementTree as ET
 
+# points par segment de courbe (outils/coherence en demande plus pour mesurer les angles)
+ECHANTILLONS = 200
 
-def bez(p0, p1, p2, p3, n=200):
+
+def bez(p0, p1, p2, p3, n=None):
+    n = n or ECHANTILLONS
     pts = []
     for i in range(n + 1):
         t = i / n
@@ -78,13 +82,15 @@ def cut(pts, length):
 
 
 class Pattern:
-    def __init__(self, path):
+    def __init__(self, path, mesures=None, valeurs=None):
+        """mesures : autre fichier .smms/.vit que celui lié ; valeurs : {mesure: cm} qui le remplacent."""
         self.path = path
         self.root = ET.parse(path).getroot()
         self.meas = {}
-        mpath = os.path.join(os.path.dirname(path), self.root.findtext('measurements'))
+        mpath = mesures or os.path.join(os.path.dirname(path), self.root.findtext('measurements'))
         for m in ET.parse(mpath).getroot().iter('m'):
-            self.meas[m.get('name')] = float(m.get('base'))
+            self.meas[m.get('name')] = float(m.get('base') or m.get('value'))
+        self.meas.update(valeurs or {})
         self.vars = {}
         self.P = {}      # id -> (x, y)
         self.name = {}   # id -> nom
