@@ -174,6 +174,9 @@ Thomas : « la manche était bonne et tu as trop creusé l'emmanchure ». Donc :
   la largeur calculée (`#embu`, `#tete_r0`…) est retirée ;
 - `#rond_emm` 0,55 → 0,3 : le bas d'emmanchure s'éloigne du coin, comme l'ancienne courbe, en
   gardant les raccords à 90° (épaule, dessous de bras) ;
+- bouts d'épaule vKp / vKpp remis à leur place d'origine (demande de Thomas) : vKp redevient
+  l'intersection de la parallèle à 1,8 avec l'ancienne emmanchure devant, gardée en courbe de
+  construction (id 650, poignées d'origine) ; la nouvelle emmanchure part de vKp à 90° ;
 - gardés : encolure (`#degag_epaule` = 2), crans (tête = emmanchure + 1/2 embu de chaque côté).
 
 Avec les mesures de Thomas, l'emmanchure fait 56,35 (56,44 avant toute correction) et la tête
