@@ -189,6 +189,11 @@ class Patron:
             p = inter_droites(self.P(e.get('p1Line1')), self.P(e.get('p2Line1')),
                               self.P(e.get('p1Line2')), self.P(e.get('p2Line2')))
             self.ajouter_point(e, p)
+        elif t == 'lineIntersectAxis':
+            b = self.P(e.get('basePoint'))
+            dx, dy = d(g('angle'))
+            p = inter_droites(b, (b[0] + dx, b[1] + dy), self.P(e.get('p1Line')), self.P(e.get('p2Line')))
+            self.ajouter_point(e, p); self.trait(e, b, p)
         elif t == 'height':
             b, a, c = self.P(e.get('basePoint')), self.P(e.get('p1Line')), self.P(e.get('p2Line'))
             vx, vy = c[0] - a[0], c[1] - a[1]
