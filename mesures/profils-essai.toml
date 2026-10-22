@@ -1,0 +1,54 @@
+# Jeux de mesures sur mesure inventés pour les contrôles de cohérence (outils/coherence).
+# Comme sur le site, les mesures absentes viennent de la taille femme 40 (mesures/femme/T40.smms).
+# Des silhouettes loin du tableau des tailles : c'est là que les tracés cassent.
+
+[forte]
+bust_circ = 118
+waist_circ = 102
+hip_circ = 122
+neck_circ = 40
+neck_back_to_waist_b = 42.5
+neck_front_to_waist_f = 39
+across_back_b = 37
+across_chest_f = 35
+shoulder_length = 13.5
+arm_shoulder_tip_to_wrist = 61
+arm_wrist_circ = 17.5
+height_waist_side = 104
+height_waist_side_to_hip = 22
+height_waist_side_to_knee = 58
+leg_crotch_to_floor = 76
+
+[menue]
+bust_circ = 80
+waist_circ = 61
+hip_circ = 86
+neck_circ = 33.5
+neck_back_to_waist_b = 39
+neck_front_to_waist_f = 35
+across_back_b = 32
+across_chest_f = 30
+shoulder_length = 11.5
+arm_shoulder_tip_to_wrist = 55
+arm_wrist_circ = 14.5
+height_waist_side = 100
+height_waist_side_to_hip = 19
+height_waist_side_to_knee = 55
+leg_crotch_to_floor = 74
+
+[longiligne]
+bust_circ = 88
+waist_circ = 70
+hip_circ = 94
+neck_circ = 36
+neck_back_to_waist_b = 45
+neck_front_to_waist_f = 41
+across_back_b = 35
+across_chest_f = 33
+shoulder_length = 12.5
+arm_shoulder_tip_to_wrist = 64
+arm_wrist_circ = 15.5
+height_waist_side = 114
+height_waist_side_to_hip = 23
+height_waist_side_to_knee = 63
+leg_crotch_to_floor = 86

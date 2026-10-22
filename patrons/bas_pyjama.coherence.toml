@@ -1,0 +1,54 @@
+# Contrôles de cohérence du bas de pyjama : python3 outils/coherence/coherence.py bas_pyjama
+# Un tronçon = [pièce, point de départ, point d'arrivée], le long de la ligne de couture, par le
+# plus court des deux chemins. Points de chaque pièce : python3 outils/coherence/pieces.py patrons/bas_pyjama.sm2d
+
+gammes = ["femme", "homme"]
+profils = true      # jeux sur mesure de mesures/profils-essai.toml
+
+# --- 1. Courbes sans angle (raccords entre tronçons : une fois cousus)
+
+[[courbe]]
+nom = "Fourche"
+troncons = [["Devant", "cA3", "C2e"], ["Dos", "C5e", "cA5"]]   # se raccorde à l'entrejambe
+
+[[courbe]]
+nom = "Taille"
+troncons = [["Devant", "cA3", "cA2e"], ["Dos", "cB5e", "cA5"]]
+pli_debut = true    # milieux devant et dos : la jambe gauche est le reflet de la droite
+pli_fin = true
+
+[[courbe]]
+nom = "Entrejambe devant"
+troncons = [["Devant", "C2e", "E2e"]]
+
+[[courbe]]
+nom = "Entrejambe dos"
+troncons = [["Dos", "C5e", "E4e"]]
+
+[[courbe]]
+nom = "Côté devant"
+troncons = [["Devant", "E1e", "cA2e"]]
+
+[[courbe]]
+nom = "Côté dos"
+troncons = [["Dos", "E3e", "cB5e"]]
+
+# --- 3 et 4. Coutures (a et b se cousent ensemble, du premier point au dernier)
+
+[[couture]]
+nom = "Entrejambe"
+# dos plus court, étiré au montage : tracé du livre gardé (décision 19 du fond de pantalon)
+ecart = [-1.0, 0.0]
+a = [["Devant", "C2e", "E2e"]]
+b = [["Dos", "C5e", "E4e"]]
+
+[[couture]]
+nom = "Côté"
+a = [["Devant", "E1e", "cA2e"]]
+b = [["Dos", "E3e", "cB5e"]]
+
+[[couture]]
+nom = "Ceinture"
+# tour de taille : demi-dos, devant droit, devant gauche, demi-dos
+a = [["Dos", "cA5", "cB5e"], ["Devant", "cA2e", "cA3"], ["Devant", "cA3", "cA2e"], ["Dos", "cB5e", "cA5"]]
+b = [["Ceinture", "cbD2", "cbC"]]

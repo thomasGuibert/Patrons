@@ -1,0 +1,62 @@
+# Contrôles de cohérence du haut de pyjama : python3 outils/coherence/coherence.py haut_pyjama
+# Un tronçon = [pièce, point de départ, point d'arrivée], le long de la ligne de couture, par le
+# plus court des deux chemins. Points de chaque pièce : python3 outils/coherence/pieces.py patrons/haut_pyjama.sm2d
+
+gammes = ["femme", "homme"]
+profils = true      # jeux sur mesure de mesures/profils-essai.toml
+
+# --- 1. Courbes sans angle (raccords entre tronçons : une fois cousus)
+
+[[courbe]]
+nom = "Emmanchure"
+troncons = [["Devant", "vC2", "vKp"], ["Dos", "vKpp", "vC2"]]
+fermee = true       # se referme à la couture de côté
+
+[[courbe]]
+nom = "Tête de manche"
+troncons = [["Manche", "mI", "mIp"]]
+fermee = true       # se referme à la couture de dessous de bras
+
+[[courbe]]
+nom = "Encolure"
+troncons = [["Dos", "vF2", "vHpp"], ["Devant", "vHp", "vE2"]]
+pli_debut = true    # milieu dos au pli ; la pointe du V (vE2) est un angle voulu
+
+[[courbe]]
+nom = "Bas"
+troncons = [["Devant", "vAp", "vA1"], ["Dos", "vA1", "A"]]
+pli_debut = true
+pli_fin = true
+
+[[courbe]]
+nom = "Côté"
+troncons = [["Devant", "vA1", "vC2"]]
+
+# --- 3 et 4. Coutures (a et b se cousent ensemble, du premier point au dernier)
+
+[[couture]]
+nom = "Emmanchure et tête de manche"
+a = [["Devant", "vC2", "vKp"], ["Dos", "vKpp", "vC2"]]
+b = [["Manche", "mIp", "mI"]]
+ecart = [0.5, 1.0]  # embu (fichier d'étapes, Contrôles)
+
+[[couture]]
+nom = "Épaule"
+a = [["Devant", "vHp", "vKp"]]
+b = [["Dos", "vHpp", "vKpp"]]
+
+[[couture]]
+nom = "Côté"
+a = [["Devant", "vA1", "vC2"]]
+b = [["Dos", "vA1", "vC2"]]
+
+[[couture]]
+nom = "Dessous de bras"
+a = [["Manche", "mI", "mF1"]]
+b = [["Manche", "mIp", "mF2"]]
+
+[[couture]]
+nom = "Encolure et bande"
+a = [["Dos", "vF2", "vHpp"], ["Devant", "vHp", "vE2"]]
+b = [["Bande d'encolure", "vbC", "vbD"]]
+crans_aux_raccords = false   # la bande n'a pas de cran d'épaule

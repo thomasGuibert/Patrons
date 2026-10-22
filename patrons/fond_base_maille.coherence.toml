@@ -1,0 +1,58 @@
+# Contrôles de cohérence du fond de base maille : python3 outils/coherence/coherence.py fond_base_maille
+# Un tronçon = [pièce, point de départ, point d'arrivée], le long de la ligne de couture, par le
+# plus court des deux chemins. Points de chaque pièce : python3 outils/coherence/pieces.py patrons/fond_base_maille.sm2d
+
+gammes = ["femme", "homme"]
+profils = true      # jeux sur mesure de mesures/profils-essai.toml
+
+# --- 1. Courbes sans angle (raccords entre tronçons : une fois cousus)
+
+[[courbe]]
+nom = "Emmanchure"
+troncons = [["Devant", "C2", "K"], ["Dos", "K", "C2"]]
+fermee = true       # se referme à la couture de côté
+
+[[courbe]]
+nom = "Tête de manche"
+troncons = [["Manche", "mI", "mIp"]]
+fermee = true       # se referme à la couture de dessous de bras
+
+[[courbe]]
+nom = "Encolure"
+troncons = [["Dos", "F", "H"], ["Devant", "H", "E"]]
+pli_debut = true    # milieux dos et devant au pli
+pli_fin = true
+
+[[courbe]]
+nom = "Bas"
+troncons = [["Devant", "A", "A1"], ["Dos", "A1", "A"]]
+pli_debut = true
+pli_fin = true
+
+[[courbe]]
+nom = "Côté"
+troncons = [["Devant", "A1", "C2"]]
+
+# --- 3 et 4. Coutures (a et b se cousent ensemble, du premier point au dernier)
+
+[[couture]]
+nom = "Emmanchure et tête de manche"
+a = [["Devant", "C2", "K"], ["Dos", "K", "C2"]]
+b = [["Manche", "mIp", "mI"]]
+ecart = [0.5, 1.0]  # embu
+crans_aux_raccords = false   # le fond n'a pas de crans
+
+[[couture]]
+nom = "Épaule"
+a = [["Devant", "H", "K"]]
+b = [["Dos", "H", "K"]]
+
+[[couture]]
+nom = "Côté"
+a = [["Devant", "A1", "C2"]]
+b = [["Dos", "A1", "C2"]]
+
+[[couture]]
+nom = "Dessous de bras"
+a = [["Manche", "mI", "mF1"]]
+b = [["Manche", "mIp", "mF2"]]
