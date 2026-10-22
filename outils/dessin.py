@@ -262,7 +262,7 @@ def haut_pyjama(p):
         if nom == 'devant':
             Hs, Ks, C3 = N['vHp'], N['vKp'], 'vC3d'
             col = depuis(C['SplPath_vH2_vE2'], Hs) + [N['vE2']]          # épaule -> milieu
-            emm = depuis(C['SplPath_vK_vC3d'], Ks)
+            emm = C['SplPath_vKp_vC3d']
             bas = list(reversed(C['Spl_vAp_vA1']))                        # côté -> milieu
         else:
             Hs, Ks, C3 = N['vHpp'], N['vKpp'], 'vC3b'
