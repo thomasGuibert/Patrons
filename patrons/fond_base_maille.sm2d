@@ -13,11 +13,15 @@
     </patternLabel>
     <measurements>../mesures/femme/T44.smms</measurements>
     <variables>
-        <variable description="Fraction du tour d'emmanchure pour la largeur AB (colonne anglaise du livre)" formula="3/4" name="#frac_largeur"/>
         <variable description="Longueur de manche AC" formula="arm_shoulder_tip_to_wrist" name="#long_manche"/>
         <variable description="Hauteur du coude AJ (proportion 35/60 du livre)" formula="#long_manche*35/60" name="#haut_coude"/>
         <variable description="Aisance au bas de manche" formula="2.8" name="#aisance_poignet"/>
         <variable description="Largeur de bas de manche F1F2" formula="arm_wrist_circ+#aisance_poignet" name="#larg_bas"/>
+        <variable description="Rondeur du bas d'emmanchure : poignées en fraction des côtés du coin (0,55 ≈ quart de cercle)" formula="0.55" name="#rond_emm"/>
+        <variable description="Embu visé : tête de manche moins emmanchure (0,5 à 1 au livre)" formula="0.75" name="#embu"/>
+        <variable description="Largeur de manche calculée pour l'embu visé : demi-diagonale de tête = (emmanchure + embu) × (#tete_r0 + #tete_rk × (pente − 1,5) + #tete_rt × (emmanchure + embu − 50)) ; réglage, ne pas modifier" formula="0.4833" name="#tete_r0"/>
+        <variable description="Voir #tete_r0" formula="0.00742" name="#tete_rk"/>
+        <variable description="Voir #tete_r0" formula="0.000305" name="#tete_rt"/>
     </variables>
     <draftBlock name="Fond de base maille">
         <calculation>
@@ -37,27 +41,34 @@
             <point angle="0" firstPoint="5" id="14" length="(neck_circ/6) + (neck_circ/6)/5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="-1.16939" my="-0.968587" name="G" secondPoint="13" showPointName="true" type="normal"/>
             <point angle="0" firstPoint="14" id="15" length="neck_circ / 6" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="-1.0244" my="-1.85124" name="H" secondPoint="5" showPointName="true" type="normal"/>
             <point firstPoint="5" id="17" length="1.5" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" name="E1" secondPoint="14" showPointName="true" type="alongLine"/>
-            <spline angle1="272.014" angle2="183.541" color="black" id="18" length1="3.38916" length2="2.08917" lineWeight="0.35" penStyle="solidLine" point1="15" point4="17" type="simpleInteractive"/>
             <point angle="0" firstPoint="13" id="19" length="Line_E_G" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="-0.784087" my="-0.882019" name="I" secondPoint="1" showPointName="true" type="normal"/>
             <point angle="0" firstPoint="13" id="20" length="3" lineColor="darkBlue" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="F1" secondPoint="1" showPointName="true" type="normal"/>
-            <spline angle1="279.687" angle2="178.315" color="darkBlue" id="21" length1="1.03799" length2="0.870088" lineWeight="0.35" penStyle="solidLine" point1="15" point4="20" type="simpleInteractive"/>
             <point firstPoint="14" id="22" length="Line_G_H/3" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="-0.758331" my="-1.44815" name="J" secondPoint="19" showPointName="true" type="alongLine"/>
             <point angle="0" firstPoint="22" id="23" length="20" lineColor="mediumseagreen" lineType="dotLine" lineWeight="0.5" mx="0.132292" my="0.264583" name="P" secondPoint="19" showPointName="true" type="normal"/>
             <arc angle1="150" center="22" color="green" id="25" length="15" lineWeight="0.5" penStyle="dotLine" radius="shoulder_length" type="arcWithLength"/>
             <point angle="197.296" basePoint="15" curve="25" id="26" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="-1.93146" my="-1.64042" name="K" showPointName="true" type="curveIntersectAxis"/>
+            <spline angle1="AngleLine_H_K+90" angle2="180" color="black" id="18" length1="Line_G_H*0.52" length2="(Line_E_G-1.5)*0.33" lineWeight="0.35" penStyle="solidLine" point1="15" point4="17" type="simpleInteractive"/>
+            <line id="640" firstPoint="19" secondPoint="15" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <spline angle1="AngleLine_H_K+90" angle2="180" color="darkBlue" id="21" length1="Line_I_H*0.69" length2="(Line_F_I-3)*0.18" lineWeight="0.35" penStyle="solidLine" point1="15" point4="20" type="simpleInteractive"/>
             <line firstPoint="8" id="27" lineColor="black" lineType="solidLine" lineWeight="0.35" secondPoint="9"/>
             <line firstPoint="9" id="28" lineColor="black" lineType="solidLine" lineWeight="0.35" secondPoint="10"/>
             <point firstPoint="9" id="29" length="(neck_back_to_waist_b+neck_front_to_waist_f)/4+1.5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="-1.71746" my="-0.214983" name="C2" secondPoint="10" showPointName="true" type="alongLine"/>
             <point angle="0" firstPoint="29" id="30" length="1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="-2.74512" my="-1.85922" name="C3" secondPoint="10" showPointName="true" type="normal"/>
-            <spline color="darkBlue" id="31" lineWeight="0.35" penStyle="solidLine" type="pathInteractive">
-                <pathPoint angle1="116.45" angle2="296.45" length1="0" length2="6.49318" pSpline="26"/>
-                <pathPoint angle1="90.9383" angle2="270.938" length1="1.10415" length2="0.897601" pSpline="12"/>
-                <pathPoint angle1="14.0258" angle2="194.026" length1="1.59212" length2="0" pSpline="30"/>
+            <point id="600" name="D2c" type="lineIntersectAxis" basePoint="12" angle="270" p1Line="29" p2Line="30" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="601" name="D1c" type="lineIntersectAxis" basePoint="11" angle="270" p1Line="29" p2Line="30" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <line id="602" firstPoint="30" secondPoint="600" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <line id="603" firstPoint="30" secondPoint="601" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <line id="604" firstPoint="26" secondPoint="12" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <line id="605" firstPoint="26" secondPoint="11" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <spline id="31" type="pathInteractive" color="darkBlue" lineWeight="0.35" penStyle="solidLine">
+                <pathPoint pSpline="26" angle1="AngleLine_H_K-90" length1="0" angle2="AngleLine_H_K+90" length2="Line_K_D2/3"/>
+                <pathPoint pSpline="12" angle1="90" length1="Line_K_D2/3" angle2="270" length2="Line_D2_D2c*#rond_emm"/>
+                <pathPoint pSpline="30" angle1="AngleLine_C2_C3" length1="Line_C3_D2c*#rond_emm" angle2="AngleLine_C2_C3+180" length2="0"/>
             </spline>
-            <spline color="darkBlue" duplicate="1" id="32" lineWeight="0.35" penStyle="solidLine" type="pathInteractive">
-                <pathPoint angle1="136.186" angle2="316.186" length1="0" length2="5.01399" pSpline="26"/>
-                <pathPoint angle1="86.3238" angle2="266.324" length1="2.78188" length2="2.92593" pSpline="11"/>
-                <pathPoint angle1="346.866" angle2="166.866" length1="1.02803" length2="0" pSpline="30"/>
+            <spline id="32" type="pathInteractive" color="darkBlue" duplicate="1" lineWeight="0.35" penStyle="solidLine">
+                <pathPoint pSpline="26" angle1="AngleLine_H_K-90" length1="0" angle2="AngleLine_H_K+90" length2="Line_K_D1/3"/>
+                <pathPoint pSpline="11" angle1="90" length1="Line_K_D1/3" angle2="270" length2="Line_D1_D1c*#rond_emm"/>
+                <pathPoint pSpline="30" angle1="AngleLine_C2_C3" length1="Line_C3_D1c*#rond_emm" angle2="AngleLine_C2_C3+180" length2="0"/>
             </spline>
             <point basePoint="26" id="258" lineColor="black" lineType="dotLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="K1" p1Line="9" p2Line="29" showPointName="true" type="height"/>
             <line firstPoint="29" id="259" lineColor="black" lineType="none" lineWeight="0.35" secondPoint="258"/>
@@ -132,7 +143,7 @@
     <draftBlock name="Manche">
         <calculation>
             <point id="201" mx="0.132292" my="0.264583" name="mA" showPointName="true" type="single" x="10" y="0"/>
-            <point angle="0" basePoint="201" id="202" length="(SplPath_K_C3+SplPath_K_C3_1)*#frac_largeur+1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mB" showPointName="true" type="endLine"/>
+            <point angle="0" basePoint="201" id="202" length="2*sqrt(((SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)*(#tete_r0+#tete_rk*(sqrt((SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)*(SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)/4-Line_C2_K1*2/3*Line_C2_K1*2/3)/(Line_C2_K1*2/3)-1.5)+#tete_rt*((SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)-50)))*((SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)*(#tete_r0+#tete_rk*(sqrt((SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)*(SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)/4-Line_C2_K1*2/3*Line_C2_K1*2/3)/(Line_C2_K1*2/3)-1.5)+#tete_rt*((SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)-50)))-Line_C2_K1*2/3*Line_C2_K1*2/3)" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mB" showPointName="true" type="endLine"/>
             <point angle="270" basePoint="201" id="203" length="#long_manche" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mC" showPointName="true" type="endLine"/>
             <point angle="270" basePoint="202" id="204" length="#long_manche" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mD" showPointName="true" type="endLine"/>
             <line firstPoint="203" id="205" lineColor="black" lineType="solidLine" lineWeight="0.35" secondPoint="204"/>
@@ -173,16 +184,34 @@
             <point angle="180" firstPoint="239" id="240" length="1.5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="-2.18261" my="0.131031" name="mH3" secondPoint="218" showPointName="true" type="normal"/>
             <point angle="(AngleLine_mI_mF1+180)-90" basePoint="217" id="241" length="1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.354879" my="-0.00252038" name="mI1" showPointName="true" type="endLine"/>
             <point angle="(AngleLine_mIp_mF2+180)+90" basePoint="218" id="242" length="1.5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mIp1" showPointName="true" type="endLine"/>
-            <spline angle1="7.4423" angle2="180" color="darkBlue" id="243" length1="4.5" length2="9.5" lineWeight="0.35" penStyle="solidLine" point1="241" point4="206" type="simpleInteractive"/>
-            <spline angle1="172.4164" angle2="0" color="darkBlue" id="245" length1="6.9691" length2="8.395" lineWeight="0.35" penStyle="solidLine" point1="242" point4="206" type="simpleInteractive"/>
+            <line id="610" firstPoint="241" secondPoint="235" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <line id="611" firstPoint="235" secondPoint="232" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <line id="612" firstPoint="232" secondPoint="206" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <line id="613" firstPoint="235" secondPoint="206" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <line id="614" firstPoint="242" secondPoint="240" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <line id="615" firstPoint="240" secondPoint="237" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <line id="616" firstPoint="237" secondPoint="206" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <line id="617" firstPoint="240" secondPoint="206" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <spline id="243" type="pathInteractive" color="darkBlue" lineWeight="0.35" penStyle="solidLine">
+                <pathPoint pSpline="241" angle1="AngleLine_mI_mI1+180" length1="0" angle2="AngleLine_mI_mI1" length2="Line_mI1_mG3/3"/>
+                <pathPoint pSpline="235" angle1="AngleLine_mG2_mI" length1="Line_mI1_mG3/3" angle2="AngleLine_mG2_mI+180" length2="Line_mG3_mG2/3"/>
+                <pathPoint pSpline="232" angle1="AngleLine_mG3_mE+180" length1="Line_mG3_mG2/3" angle2="AngleLine_mG3_mE" length2="Line_mG2_mE/3"/>
+                <pathPoint pSpline="206" angle1="180" length1="Line_mG2_mE/3" angle2="0" length2="0"/>
+            </spline>
+            <spline id="245" type="pathInteractive" color="darkBlue" lineWeight="0.35" penStyle="solidLine">
+                <pathPoint pSpline="242" angle1="AngleLine_mIp_mIp1+180" length1="0" angle2="AngleLine_mIp_mIp1" length2="Line_mIp1_mH3/3"/>
+                <pathPoint pSpline="240" angle1="AngleLine_mH2_mIp" length1="Line_mIp1_mH3/3" angle2="AngleLine_mH2_mIp+180" length2="Line_mH3_mH2/3"/>
+                <pathPoint pSpline="237" angle1="AngleLine_mH3_mE+180" length1="Line_mH3_mH2/3" angle2="AngleLine_mH3_mE" length2="Line_mH2_mE/3"/>
+                <pathPoint pSpline="206" angle1="0" length1="Line_mH2_mE/3" angle2="180" length2="0"/>
+            </spline>
         </calculation>
         <modeling>
             <point id="246" idObject="225" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
             <point id="247" idObject="217" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
             <point id="248" idObject="241" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
-            <spline id="249" idObject="243" inUse="true" type="modelingSpline"/>
+            <spline id="249" idObject="243" inUse="true" type="modelingPath"/>
             <point id="252" idObject="206" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
-            <spline id="253" idObject="245" inUse="true" type="modelingSpline"/>
+            <spline id="253" idObject="245" inUse="true" type="modelingPath"/>
             <point id="254" idObject="242" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
             <point id="255" idObject="218" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
             <point id="256" idObject="226" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
@@ -199,9 +228,9 @@
                     <node idObject="246" type="NodePoint"/>
                     <node idObject="247" type="NodePoint"/>
                     <node idObject="248" type="NodePoint"/>
-                    <node idObject="249" reverse="0" type="NodeSpline"/>
+                    <node idObject="249" reverse="0" type="NodeSplinePath"/>
                     <node idObject="252" type="NodePoint"/>
-                    <node idObject="253" reverse="1" type="NodeSpline"/>
+                    <node idObject="253" reverse="1" type="NodeSplinePath"/>
                     <node idObject="254" type="NodePoint"/>
                     <node idObject="255" type="NodePoint"/>
                     <node idObject="256" type="NodePoint"/>

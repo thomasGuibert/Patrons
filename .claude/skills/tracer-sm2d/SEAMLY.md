@@ -86,8 +86,15 @@ lineWeight="0.35"`.
 
 - `angle2`/`length2` d'une `simpleInteractive` : poignée partant de `point4`.
 - **Poignées déplaçables à la souris seulement si angle et longueur sont des nombres.**
-  L'utilisateur veut des courbes interactives : poignées numériques, ajustées numériquement
-  pour passer par les points du livre.
+  Mais des poignées numériques ne suivent pas les mesures : en sur-mesure ou dans une autre
+  taille, la courbe garde ses angles et fait un angle avec la droite voisine (emmanchure et tête
+  de manche du haut de pyjama, essayage du 2026-10-22). Pour toute courbe qui doit se raccorder
+  (emmanchure, encolure, tête, côté), poignées en **formules** : angle tiré d'une droite
+  (`AngleLine_H_K+90` = perpendiculaire à l'épaule), longueur en fraction d'un segment
+  (`Line_K_D2/3`). Seamly les accepte dans `simpleInteractive` et `pathInteractive`.
+- Une formule de poignée ne peut lire que des objets **placés avant** la courbe dans le fichier
+  (`Symbole "AngleLine_vH2_vK" inattendu` sinon) : déplacer la courbe après le point dont elle
+  dépend, ou lire une droite parallèle déjà tracée.
 - `cubicBezier` : poignées fixées par des points construits (non déplaçables).
 
 ## Pièces
