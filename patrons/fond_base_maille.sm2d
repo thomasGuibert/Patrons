@@ -13,15 +13,12 @@
     </patternLabel>
     <measurements>../mesures/femme/T44.smms</measurements>
     <variables>
+        <variable description="Fraction du tour d'emmanchure pour la largeur AB (colonne anglaise du livre)" formula="3/4" name="#frac_largeur"/>
         <variable description="Longueur de manche AC" formula="arm_shoulder_tip_to_wrist" name="#long_manche"/>
         <variable description="Hauteur du coude AJ (proportion 35/60 du livre)" formula="#long_manche*35/60" name="#haut_coude"/>
         <variable description="Aisance au bas de manche" formula="2.8" name="#aisance_poignet"/>
         <variable description="Largeur de bas de manche F1F2" formula="arm_wrist_circ+#aisance_poignet" name="#larg_bas"/>
-        <variable description="Rondeur du bas d'emmanchure : poignées en fraction des côtés du coin (0,55 ≈ quart de cercle)" formula="0.55" name="#rond_emm"/>
-        <variable description="Embu visé : tête de manche moins emmanchure (0,5 à 1 au livre)" formula="0.75" name="#embu"/>
-        <variable description="Largeur de manche calculée pour l'embu visé : demi-diagonale de tête = (emmanchure + embu) × (#tete_r0 + #tete_rk × (pente − 1,5) + #tete_rt × (emmanchure + embu − 50)) ; réglage, ne pas modifier" formula="0.4833" name="#tete_r0"/>
-        <variable description="Voir #tete_r0" formula="0.00742" name="#tete_rk"/>
-        <variable description="Voir #tete_r0" formula="0.000305" name="#tete_rt"/>
+        <variable description="Rondeur du bas d'emmanchure : poignées en fraction des côtés du coin (0,55 ≈ quart de cercle, trop creusé à l'essayage ; 0,3 ≈ l'ancienne courbe)" formula="0.3" name="#rond_emm"/>
     </variables>
     <draftBlock name="Fond de base maille">
         <calculation>
@@ -143,7 +140,7 @@
     <draftBlock name="Manche">
         <calculation>
             <point id="201" mx="0.132292" my="0.264583" name="mA" showPointName="true" type="single" x="10" y="0"/>
-            <point angle="0" basePoint="201" id="202" length="2*sqrt(((SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)*(#tete_r0+#tete_rk*(sqrt((SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)*(SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)/4-Line_C2_K1*2/3*Line_C2_K1*2/3)/(Line_C2_K1*2/3)-1.5)+#tete_rt*((SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)-50)))*((SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)*(#tete_r0+#tete_rk*(sqrt((SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)*(SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)/4-Line_C2_K1*2/3*Line_C2_K1*2/3)/(Line_C2_K1*2/3)-1.5)+#tete_rt*((SplPath_K_C3+Line_C2_C3+SplPath_K_C3_1+Line_C2_C3+#embu)-50)))-Line_C2_K1*2/3*Line_C2_K1*2/3)" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mB" showPointName="true" type="endLine"/>
+            <point angle="0" basePoint="201" id="202" length="(SplPath_K_C3+SplPath_K_C3_1)*#frac_largeur+1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mB" showPointName="true" type="endLine"/>
             <point angle="270" basePoint="201" id="203" length="#long_manche" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mC" showPointName="true" type="endLine"/>
             <point angle="270" basePoint="202" id="204" length="#long_manche" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mD" showPointName="true" type="endLine"/>
             <line firstPoint="203" id="205" lineColor="black" lineType="solidLine" lineWeight="0.35" secondPoint="204"/>
@@ -184,34 +181,16 @@
             <point angle="180" firstPoint="239" id="240" length="1.5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="-2.18261" my="0.131031" name="mH3" secondPoint="218" showPointName="true" type="normal"/>
             <point angle="(AngleLine_mI_mF1+180)-90" basePoint="217" id="241" length="1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.354879" my="-0.00252038" name="mI1" showPointName="true" type="endLine"/>
             <point angle="(AngleLine_mIp_mF2+180)+90" basePoint="218" id="242" length="1.5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mIp1" showPointName="true" type="endLine"/>
-            <line id="610" firstPoint="241" secondPoint="235" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <line id="611" firstPoint="235" secondPoint="232" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <line id="612" firstPoint="232" secondPoint="206" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <line id="613" firstPoint="235" secondPoint="206" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <line id="614" firstPoint="242" secondPoint="240" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <line id="615" firstPoint="240" secondPoint="237" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <line id="616" firstPoint="237" secondPoint="206" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <line id="617" firstPoint="240" secondPoint="206" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <spline id="243" type="pathInteractive" color="darkBlue" lineWeight="0.35" penStyle="solidLine">
-                <pathPoint pSpline="241" angle1="AngleLine_mI_mI1+180" length1="0" angle2="AngleLine_mI_mI1" length2="Line_mI1_mG3/3"/>
-                <pathPoint pSpline="235" angle1="AngleLine_mG2_mI" length1="Line_mI1_mG3/3" angle2="AngleLine_mG2_mI+180" length2="Line_mG3_mG2/3"/>
-                <pathPoint pSpline="232" angle1="AngleLine_mG3_mE+180" length1="Line_mG3_mG2/3" angle2="AngleLine_mG3_mE" length2="Line_mG2_mE/3"/>
-                <pathPoint pSpline="206" angle1="180" length1="Line_mG2_mE/3" angle2="0" length2="0"/>
-            </spline>
-            <spline id="245" type="pathInteractive" color="darkBlue" lineWeight="0.35" penStyle="solidLine">
-                <pathPoint pSpline="242" angle1="AngleLine_mIp_mIp1+180" length1="0" angle2="AngleLine_mIp_mIp1" length2="Line_mIp1_mH3/3"/>
-                <pathPoint pSpline="240" angle1="AngleLine_mH2_mIp" length1="Line_mIp1_mH3/3" angle2="AngleLine_mH2_mIp+180" length2="Line_mH3_mH2/3"/>
-                <pathPoint pSpline="237" angle1="AngleLine_mH3_mE+180" length1="Line_mH3_mH2/3" angle2="AngleLine_mH3_mE" length2="Line_mH2_mE/3"/>
-                <pathPoint pSpline="206" angle1="0" length1="Line_mH2_mE/3" angle2="180" length2="0"/>
-            </spline>
+            <spline angle1="7.4423" angle2="180" color="darkBlue" id="243" length1="4.5" length2="9.5" lineWeight="0.35" penStyle="solidLine" point1="241" point4="206" type="simpleInteractive"/>
+            <spline angle1="172.4164" angle2="0" color="darkBlue" id="245" length1="6.9691" length2="8.395" lineWeight="0.35" penStyle="solidLine" point1="242" point4="206" type="simpleInteractive"/>
         </calculation>
         <modeling>
             <point id="246" idObject="225" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
             <point id="247" idObject="217" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
             <point id="248" idObject="241" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
-            <spline id="249" idObject="243" inUse="true" type="modelingPath"/>
+            <spline id="249" idObject="243" inUse="true" type="modelingSpline"/>
             <point id="252" idObject="206" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
-            <spline id="253" idObject="245" inUse="true" type="modelingPath"/>
+            <spline id="253" idObject="245" inUse="true" type="modelingSpline"/>
             <point id="254" idObject="242" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
             <point id="255" idObject="218" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
             <point id="256" idObject="226" inUse="true" mx="0.132292" my="0.264583" showPointName="true" type="modeling"/>
@@ -228,9 +207,9 @@
                     <node idObject="246" type="NodePoint"/>
                     <node idObject="247" type="NodePoint"/>
                     <node idObject="248" type="NodePoint"/>
-                    <node idObject="249" reverse="0" type="NodeSplinePath"/>
+                    <node idObject="249" reverse="0" type="NodeSpline"/>
                     <node idObject="252" type="NodePoint"/>
-                    <node idObject="253" reverse="1" type="NodeSplinePath"/>
+                    <node idObject="253" reverse="1" type="NodeSpline"/>
                     <node idObject="254" type="NodePoint"/>
                     <node idObject="255" type="NodePoint"/>
                     <node idObject="256" type="NodePoint"/>

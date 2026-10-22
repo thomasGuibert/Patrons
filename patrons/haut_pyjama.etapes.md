@@ -167,6 +167,19 @@ Changements (même chose dans `fond_base_maille.sm2d`, où l'angle à l'épaule 
   (au lieu de E décalé de 1,8, qui laissait 1,4 cm d'écart en T44) ; les crans du dessous de bras
   sont inchangés (7, 8, 9 + 1/2 embu) et deviennent justes avec un embu positif.
 
+### Retour du 2026-10-22 au soir
+
+Thomas : « la manche était bonne et tu as trop creusé l'emmanchure ». Donc :
+- manche remise telle qu'avant (largeur 3/4 du tour + 1, `#creux_tete_dos` = 2, courbes d'origine) ;
+  la largeur calculée (`#embu`, `#tete_r0`…) est retirée ;
+- `#rond_emm` 0,55 → 0,3 : le bas d'emmanchure s'éloigne du coin, comme l'ancienne courbe, en
+  gardant les raccords à 90° (épaule, dessous de bras) ;
+- gardés : encolure (`#degag_epaule` = 2), crans (tête = emmanchure + 1/2 embu de chaque côté).
+
+Avec les mesures de Thomas, l'emmanchure fait 56,35 (56,44 avant toute correction) et la tête
+52,85 : embu −3,5, comme sur le T-shirt essayé ; en T40 l'embu est de 0. Les crans répartissent
+l'écart moitié devant, moitié dos.
+
 ## Contrôles
 - Épaules devant et dos de même longueur (vHpvKp = vHppvKpp).
 - Emmanchure devant + dos (après déplacement d'épaule) = tour lu par la manche ; embu 0,5 à 1.

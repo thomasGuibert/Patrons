@@ -13,6 +13,7 @@
     </patternLabel>
     <measurements>../mesures/femme/T44.smms</measurements>
     <variables>
+        <variable description="Fraction du tour d'emmanchure pour la largeur AB (colonne anglaise du livre)" formula="3/4" name="#frac_largeur"/>
         <variable description="Longueur de manche AC" formula="arm_shoulder_tip_to_wrist" name="#long_manche"/>
         <variable description="Hauteur du coude AJ (proportion 35/60 du livre)" formula="#long_manche*35/60" name="#haut_coude"/>
         <variable description="Aisance au bas de manche" formula="2.8" name="#aisance_poignet"/>
@@ -31,14 +32,10 @@
         <variable description="Encolure V : descente du milieu devant, ligne finie (exemple)" formula="13" name="#desc_devant"/>
         <variable description="Largeur de la bande d'encolure finie (maximum du livre en jersey)" formula="1.5" name="#larg_bande"/>
         <variable description="Déplacement de la ligne d'épaule vers l'avant (p. 48)" formula="1.8" name="#decal_epaule"/>
-        <variable description="Creux de la tête de manche côté dos en G3 (1 au livre ; l'embu est réglé par la largeur de manche)" formula="1" name="#creux_tete_dos"/>
+        <variable description="Creux de la tête de manche côté dos en G3 (1 au livre ; 2 pour un embu de 0,5 à 1, décision 8)" formula="2" name="#creux_tete_dos"/>
         <variable description="Creux de l'encolure V à mi-longueur, vers le côté (lu sur le schéma, environ 1 cm)" formula="1" name="#creux_v"/>
         <variable description="Prolongement du milieu devant vers le bas (p. 60, 1 à 1,5)" formula="1.5" name="#prolong_devant"/>
-        <variable description="Rondeur du bas d'emmanchure : poignées en fraction des côtés du coin (0,55 ≈ quart de cercle)" formula="0.55" name="#rond_emm"/>
-        <variable description="Embu visé : tête de manche moins emmanchure (0,5 à 1 au livre)" formula="0.75" name="#embu"/>
-        <variable description="Largeur de manche calculée pour l'embu visé : demi-diagonale de tête = (emmanchure + embu) × (#tete_r0 + #tete_rk × (pente − 1,5) + #tete_rt × (emmanchure + embu − 50)) ; réglage, ne pas modifier" formula="0.484" name="#tete_r0"/>
-        <variable description="Voir #tete_r0" formula="0.00586" name="#tete_rk"/>
-        <variable description="Voir #tete_r0" formula="0.000244" name="#tete_rt"/>
+        <variable description="Rondeur du bas d'emmanchure : poignées en fraction des côtés du coin (0,55 ≈ quart de cercle, trop creusé à l'essayage ; 0,3 ≈ l'ancienne courbe)" formula="0.3" name="#rond_emm"/>
     </variables>
     <draftBlock name="Corps">
         <calculation>
@@ -257,7 +254,7 @@
     <draftBlock name="Manche">
         <calculation>
             <point id="201" mx="0.132292" my="0.264583" name="mA" showPointName="true" type="single" x="10" y="0"/>
-            <point angle="0" basePoint="201" id="202" length="2*sqrt(((#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d+#embu)*(#tete_r0+#tete_rk*(sqrt((#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d+#embu)*(#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d+#embu)/4-Line_vC2_vK1*2/3*Line_vC2_vK1*2/3)/(Line_vC2_vK1*2/3)-1.5)+#tete_rt*((#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d+#embu)-50)))*((#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d+#embu)*(#tete_r0+#tete_rk*(sqrt((#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d+#embu)*(#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d+#embu)/4-Line_vC2_vK1*2/3*Line_vC2_vK1*2/3)/(Line_vC2_vK1*2/3)-1.5)+#tete_rt*((#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d+#embu)-50)))-Line_vC2_vK1*2/3*Line_vC2_vK1*2/3)" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mB" showPointName="true" type="endLine"/>
+            <point angle="0" basePoint="201" id="202" length="(#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d)*#frac_largeur+1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mB" showPointName="true" type="endLine"/>
             <point angle="270" basePoint="201" id="203" length="#long_manche" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mC" showPointName="true" type="endLine"/>
             <point angle="270" basePoint="202" id="204" length="#long_manche" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mD" showPointName="true" type="endLine"/>
             <line firstPoint="203" id="205" lineColor="black" lineType="solidLine" lineWeight="0.35" secondPoint="204"/>
@@ -298,46 +295,28 @@
             <point angle="180" firstPoint="239" id="240" length="1.5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="-2.18261" my="0.131031" name="mH3" secondPoint="218" showPointName="true" type="normal"/>
             <point angle="(AngleLine_mI_mF1+180)-90" basePoint="217" id="241" length="1" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.354879" my="-0.00252038" name="mI1" showPointName="true" type="endLine"/>
             <point angle="(AngleLine_mIp_mF2+180)+90" basePoint="218" id="242" length="1.5" lineColor="black" lineType="solidLine" lineWeight="0.35" mx="0.132292" my="0.264583" name="mIp1" showPointName="true" type="endLine"/>
-            <line id="610" firstPoint="241" secondPoint="235" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <line id="611" firstPoint="235" secondPoint="232" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <line id="612" firstPoint="232" secondPoint="206" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <line id="613" firstPoint="235" secondPoint="206" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <line id="614" firstPoint="242" secondPoint="240" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <line id="615" firstPoint="240" secondPoint="237" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <line id="616" firstPoint="237" secondPoint="206" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <line id="617" firstPoint="240" secondPoint="206" lineColor="black" lineType="none" lineWeight="0.35"/>
-            <spline id="243" type="pathInteractive" color="darkBlue" lineWeight="0.35" penStyle="solidLine">
-                <pathPoint pSpline="241" angle1="AngleLine_mI_mI1+180" length1="0" angle2="AngleLine_mI_mI1" length2="Line_mI1_mG3/3"/>
-                <pathPoint pSpline="235" angle1="AngleLine_mG2_mI" length1="Line_mI1_mG3/3" angle2="AngleLine_mG2_mI+180" length2="Line_mG3_mG2/3"/>
-                <pathPoint pSpline="232" angle1="AngleLine_mG3_mE+180" length1="Line_mG3_mG2/3" angle2="AngleLine_mG3_mE" length2="Line_mG2_mE/3"/>
-                <pathPoint pSpline="206" angle1="180" length1="Line_mG2_mE/3" angle2="0" length2="0"/>
-            </spline>
-            <spline id="245" type="pathInteractive" color="darkBlue" lineWeight="0.35" penStyle="solidLine">
-                <pathPoint pSpline="242" angle1="AngleLine_mIp_mIp1+180" length1="0" angle2="AngleLine_mIp_mIp1" length2="Line_mIp1_mH3/3"/>
-                <pathPoint pSpline="240" angle1="AngleLine_mH2_mIp" length1="Line_mIp1_mH3/3" angle2="AngleLine_mH2_mIp+180" length2="Line_mH3_mH2/3"/>
-                <pathPoint pSpline="237" angle1="AngleLine_mH3_mE+180" length1="Line_mH3_mH2/3" angle2="AngleLine_mH3_mE" length2="Line_mH2_mE/3"/>
-                <pathPoint pSpline="206" angle1="0" length1="Line_mH2_mE/3" angle2="180" length2="0"/>
-            </spline>
-            <point id="493" name="mCr7" type="cutSplinePath" splinePath="243" length="7+((Line_mI_mI1+SplPath_mI1_mE+SplPath_mIp1_mE+Line_mIp_mIp1)-(#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d))/2-Line_mI_mI1" mx="0.132292" my="0.264583" showPointName="true"/>
-            <point id="494" name="mCr8" type="cutSplinePath" splinePath="245" length="8+((Line_mI_mI1+SplPath_mI1_mE+SplPath_mIp1_mE+Line_mIp_mIp1)-(#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d))/2-Line_mIp_mIp1" mx="0.132292" my="0.264583" showPointName="true"/>
-            <point id="495" name="mCr9" type="cutSplinePath" splinePath="245" length="9+((Line_mI_mI1+SplPath_mI1_mE+SplPath_mIp1_mE+Line_mIp_mIp1)-(#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d))/2-Line_mIp_mIp1" mx="0.132292" my="0.264583" showPointName="true"/>
-            <point id="496" name="mCrE" type="cutSplinePath" splinePath="245" length="#plat_emm_dev+SplPath_vKp_vC3d+((Line_mI_mI1+SplPath_mI1_mE+SplPath_mIp1_mE+Line_mIp_mIp1)-(#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d))/2-Line_mIp_mIp1" mx="0.132292" my="0.264583" showPointName="true"/>
+            <spline angle1="9.9613" angle2="180" color="darkBlue" id="243" length1="9.5000" length2="13.0000" lineWeight="0.35" penStyle="solidLine" point1="241" point4="206" type="simpleInteractive"/>
+            <spline angle1="170.0387" angle2="0" color="darkBlue" id="245" length1="7.9000" length2="8.5000" lineWeight="0.35" penStyle="solidLine" point1="242" point4="206" type="simpleInteractive"/>
+            <point id="493" name="mCr7" type="cutSpline" spline="243" length="7+((Line_mI_mI1+Spl_mI1_mE+Spl_mIp1_mE+Line_mIp_mIp1)-(#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d))/2-Line_mI_mI1" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="494" name="mCr8" type="cutSpline" spline="245" length="8+((Line_mI_mI1+Spl_mI1_mE+Spl_mIp1_mE+Line_mIp_mIp1)-(#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d))/2-Line_mIp_mIp1" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="495" name="mCr9" type="cutSpline" spline="245" length="9+((Line_mI_mI1+Spl_mI1_mE+Spl_mIp1_mE+Line_mIp_mIp1)-(#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d))/2-Line_mIp_mIp1" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="496" name="mCrE" type="cutSpline" spline="245" length="#plat_emm_dev+SplPath_vKp_vC3d+((Line_mI_mI1+Spl_mI1_mE+Spl_mIp1_mE+Line_mIp_mIp1)-(#plat_emm_dos+SplPath_vKpp_vC3b+#plat_emm_dev+SplPath_vKp_vC3d))/2-Line_mIp_mIp1" mx="0.132292" my="0.264583" showPointName="true"/>
         </calculation>
         <modeling>
             <point id="497" idObject="225" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
             <point id="498" idObject="217" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
             <point id="499" idObject="241" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
-            <spline id="500" idObject="243" inUse="true" type="modelingPath"/>
+            <spline id="500" idObject="243" inUse="true" type="modelingSpline"/>
             <point id="501" idObject="493" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
-            <spline id="502" idObject="243" inUse="true" type="modelingPath"/>
+            <spline id="502" idObject="243" inUse="true" type="modelingSpline"/>
             <point id="503" idObject="206" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
-            <spline id="504" idObject="245" inUse="true" type="modelingPath"/>
+            <spline id="504" idObject="245" inUse="true" type="modelingSpline"/>
             <point id="505" idObject="496" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
-            <spline id="506" idObject="245" inUse="true" type="modelingPath"/>
+            <spline id="506" idObject="245" inUse="true" type="modelingSpline"/>
             <point id="507" idObject="495" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
-            <spline id="508" idObject="245" inUse="true" type="modelingPath"/>
+            <spline id="508" idObject="245" inUse="true" type="modelingSpline"/>
             <point id="509" idObject="494" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
-            <spline id="510" idObject="245" inUse="true" type="modelingPath"/>
+            <spline id="510" idObject="245" inUse="true" type="modelingSpline"/>
             <point id="511" idObject="242" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
             <point id="512" idObject="218" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
             <point id="513" idObject="226" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
@@ -354,17 +333,17 @@
                     <node idObject="497" before="2.5" type="NodePoint"/>
                     <node idObject="498" type="NodePoint"/>
                     <node idObject="499" type="NodePoint"/>
-                    <node idObject="500" reverse="0" type="NodeSplinePath"/>
+                    <node idObject="500" reverse="0" type="NodeSpline"/>
                     <node idObject="501" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.4" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true" type="NodePoint"/>
-                    <node idObject="502" reverse="0" type="NodeSplinePath"/>
+                    <node idObject="502" reverse="0" type="NodeSpline"/>
                     <node idObject="503" type="NodePoint"/>
-                    <node idObject="504" reverse="1" type="NodeSplinePath"/>
+                    <node idObject="504" reverse="1" type="NodeSpline"/>
                     <node idObject="505" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.4" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true" type="NodePoint"/>
-                    <node idObject="506" reverse="1" type="NodeSplinePath"/>
+                    <node idObject="506" reverse="1" type="NodeSpline"/>
                     <node idObject="507" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.4" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true" type="NodePoint"/>
-                    <node idObject="508" reverse="1" type="NodeSplinePath"/>
+                    <node idObject="508" reverse="1" type="NodeSpline"/>
                     <node idObject="509" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.4" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true" type="NodePoint"/>
-                    <node idObject="510" reverse="1" type="NodeSplinePath"/>
+                    <node idObject="510" reverse="1" type="NodeSpline"/>
                     <node idObject="511" type="NodePoint"/>
                     <node idObject="512" type="NodePoint"/>
                     <node idObject="513" after="2.5" type="NodePoint"/>
