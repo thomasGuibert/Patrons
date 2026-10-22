@@ -183,6 +183,28 @@ Avec les mesures de Thomas, l'emmanchure fait 56,35 (56,44 avant toute correctio
 52,85 : embu −3,5, comme sur le T-shirt essayé ; en T40 l'embu est de 0. Les crans répartissent
 l'écart moitié devant, moitié dos.
 
+### Coin au point de carrure (2026-10-22, nuit)
+
+Thomas : « il y a toujours un coin au centre de l'emmanchure et ne bouge pas les points, aucun ! ».
+Le coin venait de la courbe, pas des points : au-dessus du point de carrure (vD1 / vD2, D1 / D2 au
+fond) l'emmanchure est presque droite, en dessous elle tournait de 30 à 45° sur 1,5 cm (l'ancienne
+courbe aussi). Correction :
+- au point de carrure, la tangente reste verticale (la carrure reste le point le plus rentré) mais
+  la poignée vers le bas est longue (`#rond_emm` = 0,6 de la descente jusqu'au coin) et celle du
+  dessous de bras courte (`#rond_emm_bas` = 0,2) : le virage part en douceur et se fait vers le
+  dessous de bras (24° sur 1,5 cm avec les mesures de Thomas, contre 31 et 44 avant) ;
+- contrepartie : le bas d'emmanchure passe un peu plus près du coin (0,6 devant, 1,1 dos avec les
+  mesures de Thomas ; 0,3 / 0,6 en T44 ; rien en T36) et l'emmanchure s'allonge d'environ 0,6 ;
+- essais écartés : tangente le long de la corde épaule / dessous de bras (l'emmanchure dépasse la
+  carrure), point de passage supplémentaire au creux d'origine (courbe en S) ;
+- aucun point de construction ne bouge : la manche (mB) se règle sur les anciennes emmanchures,
+  gardées en courbes de construction (pointillés : 650 et 651 au haut, 606 et 607 au fond) ;
+  vérifié point par point en T36, T44, T52 et aux mesures de Thomas. Seuls bougent les points
+  posés sur une courbe modifiée : crans (vCr7-9, mCr7-9, mCrE) et, à cause de l'encolure corrigée
+  (`#degag_epaule` = 2), les points d'encolure et de bande.
+
+Avec les mesures de Thomas : emmanchure 57,2, tête 53,1, embu −4,1.
+
 ## Contrôles
 - Épaules devant et dos de même longueur (vHpvKp = vHppvKpp).
 - Emmanchure devant + dos (après déplacement d'épaule) = tour lu par la manche ; embu 0,5 à 1.
