@@ -199,16 +199,16 @@ class Pattern:
         elif el.tag == 'spline':
             if t == 'simpleInteractive':
                 p1, p4 = self.g(el, 'point1'), self.g(el, 'point4')
-                pts = bez(p1, polar(p1, float(el.get('angle1')), float(el.get('length1'))),
-                          polar(p4, float(el.get('angle2')), float(el.get('length2'))), p4)
+                pts = bez(p1, polar(p1, self.ev(el.get('angle1')), self.ev(el.get('length1'))),
+                          polar(p4, self.ev(el.get('angle2')), self.ev(el.get('length2'))), p4)
                 nm = f"Spl_{self.name[el.get('point1')]}_{self.name[el.get('point4')]}"
             elif t == 'pathInteractive':
                 pp = list(el.iter('pathPoint'))
                 pts = []
                 for a, b in zip(pp, pp[1:]):
                     P0, P3 = self.P[a.get('pSpline')], self.P[b.get('pSpline')]
-                    seg = bez(P0, polar(P0, float(a.get('angle2')), float(a.get('length2'))),
-                              polar(P3, float(b.get('angle1')), float(b.get('length1'))), P3)
+                    seg = bez(P0, polar(P0, self.ev(a.get('angle2')), self.ev(a.get('length2'))),
+                              polar(P3, self.ev(b.get('angle1')), self.ev(b.get('length1'))), P3)
                     pts += seg if not pts else seg[1:]
                 nm = f"SplPath_{self.name[pp[0].get('pSpline')]}_{self.name[pp[-1].get('pSpline')]}"
             else:

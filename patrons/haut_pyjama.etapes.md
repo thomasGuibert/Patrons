@@ -130,6 +130,43 @@ Valeurs T44 mesurées hors Seamly :
 Réglages d'embu évalués (poignées recalculées à chaque fois) : creux G3 1 → 1,5 : 0,62 ;
 → 2 : 0,89 ; hauteur de tête AI 2/3 → 0,70 : 1,25 (≈ 0,68 pour 0,75).
 
+## Corrections après essayage (2026-10-22)
+
+Essayage du T-shirt sur mesure de Thomas (mesures du 15/10 : poitrine 115, carrures 36,5 / 34,5…).
+Défauts relevés : emmanchure qui ne correspond pas à la manche, arrondi avec un angle, encolure un
+peu grande, crans faux. Causes (mesurées hors Seamly, puis sur l'export Seamly) : poignées de
+courbes numériques, réglées en T44, qui ne suivaient pas les mesures ; largeur de manche du livre
+(3/4 du tour + 1) qui donne une tête trop courte dès que l'emmanchure s'allonge.
+
+| Avec les mesures de Thomas | Avant | Après |
+|---|---|---|
+| Angle emmanchure à la couture d'épaule | 25° | 0° |
+| Angle au dessous de bras (côté / platitudes) | 5° (13° en T44) | 0° |
+| Embu (tête − emmanchure) | −3,4 | +0,63 |
+| Largeur de manche AB | 43,3 | 50,4 |
+| Encolure (couture, totale) | 75,5 | 74,2 |
+
+Changements (même chose dans `fond_base_maille.sm2d`, où l'angle à l'épaule était de 37°) :
+- Emmanchures : perpendiculaires à l'épaule au bout d'épaule, verticales au point de carrure,
+  dans le prolongement de la platitude au dessous de bras ; bas arrondi par `#rond_emm` (0,55 des
+  côtés du coin vD1c / vD2c). vKp est désormais le pied de la perpendiculaire de 1,8 en vK (plus
+  l'intersection avec l'ancienne courbe), et l'emmanchure devant part de vKp.
+- Côté : tangente = corde vC2–vB1 au dessous de bras (platitudes à 90°), verticale en vA1.
+- Tête de manche : chemin I1 G3 G2 E (dos) et I'1 H3 H2 E (devant), comme au livre, tangentes
+  calculées. `#creux_tete_dos` revient à 1 (livre) : le réglage de la décision 8 n'a plus lieu
+  d'être.
+- **Largeur de manche** (remplace 3/4 du tour + 1) : AB = 2 √(c² − AI²), où la demi-diagonale
+  c = (emmanchure + `#embu`) × (`#tete_r0` + `#tete_rk` (pente − 1,5) + `#tete_rt` (emmanchure +
+  embu − 50)), pente = √(T²/4 − AI²)/AI. Coefficients ajustés par régression sur 36-44 femme,
+  les mesures de Thomas et douze jeux de mesures aléatoires : embu 0,6 à 1,0 partout (0,63 à
+  0,78 en 36-44 femme et 44-54 homme). Hauteur de tête AI = 2/3 de la profondeur d'emmanchure,
+  inchangée.
+- Encolure V : `#degag_epaule` 3 → 2 (encolure un peu grande) ; poignées en formules, vTg lit
+  la même tangente que la courbe.
+- Crans : cran de tête placé pour que tête devant (de I' au cran) = emmanchure devant + 1/2 embu
+  (au lieu de E décalé de 1,8, qui laissait 1,4 cm d'écart en T44) ; les crans du dessous de bras
+  sont inchangés (7, 8, 9 + 1/2 embu) et deviennent justes avec un embu positif.
+
 ## Contrôles
 - Épaules devant et dos de même longueur (vHpvKp = vHppvKpp).
 - Emmanchure devant + dos (après déplacement d'épaule) = tour lu par la manche ; embu 0,5 à 1.
