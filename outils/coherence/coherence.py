@@ -7,6 +7,9 @@ Pour chaque patron décrit par patrons/<patron>.coherence.toml, et pour chaque j
 (tailles des gammes du fichier, profils de mesures/profils-essai.toml) :
 1. Courbes sans angle : pas de coin le long d'une courbe, ni aux raccords entre pièces une fois
    cousues (les angles de part et d'autre de la couture font 180°), ni au pli.
+   Courbes sans virage brusque : sans coin, une courbe peut tourner d'un coup (presque droite
+   d'un côté d'un point, très courbe de l'autre), et l'œil y voit un coin. On compare le virage
+   sur VIRAGE_LONG cm avant et après chaque point de la courbe.
 2. Points immobiles : chaque point du tracé est à la place notée dans
    patrons/references/<patron>.json. Après un déplacement voulu : --maj-references.
 3. Longueurs : les deux bords d'une couture ont la longueur attendue (écart b − a dans la plage ;
@@ -27,6 +30,8 @@ PROFILS = os.path.join(RACINE, 'mesures', 'profils-essai.toml')
 BASE_PROFILS = os.path.join(RACINE, 'mesures', 'femme', 'T40.smms')
 
 ANGLE_MAX = 1.0       # degrés, coin toléré sur une courbe ou à un raccord
+VIRAGE_MAX = 15.0     # degrés, écart toléré entre le virage avant et après un point de la courbe
+VIRAGE_LONG = 1.5     # cm, longueur sur laquelle on mesure le virage de part et d'autre
 POINT_MAX = 0.005     # cm, déplacement toléré d'un point (0,05 mm)
 ECART_COUTURE = (-0.1, 0.1)   # cm, b − a par défaut
 CRAN_MAX = 0.15       # cm, au-delà de la part d'écart de longueur
@@ -107,6 +112,37 @@ def angles_courbe(pcs, c):
     for cle, (piece, pt) in (('pli_debut', (tr[0][0], tr[0][1])), ('pli_fin', (tr[-1][0], tr[-1][2]))):
         if c.get(cle):
             res.append((abs(2 * angle_interieur(pcs[piece], pt) - 180), f'pli {piece} {pt}'))
+    return res
+
+
+def reechantillonner(pts, pas):
+    res, reste = [pts[0]], 0.0
+    for a, b in zip(pts, pts[1:]):
+        d, t = math.dist(a, b), pas - reste
+        while t <= d:
+            res.append((a[0] + (b[0] - a[0]) * t / d, a[1] + (b[1] - a[1]) * t / d))
+            t += pas
+        reste = d - (t - pas)
+    return res
+
+
+def virages_courbe(pcs, c, pas=0.05):
+    """[(saut en degrés, où)] : pour chaque tronçon, le point où le virage change le plus d'un coup."""
+    n = round(VIRAGE_LONG / pas)
+    res = []
+    for piece, a, b in c['troncons']:
+        p = pcs[piece]
+        q = reechantillonner(p.troncon(a, b)[0], pas)
+        if len(q) < 2 * n + 2:
+            continue
+        dirs = [math.atan2(q[i + 1][1] - q[i][1], q[i + 1][0] - q[i][0]) for i in range(len(q) - 1)]
+        tour = lambda u, v: math.degrees((v - u + math.pi) % (2 * math.pi) - math.pi)
+        pire = max(((abs(tour(dirs[i], dirs[i + n - 1]) - tour(dirs[i - n], dirs[i])), i)
+                    for i in range(n, len(dirs) - n)), default=(0.0, None))
+        if pire[1] is not None:
+            pt = q[pire[1]]
+            i = min(range(len(p.pts)), key=lambda k: math.dist(p.pts[k], pt))
+            res.append((pire[0], f'{piece} {proche(p, i)}'))
     return res
 
 
@@ -250,6 +286,7 @@ def controler(nom, maj, avec_seamly, rapport):
     nouvelles_refs = {}
 
     angles = {c['nom']: [] for c in courbes}        # nom -> [(angle, où, jeu)]
+    virages = {c['nom']: [] for c in courbes}       # nom -> [(saut, où, jeu)]
     ecarts = {c['nom']: [] for c in coutures}       # nom -> [(écart, jeu)]
     crans = {c['nom']: [] for c in coutures}        # nom -> [message]
     orphelins, deplaces, nouveaux, seamly, erreurs = set(), [], set(), [], []
@@ -262,6 +299,7 @@ def controler(nom, maj, avec_seamly, rapport):
                 pcs = pieces(motif)
                 for c in courbes:
                     angles[c['nom']] += [(a, ou, jeu) for a, ou in angles_courbe(pcs, c)]
+                    virages[c['nom']] += [(a, ou, jeu) for a, ou in virages_courbe(pcs, c)]
                 for c in coutures:
                     e, msgs = controler_couture(pcs, c, motif)
                     ecarts[c['nom']].append((e, jeu))
@@ -322,6 +360,19 @@ def controler(nom, maj, avec_seamly, rapport):
         elif pires:
             a, ou, jeu = pires[0]
             rapport.ok(f'{c["nom"]} : {fr(a, 1)}° au plus ({jeu}, {ou})')
+    for c in courbes:
+        tol = c.get('virage_max', VIRAGE_MAX)
+        par_jeu = {}
+        for a, ou, jeu in virages[c['nom']]:
+            if a > tol:
+                par_jeu.setdefault(jeu, []).append(f'{fr(a, 0)}° ({ou})')
+        if par_jeu:
+            rapport.ko(f'{c["nom"]} : virages brusques (le virage change de plus de {fr(tol, 0)}° '
+                       f'entre les {fr(VIRAGE_LONG, 1)} cm avant et après le point)',
+                       [f'{jeu} : {", ".join(m)}' for jeu, m in par_jeu.items()])
+        elif virages[c['nom']]:
+            a, ou, jeu = max(virages[c['nom']], key=lambda x: x[0])
+            rapport.ok(f'{c["nom"]} : pas de virage brusque ({fr(a, 0)}° au plus, {jeu}, {ou})')
 
     rapport.titre('**2. Points immobiles**')
     if maj:
