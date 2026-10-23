@@ -12,6 +12,9 @@ Règles fixées par Thomas :
   pièces seulement déplacées ou tournées d'un quart de tour.
 - **Limiter les feuilles à scotcher** : un assemblage par grande pièce, portrait ou paysage,
   le moins de feuilles puis le moins de raccords (le script le fait).
+- **Feuilles** (Thomas, 2026-10-23) : marge blanche de 1 cm à droite et en bas (0,5 cm à gauche
+  et en haut), repères en biais à cheval sur chaque raccord, « Droit fil » écrit le long de la
+  flèche. Le PDF n'ajoute que ces annotations, jamais de géométrie.
 - Ne jamais modifier l'état du dépôt `D:\Document\repos\Patrons` (pas de checkout, commit,
   reset, stash, worktree) sans son accord.
 

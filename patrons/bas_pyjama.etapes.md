@@ -109,6 +109,13 @@ Valeurs T44 mesurées hors Seamly :
 - 2026-10-07 : élastique → 3 cm (`#haut_elastique`), ceinture coupée 7, finie 3,5. Fichier
   d'étapes validé, tracé demandé.
 
+- 2026-10-23 (annotations de Thomas sur le PDF imprimé) : coutures 0,6 (au lieu de 0,7) ;
+  ceinture coupée **au pli** au milieu devant (demi-bande cbA-cbB-cbD-cbC, pas de couture sur le
+  pli cbB-cbD, cran de côté en cbS1) ; crans au genou (D1e, D2e simples sur le devant, D3e, D4e
+  doubles sur le dos) ; étiquettes agrandies et accrochées à des points d'ancrage (dvE*, dvP*,
+  dsE*, dsP* depuis C1e / C4e, cbE*, cbF* depuis le pli) pour rester hors du milieu de la pièce,
+  où tombe le raccord de feuilles.
+
 ## Questions ouvertes
 1. ~~Fichier cible~~, 2. ~~Poches~~ : tranchées (voir Décisions).
 3. ~~Valeurs d'élargissement~~ : tranchée (voir Décisions).

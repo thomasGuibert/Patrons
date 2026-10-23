@@ -20,7 +20,9 @@ from reportlab.lib.utils import simpleSplit
 NS = '{http://www.w3.org/2000/svg}'
 PT_PX = 72 / 96          # Seamly exporte en pixels à 96 ppp
 CM = 72 / 2.54           # points PDF par cm
-MARGE = 0.5              # marge de page (cm) : imprimable par les imprimantes courantes
+MARGE = 0.5              # marge de page à gauche et en haut (cm)
+MARGE_DB = 1.0           # à droite et en bas (cm) : certaines imprimantes y rognent davantage
+REPERE = 0.7             # demi-longueur (cm) des repères en biais posés sur les raccords de feuilles
 JEU = 0.2                # jeu minimal entre une grande pièce et le bord de son assemblage (cm)
 ECART = 0.5              # écart autour des petites pièces logées dans la place libre (cm)
 PX_CM = 96 / 2.54
@@ -84,21 +86,25 @@ def lire_svg(path):
 
 
 def infos_sm2d(path):
-    """Texte de notice seulement : taille, et « couper n fois (au pli) » par pièce."""
+    """Texte de notice seulement : taille, « couper n fois (au pli) » par pièce, largeur de couture."""
     if not path:
-        return '', {}
+        return '', {}, ''
+    largeurs = set()
     racine = ET.parse(path).getroot()
     m = racine.find('measurements')
     taille = re.sub(r'\D', '', os.path.basename(m.text)) if m is not None and m.text else ''
     coupe = {}
     for pc in racine.iter('piece'):
         d = pc.find('data')
+        if pc.get('seamAllowance') == 'true':
+            largeurs.add(float(pc.get('width')))
         if d is None:
             continue
         q = int(d.get('quantity') or 1)
         coupe[pc.get('name')] = ('Couper %d fois au pli' % q) if d.get('onFold') == 'true' else \
             ('Couper %d fois (en symétrie)' % q if q > 1 else 'Couper 1 fois')
-    return taille, coupe
+    couture = ('%g' % largeurs.pop()).replace('.', ',') if len(largeurs) == 1 else ''
+    return taille, coupe, couture
 
 
 FORMATS = {'A4': A4, 'A3': A3}
@@ -129,7 +135,7 @@ def assemblages(pieces):
         pc = restantes.pop(0)
         choix = []
         for nom, (pw, ph) in FEUILLES.items():
-            uw, uh = pw / CM - 2 * MARGE, ph / CM - 2 * MARGE
+            uw, uh = pw / CM - MARGE - MARGE_DB, ph / CM - MARGE - MARGE_DB
             for rot in (False, True):
                 l, h = (pc['h0'], pc['l0']) if rot else (pc['l0'], pc['h0'])
                 nc, nl = math.ceil((l + 2 * JEU) / uw), math.ceil((h + 2 * JEU) / uh)
@@ -157,10 +163,33 @@ def assemblages(pieces):
     return blocs
 
 
+def droit_fil(pc):
+    """Extrémités (px) de la flèche de droit-fil : seul tracé plein en pair-impair (les textes
+    sont pleins en non-zéro, les contours ne sont pas pleins)."""
+    for style, cmds in pc['chemins']:
+        if style.get('fill', 'black') != 'none' and style.get('fill-rule') == 'evenodd':
+            pts = [(v[-2], v[-1]) for op, v in cmds if v]
+            if len(pts) >= 2:
+                return max(((a, b) for a in pts for b in pts), key=lambda ab: math.dist(*ab))
+    return None
+
+
 def dessiner(c, pieces, ox, oy, e=1.0, detail=True):
     """Bloc -> PDF : (ox, oy) = position PDF du coin haut-gauche du bloc, e = échelle."""
     for pc in pieces:
         P = lambda px, py: (lambda q: (ox + q[0] * CM * e, oy - q[1] * CM * e))(local(pc, px, py))
+        fil = droit_fil(pc) if detail else None
+        if fil:
+            # légende « Droit fil » le long de la flèche, lisible de bas en haut ou de gauche à droite
+            (x0, y0), (x1, y1) = P(*fil[0]), P(*fil[1])
+            if x1 < x0 - 0.5 or (abs(x1 - x0) <= 0.5 and y1 < y0):
+                x0, y0, x1, y1 = x1, y1, x0, y0
+            a = math.atan2(y1 - y0, x1 - x0)
+            c.saveState()
+            c.translate((x0 + x1) / 2, (y0 + y1) / 2); c.rotate(math.degrees(a))
+            c.setFillGray(0); c.setFont('Helvetica', 12)
+            c.drawCentredString(0, 0.25 * CM, 'Droit fil')
+            c.restoreState()
         for style, cmds in pc['chemins']:
             remplir = style.get('fill', 'black') != 'none'
             if not detail and remplir:
@@ -204,7 +233,7 @@ def exporter(svg, dst, titre, sm2d=None, format='A4', taille=None):
     global FEUILLES
     FEUILLES = {'portrait': FORMATS[format], 'paysage': FORMATS[format][::-1]}
     pieces = lire_svg(svg)
-    taille_sm2d, coupe = infos_sm2d(sm2d)
+    taille_sm2d, coupe, couture = infos_sm2d(sm2d)
     taille = taille or taille_sm2d          # les mesures de l'export priment sur celles liées au .sm2d
     # 40 → « Taille 40 », sur-mesure → « Sur-mesure », nom donné en ligne (T-Thomas) → « Taille T-Thomas »
     libelle = (taille.capitalize() if taille == 'sur-mesure' else 'Taille %s' % taille) if taille else ''
@@ -234,8 +263,9 @@ def exporter(svg, dst, titre, sm2d=None, format='A4', taille=None):
     notice = ("Imprimer à 100 % (« taille réelle », sans ajustement à la page). Vérifier le carré de "
               "contrôle ci-contre : 5 cm de côté. Chaque pièce a ses propres feuilles : couper chaque "
               "feuille sur le cadre gris là où elle touche une voisine, puis scotcher bord à bord selon "
-              "le plan (lettre = rangée, chiffre = colonne). Tracé extérieur : ligne de coupe, coutures "
-              "comprises ; tracé intérieur : ligne de couture.")
+              "le plan (lettre = rangée, chiffre = colonne), en prolongeant les repères en biais d'une "
+              "feuille à l'autre. Tracé extérieur : ligne de coupe, coutures%s comprises ; tracé "
+              "intérieur : ligne de couture.").replace('coutures%s', 'coutures' + (' de %s cm' % couture if couture else ''))
     c.setFont('Helvetica', 10)
     for t in simpleSplit(notice, 'Helvetica', 10, 12 * CM):
         c.drawString(1.8 * CM, y, t); y -= 13
@@ -289,14 +319,28 @@ def exporter(svg, dst, titre, sm2d=None, format='A4', taille=None):
         uw, uh = b['uw'], b['uh']
         c.setPageSize((pw, ph))
         c.saveState()
-        p = c.beginPath(); p.rect(MARGE * CM, MARGE * CM, uw * CM, uh * CM)
+        x0, y0 = MARGE, MARGE_DB          # coin bas-gauche du cadre (cm)
+        p = c.beginPath(); p.rect(x0 * CM, y0 * CM, uw * CM, uh * CM)
         c.clipPath(p, stroke=0, fill=0)
         dessiner(c, b['pieces'], (MARGE - k * uw) * CM, ph - (MARGE - r * uh) * CM)
+        # repères en biais à cheval sur chaque bord à raccorder : chaque feuille en porte une
+        # moitié, les deux moitiés se prolongent une fois les feuilles scotchées
+        c.setLineWidth(1); c.setStrokeGray(0)
+        d = REPERE * CM
+        for (rr, kk), bord in (((r - 1, k), 'haut'), ((r + 1, k), 'bas'), ((r, k - 1), 'gauche'), ((r, k + 1), 'droite')):
+            if (rr, kk) not in b['pleines']:
+                continue
+            for f in (0.25, 0.75):
+                if bord in ('haut', 'bas'):
+                    X, Y = (x0 + f * uw) * CM, (y0 + (uh if bord == 'haut' else 0)) * CM
+                else:
+                    X, Y = (x0 + (0 if bord == 'gauche' else uw)) * CM, (y0 + (1 - f) * uh) * CM
+                c.line(X - d, Y - d, X + d, Y + d)
         c.restoreState()
         c.setLineWidth(0.3); c.setStrokeGray(0.55)
-        c.rect(MARGE * CM, MARGE * CM, uw * CM, uh * CM)
-        c.setStrokeGray(0); c.setFillGray(0.3); c.setFont('Helvetica', 7)
-        c.drawString(MARGE * CM + 4, ph - MARGE * CM - 9, '%s · %s · feuille %s · page %d/%d' % (
+        c.rect(x0 * CM, y0 * CM, uw * CM, uh * CM)
+        c.setStrokeGray(0); c.setFillGray(0.15); c.setFont('Helvetica', 9)
+        c.drawString(x0 * CM + 4, ph - MARGE * CM - 11, '%s · %s · feuille %s · page %d/%d' % (
             titre, b['nom'], nomp(r, k), i + 2, len(pages) + 1))
         # nom de la voisine sur chaque bord à raccorder
         for (rr, kk), cote in (((r - 1, k), 'haut'), ((r + 1, k), 'bas'), ((r, k - 1), 'gauche'), ((r, k + 1), 'droite')):
@@ -305,13 +349,13 @@ def exporter(svg, dst, titre, sm2d=None, format='A4', taille=None):
             t = 'raccord ' + nomp(rr, kk)
             c.saveState()
             if cote == 'haut':
-                c.translate(pw / 2, ph - MARGE * CM - 9)
+                c.translate((x0 + uw / 2) * CM, ph - MARGE * CM - 22)
             elif cote == 'bas':
-                c.translate(pw / 2, MARGE * CM + 3)
+                c.translate((x0 + uw / 2) * CM, y0 * CM + 3)
             elif cote == 'gauche':
-                c.translate(MARGE * CM + 9, ph / 2); c.rotate(90)
+                c.translate(x0 * CM + 9, (y0 + uh / 2) * CM); c.rotate(90)
             else:
-                c.translate(MARGE * CM + uw * CM - 3, ph / 2); c.rotate(90)
+                c.translate((x0 + uw) * CM - 3, (y0 + uh / 2) * CM); c.rotate(90)
             c.drawCentredString(0, 0, t); c.restoreState()
         c.setFillGray(0)
         c.showPage()
