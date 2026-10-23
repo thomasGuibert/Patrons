@@ -12,6 +12,11 @@ Mesures (sans option : celles liées au .sm2d, ex. T44) :
   --nom Thomas              nom de la taille sur mesure : « T-Thomas » sur l'étiquette du patron
                             et la notice (sans nom : « Sur mesure » au lieu du « T0 » de Seamly)
 
+Dossier technique (patrons/<nom>.dossier.toml requis) :
+  --montage pro|amateur     PDF final = dossier (gamme de montage en tableau, ou pas à pas) + pièces
+  --dossiers <dossier>      écrit aussi les dossiers seuls, dans les deux versions :
+                            <dossier>/<nom>-<taille>-pro.pdf et -amateur.pdf (site)
+
 Sortie : <dossier_sortie>/<nom>-<taille|sur-mesure>.pdf (A4), et -a3.pdf avec --a3.
 Le .sm2d n'est pas modifié : Seamly travaille sur une copie.
 """
@@ -20,6 +25,7 @@ import argparse, os, re, shutil, subprocess, sys, tempfile, time
 ICI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(ICI, '..', 'tracer-sm2d'))
 from pdf_depuis_seamly import exporter as en_pdf  # noqa: E402
+from dossier import dossier as en_dossier, joindre  # noqa: E402
 
 SEAMLY = os.environ.get('SEAMLY2D', r'C:\Program Files (x86)\Seamly2D\seamly2d.exe')
 NOM = re.compile(r"^[^\W_][\w '’-]{0,19}$")
@@ -63,6 +69,8 @@ def main():
     ap.add_argument('--mesures', metavar='FICHIER')
     ap.add_argument('--nom')
     ap.add_argument('--a3', action='store_true')
+    ap.add_argument('--montage', choices=('pro', 'amateur'))
+    ap.add_argument('--dossiers', metavar='DOSSIER')
     a = ap.parse_args()
     if a.nom is not None and not NOM.match(a.nom):
         ap.error('--nom : 1 à 20 lettres, chiffres, espaces, tirets ou apostrophes')
@@ -83,6 +91,7 @@ def main():
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         shutil.copy(liees, dst)
 
+        valeurs_de = liees                    # fichier dont le dossier lit les mesures du corps
         if a.mesure:
             valeurs = {}
             for kv in a.mesure:
@@ -91,13 +100,17 @@ def main():
             vit = os.path.join(tmp, 'sur_mesure.vit')
             ecrire_vit(liees, a.taille, valeurs, vit)
             opts, libelle = ['-m', vit], 'sur-mesure'
+            valeurs_de = vit
         elif a.mesures:
             fichier = os.path.abspath(a.mesures)
             opts = ['-m', fichier]
+            valeurs_de = fichier
             t = re.search(r'<size base="(\d+)"', open(fichier, encoding='utf-8').read())
             libelle = t.group(1) if fichier.endswith('.smms') and t else 'sur-mesure'
         elif a.taille:
             opts, libelle = ['--gsize', str(a.taille)], str(a.taille)
+            valeurs_de = os.path.join(tmp, 'taille.vit')
+            ecrire_vit(liees, a.taille, {}, valeurs_de)
         else:
             opts, libelle = [], re.sub(r'\D', '', os.path.basename(liees))
 
@@ -121,8 +134,21 @@ def main():
 
         os.makedirs(a.sortie, exist_ok=True)
         base = os.path.join(a.sortie, f'{nom}-{libelle}')
+        # gamme (femme, homme) : dossier du fichier de mesures, pour le tableau des tailles
+        gamme = os.path.basename(os.path.dirname(liees if a.mesure or not a.mesures else os.path.abspath(a.mesures)))
+        gamme = gamme if gamme in ('femme', 'homme') else None
+        dossier_de = lambda montage, dst: en_dossier(svg, a.sm2d, dst, montage, valeurs_de, taille, gamme)
+        if a.dossiers:
+            os.makedirs(a.dossiers, exist_ok=True)
+            for montage in ('pro', 'amateur'):
+                chemin = os.path.join(a.dossiers, f'{nom}-{libelle}-{montage}.pdf')
+                print(f'{chemin} : {dossier_de(montage, chemin)} pages')
         for fmt, chemin in [('A4', base + '.pdf')] + ([('A3', base + '-a3.pdf')] if a.a3 else []):
             n = en_pdf(svg, chemin, a.titre, copie, fmt, taille)
+            if a.montage:
+                d = os.path.join(tmp, 'dossier.pdf')
+                n += dossier_de(a.montage, d)
+                joindre(d, chemin, chemin)
             print(f'{chemin} : {n} pages')
     finally:
         shutil.rmtree(tmp, ignore_errors=True)

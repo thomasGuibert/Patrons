@@ -162,6 +162,7 @@ button.bouton { cursor: pointer; display: inline-flex; align-items: center; gap:
 .nom-taille .champ:focus-within { border-bottom-color: var(--garance); }
 .nom-taille input[aria-invalid="true"] { color: var(--garance); }
 .nom-taille small { font-size: 13.5px; color: var(--sepia); font-style: italic; }
+.aide-montage { font-size: 13.5px; color: var(--sepia); font-style: italic; }
 .a-completer, .attente { font-size: 15px; color: var(--sepia); font-style: italic; }
 .a-completer a { color: var(--garance); }
 

@@ -34,6 +34,8 @@ export type Patron = {
   mesures: Mesure[];
   /** Toutes les mesures du corps dont le patron a besoin, à saisir pour le sur-mesure. */
   saisie: Mesure[];
+  /** Le PDF commence par un dossier technique (public/pdf/<gamme>/dossier/), gamme de montage au choix. */
+  dossier?: boolean;
 };
 
 export const patrons: Patron[] = [
@@ -48,6 +50,7 @@ export const patrons: Patron[] = [
       "Un T-shirt souple à encolure V et manches longues, à coudre dans un jersey.",
     mesures: ["poitrine", "taille", "hanches"],
     saisie: mesuresHaut,
+    dossier: true,
     caracteristiques: [
       { libelle: "Pièces", valeur: "Devant, dos, manche ×2, bande d'encolure" },
     ],
@@ -62,6 +65,7 @@ export const patrons: Patron[] = [
     description: "Un pantalon en jersey à taille élastique, droit et confortable.",
     mesures: ["taille", "hanches", "tailleSol"],
     saisie: mesuresBas,
+    dossier: true,
     caracteristiques: [
       { libelle: "Pièces", valeur: "Devant ×2, dos ×2, ceinture" },
     ],

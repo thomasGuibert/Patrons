@@ -58,7 +58,7 @@ export default async function FichePatron({ params }: Props) {
                 ))}
               </dl>
             )}
-            <ChoixTaille key={gamme} gamme={gamme} slug={patron.slug} mesures={patron.saisie} />
+            <ChoixTaille key={gamme} gamme={gamme} slug={patron.slug} mesures={patron.saisie} dossier={patron.dossier ?? false} />
           </div>
         </div>
       </section>

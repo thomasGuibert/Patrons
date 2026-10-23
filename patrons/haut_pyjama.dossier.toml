@@ -1,0 +1,176 @@
+# Dossier technique du haut de pyjama : pages ajoutées devant les pièces dans le PDF.
+# Lu par .claude/skills/exporter-pdf/dossier.py ; {couture} et {ourlet} sont remplacés par les
+# valeurs de couture du .sm2d. Texte public : ne jamais citer l'outil de tracé
+# ni les sources de patronage.
+
+titre = "Haut de pyjama col V"
+reference = "Réf. 101"
+description = """Un T-shirt souple à encolure en V et manches longues, coupé dans un jersey. \
+L'encolure est finie par une bande de jersey pliée, croisée en onglet à la pointe du V ; \
+les ourlets du bas et des manches sont repliés et surpiqués."""
+# mesures du corps du tableau des tailles (noms des fichiers de mesures)
+mesures = ["bust_circ", "waist_circ", "hip_circ"]
+
+[technique]
+# conditions technologiques de la gamme « pro »
+machines = ["Surjeteuse ou piqueuse (zigzag)", "Recouvreuse ou aiguille double", "Fer"]
+points = ["Surjet 4 fils (514)", "Zigzag (304)", "Recouvrement 2 aiguilles (406)"]
+points_cm = "4 à 5"
+temps = "2 h 30"
+
+[matieres]
+# matière de chaque pièce ; une pièce absente prend « defaut »
+defaut = "Jersey"
+
+[coupe]
+laize = 150           # largeur du tissu, cm
+texte = """Les valeurs de couture sont comprises dans le patron : {couture} cm sur les coutures et \
+{ourlet} cm aux ourlets, comme le rappelle le plan des valeurs de couture. Coupez le jersey plié en \
+deux endroit contre endroit, le droit-fil des pièces parallèle aux côtes du tricot. Les pièces \
+« au pli » se posent contre la pliure. Marquez chaque cran d'une petite entaille de 3 mm au plus."""
+
+[[materiel]]
+nom = "Machine à coudre avec point zigzag ou point extensible, ou surjeteuse"
+[[materiel]]
+nom = "Recouvreuse ou aiguille double pour les ourlets (facultatif)"
+[[materiel]]
+nom = "Aiguilles jersey ou stretch, grosseur 75 à 90"
+[[materiel]]
+nom = "Fer à repasser et pattemouille"
+[[materiel]]
+nom = "Ciseaux de coupe, épingles ou pinces"
+[[materiel]]
+nom = "Craie ou feutre effaçable, mètre ruban"
+
+[[fournitures]]
+designation = "Jersey"
+renseignement = "coton ou coton-élasthanne, 160 à 220 g/m², 150 cm de large"
+metrage = true        # longueur calculée sur les pièces de la taille
+[[fournitures]]
+designation = "Fil"
+renseignement = "polyester, assorti au jersey"
+quantite = "1 bobine (3 avec une surjeteuse)"
+
+# Gamme de montage : une opération par entrée.
+# schema : dessin de la colonne « Schéma » (voir dossier.py, SCHEMAS) ; vide = aucun.
+# texte : version pas à pas (gamme « amateur »).
+[[gamme]]
+operation = "Décatir le jersey."
+outil = "Lave-linge, fer"
+commentaire = "Laver et sécher comme le vêtement le sera ensuite. Repasser sans étirer."
+controle = "Le tissu est à plat, les côtes droites."
+titre = "Préparer le tissu"
+texte = [
+  "Lavez et séchez le jersey comme vous laverez le pyjama : il rétrécit maintenant plutôt qu'après la couture.",
+  "Repassez-le en soulevant le fer au lieu de le faire glisser, pour ne pas le déformer.",
+]
+
+[[gamme]]
+operation = "Couper les pièces."
+schema = "coupe"
+outil = "Ciseaux"
+commentaire = "Jersey plié endroit contre endroit, droit-fil parallèle aux côtes. Voir le plan des valeurs de couture."
+controle = "Toutes les pièces de la nomenclature sont coupées, crans marqués."
+titre = "Couper"
+texte = [
+  "Pliez le jersey en deux, endroit contre endroit, lisières ensemble. Posez le devant, le dos et la bande d'encolure contre la pliure, la manche à côté : vous obtenez deux manches symétriques d'un seul coup.",
+  "Gardez la flèche de droit-fil bien parallèle aux côtes du tricot, puis coupez sur le trait extérieur. Marquez les crans par une petite entaille.",
+]
+
+[[gamme]]
+operation = "Assembler les épaules."
+schema = "surjet"
+outil = "Surjeteuse ou zigzag"
+commentaire = "Devant sur dos, endroit contre endroit, à {couture} cm. Couchage vers le dos."
+controle = "Les deux épaules ont la même longueur, sans ondulation."
+titre = "Coudre les épaules"
+texte = [
+  "Posez le devant sur le dos, endroit contre endroit, et épinglez les épaules.",
+  "Piquez à {couture} cm du bord au surjet, ou au zigzag étroit sur une machine à coudre. Ne tirez pas le tissu : laissez l'entraînement le faire avancer.",
+  "Repassez les valeurs de couture vers le dos.",
+]
+
+[[gamme]]
+operation = "Préparer la bande d'encolure."
+schema = "bande_pliee"
+outil = "Fer"
+commentaire = "Plier en deux dans la longueur, envers contre envers."
+controle = "Le pli est régulier sur toute la longueur."
+titre = "Préparer la bande d'encolure"
+texte = [
+  "Pliez la bande en deux dans sa longueur, envers contre envers, et repassez le pli.",
+]
+
+[[gamme]]
+operation = "Poser la bande sur l'encolure."
+schema = "bande"
+outil = "Piqueuse, surjeteuse"
+commentaire = "Milieu de la bande au milieu dos. Étirer légèrement la bande au dos, pas sur le V. Arrêter la piqûre exactement à la pointe du V."
+controle = "L'encolure reste à plat, sans fronces ni bâillement."
+titre = "Poser la bande d'encolure"
+texte = [
+  "Épinglez la bande sur l'endroit de l'encolure, bords bruts ensemble, le milieu de la bande au milieu dos. Faites coïncider les crans aux épaules.",
+  "Au dos, étirez très légèrement la bande pour qu'elle épouse la courbe ; le long du V, posez-la sans tirer.",
+  "Piquez à {couture} cm de l'épaule jusqu'à la pointe du V, d'un côté puis de l'autre, en arrêtant la piqûre exactement sur la pointe.",
+]
+
+[[gamme]]
+operation = "Fermer la pointe du V en onglet."
+schema = "onglet"
+outil = "Piqueuse"
+commentaire = "Plier le devant dans l'axe, endroit contre endroit ; piquer les deux extrémités de la bande dans le prolongement du V."
+controle = "La pointe est nette et centrée, les deux côtés symétriques."
+titre = "Croiser la pointe du V"
+texte = [
+  "Pliez le devant en deux dans l'axe, endroit contre endroit : les deux extrémités de la bande se superposent.",
+  "Piquez-les ensemble en prolongeant la ligne du V, jusqu'à la pliure de la bande. Recoupez à 5 mm, ouvrez la couture au fer.",
+  "Surfilez la couture d'encolure et couchez-la vers le corps. Une surpiqûre à 3 mm sur le corps la maintient à plat.",
+]
+
+[[gamme]]
+operation = "Monter les manches à plat."
+schema = "manche"
+outil = "Surjeteuse ou zigzag"
+commentaire = "Cran de tête de manche sur la couture d'épaule, crans devant et dos ensemble. Piquer côté manche."
+controle = "La tête de manche est sans pli ni fronce."
+titre = "Monter les manches"
+texte = [
+  "Le haut est ouvert à plat, endroit vers vous. Posez la manche sur l'emmanchure, endroit contre endroit, le cran du haut de la manche sur la couture d'épaule.",
+  "Faites coïncider les crans devant et dos, épinglez en répartissant la longueur, puis piquez à {couture} cm, la manche dessus.",
+  "Couchez la couture vers la manche.",
+]
+
+[[gamme]]
+operation = "Fermer côtés et dessous de manche."
+schema = "cotes"
+outil = "Surjeteuse ou zigzag"
+commentaire = "En une couture, du bas de manche au bas du corps, coutures d'emmanchure face à face."
+controle = "Les coutures d'emmanchure se rejoignent sous le bras."
+titre = "Fermer les côtés"
+texte = [
+  "Pliez le haut endroit contre endroit, devant sur dos. Épinglez d'abord les coutures d'emmanchure l'une sur l'autre, sous le bras.",
+  "Piquez en une seule fois du bas de la manche jusqu'au bas du corps, à {couture} cm.",
+]
+
+[[gamme]]
+operation = "Faire les ourlets du bas et des manches."
+schema = "ourlet"
+outil = "Recouvreuse ou aiguille double"
+commentaire = "Replier {ourlet} cm sur l'envers, repasser, surpiquer à 2 cm du pli."
+controle = "L'ourlet ne vrille pas et s'étire sans casser la piqûre."
+titre = "Ourler"
+texte = [
+  "Repliez {ourlet} cm sur l'envers au bas du corps et des manches, et repassez le pli.",
+  "Surpiquez sur l'endroit à 2 cm du pli, à la recouvreuse ou à l'aiguille double. Sans l'une ni l'autre, un zigzag étroit convient.",
+  "Étirez légèrement l'ourlet : la piqûre doit suivre sans casser.",
+]
+
+[[gamme]]
+operation = "Repassage et contrôle final."
+outil = "Fer"
+commentaire = "Repasser les coutures à plat, couper les fils."
+controle = "Symétrie gauche-droite, longueurs de manches égales."
+titre = "Finir"
+texte = [
+  "Coupez les fils, repassez les coutures à plat et comparez les deux côtés : manches de même longueur, encolure symétrique.",
+]

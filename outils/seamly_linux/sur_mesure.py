@@ -5,6 +5,7 @@ La demande arrive par les variables d'environnement (jamais par le shell) :
   PATRON  slug du site (haut-pyjama…)   FORMAT  a4 ou a3
   MESURES JSON {nom de mesure Seamly: cm}
   NOM     facultatif, nom de la taille (Thomas → « T-Thomas » sur le patron)
+  MONTAGE facultatif, pro ou amateur : dossier technique en tête du PDF
 Sortie : <dossier>/patron.pdf. Seamly : variable SEAMLY2D, sous xvfb-run.
 """
 import json, os, re, shutil, subprocess, sys, tempfile
@@ -46,6 +47,12 @@ def main():
         if not re.match(r"^[^\W_][\w '’-]{0,19}$", nom_taille):
             sys.exit(f'nom de taille refusé : {nom_taille!r}')
         args += ['--nom', nom_taille]
+
+    montage = os.environ.get('MONTAGE', '')
+    if montage not in ('', 'pro', 'amateur'):
+        sys.exit(f'gamme de montage inconnue : {montage!r}')
+    if montage:
+        args += ['--montage', montage]
 
     nom, titre = noms[slug]
     tmp = tempfile.mkdtemp(prefix='sur_mesure_')

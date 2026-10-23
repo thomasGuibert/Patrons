@@ -11,6 +11,7 @@ on:
       format: { description: 'a4 ou a3', required: true }
       mesures: { description: 'JSON {mesure Seamly: cm}', required: true }
       nom: { description: 'Nom de la taille (T-<nom> sur le patron)', required: false, default: '' }
+      montage: { description: 'Dossier technique en tête : pro, amateur, ou vide (sans)', required: false, default: '' }
 
 permissions:
   contents: read
@@ -30,7 +31,7 @@ jobs:
             libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 \
             libxcb-shape0 libxcb-xinerama0 libxcb-xkb1
           sudo locale-gen fr_FR.UTF-8
-          pip install -q reportlab
+          pip install -q reportlab pypdf pillow
 
       - uses: actions/cache@v4
         id: seamly
@@ -55,6 +56,7 @@ jobs:
           FORMAT: ${{ inputs.format }}
           MESURES: ${{ inputs.mesures }}
           NOM: ${{ inputs.nom }}
+          MONTAGE: ${{ inputs.montage }}
         run: xvfb-run -a python3 outils/seamly_linux/sur_mesure.py sortie
 
       - uses: actions/upload-artifact@v4
