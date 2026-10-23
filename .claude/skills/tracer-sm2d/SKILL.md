@@ -63,12 +63,8 @@ les contours des pièces et les crans. Validé sur `fond_base_maille.sm2d` (tour
 PDF imprimables d'un patron : skill `exporter-pdf` (export SVG par Seamly, jamais de géométrie
 recalculée hors Seamly).
 
-Cohérence, toutes tailles et jeux sur mesure : `python3 outils/coherence/coherence.py <patron>`
-(courbes sans angle, points immobiles, longueurs des coutures, crans ; coutures décrites dans
-`patrons/<patron>.coherence.toml`, à compléter pour toute nouvelle pièce ou couture). Aucun
-point existant ne doit bouger : un point signalé déplacé est une erreur, sauf demande de
-l'utilisateur ; alors seulement `--maj-references`. Le workflow « Cohérence des tracés » le
-relance avec Seamly sur chaque PR qui touche un patron.
+Cohérence, toutes tailles et sur mesure : skill `verifier-patron` (courbes sans angle, points
+immobiles, longueurs des coutures, crans). À passer avant de livrer.
 
 ### 4. Livrer
 

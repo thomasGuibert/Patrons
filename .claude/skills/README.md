@@ -16,6 +16,8 @@ Pour mettre à jour : recopier les dossiers depuis le dépôt source.
   validé question par question avec l'utilisateur.
 - `tracer-sm2d` : étapes validées → `.sm2d`, vérifié par `tracer-sm2d/verifier.py`
   (export Seamly en ligne de commande). Pièges Seamly : `tracer-sm2d/SEAMLY.md`.
+- `verifier-patron` : cohérence d'un patron dans toutes les tailles et en sur-mesure (angles,
+  points immobiles, longueurs des coutures, crans), par `outils/coherence/coherence.py`.
 - `changer-taille` : photo d'un tableau de tailles → `transcription.md` validée →
   `mesures/<gamme>/T<n>.smms`, patrons vérifiés dans la nouvelle taille.
 - `exporter-pdf` : pièces exportées en SVG par Seamly → PDF A4 et A3 à l'échelle 1 dans
