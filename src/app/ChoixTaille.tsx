@@ -8,13 +8,44 @@ import {
 
 type Choix = Taille | "sur-mesure";
 type Format = "a4" | "a3";
+type Montage = "amateur" | "pro";
+
+const MONTAGES: { valeur: Montage; libelle: string; aide: string }[] = [
+  { valeur: "amateur", libelle: "Pas à pas", aide: "Le montage expliqué étape par étape, illustré." },
+  { valeur: "pro", libelle: "Gamme d'atelier", aide: "Le montage en tableau : opération, schéma, outil, point de contrôle." },
+];
+
+/** Le dossier technique puis le patron, en un seul PDF (assemblé dans le navigateur). */
+async function assembler(dossier: string, patron: string): Promise<Blob> {
+  const { PDFDocument } = await import("pdf-lib");
+  const [d, p] = await Promise.all(
+    [dossier, patron].map(async (url) => {
+      const r = await fetch(url);
+      if (!r.ok) throw new Error(url);
+      return PDFDocument.load(await r.arrayBuffer());
+    }),
+  );
+  const pages = await d.copyPages(p, p.getPageIndices());
+  pages.forEach((page) => d.addPage(page));
+  const titre = p.getTitle();
+  if (titre) d.setTitle(titre);
+  return new Blob([(await d.save()) as BlobPart], { type: "application/pdf" });
+}
+
+function telecharger(href: string, nom = "") {
+  const a = document.createElement("a");
+  a.href = href;
+  a.download = nom;
+  a.click();
+}
 
 const ATTENTE_MAX = 10 * 60 * 1000;
 const pause = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-export function ChoixTaille({ gamme, slug, mesures }: { gamme: Gamme; slug: string; mesures: Mesure[] }) {
+export function ChoixTaille({ gamme, slug, mesures, dossier }: { gamme: Gamme; slug: string; mesures: Mesure[]; dossier: boolean }) {
   const { tailles, parDefaut } = gammes[gamme];
   const [taille, setTaille] = useState<Choix>(parDefaut);
+  const [montage, setMontage] = useState<Montage>("amateur");
   const [enCours, setEnCours] = useState<Format | null>(null);
   const [message, setMessage] = useState("");
   const valeurs = useSyncExternalStore(abonner, saisie, saisieServeur);
@@ -30,7 +61,7 @@ export function ChoixTaille({ gamme, slug, mesures }: { gamme: Gamme; slug: stri
       const r = await fetch("/api/sur-mesure", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ patron: slug, format, mesures: valeurs, nom }),
+        body: JSON.stringify({ patron: slug, format, mesures: valeurs, nom, montage: dossier ? montage : "" }),
       });
       if (r.status === 503) throw new Error("Le patron sur mesure n'est pas encore ouvert. Revenez bientôt.");
       if (!r.ok) throw new Error("La demande n'a pas pu être envoyée. Vérifiez vos mesures et réessayez.");
@@ -43,10 +74,7 @@ export function ChoixTaille({ gamme, slug, mesures }: { gamme: Gamme; slug: stri
         if (e.etat === "echec") throw new Error("Le tracé a échoué avec ces mesures. Vérifiez-les et réessayez.");
         if (e.etat === "pret") break;
       }
-      const a = document.createElement("a");
-      a.href = `/api/sur-mesure/${demande}/pdf?${new URLSearchParams({ patron: slug, format, nom })}`;
-      a.download = "";
-      a.click();
+      telecharger(`/api/sur-mesure/${demande}/pdf?${new URLSearchParams({ patron: slug, format, nom })}`);
       setMessage("Votre patron est prêt : le téléchargement commence.");
     } catch (e) {
       setMessage(e instanceof Error ? e.message : "Une erreur est survenue.");
@@ -55,11 +83,39 @@ export function ChoixTaille({ gamme, slug, mesures }: { gamme: Gamme; slug: stri
     }
   }
 
+  async function avecDossier(t: Taille, format: Format, patron: string) {
+    setEnCours(format);
+    setMessage("");
+    try {
+      const pdf = await assembler(`/pdf/${gamme}/dossier/${slug}-${t}-${montage}.pdf`, patron);
+      const url = URL.createObjectURL(pdf);
+      telecharger(url, patron.split("/").pop());
+      setTimeout(() => URL.revokeObjectURL(url), 60_000);
+    } catch {
+      // sans le dossier, le patron seul reste téléchargeable
+      telecharger(patron);
+    } finally {
+      setEnCours(null);
+    }
+  }
+
   const bouton = (format: Format, classe: string) => {
     const libelle = `Télécharger · ${format.toUpperCase()}`;
     if (taille !== "sur-mesure") {
+      const patron = `/pdf/${gamme}/${slug}-${taille}${format === "a3" ? "-a3" : ""}.pdf`;
       return (
-        <a href={`/pdf/${gamme}/${slug}-${taille}${format === "a3" ? "-a3" : ""}.pdf`} className={`bouton ${classe}`} download>
+        <a
+          href={patron}
+          className={`bouton ${classe}`}
+          download
+          aria-busy={enCours === format}
+          onClick={(e) => {
+            if (!dossier) return;
+            e.preventDefault();
+            if (enCours === null) avecDossier(taille, format, patron);
+          }}
+        >
+          {enCours === format && <span className="roue" aria-hidden />}
           {libelle}
         </a>
       );
@@ -129,6 +185,27 @@ export function ChoixTaille({ gamme, slug, mesures }: { gamme: Gamme; slug: stri
               : `Imprimé sur le patron : ${nom ? `T-${nom}` : "« Sur mesure »"}.`}
           </small>
         </div>
+      )}
+      {dossier && (
+        <fieldset className="choix-taille">
+          <legend>Notice de montage</legend>
+          <div className="tailles">
+            {MONTAGES.map((m) => (
+              <label key={m.valeur}>
+                <input
+                  type="radio"
+                  name="montage"
+                  value={m.valeur}
+                  checked={m.valeur === montage}
+                  disabled={enCours !== null}
+                  onChange={() => setMontage(m.valeur)}
+                />
+                <span className="large">{m.libelle}</span>
+              </label>
+            ))}
+          </div>
+          <small className="aide-montage">{MONTAGES.find((m) => m.valeur === montage)?.aide}</small>
+        </fieldset>
       )}
       <div className="boutons">
         {bouton("a4", "plein")}

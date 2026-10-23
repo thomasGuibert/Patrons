@@ -1,0 +1,165 @@
+# Dossier technique du bas de pyjama : pages ajoutées devant les pièces dans le PDF.
+# Lu par .claude/skills/exporter-pdf/dossier.py ; {couture} et {ourlet} sont remplacés par les
+# valeurs de couture du .sm2d. Texte public : ne jamais citer l'outil de tracé
+# ni les sources de patronage.
+
+titre = "Bas de pyjama"
+reference = "Réf. 102"
+description = """Un pantalon souple en jersey, droit et confortable. La taille est froncée par \
+un élastique de 3 cm enfermé dans une ceinture de jersey pliée ; le bas des jambes est ourlé."""
+mesures = ["waist_circ", "hip_circ", "height_waist_side"]
+
+[technique]
+# conditions technologiques de la gamme « pro »
+machines = ["Surjeteuse ou piqueuse (zigzag)", "Recouvreuse ou aiguille double", "Fer"]
+points = ["Surjet 4 fils (514)", "Zigzag (304)", "Recouvrement 2 aiguilles (406)"]
+points_cm = "4 à 5"
+temps = "1 h 30"
+
+[matieres]
+defaut = "Jersey"
+
+[coupe]
+laize = 150
+texte = """Les valeurs de couture sont comprises dans le patron : {couture} cm sur les coutures et \
+{ourlet} cm aux ourlets, comme le rappelle le plan des valeurs de couture. Coupez devants et dos dans \
+le jersey plié en deux endroit contre endroit, le droit-fil parallèle aux côtes du tricot : vous \
+obtenez une jambe droite et une jambe gauche. La ceinture se coupe au pli, sa longueur dans la \
+largeur du tissu, là où le jersey s'étire. Marquez chaque cran d'une petite \
+entaille de 3 mm au plus."""
+
+[[materiel]]
+nom = "Machine à coudre avec point zigzag ou point extensible, ou surjeteuse"
+[[materiel]]
+nom = "Recouvreuse ou aiguille double pour les ourlets (facultatif)"
+[[materiel]]
+nom = "Aiguilles jersey ou stretch, grosseur 75 à 90"
+[[materiel]]
+nom = "Fer à repasser"
+[[materiel]]
+nom = "Ciseaux de coupe, épingles ou pinces, épingle à nourrice"
+[[materiel]]
+nom = "Craie ou feutre effaçable, mètre ruban"
+
+[[fournitures]]
+designation = "Jersey"
+renseignement = "coton ou coton-élasthanne, 160 à 220 g/m², 150 cm de large"
+metrage = true
+[[fournitures]]
+designation = "Élastique"
+renseignement = "plat, 3 cm de large"
+# longueur = tour de taille × coef + ajout (recouvrement pour le fermer)
+mesure = "waist_circ"
+coef = 0.9
+ajout = 2
+[[fournitures]]
+designation = "Fil"
+renseignement = "polyester, assorti au jersey"
+quantite = "1 bobine (3 avec une surjeteuse)"
+
+[[gamme]]
+operation = "Décatir le jersey."
+outil = "Lave-linge, fer"
+commentaire = "Laver et sécher comme le vêtement le sera ensuite. Repasser sans étirer."
+controle = "Le tissu est à plat, les côtes droites."
+titre = "Préparer le tissu"
+texte = [
+  "Lavez et séchez le jersey comme vous laverez le pyjama : il rétrécit maintenant plutôt qu'après la couture.",
+  "Repassez-le en soulevant le fer au lieu de le faire glisser.",
+]
+
+[[gamme]]
+operation = "Couper les pièces."
+schema = "coupe"
+outil = "Ciseaux"
+commentaire = "Jersey plié endroit contre endroit. Ceinture au pli, longueur dans la largeur du tissu."
+controle = "Toutes les pièces de la nomenclature sont coupées, crans marqués."
+titre = "Couper"
+texte = [
+  "Pliez le jersey en deux, endroit contre endroit. Posez le devant et le dos, flèche de droit-fil parallèle aux côtes, et coupez sur le trait extérieur : vous avez deux devants et deux dos symétriques.",
+  "Posez la ceinture contre la pliure, sa grande longueur dans la largeur du jersey : c'est le sens où il s'étire. Marquez les crans par une petite entaille.",
+]
+
+[[gamme]]
+operation = "Assembler les côtés."
+schema = "surjet"
+outil = "Surjeteuse ou zigzag"
+commentaire = "Devant sur dos de chaque jambe, endroit contre endroit, à {couture} cm."
+controle = "Les crans de côté coïncident, le bas des jambes est à niveau."
+titre = "Coudre les côtés"
+texte = [
+  "Pour chaque jambe, posez le devant sur le dos, endroit contre endroit, et épinglez le côté en faisant coïncider les crans.",
+  "Piquez à {couture} cm, de la taille jusqu'au bas, sans tirer sur le tissu.",
+]
+
+[[gamme]]
+operation = "Assembler les entrejambes."
+schema = "jambe"
+outil = "Surjeteuse ou zigzag"
+commentaire = "De l'enfourchure au bas de chaque jambe, à {couture} cm."
+controle = "Les deux jambes ont la même longueur d'entrejambe."
+titre = "Coudre les entrejambes"
+texte = [
+  "Toujours endroit contre endroit, épinglez l'intérieur de chaque jambe, de l'enfourchure au bas, et piquez à {couture} cm.",
+  "Vous avez maintenant deux tubes : la jambe droite et la jambe gauche.",
+]
+
+[[gamme]]
+operation = "Assembler l'enfourchure."
+schema = "enfourchure"
+outil = "Piqueuse, surjeteuse"
+commentaire = "Glisser une jambe à l'endroit dans l'autre à l'envers ; piquer du milieu devant au milieu dos, coutures d'entrejambe face à face. Doubler la piqûre dans l'arrondi."
+controle = "Les coutures d'entrejambe se croisent exactement."
+titre = "Coudre l'enfourchure"
+texte = [
+  "Retournez une jambe sur l'endroit et glissez-la dans l'autre, restée sur l'envers : les deux jambes sont endroit contre endroit.",
+  "Épinglez la courbe de l'enfourchure du milieu devant au milieu dos, les coutures d'entrejambe l'une sur l'autre.",
+  "Piquez à {couture} cm, puis repiquez une seconde fois dans le bas de la courbe, la partie la plus sollicitée.",
+]
+
+[[gamme]]
+operation = "Préparer la ceinture et l'élastique."
+schema = "anneau"
+outil = "Piqueuse, fer"
+commentaire = "Fermer la ceinture en anneau au milieu dos, ouvrir la couture. Fermer l'élastique en le chevauchant de 2 cm, zigzag."
+controle = "La longueur d'élastique est essayée autour de la taille avant de le fermer."
+titre = "Préparer la ceinture"
+texte = [
+  "Fermez la ceinture en anneau, endroit contre endroit, par une couture à {couture} cm au milieu dos. Ouvrez la couture au fer, puis pliez la ceinture en deux dans sa hauteur, envers contre envers.",
+  "Coupez l'élastique à la longueur de la liste des fournitures, essayez-le autour de la taille, puis fermez-le en faisant chevaucher les extrémités de 2 cm, au zigzag.",
+]
+
+[[gamme]]
+operation = "Poser la ceinture avec l'élastique."
+schema = "ceinture"
+outil = "Surjeteuse ou zigzag"
+commentaire = "Élastique glissé dans le pli de la ceinture. Ceinture sur l'endroit du pantalon, bords bruts ensemble, en quarts : milieux et côtés. Piquer à {couture} cm sans prendre l'élastique."
+controle = "L'élastique est libre dans la ceinture, les fronces sont régulières."
+titre = "Poser la ceinture"
+texte = [
+  "Glissez l'élastique dans le pli de la ceinture.",
+  "Marquez les quarts de la ceinture et de la taille du pantalon. Posez la ceinture sur l'endroit du pantalon, bords bruts ensemble, couture de ceinture au milieu dos, et épinglez aux quatre repères.",
+  "Piquez à {couture} cm en tendant l'élastique entre les épingles, sans le prendre dans la piqûre. Couchez la couture vers le pantalon.",
+]
+
+[[gamme]]
+operation = "Faire les ourlets du bas."
+schema = "ourlet"
+outil = "Recouvreuse ou aiguille double"
+commentaire = "Replier {ourlet} cm sur l'envers, repasser, surpiquer à 2 cm du pli."
+controle = "L'ourlet ne vrille pas, les deux jambes ont la même longueur."
+titre = "Ourler"
+texte = [
+  "Repliez {ourlet} cm sur l'envers au bas de chaque jambe et repassez le pli.",
+  "Surpiquez sur l'endroit à 2 cm du pli, à la recouvreuse ou à l'aiguille double, ou au zigzag étroit.",
+]
+
+[[gamme]]
+operation = "Repassage et contrôle final."
+outil = "Fer"
+commentaire = "Repasser les coutures à plat, couper les fils."
+controle = "Jambes de même longueur, ceinture régulière."
+titre = "Finir"
+texte = [
+  "Coupez les fils, repassez les coutures et vérifiez que les deux jambes ont la même longueur.",
+]

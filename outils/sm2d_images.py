@@ -2,7 +2,7 @@
 
 Usage : python3 sm2d_images.py <fichier.sm2d> [...] --sortie <dossier>
         python3 sm2d_images.py vignettes <fichier.sm2d> [...] --sortie vignettes [--taille 800]
-        python3 sm2d_images.py dessins <fichier.sm2d> [...] --sortie vignettes [--style sauge]   (vêtement cousu, devant/dos ;
+        python3 sm2d_images.py dessins <fichier.sm2d> [...] --sortie vignettes [--style sauge] [--mesures <f>]   (vêtement cousu, devant/dos ;
         styles : papier, epure, ardoise, blueprint, kraft, sauge, indigo, moutarde)
         python3 sm2d_images.py fiches <fichier.sm2d> [...] --sortie vignettes   (patron -> vêtement cousu, une image)
 
@@ -608,11 +608,12 @@ def main_dessins(argv):
     ap.add_argument('--sortie', default='vignettes')
     ap.add_argument('--taille', type=int, default=800)
     ap.add_argument('--style', default='sauge', choices=list(dessin.STYLES))
+    ap.add_argument('--mesures', help='fichier de mesures à la place de celui lié au patron')
     a = ap.parse_args(argv)
     os.makedirs(a.sortie, exist_ok=True)
     for f in a.fichiers:
         base = os.path.splitext(os.path.basename(f))[0]
-        p = Patron(f)
+        p = Patron(f, a.mesures)
         vues = vues_dessin(p)
         if vues is None:
             print('pas de modèle de dessin pour', base)

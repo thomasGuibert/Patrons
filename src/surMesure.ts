@@ -13,6 +13,9 @@ const WORKFLOW = "sur-mesure.yml";
 
 export const formats = ["a4", "a3"] as const;
 export type Format = (typeof formats)[number];
+/** Gamme de montage du dossier technique : tableau « pro » ou pas à pas « amateur » ; vide = sans dossier. */
+export const montages = ["pro", "amateur", ""] as const;
+export type Montage = (typeof montages)[number];
 
 export function disponible(): boolean {
   return Boolean(process.env.GITHUB_TOKEN_SUR_MESURE);
@@ -32,7 +35,7 @@ async function github(chemin: string, init: RequestInit = {}): Promise<Response>
 }
 
 /** Vérifie la demande ; renvoie un message d'erreur, ou null si elle est complète. */
-export function verifier(slug: unknown, format: unknown, mesures: unknown, nom: unknown = ""): string | null {
+export function verifier(slug: unknown, format: unknown, mesures: unknown, nom: unknown = "", montage: unknown = ""): string | null {
   const patron = typeof slug === "string" ? trouverPatron(slug) : undefined;
   if (!patron) return "patron inconnu";
   if (!formats.includes(format as Format)) return "format inconnu";
@@ -42,6 +45,8 @@ export function verifier(slug: unknown, format: unknown, mesures: unknown, nom: 
     if (typeof v !== "number" || !(v > 0 && v < 300)) return `mesure manquante : ${mesuresCorps[m].libelle}`;
   }
   if (typeof nom !== "string" || !nomValide(normaliserNom(nom))) return "nom de taille refusé";
+  if (!montages.includes(montage as Montage)) return "gamme de montage inconnue";
+  if (montage && !patron.dossier) return "pas de dossier pour ce patron";
   return null;
 }
 
@@ -50,6 +55,7 @@ export async function lancer(
   format: Format,
   mesures: Partial<Record<Mesure, number>>,
   nom = "",
+  montage: Montage = "",
 ): Promise<string> {
   const patron = trouverPatron(slug)!;
   const demande = crypto.randomUUID().replace(/-/g, "").slice(0, 16);
@@ -58,7 +64,7 @@ export async function lancer(
     method: "POST",
     body: JSON.stringify({
       ref: "main",
-      inputs: { demande, patron: slug, format, mesures: JSON.stringify(seamly), nom: normaliserNom(nom) },
+      inputs: { demande, patron: slug, format, mesures: JSON.stringify(seamly), nom: normaliserNom(nom), montage },
     }),
   });
   if (!r.ok) throw new Error(`GitHub ${r.status} : ${await r.text()}`);

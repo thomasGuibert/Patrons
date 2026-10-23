@@ -1,14 +1,14 @@
-import { disponible, lancer, verifier, type Format } from "@/surMesure";
+import { disponible, lancer, verifier, type Format, type Montage } from "@/surMesure";
 
 /** Lance le tracé d'un patron sur mesure ; renvoie l'identifiant de la demande. */
 export async function POST(req: Request) {
   if (!disponible()) return Response.json({ erreur: "indisponible" }, { status: 503 });
   const corps = await req.json().catch(() => null);
-  const { patron, format, mesures, nom = "" } = corps ?? {};
-  const faute = verifier(patron, format, mesures, nom);
+  const { patron, format, mesures, nom = "", montage = "" } = corps ?? {};
+  const faute = verifier(patron, format, mesures, nom, montage);
   if (faute) return Response.json({ erreur: faute }, { status: 400 });
   try {
-    return Response.json({ demande: await lancer(patron, format as Format, mesures, nom) });
+    return Response.json({ demande: await lancer(patron, format as Format, mesures, nom, montage as Montage) });
   } catch (e) {
     console.error(e);
     return Response.json({ erreur: "lancement impossible" }, { status: 502 });

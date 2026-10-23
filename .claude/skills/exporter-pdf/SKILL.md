@@ -85,6 +85,26 @@ session cloud avec Seamly Linux (AppImage extraite, bibliothèques du workflow
 `SEAMLY2D=<squashfs-root>/AppRun LANG=fr_FR.UTF-8 LC_ALL=fr_FR.UTF-8 xvfb-run -a python3 ...` ;
 tracés identiques au PC, seule la police des étiquettes diffère.
 
+## Dossier technique (devant les pièces)
+
+Un patron qui a `patrons/<nom>.dossier.toml` (pyjama haut et bas pour l'instant) reçoit un dossier
+A4 de 6 pages environ : informations (dessin `vignettes/<gamme>/<nom>_dessin.png`, tableau des
+mesures de la gamme ou « Vos mesures »), coupe, matériel, fournitures avec métrage calculé sur les
+pièces de la taille, plan des valeurs de couture (lu sur le SVG : écart couture / coupe),
+nomenclature (quantités et « au pli » du `.sm2d`), puis la gamme de montage **pro** (tableau
+opération / schéma / outil / commentaire / point de contrôle) ou **amateur** (pas à pas illustré).
+Le texte vient du `.toml` ; `{couture}` et `{ourlet}` y sont remplacés par les valeurs du `.sm2d`.
+Les schémas sont dessinés par `dossier.py` (`Schema.s_<nom>`). Texte public : ni Seamly, ni livre.
+
+- `mesures_vers_pdf.py ... --montage pro|amateur` : PDF final = dossier + pièces.
+- `mesures_vers_pdf.py ... --dossiers <dossier>` : dossiers seuls, les deux versions.
+- `toutes_tailles.py` écrit aussi `public/pdf/<gamme>/dossier/<slug>-<taille>-pro|amateur.pdf`
+  (`--dossiers-seuls` pour ne refaire qu'eux) ; le site les joint au patron dans le navigateur
+  (pdf-lib, `src/app/ChoixTaille.tsx`) selon la « Notice de montage » choisie. Le sur-mesure
+  passe `montage` au workflow, qui joint le dossier en Python (pypdf).
+- Dessins du vêtement : `python3 outils/sm2d_images.py dessins patrons/<nom>.sm2d --style epure
+  --taille 2400 --sortie vignettes/femme` (homme : `--mesures mesures/homme/T48.smms`).
+
 Pour un PDF hors du PC, `pdf_depuis_seamly.py ... --taille <texte>` corrige la taille de la
 notice quand le SVG a été exporté avec d'autres mesures que celles liées au `.sm2d`.
 
