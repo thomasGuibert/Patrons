@@ -49,6 +49,6 @@ b = [["Dos", "E3e", "cB5e"]]
 
 [[couture]]
 nom = "Ceinture"
-# tour de taille : demi-dos, devant droit, devant gauche, demi-dos
-a = [["Dos", "cA5", "cB5e"], ["Devant", "cA2e", "cA3"], ["Devant", "cA3", "cA2e"], ["Dos", "cB5e", "cA5"]]
-b = [["Ceinture", "cbD2", "cbC"]]
+# ceinture coupée au pli (milieu devant) : demi-tour de taille, du milieu dos au milieu devant
+a = [["Dos", "cA5", "cB5e"], ["Devant", "cA2e", "cA3"]]
+b = [["Ceinture", "cbC", "cbD"]]
