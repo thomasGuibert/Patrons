@@ -1,6 +1,7 @@
 import { inflateRawSync } from "node:zlib";
 import { trouverPatron } from "./patrons";
 import { mesuresCorps, type Mesure } from "./tailles";
+import { nomValide, normaliserNom } from "./vosMesures";
 
 /**
  * Patron sur mesure, côté serveur : le site lance le workflow GitHub « Sur mesure »
@@ -31,7 +32,7 @@ async function github(chemin: string, init: RequestInit = {}): Promise<Response>
 }
 
 /** Vérifie la demande ; renvoie un message d'erreur, ou null si elle est complète. */
-export function verifier(slug: unknown, format: unknown, mesures: unknown): string | null {
+export function verifier(slug: unknown, format: unknown, mesures: unknown, nom: unknown = ""): string | null {
   const patron = typeof slug === "string" ? trouverPatron(slug) : undefined;
   if (!patron) return "patron inconnu";
   if (!formats.includes(format as Format)) return "format inconnu";
@@ -40,10 +41,16 @@ export function verifier(slug: unknown, format: unknown, mesures: unknown): stri
     const v = (mesures as Record<string, unknown>)[m];
     if (typeof v !== "number" || !(v > 0 && v < 300)) return `mesure manquante : ${mesuresCorps[m].libelle}`;
   }
+  if (typeof nom !== "string" || !nomValide(normaliserNom(nom))) return "nom de taille refusé";
   return null;
 }
 
-export async function lancer(slug: string, format: Format, mesures: Partial<Record<Mesure, number>>): Promise<string> {
+export async function lancer(
+  slug: string,
+  format: Format,
+  mesures: Partial<Record<Mesure, number>>,
+  nom = "",
+): Promise<string> {
   const patron = trouverPatron(slug)!;
   const demande = crypto.randomUUID().replace(/-/g, "").slice(0, 16);
   const seamly = Object.fromEntries(patron.saisie.map((m) => [mesuresCorps[m].seamly, mesures[m]]));
@@ -51,7 +58,7 @@ export async function lancer(slug: string, format: Format, mesures: Partial<Reco
     method: "POST",
     body: JSON.stringify({
       ref: "main",
-      inputs: { demande, patron: slug, format, mesures: JSON.stringify(seamly) },
+      inputs: { demande, patron: slug, format, mesures: JSON.stringify(seamly), nom: normaliserNom(nom) },
     }),
   });
   if (!r.ok) throw new Error(`GitHub ${r.status} : ${await r.text()}`);

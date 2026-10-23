@@ -68,6 +68,8 @@ python .claude/skills/exporter-pdf/mesures_vers_pdf.py patrons/<nom>.sm2d <sorti
 - `--taille` : taille standard du multitaille lié (`--gsize` de Seamly, tailles paires 22 à 72).
 - `--mesure` : sur-mesure ; le script écrit un `.vit` SeamlyMe avec les valeurs du multitaille
   (à `--taille` si donnée) dont celles indiquées sont remplacées. Noms : ceux du `.smms`.
+- `--nom Thomas` : nom de la taille sur mesure, « T-Thomas » sur l'étiquette du patron et la notice.
+  Sans nom, l'étiquette dit « Sur mesure » (Seamly écrirait « T0 » : un `.vit` n'a pas de taille).
 - Sortie : `<sortie>/<nom>-<taille|sur-mesure>.pdf`, et `-a3.pdf` avec `--a3`.
 
 PDF du site dans toutes les tailles de `mesures/<gamme>/T*.smms`, gammes femme et homme

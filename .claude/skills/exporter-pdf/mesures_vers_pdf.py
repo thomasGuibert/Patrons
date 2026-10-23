@@ -9,6 +9,8 @@ Mesures (sans option : celles liées au .sm2d, ex. T44) :
   --mesure waist_circ=80    sur-mesure : valeurs du fichier lié (à --taille si donnée) dont
                             certaines remplacées ; répétable. Noms : ceux du .smms (waist_circ…)
   --mesures <fichier>       fichier de mesures existant (.vit individuel SeamlyMe ou .smms)
+  --nom Thomas              nom de la taille sur mesure : « T-Thomas » sur l'étiquette du patron
+                            et la notice (sans nom : « Sur mesure » au lieu du « T0 » de Seamly)
 
 Sortie : <dossier_sortie>/<nom>-<taille|sur-mesure>.pdf (A4), et -a3.pdf avec --a3.
 Le .sm2d n'est pas modifié : Seamly travaille sur une copie.
@@ -20,6 +22,7 @@ sys.path.insert(0, os.path.join(ICI, '..', 'tracer-sm2d'))
 from pdf_depuis_seamly import exporter as en_pdf  # noqa: E402
 
 SEAMLY = os.environ.get('SEAMLY2D', r'C:\Program Files (x86)\Seamly2D\seamly2d.exe')
+NOM = re.compile(r"^[^\W_][\w '’-]{0,19}$")
 M_SMMS = re.compile(r'<m base="([-\d.]+)" height_increase="[-\d.]+" name="([^"]+)" size_increase="([-\d.]+)"')
 
 
@@ -58,8 +61,11 @@ def main():
     ap.add_argument('--taille', type=int)
     ap.add_argument('--mesure', action='append', default=[], metavar='NOM=VALEUR')
     ap.add_argument('--mesures', metavar='FICHIER')
+    ap.add_argument('--nom')
     ap.add_argument('--a3', action='store_true')
     a = ap.parse_args()
+    if a.nom is not None and not NOM.match(a.nom):
+        ap.error('--nom : 1 à 20 lettres, chiffres, espaces, tirets ou apostrophes')
     if a.mesures and (a.taille or a.mesure):
         ap.error('--mesures ne se combine pas avec --taille ni --mesure')
     if a.taille and not (a.taille % 2 == 0 and 22 <= a.taille <= 72):
@@ -95,6 +101,14 @@ def main():
         else:
             opts, libelle = [], re.sub(r'\D', '', os.path.basename(liees))
 
+        taille = libelle
+        if libelle == 'sur-mesure':
+            # Seamly n'a pas de taille pour un .vit individuel : son %size% donnerait « T0 »
+            taille = 'T-' + a.nom.strip() if a.nom else libelle
+            txt = open(copie, encoding='utf-8').read()
+            open(copie, 'w', encoding='utf-8').write(
+                txt.replace('T%size%', taille if a.nom else 'Sur mesure').replace('%size%', taille))
+
         svgs = os.path.join(tmp, 'svg')
         debut = time.time()
         r = subprocess.run([SEAMLY, '-b', nom, '-d', svgs, '-f', '0', '--exportOnlyDetails', *opts, copie],
@@ -108,7 +122,7 @@ def main():
         os.makedirs(a.sortie, exist_ok=True)
         base = os.path.join(a.sortie, f'{nom}-{libelle}')
         for fmt, chemin in [('A4', base + '.pdf')] + ([('A3', base + '-a3.pdf')] if a.a3 else []):
-            n = en_pdf(svg, chemin, a.titre, copie, fmt, libelle)
+            n = en_pdf(svg, chemin, a.titre, copie, fmt, taille)
             print(f'{chemin} : {n} pages')
     finally:
         shutil.rmtree(tmp, ignore_errors=True)

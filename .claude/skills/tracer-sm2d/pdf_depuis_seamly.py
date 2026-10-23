@@ -206,7 +206,8 @@ def exporter(svg, dst, titre, sm2d=None, format='A4', taille=None):
     pieces = lire_svg(svg)
     taille_sm2d, coupe = infos_sm2d(sm2d)
     taille = taille or taille_sm2d          # les mesures de l'export priment sur celles liées au .sm2d
-    libelle = ('Taille %s' % taille if taille.isdigit() else taille.capitalize()) if taille else ''
+    # 40 → « Taille 40 », sur-mesure → « Sur-mesure », nom donné en ligne (T-Thomas) → « Taille T-Thomas »
+    libelle = (taille.capitalize() if taille == 'sur-mesure' else 'Taille %s' % taille) if taille else ''
     carre = next((pc for pc in pieces if pc['nom'].lower().startswith('carr')), None)
     if carre:
         pieces.remove(carre)                  # imprimé sur la notice, à l'échelle 1
@@ -224,7 +225,7 @@ def exporter(svg, dst, titre, sm2d=None, format='A4', taille=None):
     nomp = lambda r, k: '%s%d' % (chr(65 + r), k + 1)
 
     c = canvas.Canvas(dst, pagesize=FORMATS[format])
-    c.setTitle(('%s, %s' % (titre, libelle.lower()) if libelle else titre) + ', ' + format)
+    c.setTitle(('%s, %s' % (titre, libelle[0].lower() + libelle[1:]) if libelle else titre) + ', ' + format)
     W0, H0 = FORMATS[format]
     y = H0 - 1.8 * CM
     c.setFont('Helvetica-Bold', 20); c.drawString(1.8 * CM, y, titre); y -= 22

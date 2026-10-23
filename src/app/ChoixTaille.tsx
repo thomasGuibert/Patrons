@@ -2,7 +2,9 @@
 
 import { useState, useSyncExternalStore } from "react";
 import { gammes, type Gamme, type Mesure, type Taille } from "@/tailles";
-import { abonner, saisie, saisieServeur } from "@/vosMesures";
+import {
+  abonner, abonnerNom, enregistrerNom, NOM_MAX, nomTaille, nomTailleServeur, nomValide, normaliserNom, saisie, saisieServeur,
+} from "@/vosMesures";
 
 type Choix = Taille | "sur-mesure";
 type Format = "a4" | "a3";
@@ -17,6 +19,9 @@ export function ChoixTaille({ gamme, slug, mesures }: { gamme: Gamme; slug: stri
   const [message, setMessage] = useState("");
   const valeurs = useSyncExternalStore(abonner, saisie, saisieServeur);
   const manquantes = mesures.filter((m) => valeurs[m] === undefined).length;
+  const nomSaisi = useSyncExternalStore(abonnerNom, nomTaille, nomTailleServeur);
+  const nom = normaliserNom(nomSaisi);
+  const nomFaux = !nomValide(nom);
 
   async function surMesure(format: Format) {
     setEnCours(format);
@@ -25,7 +30,7 @@ export function ChoixTaille({ gamme, slug, mesures }: { gamme: Gamme; slug: stri
       const r = await fetch("/api/sur-mesure", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ patron: slug, format, mesures: valeurs }),
+        body: JSON.stringify({ patron: slug, format, mesures: valeurs, nom }),
       });
       if (r.status === 503) throw new Error("Le patron sur mesure n'est pas encore ouvert. Revenez bientôt.");
       if (!r.ok) throw new Error("La demande n'a pas pu être envoyée. Vérifiez vos mesures et réessayez.");
@@ -39,7 +44,7 @@ export function ChoixTaille({ gamme, slug, mesures }: { gamme: Gamme; slug: stri
         if (e.etat === "pret") break;
       }
       const a = document.createElement("a");
-      a.href = `/api/sur-mesure/${demande}/pdf?patron=${slug}&format=${format}`;
+      a.href = `/api/sur-mesure/${demande}/pdf?${new URLSearchParams({ patron: slug, format, nom })}`;
       a.download = "";
       a.click();
       setMessage("Votre patron est prêt : le téléchargement commence.");
@@ -63,7 +68,7 @@ export function ChoixTaille({ gamme, slug, mesures }: { gamme: Gamme; slug: stri
       <button
         type="button"
         className={`bouton ${classe}`}
-        disabled={manquantes > 0 || enCours !== null}
+        disabled={manquantes > 0 || nomFaux || enCours !== null}
         aria-busy={enCours === format}
         onClick={() => surMesure(format)}
       >
@@ -100,6 +105,30 @@ export function ChoixTaille({ gamme, slug, mesures }: { gamme: Gamme; slug: stri
         <p className="a-completer">
           <a href="#vos-mesures">Notez vos mesures</a> pour tracer le patron à votre taille : il en manque {manquantes}.
         </p>
+      )}
+      {taille === "sur-mesure" && (
+        <div className="nom-taille">
+          <label htmlFor="nom-taille">Nom de la taille</label>
+          <span className="champ">
+            <span aria-hidden>T-</span>
+            <input
+              id="nom-taille"
+              autoComplete="given-name"
+              placeholder="Thomas"
+              maxLength={NOM_MAX + 2}
+              value={nomSaisi}
+              disabled={enCours !== null}
+              aria-invalid={nomFaux}
+              aria-describedby="nom-taille-aide"
+              onChange={(e) => enregistrerNom(e.target.value)}
+            />
+          </span>
+          <small id="nom-taille-aide">
+            {nomFaux
+              ? `Lettres, chiffres, espaces, tirets ou apostrophes, ${NOM_MAX} au plus.`
+              : `Imprimé sur le patron : ${nom ? `T-${nom}` : "« Sur mesure »"}.`}
+          </small>
+        </div>
       )}
       <div className="boutons">
         {bouton("a4", "plein")}

@@ -154,6 +154,14 @@ button.bouton { cursor: pointer; display: inline-flex; align-items: center; gap:
 @keyframes roue { to { transform: rotate(1turn); } }
 @media (prefers-reduced-motion: reduce) { .roue { animation-duration: 2.4s; } }
 .bouton[aria-busy="true"] { opacity: 1; }
+.nom-taille { display: grid; gap: 6px; }
+.nom-taille label { font-family: var(--display); text-transform: uppercase; letter-spacing: .16em; font-size: 11.5px; }
+.nom-taille .champ { display: flex; align-items: baseline; gap: 2px; font-family: var(--machine); font-size: 15px; border-bottom: 1px solid var(--encre); max-width: 16em; }
+.nom-taille input { flex: 1; min-width: 0; border: 0; padding: 6px 0; background: transparent; font: inherit; color: inherit; }
+.nom-taille input:focus { outline: none; }
+.nom-taille .champ:focus-within { border-bottom-color: var(--garance); }
+.nom-taille input[aria-invalid="true"] { color: var(--garance); }
+.nom-taille small { font-size: 13.5px; color: var(--sepia); font-style: italic; }
 .a-completer, .attente { font-size: 15px; color: var(--sepia); font-style: italic; }
 .a-completer a { color: var(--garance); }
 
