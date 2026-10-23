@@ -41,6 +41,12 @@ python3 outils/coherence/coherence.py <patron>
 Le rapport en Markdown contient quatre contrôles. Chaque ❌ donne la taille et le point
 concernés :
 1. **Courbes sans angle** : au plus 1°, le long de la courbe et aux raccords une fois cousue.
+   Aussi **sans virage brusque** : le virage mesuré sur 1,5 cm avant un point et sur 1,5 cm
+   après ne doit pas différer de plus de 15°. Une courbe sans coin peut quand même tourner d'un
+   coup (presque droite, puis très courbe) : l'œil y voit un coin, comme au point de carrure du
+   haut de pyjama à l'essayage du 2026-10-22 (31 à 48°). `virage_max` dans `[[courbe]]` change
+   la tolérance d'une courbe. Pour corriger : allonger la poignée du côté qui tourne trop, et
+   raccourcir celle d'en face, sans déplacer de point.
 2. **Points immobiles** : chaque point est comparé à `patrons/references/<patron>.json`.
 3. **Longueurs des coutures**.
 4. **Crans**.
