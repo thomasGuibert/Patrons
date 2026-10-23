@@ -127,3 +127,54 @@ export function depuisCsv(texte: string): { saisie: Saisie; ignorees: number } {
   }
   return { saisie: s, ignorees };
 }
+
+/**
+ * Nom de la taille sur mesure, imprimé « T-<nom> » sur le patron (au lieu d'une taille chiffrée).
+ * Gardé dans ce navigateur comme les mesures. Mêmes règles côté workflow (outils/seamly_linux/sur_mesure.py).
+ */
+const CLE_NOM = "atelier-at:nom-taille";
+export const NOM_MAX = 20;
+const NOM_VALIDE = /^[\p{L}\p{N}][\p{L}\p{N} '’-]*$/u;
+let nomCache = "";
+
+/** Le nom tel qu'il partira (sans « T- » tapé en tête, espaces resserrés) ; "" s'il est vide. */
+export function normaliserNom(t: string): string {
+  return t.replace(/^\s*T\s*-\s*/i, "").replace(/\s+/g, " ").trim();
+}
+
+export function nomValide(t: string): boolean {
+  return t === "" || (t.length <= NOM_MAX && NOM_VALIDE.test(t));
+}
+
+export function nomTaille(): string {
+  try {
+    return localStorage.getItem(CLE_NOM) ?? "";
+  } catch {
+    return nomCache;
+  }
+}
+
+export function nomTailleServeur(): string {
+  return "";
+}
+
+export function abonnerNom(f: () => void): () => void {
+  abonnes.add(f);
+  const ailleurs = (e: StorageEvent) => e.key === CLE_NOM && f();
+  window.addEventListener("storage", ailleurs);
+  return () => {
+    abonnes.delete(f);
+    window.removeEventListener("storage", ailleurs);
+  };
+}
+
+export function enregistrerNom(t: string) {
+  nomCache = t;
+  try {
+    if (t) localStorage.setItem(CLE_NOM, t);
+    else localStorage.removeItem(CLE_NOM);
+  } catch {
+    // stockage refusé : le nom reste valable jusqu'au rechargement
+  }
+  abonnes.forEach((f) => f());
+}

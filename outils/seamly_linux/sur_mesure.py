@@ -4,6 +4,7 @@ Usage : python3 sur_mesure.py <dossier de sortie>
 La demande arrive par les variables d'environnement (jamais par le shell) :
   PATRON  slug du site (haut-pyjama…)   FORMAT  a4 ou a3
   MESURES JSON {nom de mesure Seamly: cm}
+  NOM     facultatif, nom de la taille (Thomas → « T-Thomas » sur le patron)
 Sortie : <dossier>/patron.pdf. Seamly : variable SEAMLY2D, sous xvfb-run.
 """
 import json, os, re, shutil, subprocess, sys, tempfile
@@ -39,6 +40,12 @@ def main():
         if not isinstance(v, (int, float)) or not 1 <= v <= 250:
             sys.exit(f'{n} : valeur hors bornes')
         args += ['--mesure', f'{n}={v:g}']
+
+    nom_taille = os.environ.get('NOM', '').strip()
+    if nom_taille:
+        if not re.match(r"^[^\W_][\w '’-]{0,19}$", nom_taille):
+            sys.exit(f'nom de taille refusé : {nom_taille!r}')
+        args += ['--nom', nom_taille]
 
     nom, titre = noms[slug]
     tmp = tempfile.mkdtemp(prefix='sur_mesure_')

@@ -4,11 +4,11 @@ import { disponible, lancer, verifier, type Format } from "@/surMesure";
 export async function POST(req: Request) {
   if (!disponible()) return Response.json({ erreur: "indisponible" }, { status: 503 });
   const corps = await req.json().catch(() => null);
-  const { patron, format, mesures } = corps ?? {};
-  const faute = verifier(patron, format, mesures);
+  const { patron, format, mesures, nom = "" } = corps ?? {};
+  const faute = verifier(patron, format, mesures, nom);
   if (faute) return Response.json({ erreur: faute }, { status: 400 });
   try {
-    return Response.json({ demande: await lancer(patron, format as Format, mesures) });
+    return Response.json({ demande: await lancer(patron, format as Format, mesures, nom) });
   } catch (e) {
     console.error(e);
     return Response.json({ erreur: "lancement impossible" }, { status: 502 });

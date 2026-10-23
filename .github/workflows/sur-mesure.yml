@@ -10,6 +10,7 @@ on:
       patron: { description: 'Slug du patron (haut-pyjama…)', required: true }
       format: { description: 'a4 ou a3', required: true }
       mesures: { description: 'JSON {mesure Seamly: cm}', required: true }
+      nom: { description: 'Nom de la taille (T-<nom> sur le patron)', required: false, default: '' }
 
 permissions:
   contents: read
@@ -53,6 +54,7 @@ jobs:
           PATRON: ${{ inputs.patron }}
           FORMAT: ${{ inputs.format }}
           MESURES: ${{ inputs.mesures }}
+          NOM: ${{ inputs.nom }}
         run: xvfb-run -a python3 outils/seamly_linux/sur_mesure.py sortie
 
       - uses: actions/upload-artifact@v4
