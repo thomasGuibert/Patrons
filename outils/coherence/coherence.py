@@ -14,7 +14,7 @@ Pour chaque patron décrit par patrons/<patron>.coherence.toml, et pour chaque j
 4. Crans : les crans d'un bord tombent sur ceux de l'autre (l'écart de longueur peut se répartir).
 --seamly : vérifie aussi que le calcul hors Seamly trace comme Seamly (périmètre et dimensions
 de chaque pièce), avec Seamly2D (variable SEAMLY2D ; sous Linux, lancer sous xvfb-run).
-Sortie en Markdown ; code de retour 1 si un contrôle échoue.
+Sortie en Markdown ; code de retour 1 si un contrôle échoue. Mode d'emploi : skill verifier-patron.
 """
 import glob, json, math, os, re, shutil, subprocess, sys, tempfile, tomllib
 
