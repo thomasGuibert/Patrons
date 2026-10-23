@@ -259,7 +259,7 @@ def exporter(svg, dst, titre, sm2d=None, format='A4', taille=None):
     y = H0 - 1.8 * CM
     c.setFont('Helvetica-Bold', 20); c.drawString(1.8 * CM, y, titre); y -= 22
     c.setFont('Helvetica', 12)
-    c.drawString(1.8 * CM, y, ('%s · ' % libelle if libelle else '') + 'tracé et export Seamly2D'); y -= 24
+    c.drawString(1.8 * CM, y, ('%s · ' % libelle if libelle else '') + 'Atelier AT'); y -= 24
     notice = ("Imprimer à 100 % (« taille réelle », sans ajustement à la page). Vérifier le carré de "
               "contrôle ci-contre : 5 cm de côté. Chaque pièce a ses propres feuilles : couper chaque "
               "feuille sur le cadre gris là où elle touche une voisine, puis scotcher bord à bord selon "
