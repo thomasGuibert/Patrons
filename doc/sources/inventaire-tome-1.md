@@ -4,6 +4,9 @@ D'après la photo du sommaire envoyée par Thomas le 2026-10-27. Pages du sommai
 « Reçu » = photos et transcription dans `doc/sources/`. Priorité : ce qu'il faudrait photographier
 d'abord pour les modèles en cours ou probables.
 
+Ce livre est en chaîne et trame : ses constructions ne servent jamais aux modèles en maille,
+qui suivent le livre maille (règle de Thomas, 2026-10-27).
+
 ## Les jupes (p. 34-72)
 
 Rien de reçu. À photographier seulement si une jupe ou une robe entre au catalogue
@@ -45,7 +48,7 @@ Rien de reçu. À photographier seulement si une jupe ou une robe entre au catal
 | 156 | Manche gaine | reçu (`manche/manche-gaine/`) |
 | 158 | Manche façon gigot | reçu (`manche/manche-gigot/`) |
 | 160 | Évasements sur manche courte | reçu (`manche/evasements-manche-courte/`) |
-| 164 | Manche raglan | manque, priorité 3 (sweat, T-shirt raglan) |
+| 164 | Manche raglan | manque, priorité 3 (manche raglan en tissu tissé) |
 | 168-182 | Manches kimono (gousset à même, incrusté, courte, chauve-souris, pivot) | manque |
 | 184 | Manche liquette ou basse | manque |
 | 186 | Poignets | reçu en partie avec la manche chemisier ; p. 186 manque |
