@@ -12,6 +12,8 @@
         <m base="170" height_increase="0" name="height" size_increase="0"/>
         <m base="40" height_increase="0" name="size" size_increase="2"/>
         <m base="92" height_increase="0" name="bust_circ" size_increase="4"/>
+        <m base="22.5" height_increase="0" name="bustpoint_to_neck_front" size_increase="0.5"/>
+        <m base="9.5" height_increase="0" name="bustpoint_to_bustpoint_half" size_increase="0.25"/>
         <m base="72" height_increase="0" name="waist_circ" size_increase="4"/>
         <m base="98" height_increase="0" name="hip_circ" size_increase="4"/>
         <m base="41.5" height_increase="0" name="neck_back_to_waist_b" size_increase="0.5"/>

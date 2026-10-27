@@ -1,0 +1,59 @@
+# Contrôles de cohérence du boléro : python3 outils/coherence/coherence.py bolero
+# Un tronçon = [pièce, point de départ, point d'arrivée], le long de la ligne de couture, par le
+# plus court des deux chemins. Points de chaque pièce : python3 outils/coherence/pieces.py patrons/bolero.sm2d
+# Seules les pièces du boléro sont décrites (base, fond tailleur et contrôles sont hors plan de coupe).
+
+gammes = ["femme"]
+profils = false     # le sur-mesure ne demande pas encore hauteur et écart de poitrine
+
+# --- 1. Courbes sans angle (raccords entre tronçons : une fois cousus)
+
+[[courbe]]
+nom = "Emmanchure"
+troncons = [["Devant boléro", "I2t", "C5t"], ["Dos boléro", "L3t", "J2t"]]
+fermee = true       # se referme à la couture de côté
+
+[[courbe]]
+nom = "Encolure"
+troncons = [["Dos boléro", "Dt", "D2t"], ["Devant boléro", "C2t", "Ct"]]
+pli_debut = true    # couture milieu dos, dos en double ; le coin du milieu devant est voulu
+
+[[courbe]]
+nom = "Bas et arrondi devant"
+troncons = [["Dos boléro", "bHd", "bHc"], ["Devant boléro", "bFc", "bR1"]]
+pli_debut = true
+
+[[courbe]]
+nom = "Tête de manche"
+troncons = [["Dessus de manche", "mU", "mKp"], ["Dessous de manche", "mK", "mUp"]]
+fermee = true       # se referme à la couture de coude
+
+# --- 3 et 4. Coutures (a et b se cousent ensemble, du premier point au dernier)
+
+[[couture]]
+nom = "Emmanchure et tête de manche"
+a = [["Devant boléro", "I2t", "C5t"], ["Dos boléro", "L3t", "J2t"]]
+b = [["Dessous de manche", "mV", "mK"], ["Dessus de manche", "mKp", "mU"], ["Dessous de manche", "mUp", "mV"]]
+ecart = [1.5, 3.5]  # embu : 2 cm en tissu sec, 3,5 en lainage souple (T2 p. 152)
+
+[[couture]]
+nom = "Épaule"
+a = [["Devant boléro", "C2t", "P1"], ["Devant boléro", "P2", "C5t"]]
+b = [["Dos boléro", "D2t", "D3"], ["Dos boléro", "L4", "L3t"]]
+
+[[couture]]
+nom = "Côté"
+a = [["Devant boléro", "I2t", "bFc"]]
+b = [["Dos boléro", "J2t", "bHc"]]
+
+[[couture]]
+nom = "Coude"
+a = [["Dessous de manche", "mUp", "mP"]]
+b = [["Dessus de manche", "mU", "mP"]]
+ecart = [0, 1.0]    # embu à soutenir sur le dessus (p. 153)
+
+[[couture]]
+nom = "Saignée"
+a = [["Dessus de manche", "mKp", "mQ"]]
+b = [["Dessous de manche", "mK", "mQp"]]
+ecart = [0, 1.0]    # le dessus se détend (p. 153)
