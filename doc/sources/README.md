@@ -58,5 +58,7 @@ manches p. 132-135 et 150-153 du **tome 2** ; manches p. 144-167 du **tome 1** (
 | Tailles | `tailles/tableau-homme-44-54/` : tableau des mesures du corps homme, tailles 44 à 54 | ? | oui | `mesures/homme/T44.smms` à `T54.smms` |
 | Pantalon | `pantalon/modele-pantalon-souple/` : modèle pantalon souple, ceinture bord-côtes, poches | 246-247 | oui | – |
 
+Ce qui manque du tome 1, avec les priorités : `inventaire-tome-1.md` (sommaire photographié le 2026-10-27).
+
 Nouvelle source : créer `<pièce>/<construction>/`, nommer les photos
 `pXX-YY-<sujet>.jpg`, compresser (~2000 px, qualité 82) et ajouter une ligne ici.
