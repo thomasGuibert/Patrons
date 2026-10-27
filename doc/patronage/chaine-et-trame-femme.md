@@ -1,6 +1,6 @@
-# Bases chaîne et trame femme : analyse des pages du livre rouge
+# Bases chaîne et trame femme : analyse des pages du Vêtement féminin
 
-Pages reçues le 2026-10-27 (livre rouge « Les bases de corsage / Basic bodices », p. 62-81),
+Pages reçues le 2026-10-27 (chapitre « Les bases de corsage / Basic bodices », p. 62-81),
 rangées et transcrites dans `doc/sources/buste/` :
 
 | Dossier | Pages | Ce que c'est | Usage annoncé par le livre |
@@ -10,12 +10,18 @@ rangées et transcrites dans `doc/sources/buste/` :
 | `elargissement-tailleur/` | 78-81 | Fond de base tailleur près du corps : la base à pinces élargie (aisances) | « vêtements classiques avec une manche montée » ; varie pour tailleur, veste, manteau |
 | `fond-base-sans-pince/` | 76-77 | Fond sans pince | « vêtement large », « particulièrement adapté [...] maille » |
 
-Le livre (rouge) n'est pas celui du fond maille, de la manche montée et du tableau de tailles
-(livre vert) : les numéros de page se recouvrent.
+Livres (ESMOD Éditions, références de Thomas, détail dans `doc/sources/README.md`) :
+*Le vêtement féminin* tome 1 traite le flou (jupes, chemisiers, corsages, robes), le tome 2 les
+tailleurs, vestes, manteaux et pantalons de ville. Le fond maille, la manche montée et le
+tableau de tailles viennent de *La maille en coupé-cousu*. Attribution retenue, à confirmer :
+le PDF (base du mannequin, p. 62-71) vient du tome 1 et les photos (p. 72-81) du tome 2.
+Si c'est bien le cas, la base en 5 pièces et l'élargissement tailleur partent de la base du
+mannequin du **tome 2**, qui n'a pas été photographiée : il faudra vérifier qu'elle est
+identique à celle du tome 1 (mêmes numéros de page, même figure 3 citée).
 
 ## Les deux corsages : flou et tailleur
 
-Le mot « flou » n'apparaît pas dans ces pages. Lecture retenue :
+Le mot « flou » n'apparaît pas dans ces pages, mais c'est le sujet du tome 1. Lecture retenue :
 
 - **Corsage flou = base du mannequin à pinces** (p. 62-71). C'est la base près du corps, sans
   aisance ajoutée hormis les 3 cm de construction sur les hanches, avec 5 pinces de taille,
@@ -76,8 +82,9 @@ Contrôles faits sur le tableau, en T38 :
 
 ## Ce qui manque pour tracer dans Seamly
 
-1. **Manche tissée** : absente de ces pages. La manche montée déjà transcrite vient du livre
-   vert et va avec le fond maille, et le livre lui-même renvoie à une « manche de base en chaîne
+1. **Manche tissée** : absente de ces pages. Pour le boléro (veste doublée), la manche du
+   tome 2 (tailleur) est la plus probable. La manche montée déjà transcrite vient de
+   *La maille en coupé-cousu* et va avec le fond maille, et le livre lui-même renvoie à une « manche de base en chaîne
    et trame » (plus de tête, plus d'embu). Il faut ces pages-là pour le boléro.
 2. **Élargissement fond de base veste** (p. 82 et suivantes) : il se devine par transparence
    sur la p. 81 sans avoir été photographié. Pour le boléro, qui est plutôt une veste, ce sont

@@ -1,19 +1,30 @@
 # Sources de patronage
 
 Photos du livre (colonnes FR/EN) et transcriptions, rangées par type de pièce puis par
-construction. Les numéros de page sont ceux du livre. Deux livres : le « vert » (bases maille,
-p. 44-61, manche p. 68-73) et le « rouge » (bases chaîne et trame, p. 62-81) ; leurs numéros de
-page se recouvrent.
+construction. Les numéros de page sont ceux du livre. Trois livres ESMOD Éditions, collection « Devenir modéliste » (références données par Thomas
+le 2026-10-27), dont les numéros de page se recouvrent :
+
+- **La maille en coupé-cousu** (S. Delhumeau, 272 p., « livre vert ») : fonds maille, manche
+  montée, pantalon, tableau des tailles p. 29 ;
+  https://www.esmod-editions.com/la-maille-en-coupe-cousu-c2x25707945
+- **Le vêtement féminin, tome 1** (240 p.) : le flou (jupes, chemisiers, corsages, robes) ;
+  https://www.esmod-editions.com/le-vetement-feminin-tome-1-c2x18195498
+- **Le vêtement féminin, tome 2** (240 p.) : pantalons de ville, tailleurs, vestes, manteaux ;
+  https://www.esmod-editions.com/le-vetement-feminin-tome-2-c2x18195500
+
+Pages chaîne et trame (« livre rouge », p. 62-81) : le PDF de la base du mannequin est
+attribué au tome 1 (flou) et les photos p. 72-81 (petit côté, élargissement tailleur) au
+tome 2, à confirmer par Thomas.
 
 | Pièce | Construction | Pages | Transcription | Patron |
 |---|---|---|---|---|
 | Buste | `buste/fond-base-maille/` : fond de base maille (cadre, encolure, épaule, côté, dessous de bras, emmanchures) | 44-47 | non | `patrons/fond_base_maille.sm2d` |
 | Buste | `buste/deplacement-epaule/` : déplacement de la ligne d'épaule vers l'avant (1,8 cm) | 48-49 | oui | – |
 | Buste | `buste/elargissements-maille/` : introduction aux élargissements, T-shirt souple, sweater | ?, 56, 57 | oui | – |
-| Buste | `buste/base-mannequin/` : base du mannequin, corsage à pinces chaîne et trame (cadre, encolures, épaules, pinces, côtés, emmanchures, vérifications, toile en 4 parties) — livre rouge | 62-71 | oui | – |
-| Buste | `buste/base-mannequin-5-pieces/` : base du mannequin en 5 pièces avec petit côté (près du corps, tailleur) — livre rouge | 72-75 | oui | – |
-| Buste | `buste/fond-base-sans-pince/` : fond de base sans pince (vêtement large, maille), proche du fond maille — livre rouge | 76-77 | oui | – |
-| Buste | `buste/elargissement-tailleur/` : élargissement fond de base tailleur près du corps (depuis la base à pinces) — livre rouge | 78-81 | oui | – |
+| Buste | `buste/base-mannequin/` : base du mannequin, corsage à pinces chaîne et trame (cadre, encolures, épaules, pinces, côtés, emmanchures, vérifications, toile en 4 parties) — Vêtement féminin T1 (à confirmer) | 62-71 | oui | – |
+| Buste | `buste/base-mannequin-5-pieces/` : base du mannequin en 5 pièces avec petit côté (près du corps, tailleur) — Vêtement féminin T2 (à confirmer) | 72-75 | oui | – |
+| Buste | `buste/fond-base-sans-pince/` : fond de base sans pince (vêtement large, maille), proche du fond maille — Vêtement féminin T2 (à confirmer) | 76-77 | oui | – |
+| Buste | `buste/elargissement-tailleur/` : élargissement fond de base tailleur près du corps (depuis la base à pinces) — Vêtement féminin T2 (à confirmer) | 78-81 | oui | – |
 | Buste | `buste/tshirt-liquette/` : modèle T-shirt liquette manches courtes | 60-61 | oui | – |
 | Manche | `manche/manche-montee/` : manche montée de base (cadre, tête de manche, crans, coude) | 68-73 | oui | `patrons/fond_base_maille.sm2d`, bloc Manche |
 | Manche | `manche/profondeur-emmanchure/` : méthode de la vidéo Meriame Couture | – | oui | – |
