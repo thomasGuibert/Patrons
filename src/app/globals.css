@@ -206,6 +206,25 @@ button.bouton { cursor: pointer; display: inline-flex; align-items: center; gap:
 .gomme:disabled { color: var(--filet); cursor: default; }
 .vos-mesures .message { min-height: 1.5em; font-style: italic; color: var(--sepia); }
 
+/* Le catalogue des pièces : une fiche par pièce, avec ses pastilles */
+.filtres-pieces { display: flex; flex-wrap: wrap; gap: 18px 40px; align-items: start; padding-bottom: 8px; }
+.legende-pieces { margin: 0; flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; color: var(--sepia); }
+.legende-pieces div { display: flex; align-items: center; gap: 8px; }
+.legende-pieces dd { margin: 0; font-style: italic; }
+.pieces { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.piece { background: var(--fond); border: 1px solid var(--filet); padding: 14px 16px; display: grid; gap: 6px; align-content: start; }
+.piece-ligne { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.piece h3 { font-size: 1.25rem; }
+.piece p { color: var(--sepia); font-size: 15px; }
+.pastilles { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.pastille { display: inline-block; font-family: var(--display); text-transform: uppercase; letter-spacing: .14em; font-size: 10.5px; line-height: 1; padding: 5px 9px; border-radius: 999px; border: 1px solid; white-space: nowrap; }
+.pastille.maille { color: var(--bleu); border-color: var(--bleu); border-style: dashed; }
+.pastille.chaine-trame { color: var(--bleu); border-color: var(--bleu); }
+.pastille.flou { color: var(--garance); border-color: var(--garance); }
+.pastille.tailleur { background: var(--garance); border-color: var(--garance); color: var(--fond); }
+.tracee { font-family: var(--machine); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--encre); white-space: nowrap; }
+.tracee::before { content: "✓ "; color: var(--garance); }
+
 /* Pied de page en bleu de travail */
 .pied { background: var(--bleu); color: var(--bleu-clair); font-size: 14px; }
 .pied-ligne { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding-block: 20px; }
