@@ -7,6 +7,14 @@ import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from gen import Fichier, ETAPES
 
+import json
+TUNE = json.loads(os.environ.get('BOLERO_TUNE', '{}'))   # essais de réglage des poignées (voir fiche)
+
+
+def k(nom, defaut):
+    return TUNE.get(nom, defaut)
+
+
 T = sys.argv[1] if len(sys.argv) > 1 else 'T38'
 f = Fichier(f'../mesures/femme/{T}.smms')
 
@@ -54,6 +62,8 @@ V('m_IT', 1.25, "IT : 1 à 1,5 cm (livre), milieu de la fourchette")
 # boléro (choix de modèle, pas du livre)
 V('bolero_sous_bras', 9, "Boléro : longueur sous le dessous de bras du fond tailleur (choix de modèle, ~8-10 cm)")
 V('col_hauteur', 3, "Col officier : hauteur AD (exemple du livre, tome 1)")
+V('facing_larg', 8, "Parementure : largeur au bord de devant (livre : 8 cm minimum, cols tailleur ; Thomas, 2026-10-27)")
+V('facing_epaule', 4, "Parementure : longueur sur l'épaule depuis l'encolure (livre : 3,5 à 5 cm)")
 V('bolero_arrondi', 6, "Boléro : rayon de l'arrondi du bas devant (choix de modèle)")
 
 b = f.bloc('Corsage : base, fond tailleur, boléro')
@@ -206,10 +216,10 @@ b.chemin('cCoteDev', [('I2t', '270', '0', 'Line_I2t_M2t*0.4'), ('M2t', 'AngleLin
 b.end('J2tp', 'J2t', 180, '#plat_emm_dos', 'platitude 1 cm (comme la base)', 'solidLine')
 b.end('I2tp', 'I2t', 0, '#plat_emm_dev', 'platitude 2 cm (comme la base)', 'solidLine')
 b.ligne('J2tp', 'L1t'); b.ligne('L1t', 'L3t'); b.ligne('I2tp', 'K1t'); b.ligne('K1t', 'C5t')
-b.chemin('cEmmDosT', [('J2tp', '180', '0', 'Line_J2tp_L1t*0.5'), ('L1t', '90', 'Line_J2tp_L1t*0.35', 'Line_L1t_L3t*0.4'),
-                      ('L3t', 'AngleLine_L4_L3+90', 'Line_L1t_L3t*0.3', '0')], 'p. 80 : emmanchure dos retracée par les nouveaux points')
-b.chemin('cEmmDevT', [('I2tp', '0', '0', 'Line_I2tp_K1t*0.55'), ('K1t', '90', 'Line_I2tp_K1t*0.3', 'Line_K1t_C5t*0.4'),
-                      ('C5t', 'AngleLine_P2_C5-90', 'Line_K1t_C5t*0.3', '0')], 'p. 80 : emmanchure devant retracée')
+b.chemin('cEmmDosT', [('J2tp', str(180 + k('dA', 0)), '0', f"Line_J2tp_L1t*{k('dd1', 0.5)}"), ('L1t', '90', f"Line_J2tp_L1t*{k('dd2', 0.35)}", f"Line_L1t_L3t*{k('dd3', 0.4)}"),
+                      ('L3t', 'AngleLine_L4_L3+90', f"Line_L1t_L3t*{k('dd4', 0.3)}", '0')], 'p. 80 : emmanchure dos retracée par les nouveaux points')
+b.chemin('cEmmDevT', [('I2tp', str(k('eA', 0)), '0', f"Line_I2tp_K1t*{k('ed1', 0.55)}"), ('K1t', '90', f"Line_I2tp_K1t*{k('ed2', 0.3)}", f"Line_K1t_C5t*{k('ed3', 0.4)}"),
+                      ('C5t', 'AngleLine_P2_C5-90', f"Line_K1t_C5t*{k('ed4', 0.3)}", '0')], 'p. 80 : emmanchure devant retracée')
 b.end('Dtp', 'Dt', 0, '#plat_enc_dos', 'platitude 2 cm au milieu dos', 'solidLine')
 b.end('Ctp', 'Ct', 180, '#plat_enc_dev', 'platitude 1 cm au milieu devant', 'solidLine')
 b.spl('cEncDosT', 'Dtp', 'D2t', '0', 'Line_D_D1*0.45', 'AngleLine_D2_D3-90', 'Line_D1_D2*0.7', 'p. 80 : nouvelle encolure dos')
@@ -306,16 +316,16 @@ for a_, b_ in (('mU', 'mS'), ('mU', 'mA'), ('mA', 'mKp'), ('mS', 'mA'), ('mA', '
     m.ligne(a_, b_)
 m.ligne('mKp', 'mQ'); m.ligne('mK', 'mQp'); m.ligne('mU', 'mP'); m.ligne('mUp', 'mP')
 PERP = 'AngleLine_mP_mQ-90'
-m.chemin('mTete', [('mU', 'AngleLine_mU_mS', '0', 'Line_mU_mS*0.35'),
-                   ('mS', 'AngleLine_mU_mA', 'Line_mU_mS*0.35', 'Line_mS_mA*0.35'),
-                   ('mA', '0', 'Line_mS_mA*0.4', 'Line_mA_mIpp*0.4'),
-                   ('mIpp', 'AngleLine_mA_mKp', 'Line_mA_mIpp*0.35', 'Line_mIpp_mL*0.35'),
-                   ('mL', 'AngleLine_mIpp_mKp', 'Line_mIpp_mL*0.35', 'Line_mL_mKp*0.35'),
-                   ('mKp', 'AngleLine_mL_mKp', 'Line_mL_mKp*0.35', '0')], 'p. 152 : tête du dessus K\'LI\'\'ASU')
-m.chemin('mTeteDessous', [('mUp', 'AngleLine_mUp_mX2o+180-AngleLine_mU_mS+AngleLine_mU_mX1o', '0', 'Line_mUp_mV*0.4'),
-                          ('mV', '0', 'Line_mUp_mV*0.4', '0')], 'p. 152 : dessous U\'V en s\'appuyant sur U\'C')
-m.chemin('mTeteDessous2', [('mV', '0', '0', 'Line_mV_mK*0.4'),
-                           ('mK', 'AngleLine_mK_mMp+AngleLine_mKp_mM-AngleLine_mL_mKp-180', 'Line_mV_mK*0.4', '0')], 'p. 152 : dessous VK, finir en légère courbe')
+m.chemin('mTete', [('mU', 'AngleLine_mU_mS', '0', f"Line_mU_mS*{k('t1', 0.597)}"),
+                   ('mS', f"AngleLine_mU_mA+({k('tSA', 14.716)})", f"Line_mU_mS*{k('t2', 0.256)}", f"Line_mS_mA*{k('t3', 0.239)}"),
+                   ('mA', '0', f"Line_mS_mA*{k('t4', 0.384)}", f"Line_mA_mIpp*{k('t5', 0.354)}"),
+                   ('mIpp', f"AngleLine_mA_mKp+({k('tIA', -12.324)})", f"Line_mA_mIpp*{k('t6', 0.371)}", f"Line_mIpp_mL*{k('t7', 0.315)}"),
+                   ('mL', f"AngleLine_mIpp_mKp+({k('tLA', -5.18)})", f"Line_mIpp_mL*{k('t8', 0.511)}", f"Line_mL_mKp*{k('t9', 0.567)}"),
+                   ('mKp', 'AngleLine_mL_mKp', f"Line_mL_mKp*{k('t10', 0.218)}", '0')], 'p. 152 : tête du dessus K\'LI\'\'ASU')
+m.chemin('mTeteDessous', [('mUp', 'AngleLine_mUp_mX2o+180-AngleLine_mU_mS+AngleLine_mU_mX1o', '0', f"Line_mUp_mV*{k('v1', 0.291)}"),
+                          ('mV', str(k('vA', -7.494)), f"Line_mUp_mV*{k('v2', 0.526)}", '0')], 'p. 152 : dessous U\'V en s\'appuyant sur U\'C')
+m.chemin('mTeteDessous2', [('mV', str(k('vA', -7.494)), '0', f"Line_mV_mK*{k('v3', 0.273)}"),
+                           ('mK', f"AngleLine_mK_mMp+AngleLine_mKp_mM-AngleLine_mL_mKp-180+({k('kA', -0.479)})", f"Line_mV_mK*{k('v4', 0.071)}", '0')], 'p. 152 : dessous VK, finir en légère courbe')
 m.chemin('mSaignee', [('mKp', 'AngleLine_mKp_mM', '0', 'Line_mKp_mM*0.35'), ('mM', 'AngleLine_mKp_mQ', 'Line_mKp_mM*0.35', 'Line_mM_mQ*0.35'),
                       ('mQ', PERP, 'Line_mM_mQ*0.35', '0')], 'p. 152 : saignée du dessus K\'MQ, angle droit en Q')
 m.chemin('mSaigneeD', [('mK', 'AngleLine_mK_mMp', '0', 'Line_mK_mMp*0.35'), ('mMp', 'AngleLine_mK_mQp', 'Line_mK_mMp*0.35', 'Line_mMp_mQp*0.35'),
@@ -351,7 +361,7 @@ b.piece('Dos boléro', [('p', 'Dt'), ('p', 'Dtp'), ('c', 'cEncDosT', 0), ('p', '
 b.piece('Devant boléro', [('p', 'C5t'), ('p', 'P2'), ('p', 'P3'), ('p', 'P1'), ('p', 'C2t'), ('c', 'cEncDevT', 1), ('p', 'Ctp'), ('p', 'Ct'),
                           ('p', 'bR1'), ('c', 'cArrondi', 0), ('p', 'bR2'), ('c', 'cBasDev', 1), ('p', 'bFc'), ('cp', 'cCoteDev', 1), ('p', 'I2t'), ('p', 'I2tp'),
                           ('cp', 'cEmmDevT', 0), ('p', 'cranDev', N2), ('cp', 'cEmmDevT', 0)],
-        qte=2, couture=1, info=dict(data=(36, -50), pinfo=(36, -46.5), grain=(46, -36, 12)))
+        qte=2, couture=1, info=dict(data=(26, -39), pinfo=(33.5, -39), grain=(46, -36, 12)))
 m.piece('Dessus de manche', [('p', 'mU'), ('cp', 'mTete', 0), ('p', 'mCt', N), ('cp', 'mTete', 0), ('p', 'mKp'),
                               ('cp', 'mSaignee', 0), ('p', 'mCs2', N), ('cp', 'mSaignee', 0), ('p', 'mCs1', N), ('cp', 'mSaignee', 0),
                               ('p', 'mQ'), ('p', 'mP'),
@@ -387,6 +397,40 @@ b.piece('Col officier', [('p', 'kD'), ('p', 'kE2'), ('cp', 'cColHaut', 0), ('p',
                          ('cp', 'cColBas', 1), ('p', 'kF', N), ('cp', 'cColBas', 1), ('p', 'kE'), ('p', 'kA')],
         qte=2, couture=1, info=dict(data=(102, -12.6), pinfo=(108.5, -12.6), grain=(101, -10.9, 2.5),
                                     data_dim=(5, 2), pinfo_dim=(5, 2)))
+
+# ================= doublure (tome 2, « Doublure de veste » p. 203) =================
+# Même forme que le boléro, valeurs de couture du livre : épaule 1,5, côté 1,5 (au-dessus de la taille), le reste 1.
+# La doublure du devant s'arrête à la parementure ; le dos est en 2 pièces (couture milieu dos), comme le dos du boléro.
+b.end('fA', 'Ct', 180, '#facing_larg', 'parementure : bord à 8 cm du milieu devant', 'dotLine')
+b.chemin('cBasDev2', [('bFc', 'AngleLine_bFc1_bFc2+90', '0', 'Line_bFc_bR2/3'), ('bR2', '0', 'Line_bFc_bR2/3', '0')],
+         'bas du devant (même courbe que cBasDev), en chemin pour y poser le bord de parementure')
+b.courbe_axe('fB', 'fA', 270, 'cBasDev2', 'parementure : le bord descend d\'équerre jusqu\'au bas')
+b.along('fS', 'C2t', 'P1', '#facing_epaule', 'parementure : 4 cm sur l\'épaule depuis l\'encolure (livre 3,5 à 5)')
+b.ligne('fS', 'fB', 'solidLine')
+LIN = dict(matiere='Doublure')
+b.piece('Devant doublure', [('p', 'C5t', dict(sa=(1, 1.5))), ('p', 'P2', dict(sa=(1.5, 1))), ('p', 'P3', dict(sa=(1, 1))), ('p', 'P1', dict(sa=(1, 1.5))),
+                            ('p', 'fS', dict(sa=(1.5, 1))), ('p', 'fB', dict(sa=(1, 1))), ('cp', 'cBasDev2', 1), ('p', 'bFc', dict(sa=(1, 1.5))),
+                            ('cp', 'cCoteDev', 1), ('p', 'I2t', dict(sa=(1.5, 1))), ('p', 'I2tp', dict(sa=(1, 1))),
+                            ('cp', 'cEmmDevT', 0), ('p', 'cranDev', N2), ('cp', 'cEmmDevT', 0)],
+        qte=2, couture=1, info=dict(data=(26, -39), pinfo=(33.5, -39), grain=(29, -47, 9), **LIN))
+b.piece('Parementure', [('p', 'fS'), ('p', 'C2t'), ('c', 'cEncDevT', 1), ('p', 'Ctp'), ('p', 'Ct'), ('p', 'bR1'), ('c', 'cArrondi', 0), ('p', 'bR2'),
+                        ('cp', 'cBasDev2', 1), ('p', 'fB')],
+        qte=2, couture=1, info=dict(data=(42.7, -56), pinfo=(42.7, -53.5), grain=(48.5, -40, 10), data_dim=(5, 2), pinfo_dim=(5, 2)))
+b.piece('Dos doublure', [('p', 'Dt'), ('p', 'Dtp'), ('c', 'cEncDosT', 0), ('p', 'D2t', dict(sa=(1, 1.5))), ('p', 'D3', dict(sa=(1.5, 1))), ('p', 'Z'),
+                         ('p', 'L4', dict(sa=(1, 1.5))), ('p', 'L3t', dict(sa=(1.5, 1))), ('cp', 'cEmmDosT', 1), ('p', 'cranDos', N), ('cp', 'cEmmDosT', 1),
+                         ('p', 'J2tp'), ('p', 'J2t', dict(sa=(1, 1.5))), ('cp', 'cCoteDos', 0), ('p', 'bHc', dict(sa=(1.5, 1))), ('c', 'cBasDos', 1),
+                         ('p', 'bHd'), ('p', 'L')],
+        qte=2, couture=1, info=dict(data=(2, -54), pinfo=(2, -50.5), grain=(12, -35, 12), **LIN))
+m.piece('Dessus de manche doublure', [('p', 'mU'), ('cp', 'mTete', 0), ('p', 'mCt', N), ('cp', 'mTete', 0), ('p', 'mKp'),
+                              ('cp', 'mSaignee', 0), ('p', 'mCs2', N), ('cp', 'mSaignee', 0), ('p', 'mCs1', N), ('cp', 'mSaignee', 0),
+                              ('p', 'mQ'), ('p', 'mP'),
+                              ('cp', 'mCoude', 1), ('p', 'mCc1', N), ('cp', 'mCoude', 1), ('p', 'mCc2', N), ('cp', 'mCoude', 1)],
+        qte=2, couture=1, info=dict(data=(71, -55), pinfo=(71, -50), grain=(75, -20, 20), **LIN))
+m.piece('Dessous de manche doublure', [('p', 'mUp'), ('cp', 'mTeteDessous', 0), ('p', 'mV', N), ('cp', 'mTeteDessous2', 0), ('p', 'mK'),
+                               ('cp', 'mSaigneeD', 0), ('p', 'mCs4', N), ('cp', 'mSaigneeD', 0), ('p', 'mCs3', N), ('cp', 'mSaigneeD', 0),
+                               ('p', 'mQp'), ('p', 'mP'),
+                               ('cp', 'mCoudeD', 1), ('p', 'mCc3', N), ('cp', 'mCoudeD', 1), ('p', 'mCc4', N), ('cp', 'mCoudeD', 1)],
+        qte=2, couture=1, info=dict(data=(74, -45), pinfo=(74, -40), grain=(78, -20, 15), **LIN))
 
 with open(sys.argv[2] if len(sys.argv) > 2 else os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'patrons', 'bolero.sm2d'), 'w') as out:
     out.write(f.xml('BOLÉRO'))
