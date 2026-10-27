@@ -19,9 +19,9 @@ tailleurs, vestes, manteaux et pantalons de ville. Le fond maille, la manche mon
 tableau de tailles viennent de *La maille en coupé-cousu*. Attribution (Thomas, 2026-10-27) :
 les p. 62-81, PDF compris, viennent du **tome 2** ; l'élargissement corsage (p. 108-109) du
 **tome 1** ; la manche tailleur (p. 150-153) sans doute du tome 2.
-L'élargissement corsage du tome 1 part donc de la base du mannequin **du tome 1**, qui n'a pas
-été photographiée : il faudra vérifier qu'elle est identique à celle du tome 2 avant de tracer
-le flou.
+La base du mannequin du tome 1 (p. 76-85) a été relue : texte et valeurs **identiques** à celle
+du tome 2. Flou et tailleur partent donc d'une seule base à pinces. Une annotation manuscrite
+de l'exemplaire du tome 1 (L4 « à 0,5 cm au dessus ») reste à confirmer par Thomas.
 
 ## Les deux corsages : flou et tailleur
 

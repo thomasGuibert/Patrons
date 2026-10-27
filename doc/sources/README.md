@@ -21,7 +21,7 @@ manches p. 132-135 et 150-153 du tome 2 (à confirmer).
 | Buste | `buste/fond-base-maille/` : fond de base maille (cadre, encolure, épaule, côté, dessous de bras, emmanchures) | 44-47 | non | `patrons/fond_base_maille.sm2d` |
 | Buste | `buste/deplacement-epaule/` : déplacement de la ligne d'épaule vers l'avant (1,8 cm) | 48-49 | oui | – |
 | Buste | `buste/elargissements-maille/` : introduction aux élargissements, T-shirt souple, sweater | ?, 56, 57 | oui | – |
-| Buste | `buste/base-mannequin/` : base du mannequin, corsage à pinces chaîne et trame (cadre, encolures, épaules, pinces, côtés, emmanchures, vérifications, toile en 4 parties) — Vêtement féminin T2 | 62-71 | oui | – |
+| Buste | `buste/base-mannequin/` : base du mannequin, corsage à pinces chaîne et trame (cadre, encolures, épaules, pinces, côtés, emmanchures, vérifications, toile en 4 parties) — Vêtement féminin T2, et T1 p. 76-85 (identique) | 62-71 | oui | – |
 | Buste | `buste/base-mannequin-5-pieces/` : base du mannequin en 5 pièces avec petit côté (près du corps, tailleur) — Vêtement féminin T2 | 72-75 | oui | – |
 | Buste | `buste/fond-base-sans-pince/` : fond de base sans pince (vêtement large, maille), proche du fond maille — Vêtement féminin T2 | 76-77 | oui | – |
 | Buste | `buste/elargissement-tailleur/` : élargissement fond de base tailleur près du corps (depuis la base à pinces) — Vêtement féminin T2 | 78-81 | oui | – |
