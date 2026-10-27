@@ -1,6 +1,9 @@
 # Inventaire du tome 2 (Le vêtement féminin, le tailleur)
 
 D'après la photo du sommaire envoyée par Thomas le 2026-10-27. Pages du sommaire.
+Ce livre est en chaîne et trame : ses constructions ne servent jamais aux modèles en maille,
+qui suivent le livre maille (règle de Thomas, 2026-10-27).
+
 « Reçu » = photos et transcription dans `doc/sources/`. Les pages déjà reçues suivent exactement
 cette pagination (base du mannequin p. 62, cols p. 166-205).
 
@@ -48,7 +51,7 @@ pantalon de ville entre au catalogue : fond plat « ville » p. 36 d'abord.
 | 132-134 | Manche montée de base, crans de montage | reçu (`manche/manche-montee-chaine-trame/`) |
 | 136 | Manche toit | manque |
 | 138 | Manche montée avec soufflet « danseuse » | manque |
-| 142 | Manche raglan | manque, priorité 3 (sweat, T-shirt raglan) |
+| 142 | Manche raglan | manque, priorité 3 (manche raglan en tissu tissé) |
 | 146 | Manche bateau | manque |
 | 148 | Manche couture talon | manque |
 | 150 | Manche tailleur | reçu (`manche/manche-tailleur/`), tracée (boléro) |
@@ -59,7 +62,7 @@ pantalon de ville entre au catalogue : fond plat « ville » p. 36 d'abord.
 | Page | Construction | État |
 |---|---|---|
 | 162 | Types de cols | manque |
-| 164 | Encolure bord-côte, col bord-côte | **manque, priorité 1** (maille : sweat, col rond en jersey) |
+| 164 | Encolure bord-côte, col bord-côte | manque (construction chaîne et trame, ne sert pas aux modèles en maille) |
 | 166 | Col montant avec pinces | reçu |
 | 168 | Col évasé, col Médicis | reçu |
 | 170 | Col chemisier simple ou à pied de col à même | **manque, priorité 2** (chemisier) |
