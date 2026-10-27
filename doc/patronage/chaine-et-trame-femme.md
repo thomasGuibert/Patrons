@@ -138,3 +138,23 @@ Contrôles faits sur le tableau, en T38 :
    bustier).
 5. Tracer la manche tailleur sur l'emmanchure du fond tailleur, sans épaulette (choix du
    2026-10-27), et la manche montée de base sur le fond corsage (flou).
+
+## Les cols (tome 1, chapitre « Les cols », p. 166-205)
+
+Pages reçues le 2026-10-27, rangées dans `doc/sources/col/` (une transcription par dossier). Aucune page ne s'intitule « col officier » : le col droit à pied seul n'est pas décrit comme tel.
+
+| Col | Pages | Pied | Remarque |
+|---|---|---|---|
+| Montant avec pinces | 166-167 | oui, 5 cm | encolure en entonnoir ; pinces de buste et d'omoplate fermées dans l'encolure ; hauteur 5 cm devant, 5,5 cm milieu dos |
+| Évasé / Médicis | 168-169 | non | col plat évasé, pinces pour Médicis |
+| Cavalier | 172-173 | oui, en une pièce | chemisier ; hauteur milieu dos 6,5 cm |
+| Transformable | 174-175 | oui | ouvert ou fermé |
+| Claudine, Eton | 176-179 | pied + tombant | tombant plat |
+| Tailleur à pivot direct (cassure droite ou courbe) | 180-189 | pied 3 cm + tombant 4,5 cm | veste/tailleur ; développement par pivot de 2 cm |
+| Châle classique, grand châle, petit châle | 190-203 | pied + tombant d'une pièce | parementure à part |
+| Capuche | 204-205 | – | tracée depuis le vêtement |
+
+Manquent : p. 164-165 et 170-171 (pas reçues), et tout ce qui suit la p. 205.
+
+### Lequel pour le boléro
+Le boléro est sans col pour l'instant (choix de Thomas). Pour y mettre un col droit à pied, le plus proche est le **col montant avec pinces** (p. 166-167), qui suppose une encolure fermée en entonnoir, ou le **pied du col tailleur** (p. 180-183) avec un tombant réduit. Rien n'est tracé tant que Thomas n'a pas choisi.

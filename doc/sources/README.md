@@ -41,6 +41,18 @@ manches p. 132-135 et 150-153 du **tome 2** ; manches p. 144-167 du **tome 1** (
 | Pantalon | `pantalon/elargissements/` : élargissements de pantalon (numéros vus sur la 2e photo) | 244-245 | oui | – |
 | Pantalon | `pantalon/jogging-jersey/` : jogging jersey ou molleton, ceinture et bas en bord-côtes | à confirmer | oui | – |
 | Col | `col/encolure-v-bande-jersey/` : encolure V finie en bande jersey piquée milieu devant | à confirmer | oui | – |
+| Col | `col/col-montant-pinces/` : col montant avec pinces (encolure en entonnoir) — Vêtement féminin T1 | 166-167 | oui | – |
+| Col | `col/col-evase-medicis/` : col évasé et col Médicis — Vêtement féminin T1 | 168-169 | oui | – |
+| Col | `col/col-cavalier/` : col cavalier (col et pied en une pièce) — Vêtement féminin T1 | 172-173 | oui | – |
+| Col | `col/col-transformable/` : col transformable — Vêtement féminin T1 | 174-175 | oui | – |
+| Col | `col/col-claudine/` : col Claudine (Peter Pan) — Vêtement féminin T1 | 176-177 | oui | – |
+| Col | `col/col-eton/` : col Eton — Vêtement féminin T1 | 178-179 | oui | – |
+| Col | `col/col-tailleur-pivot-direct-cassure-droite/` : col tailleur à pivot direct, cassure droite (dessin, développement, relevé des pièces) — Vêtement féminin T1 | 180-185 | oui | – |
+| Col | `col/col-tailleur-pivot-direct-cassure-courbe/` : col tailleur à pivot direct, cassure courbe — Vêtement féminin T1 | 186-189 | oui | – |
+| Col | `col/col-chale-classique/` : col châle classique (tracé, dessous de col, parementure) — Vêtement féminin T1 | 190-195 | oui | – |
+| Col | `col/grand-col-chale/` : grand col châle — Vêtement féminin T1 | 196-197 | oui | – |
+| Col | `col/petit-col-chale/` : petit col châle (montant) : tracé, dessous, parementure — Vêtement féminin T1 | 198-203 | oui | – |
+| Col | `col/capuche/` : capuche tracée depuis le vêtement — Vêtement féminin T1 | 204-205 | oui | – |
 | Tailles | `tailles/tableau-36-44/` : tableau des mesures du corps femme, tailles 36 à 44 | 29 | oui | `mesures/femme/T36.smms` à `T44.smms` |
 | Tailles | `tailles/tableau-homme-44-54/` : tableau des mesures du corps homme, tailles 44 à 54 | ? | oui | `mesures/homme/T44.smms` à `T54.smms` |
 | Pantalon | `pantalon/modele-pantalon-souple/` : modèle pantalon souple, ceinture bord-côtes, poches | 246-247 | oui | – |
