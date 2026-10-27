@@ -1,6 +1,6 @@
 # Élargissement corsage (fond de base corsage, flou) : transcription du livre
 
-Source : *Le vêtement féminin*, tome 1 (ESMOD Éditions), à confirmer : chapitre « Les bases de
+Source : *Le vêtement féminin*, tome 1 (ESMOD Éditions) : chapitre « Les bases de
 corsage / Bodice blocks », p. 108-109 (photos de Thomas, 2026-10-27). Texte français recopié ;
 la colonne anglaise s'en écarte sur deux valeurs (voir en bas). La page suivante
 (« Élargissement chemisier ») se devine par transparence mais n'a pas été photographiée.

@@ -15,12 +15,12 @@ rangées et transcrites dans `doc/sources/buste/` :
 Livres (ESMOD Éditions, références de Thomas, détail dans `doc/sources/README.md`) :
 *Le vêtement féminin* tome 1 traite le flou (jupes, chemisiers, corsages, robes), le tome 2 les
 tailleurs, vestes, manteaux et pantalons de ville. Le fond maille, la manche montée et le
-tableau de tailles viennent de *La maille en coupé-cousu*. Attribution retenue, à confirmer :
-le PDF (base du mannequin, p. 62-71) et l'élargissement corsage (p. 108-109) viennent du
-tome 1, les photos p. 72-81 du tome 2.
-Si c'est bien le cas, la base en 5 pièces et l'élargissement tailleur partent de la base du
-mannequin du **tome 2**, qui n'a pas été photographiée : il faudra vérifier qu'elle est
-identique à celle du tome 1 (mêmes numéros de page, même figure 3 citée).
+tableau de tailles viennent de *La maille en coupé-cousu*. Attribution (Thomas, 2026-10-27) :
+les p. 62-81, PDF compris, viennent du **tome 2** ; l'élargissement corsage (p. 108-109) du
+**tome 1** ; la manche tailleur (p. 150-153) sans doute du tome 2.
+L'élargissement corsage du tome 1 part donc de la base du mannequin **du tome 1**, qui n'a pas
+été photographiée : il faudra vérifier qu'elle est identique à celle du tome 2 avant de tracer
+le flou.
 
 ## Les deux corsages : flou et tailleur
 
