@@ -14,7 +14,7 @@ le 2026-10-27), dont les numéros de page se recouvrent :
 
 Pages chaîne et trame : p. 62-81 (base du mannequin, 5 pièces, fond sans pince, élargissement
 tailleur) du **tome 2** (confirmé par Thomas) ; élargissement corsage p. 108-109 du **tome 1** ;
-manches p. 132-135 et 150-153 du tome 2 (à confirmer).
+manches p. 132-135 et 150-153 du **tome 2** ; manches p. 144-167 du **tome 1** (le flou).
 
 | Pièce | Construction | Pages | Transcription | Patron |
 |---|---|---|---|---|
@@ -28,8 +28,14 @@ manches p. 132-135 et 150-153 du tome 2 (à confirmer).
 | Buste | `buste/elargissement-corsage/` : élargissement fond de base corsage (flou, depuis la base à pinces) — Vêtement féminin T1 | 108-109 | oui | – |
 | Buste | `buste/tshirt-liquette/` : modèle T-shirt liquette manches courtes | 60-61 | oui | – |
 | Manche | `manche/manche-montee/` : manche montée de base (cadre, tête de manche, crans, coude) | 68-73 | oui | `patrons/fond_base_maille.sm2d`, bloc Manche |
-| Manche | `manche/manche-montee-chaine-trame/` : manche montée de base chaîne et trame (cadre, tête, embu, crans de montage) — Vêtement féminin T2 (à confirmer) | 132-135 | oui | – |
-| Manche | `manche/manche-tailleur/` : manche tailleur deux pièces (cadre, saignée, bas, coude, tête, crans, patte) — Vêtement féminin T2 (à confirmer) | 150-153 | oui | – |
+| Manche | `manche/manche-montee-chaine-trame/` : manche montée de base chaîne et trame (cadre, tête, embu, crans de montage) — Vêtement féminin T2, et T1 p. 146-149 (identique, + variante 1/6e) | 132-135 | oui | – |
+| Manche | `manche/manche-tailleur/` : manche tailleur deux pièces (cadre, saignée, bas, coude, tête, crans, patte) — Vêtement féminin T2 | 150-153 | oui | – |
+| Manche | `manche/profondeur-ecart-emmanchure/` : recherche de la profondeur d'emmanchure, contrôle de l'écart d'emmanchure — Vêtement féminin T1 | 144-145 | oui | – |
+| Manche | `manche/manche-chemisier/` : manche chemisier (blousant, évasements, plis) et poignet — Vêtement féminin T1 | 150-151 | oui | – |
+| Manche | `manche/manche-coudee/` : manche coudée, pince de coude — Vêtement féminin T1 | 156-157 | oui | – |
+| Manche | `manche/manche-gaine/` : manche gaine (très moulante, maille ou biais) — Vêtement féminin T1 | 158-159 | oui | – |
+| Manche | `manche/manche-gigot/` : manche façon gigot, versions 1 et 2 — Vêtement féminin T1 | 160-163 | oui | – |
+| Manche | `manche/evasements-manche-courte/` : manches courtes ballon, bouffante, papillon — Vêtement féminin T1 | 164-167 | oui | – |
 | Manche | `manche/profondeur-emmanchure/` : méthode de la vidéo Meriame Couture | – | oui | – |
 | Pantalon | `pantalon/fond-pantalon-droit/` : fond de pantalon droit (mesures T38, cadre, devant, dos, vérifications) | 238-243 | oui | `patrons/fond_pantalon_droit.sm2d` |
 | Pantalon | `pantalon/elargissements/` : élargissements de pantalon (numéros vus sur la 2e photo) | 244-245 | oui | – |
