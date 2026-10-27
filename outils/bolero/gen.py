@@ -149,17 +149,19 @@ class Bloc:
         dx, dy = info.get('data', (0, 0))
         px, py = info.get('pinfo', (0, 0))
         gx, gy, gl = info.get('grain', (0, 0, 10))
+        dw, dh = info.get('data_dim', (7, 2.5))
+        pw, ph = info.get('pinfo_dim', (7, 3))
         i = self.f.nid()
         self.pieces.append(
             f'<piece id="{i}" name={quoteattr(nom)} seamAllowance="{"true" if couture else "false"}" width="{couture}" '
             f'version="2" inLayout="{"true" if inlayout else "false"}" united="false" locked="false" forbidFlipping="false" '
             f'hideMainPath="false" color="#ffffff" fill="nobrush" mx="0" my="0">'
-            f'<data annotation="" foldPosition="" fontSize="0" height="2.5" letter="" mx="{dx * 37.795:.3f}" my="{dy * 37.795:.3f}" '
+            f'<data annotation="" foldPosition="" fontSize="0" height="{dh}" letter="" mx="{dx * 37.795:.3f}" my="{dy * 37.795:.3f}" '
             f'onFold="{"true" if pli else "false"}" orientation="Indéfini" quantity="{qte}" rotation="0" rotationWay="Aucun" '
-            f'tilt="Aucun" visible="true" width="7">'
+            f'tilt="Aucun" visible="true" width="{dw}">'
             f'<line alignment="4" bold="true" italic="false" sfIncrement="3" text="%pName%"/>'
             f'<line alignment="4" bold="false" italic="true" sfIncrement="0" text="x%pQuantity% %mFabric%"/></data>'
-            f'<patternInfo fontSize="0" height="3" mx="{px * 37.795:.3f}" my="{py * 37.795:.3f}" rotation="0" visible="true" width="7"/>'
+            f'<patternInfo fontSize="0" height="{ph}" mx="{px * 37.795:.3f}" my="{py * 37.795:.3f}" rotation="0" visible="true" width="{pw}"/>'
             f'<grainline arrowLength="1" arrows="0" length="{gl}" mx="{gx * 37.795:.3f}" my="{gy * 37.795:.3f}" rotation="90" visible="true"/>'
             f'<nodes>{nodes}</nodes>{ipaths}</piece>')
 

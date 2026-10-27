@@ -43,6 +43,13 @@ dans le fichier (hors plan de coupe, `inLayout="false"`) pour suivre le livre pa
   **à confirmer** avant de couper.
 - **À faire** : parementures et doublure (pages du livre à photographier).
 
+## PDF
+Les pièces de contrôle (base, fond tailleur, écarts) sont hors plan de coupe dans Seamly mais l'export des pièces les
+sort quand même : pour imprimer, on retire d'abord les pièces `inLayout="false"` d'une copie du `.sm2d`, puis
+`mesures_vers_pdf.py` (skill exporter-pdf) sur cette copie, une taille à la fois (T36 à T44, A4 et A3).
+Boléro T38 : 12 feuilles A4 (4 pour manche dessus + col, 4 devant, 2 dos, 2 dessous de manche). Les étiquettes du col
+tiennent dans sa bande de 3 cm (nom et quantité à gauche, taille à droite).
+
 ## Vérifications (2026-10-27)
 `python3 outils/coherence/coherence.py bolero` (contrôles dans `patrons/bolero.coherence.toml`) ;
 calcul hors Seamly identique à Seamly (0,2 mm).
