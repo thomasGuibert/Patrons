@@ -385,7 +385,8 @@ b.along('kF0', 'kA', 'kB', ENC_DOS, 'AF = 1/2 encolure dos', 'none')
 b.courbe_axe('kF', 'kF0', 90, 'cColBas', 'cran F sur le bord d\'encolure du col')
 b.piece('Col officier', [('p', 'kD'), ('p', 'kE2'), ('cp', 'cColHaut', 0), ('p', 'kB2'), ('p', 'kB1'),
                          ('cp', 'cColBas', 1), ('p', 'kF', N), ('cp', 'cColBas', 1), ('p', 'kE'), ('p', 'kA')],
-        qte=2, couture=1, info=dict(data=(103, -12), pinfo=(103, -8), grain=(101, -10.9, 2.5)))
+        qte=2, couture=1, info=dict(data=(102, -12.6), pinfo=(108.5, -12.6), grain=(101, -10.9, 2.5),
+                                    data_dim=(5, 2), pinfo_dim=(5, 2)))
 
 with open(sys.argv[2] if len(sys.argv) > 2 else os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'patrons', 'bolero.sm2d'), 'w') as out:
     out.write(f.xml('BOLÉRO'))
