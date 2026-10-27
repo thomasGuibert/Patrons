@@ -158,4 +158,4 @@ Pages reçues le 2026-10-27, rangées dans `doc/sources/col/` (une transcription
 Manquent : p. 164-165 et 170-171 (pas reçues), et tout ce qui suit la p. 205.
 
 ### Lequel pour le boléro
-Le boléro est sans col pour l'instant (choix de Thomas). Le **col officier** est celui que Thomas visait : il ne demande que la demi-encolure mesurée sur le vêtement (milieu dos - épaule + épaule - milieu devant) et une hauteur de 3 cm. Il suppose une encolure fermée au milieu devant ; l'encolure actuelle du boléro est ouverte et arrondie, donc il faudrait la remonter. Rien n'est tracé tant que Thomas n'a pas donné son accord.
+Le boléro a le **col officier** (Thomas, 2026-10-27), tracé dans `patrons/bolero.sm2d`. L'encolure du fond tailleur est déjà fermée au milieu devant (bord à bord) : elle n'a pas changé. Le col est mesuré sur la couture d'encolure (demi-encolure), 3 cm de haut. Restent à décider : croisure et boutonnage éventuels, nombre de pièces (dessus, dessous, entoilage) que la page ne donne pas, parementures et doublure.
