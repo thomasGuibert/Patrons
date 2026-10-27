@@ -42,6 +42,7 @@ manches p. 132-135 et 150-153 du **tome 2** ; manches p. 144-167 du **tome 1** (
 | Pantalon | `pantalon/jogging-jersey/` : jogging jersey ou molleton, ceinture et bas en bord-côtes | à confirmer | oui | – |
 | Col | `col/encolure-v-bande-jersey/` : encolure V finie en bande jersey piquée milieu devant | à confirmer | oui | – |
 | Col | `col/col-officier/` : col officier (mandarin), cadre ABCD et courbes — Vêtement féminin T1 | à confirmer | oui | – |
+| Doublure | `doublure/doublure-de-veste/` : doublure de veste (valeurs de couture, ourlet de doublure) | 203 | oui | – |
 | Col | `col/col-montant-pinces/` : col montant avec pinces (encolure en entonnoir) — Vêtement féminin T2 | 166-167 | oui | – |
 | Col | `col/col-evase-medicis/` : col évasé et col Médicis — Vêtement féminin T2 | 168-169 | oui | – |
 | Col | `col/col-cavalier/` : col cavalier (col et pied en une pièce) — Vêtement féminin T2 | 172-173 | oui | – |
