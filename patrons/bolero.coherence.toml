@@ -63,3 +63,37 @@ nom = "Col et encolure"
 a = [["Col officier", "kA", "kB1"]]
 b = [["Dos boléro", "Dt", "D2t"], ["Devant boléro", "C2t", "Ct"]]
 ecart = [-0.5, 0.5]  # col = demi-encolure (AB) ; le bord du col est un peu plus long (courbe EB')
+
+[[couture]]
+nom = "Côté de la doublure"
+a = [["Devant doublure", "I2t", "bFc"]]
+b = [["Dos doublure", "J2t", "bHc"]]
+
+[[couture]]
+nom = "Parementure et doublure du devant"
+a = [["Devant doublure", "fS", "fB"]]
+b = [["Parementure", "fS", "fB"]]
+
+[[couture]]
+nom = "Emmanchure et tête de manche (doublure)"
+a = [["Devant doublure", "I2t", "C5t"], ["Dos doublure", "L3t", "J2t"]]
+b = [["Dessous de manche doublure", "mV", "mK"], ["Dessus de manche doublure", "mKp", "mU"], ["Dessous de manche doublure", "mUp", "mV"]]
+ecart = [1.5, 3.5]  # embu : 2 cm en tissu sec, 3,5 en lainage souple (T2 p. 152)
+
+[[couture]]
+nom = "Coude (doublure)"
+a = [["Dessous de manche doublure", "mUp", "mP"]]
+b = [["Dessus de manche doublure", "mU", "mP"]]
+ecart = [0, 1.0]    # embu à soutenir sur le dessus (p. 153)
+
+[[couture]]
+nom = "Saignée (doublure)"
+a = [["Dessus de manche doublure", "mKp", "mQ"]]
+b = [["Dessous de manche doublure", "mK", "mQp"]]
+ecart = [0, 1.0]    # le dessus se détend (p. 153)
+
+[[couture]]
+nom = "Épaule (doublure)"
+a = [["Devant doublure", "fS", "P1"], ["Devant doublure", "P2", "C5t"]]
+b = [["Dos doublure", "D2t", "D3"], ["Dos doublure", "L4", "L3t"]]
+ecart = [3.9, 4.1]  # le dos monte jusqu'à l'encolure : 4 cm de plus que le devant, que la parementure prolonge

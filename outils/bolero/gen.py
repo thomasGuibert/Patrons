@@ -135,6 +135,9 @@ class Bloc:
                 if len(nd) > 2 and nd[2].get('notch'):
                     extra = (' notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.6" '
                              f'notchWidth="0.25" notchAngle="0" notchCount="{nd[2].get("count", 1)}" showNotch="true" showSecondNotch="true"')
+                if len(nd) > 2 and nd[2].get('sa'):
+                    av, ap = nd[2]['sa']
+                    extra += f' before="{av}" after="{ap}"'
                 nodes += f'<node idObject="{mid}" type="NodePoint"{extra}/>'
             else:
                 mid = self.f.nid()
@@ -149,6 +152,7 @@ class Bloc:
         dx, dy = info.get('data', (0, 0))
         px, py = info.get('pinfo', (0, 0))
         gx, gy, gl = info.get('grain', (0, 0, 10))
+        matiere = info.get('matiere', '%mFabric%')
         dw, dh = info.get('data_dim', (7, 2.5))
         pw, ph = info.get('pinfo_dim', (7, 3))
         i = self.f.nid()
@@ -160,7 +164,7 @@ class Bloc:
             f'onFold="{"true" if pli else "false"}" orientation="Indéfini" quantity="{qte}" rotation="0" rotationWay="Aucun" '
             f'tilt="Aucun" visible="true" width="{dw}">'
             f'<line alignment="4" bold="true" italic="false" sfIncrement="3" text="%pName%"/>'
-            f'<line alignment="4" bold="false" italic="true" sfIncrement="0" text="x%pQuantity% %mFabric%"/></data>'
+            f'<line alignment="4" bold="false" italic="true" sfIncrement="0" text="x%pQuantity% {matiere}"/></data>'
             f'<patternInfo fontSize="0" height="{ph}" mx="{px * 37.795:.3f}" my="{py * 37.795:.3f}" rotation="0" visible="true" width="{pw}"/>'
             f'<grainline arrowLength="1" arrows="0" length="{gl}" mx="{gx * 37.795:.3f}" my="{gy * 37.795:.3f}" rotation="90" visible="true"/>'
             f'<nodes>{nodes}</nodes>{ipaths}</piece>')

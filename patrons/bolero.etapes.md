@@ -41,7 +41,16 @@ dans le fichier (hors plan de coupe, `inLayout="false"`) pour suivre le livre pa
   AE = DE' = AB/3, BB' = AB/10, B'B'' = AD - 0,5 perpendiculaire à EB', cran F à AF = demi-encolure dos.
   Droit-fil le long du milieu dos. La page ne dit ni le nombre de pièces (dessus, dessous) ni l'entoilage :
   **à confirmer** avant de couper.
-- **À faire** : parementures et doublure (pages du livre à photographier).
+- **Parementure** (Thomas, 2026-10-27) : 8 cm au bord de devant (`#facing_larg`, livre : 8 cm minimum pour les cols
+  tailleur), le bord descend d'équerre depuis un point à 4 cm de l'encolure sur l'épaule (`#facing_epaule`, livre : 3,5 à
+  5 cm) jusqu'au bas. Parementure ×2 dans le tissu, devant entier en tissu (la parementure se pose dessus).
+- **Doublure** (tome 2 p. 203, `doc/sources/doublure/doublure-de-veste/`) : mêmes formes que le boléro, valeurs de
+  couture du livre : épaule 1,5, côté 1,5 (au-dessus de la taille), le reste 1. Dos doublure ×2 (couture milieu dos),
+  devant doublure ×2 arrêté au bord de parementure, dessus et dessous de manche doublure ×2 (couture 1 partout : les
+  valeurs du livre pour la tête de manche, de 0 à 3, ne se placent pas sans ambiguïté sur la photo). Le bas est coupé à
+  la ligne du bas du boléro : ourlet de doublure (+1 cm, repli de 3 cm) du livre non repris, le boléro n'a pas d'ourlet de 4 cm.
+  **À confirmer** : hauteur du bas de doublure, valeurs de tête de manche.
+- **À faire** : rien d'autre dans les pages reçues.
 
 ## PDF
 Les pièces de contrôle (base, fond tailleur, écarts) sont hors plan de coupe dans Seamly mais l'export des pièces les
@@ -69,10 +78,12 @@ le corrigent presque pas (T44 : HL 4 → 0,92). À revoir avec la toile avant de
 Écart d'emmanchure (T38) : base 9,75 (livre 10,75), fond tailleur 12,25 (livre 12,75).
 
 Défauts restants (contrôle « virages brusques », angle sur 1,5 cm) :
-- dessous de manche entre V et K : 42 à 44°. K n'est qu'à 0,5 cm au-dessus de V (livre) et le
-  dessous doit y prolonger le dessus : la courbe remonte vite sur 2,5 cm ;
-- dessus de manche vers L : 22° en T36-T38, jusqu'à 30° en T44 (HL fixe à 5 cm) ;
-- emmanchure devant en I2tp : 15 à 18° en T36-T38.
+- **Corrigé le 2026-10-27** (poignées des courbes seulement, aucun point déplacé) : dessous de manche entre V et K
+  (44° → 12°) et dessus de manche (30° → 9°). Les poignées sont les paramètres `k('…')` de `build.py`.
+  Les crans (cran de tête, devant) glissent d'1 mm au plus, la longueur de tête change de moins d'1 mm.
+- Reste : emmanchure devant en I2tp (15 à 18° en T36-T38) et dos près de J2tp (16° en T36). Les corriger demande de
+  changer la longueur de l'emmanchure de 1 à 2 mm, donc de déplacer d'autant les points de la manche calculés sur elle :
+  à décider avec Thomas.
 
 ## Étapes (générées avec le tracé, formule et page du livre)
 
