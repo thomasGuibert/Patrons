@@ -29,7 +29,7 @@ Rien de reçu. À photographier seulement si une jupe ou une robe entre au catal
 | 110 | Élargissement chemisier | **manque, priorité 2** (chemisier) |
 | 114 | Élargissement robe | manque |
 | 118 | Comparatif d'élargissements robe et jupe | manque |
-| 120-136 | Passages de pinces : déplacements, fronces, dans une couture ou une découpe | **manque, priorité 1** (tout modèle à pinces) |
+| 120-136 | Passages de pinces : déplacements, fronces, dans une couture ou une découpe | manque ; la version du tome 2 (p. 92-118) est plus complète, à prendre d'abord |
 | 138 | Équilibrage des côtés et des hauteurs d'épaules, point charnière | manque (vérification des tracés) |
 
 ## Les manches (p. 140-186)
@@ -52,9 +52,10 @@ Rien de reçu. À photographier seulement si une jupe ou une robe entre au catal
 
 ## Les cols (p. 188-238)
 
-Les numéros de nos photos de cols (p. 166-205) ne suivent pas ce sommaire, et plusieurs de nos
-cols n'y figurent pas (col transformable, col Eton, col tailleur cassure courbe, petit col
-châle) : ces pages viennent sans doute d'une autre édition ou d'un autre tome. À vérifier.
+Nos photos de cols p. 166-205 viennent en fait du **tome 2** (même pagination que son sommaire,
+voir `inventaire-tome-2.md`), sauf le col officier, sans numéro, qui est bien du tome 1 (p. 196).
+Les cols du tome 1 qui portent le même nom (col montant, Claudine, cavalier…) sont donc
+d'autres versions de la même construction.
 
 | Page | Construction | État |
 |---|---|---|
@@ -64,17 +65,14 @@ châle) : ces pages viennent sans doute d'une autre édition ou d'un autre tome.
 | 194 | Col marin | manque |
 | 196 | Col officier | reçu (`col/col-officier/`) |
 | 198 | Col cravate | manque |
-| 200 | Col montant | reçu (`col/col-montant-pinces/`) |
+| 200 | Col montant | version tome 2 reçue (`col/col-montant-pinces/`) |
 | 202 | Col chemisier avec pied de col rapporté | **manque, priorité 2** (chemisier) |
-| 204 | Col chemisier simple ou à pied de col à même | manque, priorité 2 |
-| 206 | Col cavalier | reçu (`col/col-cavalier/`) |
+| 204 | Col chemisier simple ou à pied de col à même | manque (version tome 2 p. 170 manque aussi) |
+| 206 | Col cavalier | version tome 2 reçue |
 | 208 | Col rond | manque |
-| 210 | Col Claudine | reçu (`col/col-claudine/`) |
-| 212 | Col évasé, col Médicis | reçu (`col/col-evase-medicis/`) |
-| 214 | Col tailleur à pivot direct, cassure droite | reçu |
-| 222 | Col châle classique | reçu |
-| 230 | Grand col châle | reçu |
-| 232 | Capuche | reçu |
-| 234 | Croisures, boutons et boutonnières | **manque, priorité 2** (toute fermeture boutonnée, boléro compris s'il ferme) |
-| 236 | Pattes de boutonnage sur chemisiers, robes | manque, priorité 2 |
-| 238 | Les différents types de poches | manque, priorité 3 |
+| 210 | Col Claudine | version tome 2 reçue |
+| 212 | Col évasé, col Médicis | version tome 2 reçue |
+| 214-232 | Col tailleur cassure droite, col châle, grand col châle, capuche | versions tome 2 reçues |
+| 234 | Croisures, boutons et boutonnières | manque (version tome 2 p. 214 aussi) |
+| 236 | Pattes de boutonnage sur chemisiers, robes | manque, priorité 2 (chemisier) |
+| 238 | Les différents types de poches | manque (version tome 2 p. 218 aussi) |
