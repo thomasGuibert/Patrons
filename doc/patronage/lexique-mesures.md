@@ -19,6 +19,9 @@ ligne ici. Statut : **validé** (décidé avec l'utilisateur) ou **proposé** (�
 | Tour de poignet | `arm_wrist_circ` | validé | manche montée |
 | Tour d'emmanchure devant + dos | `(SplPath_K_C3+SplPath_K_C3_1)` | validé | mesuré sur les courbes du fond de base maille (formule dans l'outil, pas en variable) |
 | Profondeur d'emmanchure | `Line_C2_K1` | validé | méthode vidéo, voir `doc/sources/manche/profondeur-emmanchure/` |
+| Hauteur de poitrine (base du mannequin, tableau ligne 4) | `bustpoint_to_neck_front` | proposé | ajoutée aux tableaux femme pour le boléro (T38 : 22) |
+| 1/2 écart de poitrine (tableau ligne 5) | `bustpoint_to_bustpoint_half` | proposé | ajoutée aux tableaux femme pour le boléro (T38 : 9,25) ; pas encore demandée en sur-mesure |
+| Profondeur d'emmanchure (tome 1 p. 144) | `Line_Cemm_J2t` | proposé | boléro : bouts d'épaule joints, dessous de bras assemblés |
 
 ## Valeurs de vêtement (variables du patron)
 

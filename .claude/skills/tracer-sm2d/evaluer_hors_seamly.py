@@ -132,7 +132,7 @@ class Pattern:
                     raise KeyError(f'courbe inconnue {t}')
                 return repr(plen(self.curves[t]))
             raise KeyError(f'symbole inconnu {t}')
-        expr = re.sub(r'#?[A-Za-z_][A-Za-z0-9_]*', rep, f)
+        expr = re.sub(r'#?[A-Za-z_][A-Za-z0-9_]*', rep, f).replace('^', '**')
         return float(eval(expr, {'math': math}))
 
     def two(self, s):
@@ -197,6 +197,18 @@ class Pattern:
                 sols = [(-B + sg * math.sqrt(disc)) / (2 * A) for sg in (-1, 1)]
                 pts = [(a[0] + t_ * dx, a[1] + t_ * dy) for t_ in sols]
                 self.put(el, min(pts, key=lambda q: math.dist(q, a)))  # le plus proche du premier point
+            elif t == 'pointOfIntersectionCircles':
+                c1, c2 = self.g(el, 'c1Center'), self.g(el, 'c2Center')
+                r1, r2 = self.ev(el.get('c1Radius')), self.ev(el.get('c2Radius'))
+                d = math.dist(c1, c2)
+                a = (d * d + r1 * r1 - r2 * r2) / (2 * d)
+                h = math.sqrt(max(r1 * r1 - a * a, 0))
+                ux, uy = (c2[0] - c1[0]) / d, (c2[1] - c1[1]) / d
+                m = (c1[0] + a * ux, c1[1] + a * uy)
+                pts = [(m[0] - h * uy, m[1] + h * ux), (m[0] + h * uy, m[1] - h * ux)]
+                # crossPoint 1 : le point le plus haut (y vers le haut ici), 2 : le plus bas
+                pts.sort(key=lambda q: -q[1])
+                self.put(el, pts[0] if el.get('crossPoint') == '1' else pts[1])
             elif t in ('cutSplinePath', 'cutSpline'):
                 pts = self.curve_by_id[el.get('splinePath') or el.get('spline')]
                 self.put(el, cut(pts, self.ev(el.get('length'))))
@@ -223,6 +235,21 @@ class Pattern:
                 nm += '_' + el.get('duplicate')
             self.curves[nm] = pts
             self.curve_by_id[el.get('id')] = pts
+        elif el.tag == 'operation' and t in ('rotation', 'moving'):
+            src = [it.get('idObject') for it in el.find('source')]
+            dst = [it.get('idObject') for it in el.find('destination')]
+            for s, d in zip(src, dst):
+                if s not in self.P:
+                    raise NotImplementedError(f'{t} d\'une courbe')
+                p = self.P[s]
+                if t == 'rotation':
+                    c = self.g(el, 'center'); a = math.radians(self.ev(el.get('angle')))
+                    q = (c[0] + (p[0] - c[0]) * math.cos(a) - (p[1] - c[1]) * math.sin(a),
+                         c[1] + (p[0] - c[0]) * math.sin(a) + (p[1] - c[1]) * math.cos(a))
+                else:
+                    q = polar(p, self.ev(el.get('angle')), self.ev(el.get('length')))
+                n = self.name[s] + el.get('suffix')
+                self.P[d] = q; self.name[d] = n; self.byname[n] = q
         elif el.tag == 'arc' and t == 'arcWithLength':
             c = self.g(el, 'center'); r = self.ev(el.get('radius'))
             a1 = self.ev(el.get('angle1')); a2 = a1 + math.degrees(self.ev(el.get('length')) / r)
