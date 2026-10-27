@@ -207,5 +207,5 @@ Annotations manuscrites sur l'exemplaire du tome 1 (pas du texte imprimé) :
   1/2 encolure + 1/6 de cette valeur, rien de nouveau) ;
 - p. 80, pince d'omoplate, après « jusqu'en L4 » : « (à 0,5 cm au dessus) » puis « fermer la
   pince pour retracer la ligne d'épaule ». Sens probable : L4 est relevé de 0,5 cm au-dessus de
-  la ligne d'épaule, pour que l'épaule retracée pince fermée ne creuse pas. **À confirmer par
-  Thomas** avant de l'appliquer.
+  la ligne d'épaule, pour que l'épaule retracée pince fermée ne creuse pas. **Confirmé par
+  Thomas** (2026-10-27) : L4 est remonté de 0,5 cm ; à appliquer au tracé.

@@ -1,7 +1,8 @@
 # Manche tailleur (deux pièces) : transcription du livre
 
-Source : *Le vêtement féminin*, tome 2 (ESMOD Éditions), à confirmer : chapitre « Les manches /
-Sleeves », p. 150-153 (photos de Thomas, 2026-10-27). Texte français recopié ; colonne anglaise
+Source : *Le vêtement féminin*, tome 2 (ESMOD Éditions) : chapitre « Les manches /
+Sleeves », p. 150-153 (photos de Thomas, 2026-10-27). Tome 2 confirmé : dans le tome 1, les
+p. 150-151 sont la manche chemisier (`../manche-chemisier/`). Texte français recopié ; colonne anglaise
 lue en regard, pas d'écart de sens.
 
 > La manche tailleur classique est une manche montée avec deux découpes transversales coudées.
@@ -96,8 +97,9 @@ manche.
 - **Hauteur d'emmanchure** : c'est la « profondeur d'emmanchure − son 1/8e » de la manche
   montée de base du même tome (`../manche-montee-chaine-trame/`, p. 132), soit la hauteur de
   tête de manche. **Emmanchure dos / devant** : longueurs mesurées sur le corsage (ici le fond
-  tailleur). **Hauteur d'épaulette** : pas de valeur dans ces pages ; à choisir (0 sans
-  épaulette).
+  tailleur). **Hauteur d'épaulette** : pas de valeur dans ces pages. Pour le boléro,
+  Thomas a choisi **sans épaulette** (2026-10-27) : hauteur d'épaulette = 0, donc AB = longueur
+  de manche et AD = 35.
 - « AE = 7/10e de l'emmanchure dos : 2 » se lit (7/10 × emmanchure dos) / 2 ; le texte anglais
   ne lève pas l'ambiguïté.
 - R et M : extrémités de la ligne de coude (D) sur EE' et FF' ; P et Q : bas de manche

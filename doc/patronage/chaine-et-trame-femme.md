@@ -1,7 +1,7 @@
 # Bases chaîne et trame femme : analyse des pages du Vêtement féminin
 
-Pages reçues le 2026-10-27 (chapitre « Les bases de corsage / Basic bodices », p. 62-81 et 108-109 ; manches p. 132-135 et 150-153),
-rangées et transcrites dans `doc/sources/buste/` :
+Pages reçues le 2026-10-27 (chapitre « Les bases de corsage / Basic bodices », p. 62-81 et 108-109 ; manches p. 132-135 et 150-153 du tome 2, p. 144-167 du tome 1),
+rangées et transcrites dans `doc/sources/buste/` et `doc/sources/manche/` :
 
 | Dossier | Pages | Ce que c'est | Usage annoncé par le livre |
 |---|---|---|---|
@@ -12,16 +12,22 @@ rangées et transcrites dans `doc/sources/buste/` :
 | `../manche/manche-montee-chaine-trame/` | 132-135 | Manche montée de base une pièce, embu et crans de montage | embu : 2 cm tissu sec, 3,5 cm lainage souple |
 | `../manche/manche-tailleur/` | 150-153 | Manche tailleur deux pièces (dessus, dessous), coudée, embu au coude | « une aisance développée dans le gousset du dos de manche [...] qui accompagnera le confort du petit côté du vêtement » |
 | `elargissement-corsage/` | 108-109 | Fond de base corsage : la base à pinces élargie pour le flou | suivi de l'élargissement chemisier (non photographié) |
+| `../manche/profondeur-ecart-emmanchure/` | T1 144-145 | Profondeur d'emmanchure et contrôle de l'écart d'emmanchure | écart 10,75 sur la base, 11,75 robe / chemisier, 12,75 tailleur, 13,75 manteau |
+| `../manche/manche-montee-chaine-trame/` (photos `t1-`) | T1 146-149 | Même manche montée de base que le tome 2 | variante : tête = profondeur − 1/6 « pour moins d'embu » |
+| `../manche/manche-chemisier/` | T1 150-151 | Manche chemisier avec poignet, plis ou fronces | chemisier, robe |
+| `../manche/manche-coudee/`, `manche-gaine/`, `manche-gigot/`, `evasements-manche-courte/` | T1 156-167 | Manches de fantaisie à partir de la manche de base : coudée, gaine, gigot, ballon, bouffante, papillon | flou |
 
 Livres (ESMOD Éditions, références de Thomas, détail dans `doc/sources/README.md`) :
 *Le vêtement féminin* tome 1 traite le flou (jupes, chemisiers, corsages, robes), le tome 2 les
 tailleurs, vestes, manteaux et pantalons de ville. Le fond maille, la manche montée et le
 tableau de tailles viennent de *La maille en coupé-cousu*. Attribution (Thomas, 2026-10-27) :
 les p. 62-81, PDF compris, viennent du **tome 2** ; l'élargissement corsage (p. 108-109) du
-**tome 1** ; la manche tailleur (p. 150-153) sans doute du tome 2.
+**tome 1** ; les manches p. 132-135 et la manche tailleur (p. 150-153) du tome 2 (confirmé :
+dans le tome 1, les p. 150-151 sont la manche chemisier). Les manches p. 144-167 viennent du tome 1.
 La base du mannequin du tome 1 (p. 76-85) a été relue : texte et valeurs **identiques** à celle
 du tome 2. Flou et tailleur partent donc d'une seule base à pinces. Une annotation manuscrite
-de l'exemplaire du tome 1 (L4 « à 0,5 cm au dessus ») reste à confirmer par Thomas.
+de l'exemplaire du tome 1 s'y ajoute, confirmée par Thomas : L4 (pince d'omoplate) est remonté
+de 0,5 cm avant de fermer la pince et de retracer l'épaule.
 
 ## Les deux corsages : flou et tailleur
 
@@ -92,13 +98,18 @@ Contrôles faits sur le tableau, en T38 :
 
 ## Ce qui manque pour tracer dans Seamly
 
-1. **Manche** : la manche montée de base chaîne et trame (p. 132-135, avec crans et embu) et la
-   manche tailleur deux pièces (p. 150-153) sont arrivées. La manche tailleur se construit sur
-   l'emmanchure du fond tailleur : tours d'emmanchure dos et devant, hauteur de tête = 7/8 de la
-   profondeur d'emmanchure (mesurée comme pour la manche jersey). Reste à choisir la **hauteur
-   d'épaulette** (aucune valeur dans le livre ; 0 sans épaulette) et l'embu visé (lainage
-   souple : 3,5 cm selon le livre). La manche du flou (tome 1) manque toujours pour un
-   chemisier ou une robe.
+1. **Manche** : tout est là pour les deux corsages.
+   - Tailleur : manche tailleur deux pièces (T2 p. 150-153), construite sur l'emmanchure du fond
+     tailleur. Pour le boléro, Thomas a choisi **sans épaulette** (2026-10-27) : hauteur
+     d'épaulette = 0. Embu visé : 3,5 cm en lainage souple, 2 cm en tissu sec.
+   - Flou : la même manche montée de base (T1 p. 146-149 = T2 p. 132-135), avec la tête à
+     profondeur − 1/8 ou, pour moins d'embu, − 1/6 ; puis la manche chemisier (poignet, plis)
+     ou une manche de fantaisie (coudée, gaine, gigot, ballon, bouffante, papillon).
+   - Contrôle à ajouter à chaque fond élargi : l'**écart d'emmanchure** (T1 p. 144), 10,75 sur
+     la base, environ 11,75 pour le corsage flou et 12,75 pour le tailleur.
+   - Mesures : longueur du bras et tour de poignet sont déjà dans les `.smms`
+     (`arm_shoulder_tip_to_wrist`, `arm_wrist_circ`) ; seule la manche gaine demande en plus le
+     tour de coude bras plié.
 2. **Élargissement chemisier** (tome 1, page après la p. 109) et **élargissement fond de base veste** (p. 82 et suivantes) : il se devine par transparence
    sur la p. 81 sans avoir été photographié ; le chemisier se devine de même sur la p. 109. Pour le boléro, qui est plutôt une veste, ce sont
    peut-être les bonnes valeurs.
@@ -125,4 +136,5 @@ Contrôles faits sur le tableau, en T38 :
    reprennent la base sans en déplacer les points.
 4. Tracer la base en 5 pièces seulement si un modèle en a besoin (veste cintrée, robe
    bustier).
-5. Tracer la manche tailleur sur l'emmanchure du fond tailleur, après le choix de l'épaulette.
+5. Tracer la manche tailleur sur l'emmanchure du fond tailleur, sans épaulette (choix du
+   2026-10-27), et la manche montée de base sur le fond corsage (flou).

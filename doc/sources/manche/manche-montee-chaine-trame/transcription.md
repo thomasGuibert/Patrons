@@ -1,8 +1,9 @@
 # Manche montée de base chaîne et trame : transcription du livre
 
-Source : *Le vêtement féminin*, tome 2 (ESMOD Éditions), à confirmer : chapitre « Les manches /
+Source : *Le vêtement féminin*, tome 2 (ESMOD Éditions) : chapitre « Les manches /
 Sleeves », p. 132-135 (photos de Thomas, 2026-10-27). Texte français recopié ; colonne anglaise
-lue en regard, pas d'écart de sens. À ne pas confondre avec `../manche-montee/` (manche jersey
+lue en regard, pas d'écart de sens. Le tome 1 (flou) donne la même manche p. 146-149 (section
+en bas de page). À ne pas confondre avec `../manche-montee/` (manche jersey
 de *La maille en coupé-cousu*).
 
 ## Construction de la manche montée de base (p. 132, figure p. 133)
@@ -89,3 +90,17 @@ Les crans de montage sont dessinés perpendiculairement au tracé.
   dans `../profondeur-emmanchure/` (milieu du trait entre les bouts d'épaule → dessous de
   bras, devant et dos côte à côte). Hauteur de tête : 7/8 de cette profondeur ici, contre 2/3
   pour la manche jersey.
+
+## Tome 1 : même manche (p. 146-149)
+
+Photos `t1-p146-147-cadre-tete-embu.jpg` et `t1-p148-149-crans-de-montage.jpg` (*Le vêtement
+féminin*, tome 1, 2026-10-27). Texte, valeurs et figures relus ligne à ligne contre le tome 2 :
+identiques, à trois détails près.
+- **AI** : « profondeur d'emmanchure − son 1/8e **(ou − son 1/6e, pour moins d'embu)** ». Le
+  tome 2 ne donne que le 1/8e. Le 1/6e baisse la tête de manche, donc l'embu : c'est la variante
+  pour le flou (chemisier).
+- Le contrôle d'embu renvoie à la page des crans (« voir page 149 »).
+- Les croquis montrent un chemisier au lieu d'une veste de tailleur.
+
+Les crans de montage p. 148-149 (figures 1 à 3, manche tailleur comprise) sont mot pour mot ceux
+des p. 134-135.
