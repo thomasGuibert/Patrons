@@ -62,7 +62,7 @@ export const parties: Partie[] = [
     script: "pour finir",
     pieces: [
       { nom: "Encolure V en bande de jersey", note: "Bande d'encolure piquée au milieu devant.", matieres: ["maille"], coutures: ["flou"], tracee: true },
-      { nom: "Col officier", note: "Col droit montant, sans pied.", matieres: ["chaine-trame"], coutures: ["flou", "tailleur"] },
+      { nom: "Col officier", note: "Col droit montant, d'une seule pièce.", matieres: ["chaine-trame"], coutures: ["flou", "tailleur"], tracee: true },
       { nom: "Col montant à pinces", note: "L'encolure prolongée en entonnoir.", matieres: ["chaine-trame"], coutures: ["flou"] },
       { nom: "Col évasé et col Médicis", note: "Cols montants qui s'ouvrent vers le haut.", matieres: ["chaine-trame"], coutures: ["flou"] },
       { nom: "Col cavalier", note: "Col de chemise, col et pied d'une seule pièce.", matieres: ["chaine-trame"], coutures: ["flou"] },
