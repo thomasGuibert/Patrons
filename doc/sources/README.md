@@ -12,8 +12,8 @@ le 2026-10-27), dont les numéros de page se recouvrent :
 - **Le vêtement féminin, tome 2** (240 p.) : pantalons de ville, tailleurs, vestes, manteaux ;
   https://www.esmod-editions.com/le-vetement-feminin-tome-2-c2x18195500
 
-Pages chaîne et trame (« livre rouge », p. 62-81) : le PDF de la base du mannequin est
-attribué au tome 1 (flou) et les photos p. 72-81 (petit côté, élargissement tailleur) au
+Pages chaîne et trame (« livre rouge », p. 62-81) : le PDF de la base du mannequin et
+l'élargissement corsage (p. 108-109) sont attribués au tome 1 (flou) et les photos p. 72-81 (petit côté, élargissement tailleur) au
 tome 2, à confirmer par Thomas.
 
 | Pièce | Construction | Pages | Transcription | Patron |
@@ -25,6 +25,7 @@ tome 2, à confirmer par Thomas.
 | Buste | `buste/base-mannequin-5-pieces/` : base du mannequin en 5 pièces avec petit côté (près du corps, tailleur) — Vêtement féminin T2 (à confirmer) | 72-75 | oui | – |
 | Buste | `buste/fond-base-sans-pince/` : fond de base sans pince (vêtement large, maille), proche du fond maille — Vêtement féminin T2 (à confirmer) | 76-77 | oui | – |
 | Buste | `buste/elargissement-tailleur/` : élargissement fond de base tailleur près du corps (depuis la base à pinces) — Vêtement féminin T2 (à confirmer) | 78-81 | oui | – |
+| Buste | `buste/elargissement-corsage/` : élargissement fond de base corsage (flou, depuis la base à pinces) — Vêtement féminin T1 (à confirmer) | 108-109 | oui | – |
 | Buste | `buste/tshirt-liquette/` : modèle T-shirt liquette manches courtes | 60-61 | oui | – |
 | Manche | `manche/manche-montee/` : manche montée de base (cadre, tête de manche, crans, coude) | 68-73 | oui | `patrons/fond_base_maille.sm2d`, bloc Manche |
 | Manche | `manche/profondeur-emmanchure/` : méthode de la vidéo Meriame Couture | – | oui | – |
