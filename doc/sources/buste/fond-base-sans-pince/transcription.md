@@ -1,6 +1,6 @@
 # Fond de base sans pince : transcription du livre
 
-Source : *Le vêtement féminin*, tome 2 (ESMOD Éditions), à confirmer : chapitre « Les bases de corsage / Basic bodices », p. 76-77 (photos de Thomas,
+Source : *Le vêtement féminin*, tome 2 (ESMOD Éditions) : chapitre « Les bases de corsage / Basic bodices », p. 76-77 (photos de Thomas,
 2026-10-27 ; la page 76 avait été photographiée deux fois, seule la plus nette est gardée).
 Texte français recopié ; colonne anglaise lue en regard, pas d'écart de sens.
 

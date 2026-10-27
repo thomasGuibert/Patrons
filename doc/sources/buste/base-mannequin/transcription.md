@@ -1,6 +1,6 @@
 # Base du mannequin (corsage à pinces) : transcription du livre
 
-Source : *Le vêtement féminin*, tome 1 (ESMOD Éditions), à confirmer : chapitre « Les bases de corsage / Basic bodices », p. 62-71 (PDF de Thomas,
+Source : *Le vêtement féminin*, tome 2 (ESMOD Éditions) : chapitre « Les bases de corsage / Basic bodices », p. 62-71 (PDF de Thomas,
 2026-10-27). Texte français recopié ; colonne anglaise lue en regard, pas d'écart de sens.
 
 > Cette base est le développement, à plat, des formes du mannequin. Pour toutes les mesures,

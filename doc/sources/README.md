@@ -12,20 +12,20 @@ le 2026-10-27), dont les numéros de page se recouvrent :
 - **Le vêtement féminin, tome 2** (240 p.) : pantalons de ville, tailleurs, vestes, manteaux ;
   https://www.esmod-editions.com/le-vetement-feminin-tome-2-c2x18195500
 
-Pages chaîne et trame (« livre rouge », p. 62-81) : le PDF de la base du mannequin et
-l'élargissement corsage (p. 108-109) sont attribués au tome 1 (flou) et les photos p. 72-81 (petit côté, élargissement tailleur) au
-tome 2, à confirmer par Thomas.
+Pages chaîne et trame : p. 62-81 (base du mannequin, 5 pièces, fond sans pince, élargissement
+tailleur) du **tome 2** (confirmé par Thomas) ; élargissement corsage p. 108-109 du **tome 1** ;
+manche tailleur p. 150-153 du tome 2 (à confirmer).
 
 | Pièce | Construction | Pages | Transcription | Patron |
 |---|---|---|---|---|
 | Buste | `buste/fond-base-maille/` : fond de base maille (cadre, encolure, épaule, côté, dessous de bras, emmanchures) | 44-47 | non | `patrons/fond_base_maille.sm2d` |
 | Buste | `buste/deplacement-epaule/` : déplacement de la ligne d'épaule vers l'avant (1,8 cm) | 48-49 | oui | – |
 | Buste | `buste/elargissements-maille/` : introduction aux élargissements, T-shirt souple, sweater | ?, 56, 57 | oui | – |
-| Buste | `buste/base-mannequin/` : base du mannequin, corsage à pinces chaîne et trame (cadre, encolures, épaules, pinces, côtés, emmanchures, vérifications, toile en 4 parties) — Vêtement féminin T1 (à confirmer) | 62-71 | oui | – |
-| Buste | `buste/base-mannequin-5-pieces/` : base du mannequin en 5 pièces avec petit côté (près du corps, tailleur) — Vêtement féminin T2 (à confirmer) | 72-75 | oui | – |
-| Buste | `buste/fond-base-sans-pince/` : fond de base sans pince (vêtement large, maille), proche du fond maille — Vêtement féminin T2 (à confirmer) | 76-77 | oui | – |
-| Buste | `buste/elargissement-tailleur/` : élargissement fond de base tailleur près du corps (depuis la base à pinces) — Vêtement féminin T2 (à confirmer) | 78-81 | oui | – |
-| Buste | `buste/elargissement-corsage/` : élargissement fond de base corsage (flou, depuis la base à pinces) — Vêtement féminin T1 (à confirmer) | 108-109 | oui | – |
+| Buste | `buste/base-mannequin/` : base du mannequin, corsage à pinces chaîne et trame (cadre, encolures, épaules, pinces, côtés, emmanchures, vérifications, toile en 4 parties) — Vêtement féminin T2 | 62-71 | oui | – |
+| Buste | `buste/base-mannequin-5-pieces/` : base du mannequin en 5 pièces avec petit côté (près du corps, tailleur) — Vêtement féminin T2 | 72-75 | oui | – |
+| Buste | `buste/fond-base-sans-pince/` : fond de base sans pince (vêtement large, maille), proche du fond maille — Vêtement féminin T2 | 76-77 | oui | – |
+| Buste | `buste/elargissement-tailleur/` : élargissement fond de base tailleur près du corps (depuis la base à pinces) — Vêtement féminin T2 | 78-81 | oui | – |
+| Buste | `buste/elargissement-corsage/` : élargissement fond de base corsage (flou, depuis la base à pinces) — Vêtement féminin T1 | 108-109 | oui | – |
 | Buste | `buste/tshirt-liquette/` : modèle T-shirt liquette manches courtes | 60-61 | oui | – |
 | Manche | `manche/manche-montee/` : manche montée de base (cadre, tête de manche, crans, coude) | 68-73 | oui | `patrons/fond_base_maille.sm2d`, bloc Manche |
 | Manche | `manche/manche-tailleur/` : manche tailleur deux pièces (cadre, saignée, bas, coude, tête, crans, patte) — Vêtement féminin T2 (à confirmer) | 150-153 | oui | – |

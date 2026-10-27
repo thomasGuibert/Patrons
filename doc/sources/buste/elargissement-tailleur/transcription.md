@@ -1,6 +1,6 @@
 # Élargissement fond de base tailleur près du corps : transcription du livre
 
-Source : *Le vêtement féminin*, tome 2 (ESMOD Éditions), à confirmer : chapitre « Les bases de corsage / Basic bodices », p. 78-81 (photos de Thomas,
+Source : *Le vêtement féminin*, tome 2 (ESMOD Éditions) : chapitre « Les bases de corsage / Basic bodices », p. 78-81 (photos de Thomas,
 2026-10-27). Texte français recopié ; colonne anglaise lue en regard, pas d'écart de sens.
 La page suivante (p. 82, « Élargissement fond de base veste ») se devine par transparence mais
 n'a pas été photographiée.
