@@ -1,6 +1,7 @@
 # Base du mannequin (corsage à pinces) : transcription du livre
 
-Source : *Le vêtement féminin*, tome 2 (ESMOD Éditions) : chapitre « Les bases de corsage / Basic bodices », p. 62-71 (PDF de Thomas,
+Source : *Le vêtement féminin*, tome 2 (ESMOD Éditions), et le même texte dans le tome 1 (voir
+en bas) : chapitre « Les bases de corsage / Basic bodices », p. 62-71 (PDF de Thomas,
 2026-10-27). Texte français recopié ; colonne anglaise lue en regard, pas d'écart de sens.
 
 > Cette base est le développement, à plat, des formes du mannequin. Pour toutes les mesures,
@@ -193,3 +194,18 @@ Nous allons utiliser cette base pour les exercices qui suivront et réaliser des
 - Valeur de la pince d'omoplate : 1 cm, donnée seulement dans l'exemple D2L3 = 12 + 1.
 - Le tableau des pinces est donné pour la taille 38 ; voir l'analyse
   (`doc/patronage/chaine-et-trame-femme.md`) pour les autres tailles.
+
+## Tome 1 (p. 76-85) : même base
+
+Photos `t1-p76-77…` à `t1-p84-85…` (Thomas, 2026-10-27). Texte français, figures et valeurs
+relus ligne par ligne : **identiques** au tome 2 (cadre, encolures, épaules, tableau des pinces,
+pinces dos et devant, côtés, emmanchures, vérifications, toile en 4 parties). Seule la mise en
+page change (bandeau rose, figure 2 sur p. 81 et 83).
+
+Annotations manuscrites sur l'exemplaire du tome 1 (pas du texte imprimé) :
+- p. 78, encolure dos, après « + son 1/6 » : « encolure » (lecture : DD1 = 1/3 de la
+  1/2 encolure + 1/6 de cette valeur, rien de nouveau) ;
+- p. 80, pince d'omoplate, après « jusqu'en L4 » : « (à 0,5 cm au dessus) » puis « fermer la
+  pince pour retracer la ligne d'épaule ». Sens probable : L4 est relevé de 0,5 cm au-dessus de
+  la ligne d'épaule, pour que l'épaule retracée pince fermée ne creuse pas. **À confirmer par
+  Thomas** avant de l'appliquer.
