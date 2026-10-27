@@ -1,6 +1,6 @@
 # Bases chaîne et trame femme : analyse des pages du Vêtement féminin
 
-Pages reçues le 2026-10-27 (chapitre « Les bases de corsage / Basic bodices », p. 62-81 et 108-109),
+Pages reçues le 2026-10-27 (chapitre « Les bases de corsage / Basic bodices », p. 62-81 et 108-109 ; manche tailleur p. 150-153),
 rangées et transcrites dans `doc/sources/buste/` :
 
 | Dossier | Pages | Ce que c'est | Usage annoncé par le livre |
@@ -9,6 +9,7 @@ rangées et transcrites dans `doc/sources/buste/` :
 | `base-mannequin-5-pieces/` | 72-75 | La même base recomposée avec un petit côté (dos, dos côté, petit côté, devant côté, devant) | « volumes très près du corps comme la robe bustier ou volumes plus structurés comme un tailleur » |
 | `elargissement-tailleur/` | 78-81 | Fond de base tailleur près du corps : la base à pinces élargie (aisances) | « vêtements classiques avec une manche montée » ; varie pour tailleur, veste, manteau |
 | `fond-base-sans-pince/` | 76-77 | Fond sans pince | « vêtement large », « particulièrement adapté [...] maille » |
+| `../manche/manche-tailleur/` | 150-153 | Manche tailleur deux pièces (dessus, dessous), coudée, embu au coude | « une aisance développée dans le gousset du dos de manche [...] qui accompagnera le confort du petit côté du vêtement » |
 | `elargissement-corsage/` | 108-109 | Fond de base corsage : la base à pinces élargie pour le flou | suivi de l'élargissement chemisier (non photographié) |
 
 Livres (ESMOD Éditions, références de Thomas, détail dans `doc/sources/README.md`) :
@@ -90,10 +91,11 @@ Contrôles faits sur le tableau, en T38 :
 
 ## Ce qui manque pour tracer dans Seamly
 
-1. **Manche tissée** : absente de ces pages. Pour le boléro (veste doublée), la manche du
-   tome 2 (tailleur) est la plus probable. La manche montée déjà transcrite vient de
-   *La maille en coupé-cousu* et va avec le fond maille, et le livre lui-même renvoie à une « manche de base en chaîne
-   et trame » (plus de tête, plus d'embu). Il faut ces pages-là pour le boléro.
+1. **Manche** : la manche tailleur deux pièces (p. 150-153) est arrivée ; c'est celle du
+   boléro. Elle se construit sur l'emmanchure du vêtement (longueurs d'emmanchure dos et
+   devant, hauteur d'emmanchure) et une hauteur d'épaulette, que ces pages ne définissent pas :
+   elles renvoient à la **manche montée de base du tome 2**, à photographier. Il manque aussi
+   la manche du flou (tome 1) pour un chemisier ou une robe.
 2. **Élargissement chemisier** (tome 1, page après la p. 109) et **élargissement fond de base veste** (p. 82 et suivantes) : il se devine par transparence
    sur la p. 81 sans avoir été photographié ; le chemisier se devine de même sur la p. 109. Pour le boléro, qui est plutôt une veste, ce sont
    peut-être les bonnes valeurs.
@@ -120,4 +122,5 @@ Contrôles faits sur le tableau, en T38 :
    reprennent la base sans en déplacer les points.
 4. Tracer la base en 5 pièces seulement si un modèle en a besoin (veste cintrée, robe
    bustier).
-5. Tracer la manche tissée, une fois ses pages reçues.
+5. Tracer la manche tailleur sur l'emmanchure du fond tailleur, une fois la manche montée de
+   base du tome 2 reçue (définition de la hauteur d'emmanchure et de l'épaulette).

@@ -28,6 +28,7 @@ tome 2, à confirmer par Thomas.
 | Buste | `buste/elargissement-corsage/` : élargissement fond de base corsage (flou, depuis la base à pinces) — Vêtement féminin T1 (à confirmer) | 108-109 | oui | – |
 | Buste | `buste/tshirt-liquette/` : modèle T-shirt liquette manches courtes | 60-61 | oui | – |
 | Manche | `manche/manche-montee/` : manche montée de base (cadre, tête de manche, crans, coude) | 68-73 | oui | `patrons/fond_base_maille.sm2d`, bloc Manche |
+| Manche | `manche/manche-tailleur/` : manche tailleur deux pièces (cadre, saignée, bas, coude, tête, crans, patte) — Vêtement féminin T2 (à confirmer) | 150-153 | oui | – |
 | Manche | `manche/profondeur-emmanchure/` : méthode de la vidéo Meriame Couture | – | oui | – |
 | Pantalon | `pantalon/fond-pantalon-droit/` : fond de pantalon droit (mesures T38, cadre, devant, dos, vérifications) | 238-243 | oui | `patrons/fond_pantalon_droit.sm2d` |
 | Pantalon | `pantalon/elargissements/` : élargissements de pantalon (numéros vus sur la 2e photo) | 244-245 | oui | – |
