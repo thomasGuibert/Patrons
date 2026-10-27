@@ -55,6 +55,7 @@ export default function RootLayout({
             <nav aria-label="Navigation principale" className="nav">
               <Link href="/femme">Femme</Link>
               <Link href="/homme">Homme</Link>
+              <Link href="/pieces">Pièces</Link>
             </nav>
           </div>
         </header>
