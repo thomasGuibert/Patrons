@@ -1,6 +1,6 @@
 # Fond de base sans pince : transcription du livre
 
-Source : livre rouge « Les bases de corsage / Basic bodices », p. 76-77 (photos de Thomas,
+Source : *Le vêtement féminin*, tome 2 (ESMOD Éditions), à confirmer : chapitre « Les bases de corsage / Basic bodices », p. 76-77 (photos de Thomas,
 2026-10-27 ; la page 76 avait été photographiée deux fois, seule la plus nette est gardée).
 Texte français recopié ; colonne anglaise lue en regard, pas d'écart de sens.
 
@@ -57,13 +57,13 @@ l'équilibre « visuel » de la pente d'épaule. Il ne doit pas être considér�
 d'une manche kimono, par exemple.
 
 ## Comparaison avec le fond de base maille déjà tracé
-Même construction que `doc/sources/buste/fond-base-maille/` (livre vert, p. 44-47) et que
+Même construction que `doc/sources/buste/fond-base-maille/` (*La maille en coupé-cousu*, p. 44-47) et que
 `patrons/fond_base_maille.sm2d`, aux écarts près :
-- ligne de poitrine : CE = BE/2 − 0,8 ici, EC = BE/2 + 1 dans le livre vert, soit 1,8 cm plus
+- ligne de poitrine : CE = BE/2 − 0,8 ici, EC = BE/2 + 1 dans *La maille en coupé-cousu*, soit 1,8 cm plus
   haut ici ;
 - ligne de carrure : à mi-hauteur entre poitrine et E (encolure devant) ici, entre poitrine et
-  F (encolure dos) dans le livre vert ;
+  F (encolure dos) dans *La maille en coupé-cousu* ;
 - ligne de côté : « en courbe à l'aide du perroquet » ici, angle droit en A1 sur 2 cm dans le
-  livre vert ;
-- le décalage d'épaule de 1,8 cm est intégré ici (figure 2) ; dans le livre vert il fait
+  *La maille en coupé-cousu* ;
+- le décalage d'épaule de 1,8 cm est intégré ici (figure 2) ; dans *La maille en coupé-cousu* il fait
   l'objet de pages à part (`deplacement-epaule/`, p. 48-49).

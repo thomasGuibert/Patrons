@@ -1,6 +1,6 @@
 # Base du mannequin en 5 pièces (avec petit côté) : transcription du livre
 
-Source : livre rouge « Les bases de corsage / Basic bodices », p. 72-75 (photos de Thomas,
+Source : *Le vêtement féminin*, tome 2 (ESMOD Éditions), à confirmer : chapitre « Les bases de corsage / Basic bodices », p. 72-75 (photos de Thomas,
 2026-10-27). Texte français recopié ; colonne anglaise lue en regard, pas d'écart de sens.
 Les lettres de cette construction (A, B, C, D, E, F, G, H, X, Y) sont propres à ces pages et
 ne désignent pas les points de la base du mannequin.
