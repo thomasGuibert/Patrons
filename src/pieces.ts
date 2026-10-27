@@ -1,4 +1,7 @@
-/** Le catalogue des pièces que l'atelier sait tracer, rangées par partie du vêtement. */
+/**
+ * Le catalogue des pièces que l'atelier sait tracer (fonds, manches, cols), rangées par partie du vêtement.
+ * Les vêtements complets n'y figurent pas : ils sont au catalogue de chaque gamme.
+ */
 
 /** Le matériau : tissu qui s'étire (maille) ou tissu tissé (chaîne et trame). */
 export type Matiere = "maille" | "chaine-trame";
@@ -33,15 +36,11 @@ export const parties: Partie[] = [
     script: "devant & dos",
     pieces: [
       { nom: "Fond de base maille", note: "Devant et dos sans pince, pour tous les hauts en jersey.", matieres: ["maille"], coutures: ["flou"], tracee: true },
-      { nom: "T-shirt souple", note: "Le fond maille élargi, pour un T-shirt qui tombe sans mouler.", matieres: ["maille"], coutures: ["flou"] },
-      { nom: "Sweater", note: "Le fond maille élargi pour un pull en molleton.", matieres: ["maille"], coutures: ["flou"] },
-      { nom: "T-shirt liquette", note: "T-shirt ample à manches courtes.", matieres: ["maille"], coutures: ["flou"] },
       { nom: "Corsage à pinces", note: "La base près du corps, d'où partent tous les corsages et toutes les vestes.", matieres: ["chaine-trame"], coutures: ["flou", "tailleur"], tracee: true },
       { nom: "Fond de corsage", note: "La base à pinces élargie pour chemisiers et robes.", matieres: ["chaine-trame"], coutures: ["flou"] },
       { nom: "Fond sans pince", note: "Pour les vêtements amples.", matieres: ["chaine-trame", "maille"], coutures: ["flou"] },
       { nom: "Fond tailleur près du corps", note: "La base élargie pour se porter sur un chemisier.", matieres: ["chaine-trame"], coutures: ["tailleur"], tracee: true },
       { nom: "Corsage cinq pièces", note: "Coupe à petit côté, pour le très ajusté.", matieres: ["chaine-trame"], coutures: ["tailleur"] },
-      { nom: "Dos et devant de boléro", note: "Veste courte, devant arrondi ouvert.", matieres: ["chaine-trame"], coutures: ["tailleur"], tracee: true },
     ],
   },
   {
@@ -83,8 +82,6 @@ export const parties: Partie[] = [
     script: "jambes",
     pieces: [
       { nom: "Fond de pantalon droit", note: "Devant et dos, la base de tous les pantalons.", matieres: ["maille"], coutures: ["flou"], tracee: true },
-      { nom: "Pantalon souple", note: "Jambe élargie, ceinture en bord-côtes et poches.", matieres: ["maille"], coutures: ["flou"] },
-      { nom: "Jogging", note: "En jersey ou en molleton, ceinture et bas en bord-côtes.", matieres: ["maille"], coutures: ["flou"] },
     ],
   },
 ];
