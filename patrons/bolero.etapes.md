@@ -1,4 +1,4 @@
-# Boléro (veste courte doublée, devant arrondi ouvert) : étapes
+# Boléro (veste courte doublée, devant arrondi ouvert, col officier) : étapes
 
 Sources (transcriptions à côté des photos) :
 - `doc/sources/buste/base-mannequin/` : base du mannequin (T2 p. 62-71 = T1 p. 76-85) ;
@@ -14,7 +14,7 @@ dans le fichier (hors plan de coupe, `inLayout="false"`) pour suivre le livre pa
 ## Choix (Thomas ou livre)
 - **Sans épaulette** : `#epaulette` = 0 (Thomas, 2026-10-27).
 - **L4 remonté de 0,5** au-dessus de la ligne d'épaule (annotation du tome 1, confirmée par Thomas).
-- **Sans col pour l'instant** (Thomas, 2026-10-27) : encolure du fond tailleur, en attendant les pages du col montant.
+- **Col officier** (Thomas, 2026-10-27, `doc/sources/col/col-officier/`) : l'encolure du fond tailleur est gardée telle quelle (bord à bord, déjà fermée au milieu devant) ; le col se pose dessus. Hauteur 3 cm (`#col_hauteur`, exemple du livre). Pas de croisure ni de boutonnage : le boléro reste bord à bord.
 - Point de poitrine P2 : intersection de cercles côté extérieur (`crossPoint` 2), sinon la pince disparaît.
 - Carrure : déplacements horizontaux (parallèles à la ligne de poitrine).
 - Fond tailleur : le « milieu devant + 0,75 » (croisure) n'est **pas** appliqué, le boléro est bord à bord.
@@ -36,7 +36,12 @@ dans le fichier (hors plan de coupe, `inLayout="false"`) pour suivre le livre pa
   confirmer sur la toile**.
 - Tête de manche : le dessous part de U' et arrive en K avec l'angle qui prolonge le dessus une
   fois cousu (pas d'angle aux coutures de coude et de saignée).
-- **À faire** : col montant, parementures et doublure (pages du livre à photographier).
+- Col officier ×2 (une moitié par côté, couture milieu dos comme le dos) : rectangle AB = demi-encolure
+  mesurée sur la couture d'encolure du boléro (milieu dos - épaule + épaule - milieu devant), AD = 3 cm,
+  AE = DE' = AB/3, BB' = AB/10, B'B'' = AD - 0,5 perpendiculaire à EB', cran F à AF = demi-encolure dos.
+  Droit-fil le long du milieu dos. La page ne dit ni le nombre de pièces (dessus, dessous) ni l'entoilage :
+  **à confirmer** avant de couper.
+- **À faire** : parementures et doublure (pages du livre à photographier).
 
 ## Vérifications (2026-10-27)
 `python3 outils/coherence/coherence.py bolero` (contrôles dans `patrons/bolero.coherence.toml`) ;

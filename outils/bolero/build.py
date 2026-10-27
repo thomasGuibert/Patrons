@@ -53,6 +53,7 @@ V('m_HL', 5, "HL : 5 cm, à régler (livre p. 150)")
 V('m_IT', 1.25, "IT : 1 à 1,5 cm (livre), milieu de la fourchette")
 # boléro (choix de modèle, pas du livre)
 V('bolero_sous_bras', 9, "Boléro : longueur sous le dessous de bras du fond tailleur (choix de modèle, ~8-10 cm)")
+V('col_hauteur', 3, "Col officier : hauteur AD (exemple du livre, tome 1)")
 V('bolero_arrondi', 6, "Boléro : rayon de l'arrondi du bas devant (choix de modèle)")
 
 b = f.bloc('Corsage : base, fond tailleur, boléro')
@@ -361,6 +362,30 @@ m.piece('Dessous de manche', [('p', 'mUp'), ('cp', 'mTeteDessous', 0), ('p', 'mV
                                ('p', 'mQp'), ('p', 'mP'),
                                ('cp', 'mCoudeD', 1), ('p', 'mCc3', N), ('cp', 'mCoudeD', 1), ('p', 'mCc4', N), ('cp', 'mCoudeD', 1)],
         qte=2, couture=1, info=dict(data=(74, -45), pinfo=(74, -40), grain=(78, -20, 15)))
+
+# ================= col officier (tome 1, « Col officier / Mandarin collar ») =================
+# AB = demi-encolure mesurée sur la couture d'encolure du boléro : milieu dos - épaule + épaule - milieu devant.
+ENC_DOS = '(Line_Dt_Dtp+Spl_Dtp_D2t)'
+ENC = '(' + ENC_DOS + '+Spl_Ctp_C2t+Line_Ct_Ctp)'
+b.single('kA', 100, -10, 'col officier : A, milieu dos, sur le droit-fil')
+b.end('kB', 'kA', 0, ENC, 'AB = 1/2 encolure du vêtement', 'solidLine')
+b.end('kD', 'kA', 90, '#col_hauteur', 'AD = hauteur du col, perpendiculaire à AB', 'solidLine')
+b.end('kC', 'kB', 90, '#col_hauteur', 'rectangle ABCD', 'solidLine')
+b.ligne('kD', 'kC', 'solidLine')
+b.end('kE', 'kA', 0, 'Line_kA_kB/3', 'AE = 1/3 AB', 'solidLine')
+b.end('kE2', 'kD', 0, 'Line_kA_kB/3', 'DE\' = 1/3 AB', 'solidLine')
+b.end('kB1', 'kB', 90, 'Line_kA_kB/10', 'BB\' = 1/10 AB (1/15 pour une encolure plus dégagée)', 'solidLine')
+b.normal('kB2', 'kB1', 'kE', '#col_hauteur-0.5', 180, 'B\'B\'\' perpendiculaire à EB\', B\'B\'\' = AD - 0,5', 'solidLine')
+b.ligne('kE', 'kB1'); b.ligne('kE2', 'kB2')
+b.chemin('cColBas', [('kE', '0', '0', 'Line_kE_kB1*0.4'), ('kB1', '2*AngleLine_kE_kB1', 'Line_kE_kB1*0.4', '0')],
+         'EB\' en courbe au perroquet (bord d\'encolure du col)')
+b.chemin('cColHaut', [('kE2', '0', '0', 'Line_kE2_kB2*0.4'), ('kB2', '2*AngleLine_kE2_kB2', 'Line_kE2_kB2*0.4', '0')],
+         'E\'B\'\' en légère courbe (bord du col)')
+b.along('kF0', 'kA', 'kB', ENC_DOS, 'AF = 1/2 encolure dos', 'none')
+b.courbe_axe('kF', 'kF0', 90, 'cColBas', 'cran F sur le bord d\'encolure du col')
+b.piece('Col officier', [('p', 'kD'), ('p', 'kE2'), ('cp', 'cColHaut', 0), ('p', 'kB2'), ('p', 'kB1'),
+                         ('cp', 'cColBas', 1), ('p', 'kF', N), ('cp', 'cColBas', 1), ('p', 'kE'), ('p', 'kA')],
+        qte=2, couture=1, info=dict(data=(103, -12), pinfo=(103, -8), grain=(101, -10.9, 2.5)))
 
 with open(sys.argv[2] if len(sys.argv) > 2 else os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'patrons', 'bolero.sm2d'), 'w') as out:
     out.write(f.xml('BOLÉRO'))
