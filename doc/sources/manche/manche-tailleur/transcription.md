@@ -93,10 +93,11 @@ et le dessous de manche sont séparés.
 manche.
 
 ## Points des schémas non définis dans ces pages
-- **Hauteur d'emmanchure**, **emmanchure dos / devant** (longueurs mesurées sur le corsage) et
-  **hauteur d'épaulette** : la manche se construit sur l'emmanchure du vêtement (ici le fond
-  tailleur), mais ces pages ne disent pas comment mesurer la hauteur d'emmanchure ni quelle
-  épaulette prendre. Elles renvoient à la manche montée du même tome, non photographiée.
+- **Hauteur d'emmanchure** : c'est la « profondeur d'emmanchure − son 1/8e » de la manche
+  montée de base du même tome (`../manche-montee-chaine-trame/`, p. 132), soit la hauteur de
+  tête de manche. **Emmanchure dos / devant** : longueurs mesurées sur le corsage (ici le fond
+  tailleur). **Hauteur d'épaulette** : pas de valeur dans ces pages ; à choisir (0 sans
+  épaulette).
 - « AE = 7/10e de l'emmanchure dos : 2 » se lit (7/10 × emmanchure dos) / 2 ; le texte anglais
   ne lève pas l'ambiguïté.
 - R et M : extrémités de la ligne de coude (D) sur EE' et FF' ; P et Q : bas de manche

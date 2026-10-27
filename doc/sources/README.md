@@ -14,7 +14,7 @@ le 2026-10-27), dont les numéros de page se recouvrent :
 
 Pages chaîne et trame : p. 62-81 (base du mannequin, 5 pièces, fond sans pince, élargissement
 tailleur) du **tome 2** (confirmé par Thomas) ; élargissement corsage p. 108-109 du **tome 1** ;
-manche tailleur p. 150-153 du tome 2 (à confirmer).
+manches p. 132-135 et 150-153 du tome 2 (à confirmer).
 
 | Pièce | Construction | Pages | Transcription | Patron |
 |---|---|---|---|---|
@@ -28,6 +28,7 @@ manche tailleur p. 150-153 du tome 2 (à confirmer).
 | Buste | `buste/elargissement-corsage/` : élargissement fond de base corsage (flou, depuis la base à pinces) — Vêtement féminin T1 | 108-109 | oui | – |
 | Buste | `buste/tshirt-liquette/` : modèle T-shirt liquette manches courtes | 60-61 | oui | – |
 | Manche | `manche/manche-montee/` : manche montée de base (cadre, tête de manche, crans, coude) | 68-73 | oui | `patrons/fond_base_maille.sm2d`, bloc Manche |
+| Manche | `manche/manche-montee-chaine-trame/` : manche montée de base chaîne et trame (cadre, tête, embu, crans de montage) — Vêtement féminin T2 (à confirmer) | 132-135 | oui | – |
 | Manche | `manche/manche-tailleur/` : manche tailleur deux pièces (cadre, saignée, bas, coude, tête, crans, patte) — Vêtement féminin T2 (à confirmer) | 150-153 | oui | – |
 | Manche | `manche/profondeur-emmanchure/` : méthode de la vidéo Meriame Couture | – | oui | – |
 | Pantalon | `pantalon/fond-pantalon-droit/` : fond de pantalon droit (mesures T38, cadre, devant, dos, vérifications) | 238-243 | oui | `patrons/fond_pantalon_droit.sm2d` |
