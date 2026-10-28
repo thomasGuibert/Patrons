@@ -1,4 +1,5 @@
 import type { StaticImageData } from "next/image";
+import boleroF from "../vignettes/femme/bolero_fiche.png";
 import fondBaseMailleF from "../vignettes/femme/fond_base_maille_fiche.png";
 import fondBaseMaillePlancheF from "../vignettes/femme/fond_base_maille_planche.png";
 import fondPantalonDroitF from "../vignettes/femme/fond_pantalon_droit_fiche.png";
@@ -24,9 +25,15 @@ export type Patron = {
   resume: string;
   enCours?: boolean;
   /** Le patron puis le vêtement cousu, en largeur, tracé dans une taille de chaque gamme. */
-  vignette: Record<Gamme, StaticImageData>;
+  vignette: Partial<Record<Gamme, StaticImageData>>;
+  /** Gammes où le patron existe ; toutes si absent. */
+  gammes?: Gamme[];
+  /** Pas de patron sur mesure tant que les mesures qu'il demande ne sont pas toutes saisissables. */
+  sansSurMesure?: boolean;
+  /** Deuxième jeu de pièces à télécharger à part (public/pdf/<gamme>/<slug>-<suffixe>-<taille>[-a3].pdf). */
+  jeuxSupplementaires?: { suffixe: string; libelle: string }[];
   /** Les pièces seules, pour le rayon des bases. */
-  planche?: Record<Gamme, StaticImageData>;
+  planche?: Partial<Record<Gamme, StaticImageData>>;
   description?: string;
   caracteristiques?: { libelle: string; valeur: string }[];
   valeurs?: { titre: string; lignes: { libelle: string; cm: string }[] };
@@ -39,6 +46,26 @@ export type Patron = {
 };
 
 export const patrons: Patron[] = [
+  {
+    slug: "bolero",
+    nom: "Boléro à manches",
+    famille: "vetement",
+    ref: "Réf. 103",
+    resume: "Veste courte bord à bord, en tissu, avec col officier et doublure.",
+    gammes: ["femme"],
+    sansSurMesure: true,
+    vignette: { femme: boleroF },
+    description:
+      "Une veste courte à manches, bord à bord, à col officier, doublée. Le patron comprend la parementure et la doublure.",
+    mesures: ["poitrine", "taille", "hanches"],
+    saisie: mesuresHaut,
+    jeuxSupplementaires: [{ suffixe: "doublure", libelle: "Doublure" }],
+    caracteristiques: [
+      { libelle: "Pièces", valeur: "Devant ×2, dos ×2, dessus et dessous de manche ×2, col officier ×2, parementure ×2" },
+      { libelle: "Doublure", valeur: "Devant, dos, manche (dessus et dessous), à télécharger à part" },
+      { libelle: "Tissu", valeur: "Chaîne et trame" },
+    ],
+  },
   {
     slug: "haut-pyjama",
     nom: "Haut de pyjama col V",
@@ -118,6 +145,10 @@ export const rayons: { famille: Famille; titre: string; script: string; note: st
   { famille: "vetement", titre: "Vêtements", script: "à coudre", note: "" },
   { famille: "base", titre: "Bases", script: "à transformer", note: "Des fonds à adapter à son propre modèle" },
 ];
+
+export function dansGamme(p: Patron, g: Gamme): boolean {
+  return !p.gammes || p.gammes.includes(g);
+}
 
 export function trouverPatron(slug: string): Patron | undefined {
   return patrons.find((p) => p.slug === slug);

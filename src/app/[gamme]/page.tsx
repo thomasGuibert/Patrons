@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { patrons, rayons } from "@/patrons";
+import { dansGamme, patrons, rayons } from "@/patrons";
 import { estGamme, gammes, listeGammes } from "@/tailles";
 import { Vignette } from "../Vignette";
 
@@ -38,8 +38,9 @@ export default async function Catalogue({ params }: Props) {
       </section>
 
       {rayons.map((rayon) => {
-        const articles = patrons.filter((p) => p.famille === rayon.famille);
+        const articles = patrons.filter((p) => p.famille === rayon.famille && dansGamme(p, gamme));
         const bases = rayon.famille === "base";
+        if (articles.length === 0) return null;
         return (
           <section
             key={rayon.famille}
