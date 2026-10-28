@@ -371,7 +371,7 @@ m.piece('Dessous de manche', [('p', 'mUp'), ('cp', 'mTeteDessous', 0), ('p', 'mV
                                ('cp', 'mSaigneeD', 0), ('p', 'mCs4', N), ('cp', 'mSaigneeD', 0), ('p', 'mCs3', N), ('cp', 'mSaigneeD', 0),
                                ('p', 'mQp'), ('p', 'mP'),
                                ('cp', 'mCoudeD', 1), ('p', 'mCc3', N), ('cp', 'mCoudeD', 1), ('p', 'mCc4', N), ('cp', 'mCoudeD', 1)],
-        qte=2, couture=1, info=dict(data=(74, -45), pinfo=(74, -40), grain=(78, -20, 15)))
+        qte=2, couture=1, info=dict(data=(69.5, -45), pinfo=(69.5, -40), grain=(72.5, -20, 15)))
 
 # ================= col officier (tome 1, « Col officier / Mandarin collar ») =================
 # AB = demi-encolure mesurée sur la couture d'encolure du boléro : milieu dos - épaule + épaule - milieu devant.
@@ -430,7 +430,7 @@ m.piece('Dessous de manche doublure', [('p', 'mUp'), ('cp', 'mTeteDessous', 0), 
                                ('cp', 'mSaigneeD', 0), ('p', 'mCs4', N), ('cp', 'mSaigneeD', 0), ('p', 'mCs3', N), ('cp', 'mSaigneeD', 0),
                                ('p', 'mQp'), ('p', 'mP'),
                                ('cp', 'mCoudeD', 1), ('p', 'mCc3', N), ('cp', 'mCoudeD', 1), ('p', 'mCc4', N), ('cp', 'mCoudeD', 1)],
-        qte=2, couture=1, info=dict(data=(74, -45), pinfo=(74, -40), grain=(78, -20, 15), **LIN))
+        qte=2, couture=1, info=dict(data=(69.5, -45), pinfo=(69.5, -40), grain=(72.5, -20, 15), **LIN))
 
 with open(sys.argv[2] if len(sys.argv) > 2 else os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'patrons', 'bolero.sm2d'), 'w') as out:
     out.write(f.xml('BOLÉRO'))
