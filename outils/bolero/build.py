@@ -355,13 +355,17 @@ b.coupe('cranDev', 'cEmmDevT', 'SplPath_mV_mK*' + RAPPORT + '-Line_I2t_I2tp',
 b.coupe('cranDos', 'cEmmDosT', 'SplPath_mUp_mV*' + RAPPORT + '-Line_J2t_J2tp',
         'p. 152 : cran dos, en face de la ligne de coude (à confirmer sur la toile)')
 N2 = dict(notch=True, count=2)
-b.piece('Dos boléro', [('p', 'Dt'), ('p', 'Dtp'), ('c', 'cEncDosT', 0), ('p', 'D2t'), ('p', 'D3'), ('p', 'Z'), ('p', 'L4'), ('p', 'L3t'),
+# pinces : le bord passe d'une jambe à l'autre, les jambes sont des lignes intérieures
+for nom, pts in (('pinceDos', ('D3', 'Z', 'L4')), ('pinceDosD', ('D3', 'Z', 'L4')),
+                 ('pinceDev', ('P2', 'P3', 'P1')), ('pinceDevD', ('P2', 'P3', 'P1'))):
+    b.chemin_interne(nom, pts)
+b.piece('Dos boléro', [('p', 'Dt'), ('p', 'Dtp'), ('c', 'cEncDosT', 0), ('p', 'D2t'), ('p', 'D3'), ('p', 'L4'), ('p', 'L3t'),
                        ('cp', 'cEmmDosT', 1), ('p', 'cranDos', N), ('cp', 'cEmmDosT', 1), ('p', 'J2tp'), ('p', 'J2t'), ('cp', 'cCoteDos', 0), ('p', 'bHc'), ('c', 'cBasDos', 1), ('p', 'bHd'), ('p', 'L')],
-        qte=2, couture=1, info=dict(data=(2, -54), pinfo=(2, -50.5), grain=(12, -35, 12)))
-b.piece('Devant boléro', [('p', 'C5t'), ('p', 'P2'), ('p', 'P3'), ('p', 'P1'), ('p', 'C2t'), ('c', 'cEncDevT', 1), ('p', 'Ctp'), ('p', 'Ct'),
+        qte=2, couture=1, chemins=('pinceDos',), info=dict(data=(2, -54), pinfo=(2, -50.5), grain=(12, -35, 12)))
+b.piece('Devant boléro', [('p', 'C5t'), ('p', 'P2'), ('p', 'P1'), ('p', 'C2t'), ('c', 'cEncDevT', 1), ('p', 'Ctp'), ('p', 'Ct'),
                           ('p', 'bR1'), ('c', 'cArrondi', 0), ('p', 'bR2'), ('c', 'cBasDev', 1), ('p', 'bFc'), ('cp', 'cCoteDev', 1), ('p', 'I2t'), ('p', 'I2tp'),
                           ('cp', 'cEmmDevT', 0), ('p', 'cranDev', N2), ('cp', 'cEmmDevT', 0)],
-        qte=2, couture=1, info=dict(data=(26, -39), pinfo=(33.5, -39), grain=(46, -36, 12)))
+        qte=2, couture=1, chemins=('pinceDev',), info=dict(data=(26, -39), pinfo=(33.5, -39), grain=(46, -36, 12)))
 m.piece('Dessus de manche', [('p', 'mU'), ('cp', 'mTete', 0), ('p', 'mCt', N), ('cp', 'mTete', 0), ('p', 'mKp'),
                               ('cp', 'mSaignee', 0), ('p', 'mCs2', N), ('cp', 'mSaignee', 0), ('p', 'mCs1', N), ('cp', 'mSaignee', 0),
                               ('p', 'mQ'), ('p', 'mP'),
@@ -408,19 +412,19 @@ b.courbe_axe('fB', 'fA', 270, 'cBasDev2', 'parementure : le bord descend d\'équ
 b.along('fS', 'C2t', 'P1', '#facing_epaule', 'parementure : 4 cm sur l\'épaule depuis l\'encolure (livre 3,5 à 5)')
 b.ligne('fS', 'fB', 'solidLine')
 LIN = dict(matiere='Doublure')
-b.piece('Devant doublure', [('p', 'C5t', dict(sa=(1, 1.5))), ('p', 'P2', dict(sa=(1.5, 1))), ('p', 'P3', dict(sa=(1, 1))), ('p', 'P1', dict(sa=(1, 1.5))),
+b.piece('Devant doublure', [('p', 'C5t', dict(sa=(1, 1.5))), ('p', 'P2', dict(sa=(1.5, 1.5))), ('p', 'P1', dict(sa=(1.5, 1.5))),
                             ('p', 'fS', dict(sa=(1.5, 1))), ('p', 'fB', dict(sa=(1, 1))), ('cp', 'cBasDev2', 1), ('p', 'bFc', dict(sa=(1, 1.5))),
                             ('cp', 'cCoteDev', 1), ('p', 'I2t', dict(sa=(1.5, 1))), ('p', 'I2tp', dict(sa=(1, 1))),
                             ('cp', 'cEmmDevT', 0), ('p', 'cranDev', N2), ('cp', 'cEmmDevT', 0)],
-        qte=2, couture=1, info=dict(data=(26, -39), pinfo=(33.5, -39), grain=(29, -47, 9), **LIN))
+        qte=2, couture=1, chemins=('pinceDevD',), info=dict(data=(27.5, -41.5), pinfo=(27.5, -38), grain=(37, -36.3, 6), **LIN))
 b.piece('Parementure', [('p', 'fS'), ('p', 'C2t'), ('c', 'cEncDevT', 1), ('p', 'Ctp'), ('p', 'Ct'), ('p', 'bR1'), ('c', 'cArrondi', 0), ('p', 'bR2'),
                         ('cp', 'cBasDev2', 1), ('p', 'fB')],
         qte=2, couture=1, info=dict(data=(42.7, -56), pinfo=(42.7, -53.5), grain=(48.5, -40, 10), data_dim=(5, 2), pinfo_dim=(5, 2)))
-b.piece('Dos doublure', [('p', 'Dt'), ('p', 'Dtp'), ('c', 'cEncDosT', 0), ('p', 'D2t', dict(sa=(1, 1.5))), ('p', 'D3', dict(sa=(1.5, 1))), ('p', 'Z'),
-                         ('p', 'L4', dict(sa=(1, 1.5))), ('p', 'L3t', dict(sa=(1.5, 1))), ('cp', 'cEmmDosT', 1), ('p', 'cranDos', N), ('cp', 'cEmmDosT', 1),
+b.piece('Dos doublure', [('p', 'Dt'), ('p', 'Dtp'), ('c', 'cEncDosT', 0), ('p', 'D2t', dict(sa=(1, 1.5))), ('p', 'D3', dict(sa=(1.5, 1.5))),
+                         ('p', 'L4', dict(sa=(1.5, 1.5))), ('p', 'L3t', dict(sa=(1.5, 1))), ('cp', 'cEmmDosT', 1), ('p', 'cranDos', N), ('cp', 'cEmmDosT', 1),
                          ('p', 'J2tp'), ('p', 'J2t', dict(sa=(1, 1.5))), ('cp', 'cCoteDos', 0), ('p', 'bHc', dict(sa=(1.5, 1))), ('c', 'cBasDos', 1),
                          ('p', 'bHd'), ('p', 'L')],
-        qte=2, couture=1, info=dict(data=(2, -54), pinfo=(2, -50.5), grain=(12, -35, 12), **LIN))
+        qte=2, couture=1, chemins=('pinceDosD',), info=dict(data=(2, -54), pinfo=(2, -50.5), grain=(12, -35, 12), **LIN))
 m.piece('Dessus de manche doublure', [('p', 'mU'), ('cp', 'mTete', 0), ('p', 'mCt', N), ('cp', 'mTete', 0), ('p', 'mKp'),
                               ('cp', 'mSaignee', 0), ('p', 'mCs2', N), ('cp', 'mSaignee', 0), ('p', 'mCs1', N), ('cp', 'mSaignee', 0),
                               ('p', 'mQ'), ('p', 'mP'),
