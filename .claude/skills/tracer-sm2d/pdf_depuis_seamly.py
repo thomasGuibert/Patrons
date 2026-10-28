@@ -182,6 +182,8 @@ def dessiner(c, pieces, ox, oy, e=1.0, detail=True):
         if fil:
             # légende « Droit fil » le long de la flèche, lisible de bas en haut ou de gauche à droite
             (x0, y0), (x1, y1) = P(*fil[0]), P(*fil[1])
+            # la tige exportée est un remplissage de largeur nulle, invisible à l'écran : on la retrace en trait
+            c.setLineWidth(0.9); c.setStrokeGray(0); c.line(x0, y0, x1, y1)
             if x1 < x0 - 0.5 or (abs(x1 - x0) <= 0.5 and y1 < y0):
                 x0, y0, x1, y1 = x1, y1, x0, y0
             a = math.atan2(y1 - y0, x1 - x0)
