@@ -86,6 +86,10 @@ def main():
         copie = os.path.join(tmp, 'patrons', nom + '.sm2d')
         os.makedirs(os.path.dirname(copie))
         shutil.copy(a.sm2d, copie)
+        # Seamly exporte aussi les pièces hors mise en page (inLayout="false") : la copie ne les garde pas
+        txt = open(copie, encoding='utf-8').read()
+        open(copie, 'w', encoding='utf-8').write(
+            re.sub(r'<piece [^>]*inLayout="false".*?</piece>\s*', '', txt, flags=re.S))
         liees = mesures_liees(a.sm2d)
         dst = os.path.normpath(os.path.join(os.path.dirname(copie), os.path.relpath(liees, os.path.dirname(os.path.abspath(a.sm2d)))))
         os.makedirs(os.path.dirname(dst), exist_ok=True)
@@ -137,7 +141,7 @@ def main():
         # gamme (femme, homme) : dossier du fichier de mesures, pour le tableau des tailles
         gamme = os.path.basename(os.path.dirname(liees if a.mesure or not a.mesures else os.path.abspath(a.mesures)))
         gamme = gamme if gamme in ('femme', 'homme') else None
-        dossier_de = lambda montage, dst: en_dossier(svg, a.sm2d, dst, montage, valeurs_de, taille, gamme)
+        dossier_de = lambda montage, dst: en_dossier(svg, copie, dst, montage, valeurs_de, taille, gamme)
         if a.dossiers:
             os.makedirs(a.dossiers, exist_ok=True)
             for montage in ('pro', 'amateur'):

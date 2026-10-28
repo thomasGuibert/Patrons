@@ -65,7 +65,7 @@ export default async function FichePatron({ params }: Props) {
               mesures={patron.saisie}
               dossier={patron.dossier ?? false}
               surMesure={!patron.sansSurMesure}
-              jeux={patron.jeuxSupplementaires}
+              choixMontage={patron.choixMontage ?? true}
             />
           </div>
         </div>

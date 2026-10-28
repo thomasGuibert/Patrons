@@ -30,8 +30,8 @@ export type Patron = {
   gammes?: Gamme[];
   /** Pas de patron sur mesure tant que les mesures qu'il demande ne sont pas toutes saisissables. */
   sansSurMesure?: boolean;
-  /** Deuxième jeu de pièces à télécharger à part (public/pdf/<gamme>/<slug>-<suffixe>-<taille>[-a3].pdf). */
-  jeuxSupplementaires?: { suffixe: string; libelle: string }[];
+  /** Faux tant que la gamme de montage n'est pas rédigée : pas de choix de notice, le dossier se limite à la nomenclature. */
+  choixMontage?: boolean;
   /** Les pièces seules, pour le rayon des bases. */
   planche?: Partial<Record<Gamme, StaticImageData>>;
   description?: string;
@@ -56,13 +56,14 @@ export const patrons: Patron[] = [
     sansSurMesure: true,
     vignette: { femme: boleroF },
     description:
-      "Une veste courte à manches, bord à bord, à col officier, doublée. Le patron comprend la parementure et la doublure.",
+      "Une veste courte à manches, bord à bord, à col officier, doublée. Le patron comprend la parementure et la doublure, avec leur nomenclature.",
     mesures: ["poitrine", "taille", "hanches"],
     saisie: mesuresHaut,
-    jeuxSupplementaires: [{ suffixe: "doublure", libelle: "Doublure" }],
+    dossier: true,
+    choixMontage: false,
     caracteristiques: [
       { libelle: "Pièces", valeur: "Devant ×2, dos ×2, dessus et dessous de manche ×2, col officier ×2, parementure ×2" },
-      { libelle: "Doublure", valeur: "Devant, dos, manche (dessus et dessous), à télécharger à part" },
+      { libelle: "Doublure", valeur: "Devant ×2, dos ×2, dessus et dessous de manche ×2" },
       { libelle: "Tissu", valeur: "Chaîne et trame" },
     ],
   },

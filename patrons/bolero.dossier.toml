@@ -1,0 +1,49 @@
+# Dossier technique du boléro : pages ajoutées devant les pièces dans le PDF.
+# Lu par .claude/skills/exporter-pdf/dossier.py. Pas de gamme de montage tant qu'elle n'est pas
+# rédigée : le dossier s'arrête à la nomenclature. Texte public : ne jamais citer l'outil de tracé
+# ni les sources de patronage.
+
+titre = "Boléro à manches"
+reference = "Réf. 103"
+description = """Une veste courte à manches, bord à bord, sans boutonnage, à col officier. \
+Elle se coupe dans un tissu chaîne et trame, doublée ; la parementure borde le devant."""
+mesures = ["bust_circ", "waist_circ", "hip_circ"]
+
+[matieres]
+# matière de chaque pièce ; une pièce absente prend « defaut »
+defaut = "Tissu chaîne et trame"
+"Devant doublure" = "Doublure"
+"Dos doublure" = "Doublure"
+"Dessus de manche doublure" = "Doublure"
+"Dessous de manche doublure" = "Doublure"
+
+[coupe]
+laize = 150
+texte = """Les valeurs de couture sont comprises dans le patron, comme le rappelle le plan des valeurs \
+de couture. Coupez le tissu plié en deux endroit contre endroit, le droit-fil de chaque pièce \
+parallèle à la lisière : toutes les pièces se coupent en symétrie. Les pièces de doublure se coupent \
+de la même façon dans le tissu de doublure. Marquez chaque cran d'une petite entaille de 3 mm au plus."""
+
+[[materiel]]
+nom = "Machine à coudre"
+[[materiel]]
+nom = "Fer à repasser et pattemouille"
+[[materiel]]
+nom = "Ciseaux de coupe, épingles ou pinces"
+[[materiel]]
+nom = "Craie ou feutre effaçable, mètre ruban"
+
+[[fournitures]]
+designation = "Tissu"
+renseignement = "chaîne et trame, pour le vêtement et la parementure"
+metrage = true
+matiere = "Tissu chaîne et trame"
+[[fournitures]]
+designation = "Doublure"
+renseignement = "tissu de doublure, pour la doublure du devant, du dos et des manches"
+metrage = true
+matiere = "Doublure"
+[[fournitures]]
+designation = "Fil"
+renseignement = "assorti au tissu"
+quantite = "1 bobine"

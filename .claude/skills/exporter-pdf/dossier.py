@@ -202,13 +202,13 @@ def point_milieu(chemin):
 
 
 # ---------------------------------------------------------------- métrage
-def metrage(pieces, infos, laize):
+def metrage(pieces, infos, laize, garde=None):
     """Longueur de tissu (cm), estimée en rangées : les pièces coupées en double ou au pli sur le
     tissu plié (laize / 2), les autres à plat sur toute la laize. Droit-fil dans la longueur du
     tissu (vertical à l'export). +10 % pour les raccords et le rétrécissement, arrondi aux 10 cm."""
     plie, plat = [], []
     for pc in pieces:
-        if pc['nom'] not in infos:
+        if pc['nom'] not in infos or (garde and not garde(pc['nom'])):
             continue
         q, pli = infos[pc['nom']]
         x0, y0, x1, y1 = pc['bb']
@@ -653,7 +653,9 @@ def dossier(svg, sm2d, dst, montage='pro', mesures=None, taille=None, gamme=None
     laize = D['coupe'].get('laize', 150)
     for f in D.get('fournitures', []):
         if f.get('metrage'):
-            q = '%s m en %d cm de large' % (('%.2f' % (metrage(pieces, infos, laize) / 100)).replace('.', ','), laize)
+            # « matiere » : métrage des seules pièces de cette matière (tissu et doublure se coupent à part)
+            garde = (lambda n, m=f['matiere']: D['matieres'].get(n, D['matieres']['defaut']) == m) if f.get('matiere') else None
+            q = '%s m en %d cm de large' % (('%.2f' % (metrage(pieces, infos, laize, garde) / 100)).replace('.', ','), laize)
         elif f.get('mesure') and f['mesure'] in valeurs:
             q = '%s cm' % cm(round(valeurs[f['mesure']] * f.get('coef', 1) + f.get('ajout', 0)))
         else:
@@ -665,7 +667,7 @@ def dossier(svg, sm2d, dst, montage='pro', mesures=None, taille=None, gamme=None
     E += [Paragraph('Le dossier', S['h'])]
     for t in ('Les informations et le tableau des mesures', 'La coupe, le matériel et les fournitures',
               'Le plan des valeurs de couture et la nomenclature',
-              'La gamme de montage, ' + ('en tableau' if montage == 'pro' else 'pas à pas'),
+              *(('La gamme de montage, ' + ('en tableau' if montage == 'pro' else 'pas à pas'),) if D.get('gamme') else ()),
               'Puis les pièces du patron à imprimer à 100 %'):
         E += [Paragraph(t, S['liste'], bulletText='·')]
 
@@ -705,9 +707,12 @@ def dossier(svg, sm2d, dst, montage='pro', mesures=None, taille=None, gamme=None
                        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'), ('TOPPADDING', (0, 0), (-1, -1), 5),
                        ('BOTTOMPADDING', (0, 0), (-1, -1), 5)])]
 
-    # 5. gamme de montage
-    E += [PageBreak()]
+    # 5. gamme de montage (absente tant que le montage n'est pas rédigé : le dossier s'arrête à la nomenclature)
     etapes = D.get('gamme', [])
+    if not etapes:
+        doc.build(E)
+        return pages_total['n']
+    E += [PageBreak()]
     if montage == 'pro':
         E += [Paragraph('Gamme de montage', S['h']), Spacer(1, 4)]
         P = lambda t, s='cellule': Paragraph(t, S[s])
