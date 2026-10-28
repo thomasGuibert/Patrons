@@ -42,11 +42,9 @@ function telecharger(href: string, nom = "") {
 const ATTENTE_MAX = 10 * 60 * 1000;
 const pause = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-type Jeu = { suffixe: string; libelle: string };
-
 export function ChoixTaille({
-  gamme, slug, mesures, dossier, surMesure: surMesureOuvert = true, jeux = [],
-}: { gamme: Gamme; slug: string; mesures: Mesure[]; dossier: boolean; surMesure?: boolean; jeux?: Jeu[] }) {
+  gamme, slug, mesures, dossier, surMesure: surMesureOuvert = true, choixMontage = true,
+}: { gamme: Gamme; slug: string; mesures: Mesure[]; dossier: boolean; surMesure?: boolean; choixMontage?: boolean }) {
   const { tailles, parDefaut } = gammes[gamme];
   const [taille, setTaille] = useState<Choix>(parDefaut);
   const [montage, setMontage] = useState<Montage>("amateur");
@@ -103,10 +101,10 @@ export function ChoixTaille({
     }
   }
 
-  const bouton = (format: Format, classe: string, jeu?: Jeu) => {
-    const libelle = `${jeu ? `${jeu.libelle} · ` : "Télécharger · "}${format.toUpperCase()}`;
+  const bouton = (format: Format, classe: string) => {
+    const libelle = `Télécharger · ${format.toUpperCase()}`;
     if (taille !== "sur-mesure") {
-      const patron = `/pdf/${gamme}/${jeu ? `${slug}-${jeu.suffixe}` : slug}-${taille}${format === "a3" ? "-a3" : ""}.pdf`;
+      const patron = `/pdf/${gamme}/${slug}-${taille}${format === "a3" ? "-a3" : ""}.pdf`;
       return (
         <a
           href={patron}
@@ -114,7 +112,7 @@ export function ChoixTaille({
           download
           aria-busy={enCours === format}
           onClick={(e) => {
-            if (!dossier || jeu) return;
+            if (!dossier) return;
             e.preventDefault();
             if (enCours === null) avecDossier(taille, format, patron);
           }}
@@ -190,7 +188,7 @@ export function ChoixTaille({
           </small>
         </div>
       )}
-      {dossier && (
+      {dossier && choixMontage && (
         <fieldset className="choix-taille">
           <legend>Notice de montage</legend>
           <div className="tailles">
@@ -215,13 +213,7 @@ export function ChoixTaille({
         {bouton("a4", "plein")}
         {bouton("a3", "contour")}
       </div>
-      {taille !== "sur-mesure" &&
-        jeux.map((jeu) => (
-          <div className="boutons" key={jeu.suffixe}>
-            {bouton("a4", "contour", jeu)}
-            {bouton("a3", "contour", jeu)}
-          </div>
-        ))}
+
       {message && (
         <p className="attente" role="status">
           {message}

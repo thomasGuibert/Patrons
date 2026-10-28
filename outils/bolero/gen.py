@@ -152,7 +152,7 @@ class Bloc:
         dx, dy = info.get('data', (0, 0))
         px, py = info.get('pinfo', (0, 0))
         gx, gy, gl = info.get('grain', (0, 0, 10))
-        matiere = info.get('matiere', '%mFabric%')
+        matiere = info.get('matiere', 'Tissu')
         dw, dh = info.get('data_dim', (7, 2.5))
         pw, ph = info.get('pinfo_dim', (7, 3))
         i = self.f.nid()
