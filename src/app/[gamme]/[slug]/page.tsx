@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { patrons, trouverPatron } from "@/patrons";
+import { dansGamme, patrons, trouverPatron } from "@/patrons";
 import { enCm, estGamme, gammes, listeGammes, mesuresCorps } from "@/tailles";
 import { VosMesures } from "../../VosMesures";
 import { ChoixTaille } from "../../ChoixTaille";
@@ -12,7 +12,7 @@ type Props = { params: Promise<{ gamme: string; slug: string }> };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return listeGammes.flatMap((gamme) => patrons.map((p) => ({ gamme, slug: p.slug })));
+  return listeGammes.flatMap((gamme) => patrons.filter((p) => dansGamme(p, gamme)).map((p) => ({ gamme, slug: p.slug })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function FichePatron({ params }: Props) {
   const { gamme, slug } = await params;
   const patron = trouverPatron(slug);
-  if (!patron || !estGamme(gamme)) notFound();
+  if (!patron || !estGamme(gamme) || !dansGamme(patron, gamme)) notFound();
   const bases = patron.famille === "base";
   const { nom, tailles } = gammes[gamme];
 
@@ -58,7 +58,15 @@ export default async function FichePatron({ params }: Props) {
                 ))}
               </dl>
             )}
-            <ChoixTaille key={gamme} gamme={gamme} slug={patron.slug} mesures={patron.saisie} dossier={patron.dossier ?? false} />
+            <ChoixTaille
+              key={gamme}
+              gamme={gamme}
+              slug={patron.slug}
+              mesures={patron.saisie}
+              dossier={patron.dossier ?? false}
+              surMesure={!patron.sansSurMesure}
+              jeux={patron.jeuxSupplementaires}
+            />
           </div>
         </div>
       </section>
@@ -91,7 +99,7 @@ export default async function FichePatron({ params }: Props) {
         </div>
       </section>
 
-      <VosMesures key={gamme} gamme={gamme} mesures={patron.saisie} />
+      {!patron.sansSurMesure && <VosMesures key={gamme} gamme={gamme} mesures={patron.saisie} />}
 
       {patron.valeurs && (
         <section className="conteneur mesures">

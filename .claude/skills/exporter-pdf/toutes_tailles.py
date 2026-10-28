@@ -17,6 +17,7 @@ PATRONS = {
     'bas_pyjama': ('bas-pyjama', 'Bas de pyjama'),
     'fond_pantalon_droit': ('fond-pantalon-droit', 'Fond de pantalon droit'),
     'fond_base_maille': ('fond-base-maille', 'Fond de base maille'),
+    'bolero': ('bolero', 'Boléro'),
 }
 GAMMES = ('femme', 'homme')
 
