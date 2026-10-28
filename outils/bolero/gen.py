@@ -178,8 +178,8 @@ class Bloc:
             self.mod.append(f'<point id="{mid}" idObject="{self.I(p)}" inUse="true" type="modeling" '
                             f'mx="0.132292" my="0.264583" showPointName="true"/>')
             nodes += f'<node idObject="{mid}" type="NodePoint"/>'
-        self.mod.append(f'<path id="{i}" name={quoteattr(nom)} type="1" typeLine="solidLine" cut="false" '
-                        f'firstToCountour="false" lastToCountour="false" visible="true"><nodes>{nodes}</nodes></path>')
+        self.mod.append(f'<path id="{i}" name={quoteattr(nom)} type="2" lineType="solidLine" '
+                        f'inUse="true" cut="false"><nodes>{nodes}</nodes></path>')
 
     def xml(self):
         return (f'<draftBlock name={quoteattr(self.nom)}><calculation>' + '\n'.join(self.calc) +
