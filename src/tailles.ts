@@ -27,7 +27,8 @@ export type Mesure =
   | "tailleSol"
   | "tailleHanches"
   | "tailleGenou"
-  | "entrejambeSol";
+  | "entrejambeSol"
+  | "tete";
 
 export type MesureCorps = {
   libelle: string;
@@ -85,6 +86,9 @@ export const mesuresCorps: Record<Mesure, MesureCorps> = {
   entrejambeSol: { libelle: "Hauteur entrejambe-sol", seamly: "leg_crotch_to_floor",
     cm: { femme: [79.5, 79, 79.5, 79, 79.5], homme: [85, 84.6, 84.2, 83.8, 83.4, 83] },
     conseil: "À l'intérieur de la jambe, de l'entrejambe jusqu'au sol, pieds nus." },
+  tete: { libelle: "Tour de tête", seamly: "head_circ",
+    cm: { femme: [54, 55, 56, 57, 58], homme: [56, 57, 58, 59, 60, 61] },
+    conseil: "Autour de la tête, au ras du front et au-dessus des oreilles, en passant sous la bosse de l'arrière du crâne." },
 };
 
 /** Les mesures des hauts (fond de base maille) et des bas (fond de pantalon droit). */
