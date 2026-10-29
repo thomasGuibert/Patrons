@@ -1,6 +1,7 @@
 """Génère patrons/bonnet_bain.sm2d (bonnet de bain en maille, cheveux longs : 2 côtés et une bande centrale).
 
 Usage : python3 outils/bonnet/build.py [T40] [patrons/bonnet_bain.sm2d]
+Taille unique (Thomas, 2026-10-29) : le tracé ne lit aucune mesure ; le fichier de mesures lié ne sert qu'à Seamly.
 Étapes et choix : patrons/bonnet_bain.etapes.md (issue #83). Modèle d'Atelier AT, pas tiré du livre.
 """
 import os, sys
@@ -12,10 +13,11 @@ f = Fichier(f'../mesures/femme/{T}.smms')
 
 # ---------------- variables (choix de modèle) ----------------
 V = f.var
-V('reduction', 0.9, "Maille de bain (élasthanne) : bord du bonnet 10 % plus court que le tour de tête, pour qu'il tienne")
+V('tour_tete', 56, "Taille unique : tour de tête moyen, le bonnet va de 52 à 60 cm grâce à la maille")
+V('reduction', 0.875, "Maille de bain (élasthanne) : bord de 49 cm, 94 % d'une tête de 52 et 82 % d'une tête de 60")
 V('larg_bande', 10, "Largeur de la bande centrale, du front à la nuque")
-V('bas_cote', '(head_circ*#reduction-2*#larg_bande)/2', "Bas du côté : le tour du bord moins les deux bouts de bande, partagé entre les deux côtés")
-V('haut_cote', 'head_circ*0.19', "Hauteur du côté, du bord au sommet (couture de bande)")
+V('bas_cote', '(#tour_tete*#reduction-2*#larg_bande)/2', "Bas du côté : le tour du bord moins les deux bouts de bande, partagé entre les deux côtés")
+V('haut_cote', '#tour_tete*0.19', "Hauteur du côté, du bord au sommet (couture de bande)")
 V('volume', 4, "Cheveux longs : débord du côté en arrière de la nuque, pour loger les cheveux relevés")
 V('haut_volume', '#haut_cote*0.45', "Hauteur du point de volume arrière au-dessus du bord")
 V('pos_sommet', '#bas_cote*0.4', "Sommet du côté depuis le front, sur le bas")
@@ -58,4 +60,4 @@ b.piece('Bande centrale', [('p', 'bA', dict(sa=(0, BORD))), ('p', 'bA2', dict(sa
         info=dict(data=(28.3, -12.5), pinfo=(28.3, -8.5), grain=(30.5, 13, 8), data_dim=(4.4, 3.2), pinfo_dim=(4.4, 4), matiere='Tissu, au pli'))
 
 with open(sys.argv[2] if len(sys.argv) > 2 else os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'patrons', 'bonnet_bain.sm2d'), 'w') as out:
-    out.write(f.xml('BONNET DE BAIN').replace('fil Bases chaîne et trame femme', 'issue #83, bonnet de bain'))
+    out.write(f.xml('BONNET DE BAIN').replace('text="T%size%"', 'text="Taille unique"').replace('fil Bases chaîne et trame femme', 'issue #83, bonnet de bain'))

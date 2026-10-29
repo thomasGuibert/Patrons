@@ -33,7 +33,6 @@ const hauteur = (x: number, y2: number) => (
 
 /** Où se prend chaque mesure : vue de face à gauche (0-200), de dos à droite (200-400). */
 const TRACES: Record<Mesure, ReactNode> = {
-  tete: tour(100, 24, 16, 4),
   encolure: tour(100, 62, 9, 3),
   poitrine: tour(100, 114, 33, 5),
   taille: tour(100, 152, 25, 4),

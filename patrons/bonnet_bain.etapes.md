@@ -5,17 +5,20 @@ jointe montre un patron du commerce (bande centrale au pli et deux côtés). Ce 
 est pas une copie : il est construit à partir du tour de tête, avec la même idée de montage en
 trois pièces, et de la place en plus à l'arrière pour les cheveux.
 
-Généré par `outils/bonnet/build.py`. Gamme femme, tailles 36 à 44 ; le tour de tête
-(`head_circ`) a été ajouté aux fichiers `mesures/femme/T*.smms` : 54 à 58 cm, 1 cm par taille.
+Généré par `outils/bonnet/build.py`. **Taille unique** (Thomas, 2026-10-29) : tracé pour une
+tête de 56 cm, il va de 52 à 60 cm grâce à la maille. Aucune mesure du corps n'est lue ; PDF
+`public/pdf/femme/bonnet-bain-unique[-a3].pdf`, faits avec `pdf_depuis_seamly.py ... --taille unique`
+(le patron n'est pas dans `toutes_tailles.py`).
 
 ## Choix de modèle (à valider à l'essayage)
 
 | Variable | Valeur | Pourquoi |
 | --- | --- | --- |
-| `#reduction` | 0,9 | Maille de bain : le bord fait 90 % du tour de tête, pour tenir sans serrer. |
+| `#tour_tete` | 56 cm | Tête moyenne de la taille unique. |
+| `#reduction` | 0,875 | Bord de 49 cm : 94 % d'une tête de 52, 82 % d'une tête de 60. |
 | `#larg_bande` | 10 cm | Bande centrale du front à la nuque. |
-| `#bas_cote` | (tour × 0,9 − 2 × 10) / 2 | Le bord du bonnet = 2 bouts de bande + 2 bas de côté. |
-| `#haut_cote` | tour × 0,19 | Du bord au-dessus de l'oreille jusqu'à la bande (10,6 cm en 40). |
+| `#bas_cote` | (56 × 0,875 − 2 × 10) / 2 | Le bord du bonnet = 2 bouts de bande + 2 bas de côté. |
+| `#haut_cote` | 56 × 0,19 | Du bord au-dessus de l'oreille jusqu'à la bande (10,6 cm). |
 | `#volume` | 4 cm | Cheveux longs : le côté déborde en arrière de la nuque. |
 | `#haut_volume` | 0,45 × hauteur | Hauteur du volume arrière. |
 | `#pos_sommet` | 0,4 × bas | Sommet du côté, plus près du front que de la nuque. |
@@ -41,7 +44,6 @@ recouvreuse, avec ou sans élastique fin) ; 0 au pli.
 
 ## Contrôles
 
-- Couture côté / bande : 0,00 cm d'écart dans toutes les tailles
-  (`python3 outils/coherence/coherence.py bonnet_bain`).
+- Couture côté / bande : 0,00 cm d'écart (`python3 outils/coherence/coherence.py bonnet_bain`).
 - Couture A–S–B sans angle ; angles droits au bord en A et B, et aux bouts de bande.
-- En 40 : bande 35,6 cm de long, côté 19,2 × 10,6 cm, bord du bonnet 50,4 cm pour une tête de 56.
+- Bande 35,1 cm de long, côté 18,5 × 10,6 cm, bord du bonnet 49 cm.

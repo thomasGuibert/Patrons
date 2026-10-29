@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pattern>
 <!--Généré par un script (issue #83, bonnet de bain), puis modifiable dans Seamly2D.-->
-<version>0.7.4</version><unit>cm</unit><description/><notes/><patternLabel><line alignment="1" bold="true" italic="false" sfIncrement="3" text="BONNET DE BAIN"/><line alignment="4" bold="false" italic="true" sfIncrement="0" text="T%size%"/><line alignment="4" bold="false" italic="false" sfIncrement="0" text="%pName%"/></patternLabel><measurements>../mesures/femme/T40.smms</measurements><variables><variable description="Maille de bain (élasthanne) : bord du bonnet 10 % plus court que le tour de tête, pour qu'il tienne" formula="0.9" name="#reduction"/>
+<version>0.7.4</version><unit>cm</unit><description/><notes/><patternLabel><line alignment="1" bold="true" italic="false" sfIncrement="3" text="BONNET DE BAIN"/><line alignment="4" bold="false" italic="true" sfIncrement="0" text="Taille unique"/><line alignment="4" bold="false" italic="false" sfIncrement="0" text="%pName%"/></patternLabel><measurements>../mesures/femme/T40.smms</measurements><variables><variable description="Taille unique : tour de tête moyen, le bonnet va de 52 à 60 cm grâce à la maille" formula="56" name="#tour_tete"/>
+<variable description="Maille de bain (élasthanne) : bord de 49 cm, 94 % d'une tête de 52 et 82 % d'une tête de 60" formula="0.875" name="#reduction"/>
 <variable description="Largeur de la bande centrale, du front à la nuque" formula="10" name="#larg_bande"/>
-<variable description="Bas du côté : le tour du bord moins les deux bouts de bande, partagé entre les deux côtés" formula="(head_circ*#reduction-2*#larg_bande)/2" name="#bas_cote"/>
-<variable description="Hauteur du côté, du bord au sommet (couture de bande)" formula="head_circ*0.19" name="#haut_cote"/>
+<variable description="Bas du côté : le tour du bord moins les deux bouts de bande, partagé entre les deux côtés" formula="(#tour_tete*#reduction-2*#larg_bande)/2" name="#bas_cote"/>
+<variable description="Hauteur du côté, du bord au sommet (couture de bande)" formula="#tour_tete*0.19" name="#haut_cote"/>
 <variable description="Cheveux longs : débord du côté en arrière de la nuque, pour loger les cheveux relevés" formula="4" name="#volume"/>
 <variable description="Hauteur du point de volume arrière au-dessus du bord" formula="#haut_cote*0.45" name="#haut_volume"/>
 <variable description="Sommet du côté depuis le front, sur le bas" formula="#bas_cote*0.4" name="#pos_sommet"/></variables>
