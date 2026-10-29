@@ -66,11 +66,13 @@ export default async function FichePatron({ params }: Props) {
               dossier={patron.dossier ?? false}
               surMesure={!patron.sansSurMesure}
               choixMontage={patron.choixMontage ?? true}
+              tailleUnique={patron.tailleUnique}
             />
           </div>
         </div>
       </section>
 
+      {!patron.tailleUnique && (
       <section className="conteneur mesures">
         <h2>Tableau des tailles {nom.toLowerCase()}</h2>
         <div className="tableau">
@@ -98,6 +100,7 @@ export default async function FichePatron({ params }: Props) {
           </table>
         </div>
       </section>
+      )}
 
       {!patron.sansSurMesure && <VosMesures key={gamme} gamme={gamme} mesures={patron.saisie} />}
 

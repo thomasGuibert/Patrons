@@ -31,6 +31,8 @@ export type Patron = {
   gammes?: Gamme[];
   /** Pas de patron sur mesure tant que les mesures qu'il demande ne sont pas toutes saisissables. */
   sansSurMesure?: boolean;
+  /** Un seul patron pour toutes les tailles : ce texte remplace le choix de taille et le tableau des tailles. */
+  tailleUnique?: string;
   /** Faux tant que la gamme de montage n'est pas rédigée : pas de choix de notice, le dossier se limite à la nomenclature. */
   choixMontage?: boolean;
   /** Les pièces seules, pour le rayon des bases. */
@@ -76,14 +78,16 @@ export const patrons: Patron[] = [
     resume: "Bonnet en maille de bain, avec de la place à l'arrière pour les cheveux longs.",
     gammes: ["femme"],
     sansSurMesure: true,
+    tailleUnique: "Pour un tour de tête de 52 à 60 cm : la maille de bain s'ajuste.",
     vignette: { femme: bonnetBainF },
     description:
       "Un bonnet de bain en trois pièces, deux côtés et une bande centrale du front à la nuque. L'arrière s'arrondit pour loger les cheveux longs relevés.",
-    mesures: ["tete"],
-    saisie: ["tete"],
+    mesures: [],
+    saisie: [],
     caracteristiques: [
       { libelle: "Pièces", valeur: "Côté ×2, bande centrale au pli" },
       { libelle: "Tissu", valeur: "Maille de bain extensible (élasthanne), le plus grand sens d'élasticité autour de la tête" },
+      { libelle: "Taille", valeur: "Unique, tour de tête de 52 à 60 cm" },
       { libelle: "Coutures", valeur: "0,6 cm comprises, bord rabattu de 1 cm" },
     ],
   },

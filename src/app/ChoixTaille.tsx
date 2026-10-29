@@ -43,8 +43,12 @@ const ATTENTE_MAX = 10 * 60 * 1000;
 const pause = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export function ChoixTaille({
-  gamme, slug, mesures, dossier, surMesure: surMesureOuvert = true, choixMontage = true,
-}: { gamme: Gamme; slug: string; mesures: Mesure[]; dossier: boolean; surMesure?: boolean; choixMontage?: boolean }) {
+  gamme, slug, mesures, dossier, surMesure: surMesureOuvert = true, choixMontage = true, tailleUnique,
+}: {
+  gamme: Gamme; slug: string; mesures: Mesure[]; dossier: boolean; surMesure?: boolean; choixMontage?: boolean;
+  /** Un seul patron pour tous (« Tour de tête 52 à 60 cm ») : pas de choix de taille, PDF <slug>-unique. */
+  tailleUnique?: string;
+}) {
   const { tailles, parDefaut } = gammes[gamme];
   const [taille, setTaille] = useState<Choix>(parDefaut);
   const [montage, setMontage] = useState<Montage>("amateur");
@@ -104,7 +108,7 @@ export function ChoixTaille({
   const bouton = (format: Format, classe: string) => {
     const libelle = `Télécharger · ${format.toUpperCase()}`;
     if (taille !== "sur-mesure") {
-      const patron = `/pdf/${gamme}/${slug}-${taille}${format === "a3" ? "-a3" : ""}.pdf`;
+      const patron = `/pdf/${gamme}/${slug}-${tailleUnique ? "unique" : taille}${format === "a3" ? "-a3" : ""}.pdf`;
       return (
         <a
           href={patron}
@@ -138,6 +142,18 @@ export function ChoixTaille({
 
   return (
     <>
+      {tailleUnique ? (
+        <fieldset className="choix-taille">
+          <legend>Taille</legend>
+          <div className="tailles">
+            <label>
+              <input type="radio" name="taille" checked readOnly />
+              <span className="large">Unique</span>
+            </label>
+          </div>
+          <small className="aide-montage">{tailleUnique}</small>
+        </fieldset>
+      ) : (
       <fieldset className="choix-taille">
         <legend>Taille</legend>
         <div className="tailles">
@@ -159,6 +175,7 @@ export function ChoixTaille({
           ))}
         </div>
       </fieldset>
+      )}
       {taille === "sur-mesure" && manquantes > 0 && (
         <p className="a-completer">
           <a href="#vos-mesures">Notez vos mesures</a> pour tracer le patron à votre taille : il en manque {manquantes}.

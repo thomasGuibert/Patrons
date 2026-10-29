@@ -3,7 +3,7 @@
 # plus court des deux chemins. Points de chaque pièce : python3 outils/coherence/pieces.py patrons/bonnet_bain.sm2d
 
 gammes = ["femme"]
-profils = false     # pas de sur-mesure : le tour de tête n'est pas encore saisissable sur le site
+profils = false     # taille unique : le tracé ne lit aucune mesure
 
 # --- 1. Courbes sans angle
 
