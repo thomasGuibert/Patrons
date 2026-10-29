@@ -72,7 +72,11 @@ jobs:
                `claude/issue-<n>-<court-nom>`, historique linéaire (rebase, jamais de merge),
                pousse-la et ouvre une PR avec `gh pr create` qui référence l'issue
                (« Closes #<n> » seulement si la demande est entièrement traitée), assignée à
-               thomasGuibert avec sa relecture demandée. Ne fusionne pas la PR : Thomas la relit.
+               thomasGuibert. Relis ensuite ta PR de façon critique et attends la fin des
+               vérifications (`gh pr checks <pr> --watch`). S'il n'y a aucun problème (vérifications
+               vertes, pas de conflit, rien de douteux dans le tracé), fusionne-la toi-même avec
+               `gh pr merge <pr> --rebase` (jamais de commit de merge). Sinon ne la fusionne pas,
+               demande la relecture de thomasGuibert et explique le problème dans la PR.
             5. S'il manque une information indispensable (mesure, matière, taille…), ne devine
                pas : pose la question à Amélie dans l'issue et ajoute le label `needs-info`.
             6. Termine par un commentaire sur l'issue qui résume, en mots simples pour une
