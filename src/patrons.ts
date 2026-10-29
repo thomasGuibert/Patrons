@@ -1,5 +1,6 @@
 import type { StaticImageData } from "next/image";
 import boleroF from "../vignettes/femme/bolero_fiche.png";
+import bonnetBainF from "../vignettes/femme/bonnet_bain_fiche.png";
 import fondBaseMailleF from "../vignettes/femme/fond_base_maille_fiche.png";
 import fondBaseMaillePlancheF from "../vignettes/femme/fond_base_maille_planche.png";
 import fondPantalonDroitF from "../vignettes/femme/fond_pantalon_droit_fiche.png";
@@ -65,6 +66,25 @@ export const patrons: Patron[] = [
       { libelle: "Pièces", valeur: "Devant ×2, dos ×2, dessus et dessous de manche ×2, col officier ×2, parementure ×2" },
       { libelle: "Doublure", valeur: "Devant ×2, dos ×2, dessus et dessous de manche ×2" },
       { libelle: "Tissu", valeur: "Chaîne et trame" },
+    ],
+  },
+  {
+    slug: "bonnet-bain",
+    nom: "Bonnet de bain cheveux longs",
+    famille: "vetement",
+    ref: "Réf. 104",
+    resume: "Bonnet en maille de bain, avec de la place à l'arrière pour les cheveux longs.",
+    gammes: ["femme"],
+    sansSurMesure: true,
+    vignette: { femme: bonnetBainF },
+    description:
+      "Un bonnet de bain en trois pièces, deux côtés et une bande centrale du front à la nuque. L'arrière s'arrondit pour loger les cheveux longs relevés.",
+    mesures: ["tete"],
+    saisie: ["tete"],
+    caracteristiques: [
+      { libelle: "Pièces", valeur: "Côté ×2, bande centrale au pli" },
+      { libelle: "Tissu", valeur: "Maille de bain extensible (élasthanne), le plus grand sens d'élasticité autour de la tête" },
+      { libelle: "Coutures", valeur: "0,6 cm comprises, bord rabattu de 1 cm" },
     ],
   },
   {

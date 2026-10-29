@@ -1,0 +1,19 @@
+# Contrôles de cohérence du bonnet de bain : python3 outils/coherence/coherence.py bonnet_bain
+# Un tronçon = [pièce, point de départ, point d'arrivée], le long de la ligne de couture, par le
+# plus court des deux chemins. Points de chaque pièce : python3 outils/coherence/pieces.py patrons/bonnet_bain.sm2d
+
+gammes = ["femme"]
+profils = false     # pas de sur-mesure : le tour de tête n'est pas encore saisissable sur le site
+
+# --- 1. Courbes sans angle
+
+[[courbe]]
+nom = "Couture de bande du côté"
+troncons = [["Côté", "A", "B"]]
+
+# --- 3 et 4. Coutures (a et b se cousent ensemble, du premier point au dernier)
+
+[[couture]]
+nom = "Côté et bande centrale"
+a = [["Côté", "A", "S"], ["Côté", "S", "B"]]
+b = [["Bande centrale", "bA2", "bS"], ["Bande centrale", "bS", "bB2"]]
