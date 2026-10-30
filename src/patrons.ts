@@ -1,6 +1,7 @@
 import type { StaticImageData } from "next/image";
 import boleroF from "../vignettes/femme/bolero_fiche.png";
 import bonnetBainF from "../vignettes/femme/bonnet_bain_fiche.png";
+import ponchoBainF from "../vignettes/femme/poncho_bain_fiche.png";
 import fondBaseMailleF from "../vignettes/femme/fond_base_maille_fiche.png";
 import fondBaseMaillePlancheF from "../vignettes/femme/fond_base_maille_planche.png";
 import fondPantalonDroitF from "../vignettes/femme/fond_pantalon_droit_fiche.png";
@@ -33,6 +34,8 @@ export type Patron = {
   sansSurMesure?: boolean;
   /** Un seul patron pour toutes les tailles : ce texte remplace le choix de taille et le tableau des tailles. */
   tailleUnique?: string;
+  /** Nom public de chaque taille (« XS » pour 36…), à la place du numéro. */
+  nomsTailles?: Record<number, string>;
   /** Faux tant que la gamme de montage n'est pas rédigée : pas de choix de notice, le dossier se limite à la nomenclature. */
   choixMontage?: boolean;
   /** Les pièces seules, pour le rayon des bases. */
@@ -89,6 +92,28 @@ export const patrons: Patron[] = [
       { libelle: "Tissu", valeur: "Maille de bain extensible (élasthanne), le plus grand sens d'élasticité autour de la tête" },
       { libelle: "Taille", valeur: "Unique, tour de tête de 52 à 60 cm" },
       { libelle: "Coutures", valeur: "0,6 cm comprises, bord rabattu de 1 cm" },
+    ],
+  },
+  {
+    slug: "poncho-bain",
+    nom: "Poncho de bain",
+    famille: "vetement",
+    ref: "Réf. 105",
+    resume: "Poncho ample en éponge à capuche, pour se sécher et se changer à l'abri des regards.",
+    gammes: ["femme"],
+    sansSurMesure: true,
+    nomsTailles: { 36: "XS", 38: "S", 40: "M", 42: "L", 44: "XL" },
+    vignette: { femme: ponchoBainF },
+    description:
+      "Un poncho ample en éponge, pour se sécher et se changer sur la plage ou sur un bateau. Capuche à coulisse qui reste en place, manches au coude, poche kangourou, et une ouverture de chaque côté pour passer les mains et s'habiller dessous. Trois longueurs dans le même patron.",
+    mesures: ["poitrine", "hanches", "encolure", "bras"],
+    saisie: [],
+    dossier: true,
+    caracteristiques: [
+      { libelle: "Pièces", valeur: "Devant et dos au pli, manche ×2, capuche ×2, poche kangourou" },
+      { libelle: "Longueurs", valeur: "Petit (mi-cuisse), normal (au-dessus du genou), grand (sous le genou), tracées sur le patron" },
+      { libelle: "Tissu", valeur: "Éponge de coton bouclée, 350 à 450 g/m²" },
+      { libelle: "Fournitures", valeur: "Cordon de capuche 1,30 m, biais 70 cm" },
     ],
   },
   {

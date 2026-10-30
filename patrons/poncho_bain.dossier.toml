@@ -1,0 +1,202 @@
+# Dossier technique du poncho de bain : pages ajoutées devant les pièces dans le PDF.
+# Lu par .claude/skills/exporter-pdf/dossier.py ; {couture} est remplacé par la valeur de couture du
+# .sm2d (les autres valeurs sont écrites en clair : l'ourlet, la coulisse et les entrées de poche
+# n'ont pas la même). Texte public : ne jamais citer l'outil de tracé ni les sources de patronage.
+
+titre = "Poncho de bain"
+reference = "Réf. 105"
+description = """Un poncho ample en éponge, pour se sécher et se changer à l'abri des regards, \
+sur la plage ou sur un bateau. Capuche à coulisse qui reste en place, manches au coude, poche \
+kangourou devant, et une ouverture de chaque côté pour passer les mains et s'habiller dessous. \
+Trois longueurs dans le même patron : petit (mi-cuisse), normal (au-dessus du genou), grand \
+(sous le genou)."""
+mesures = ["bust_circ", "hip_circ", "neck_circ", "arm_shoulder_tip_to_wrist"]
+
+[tailles]
+# nom public de chaque taille du tableau femme
+36 = "XS (36)"
+38 = "S (38)"
+40 = "M (40)"
+42 = "L (42)"
+44 = "XL (44)"
+
+[technique]
+machines = ["Piqueuse (point droit et zigzag) ou surjeteuse", "Fer"]
+points = ["Point droit (301)", "Surjet 3 ou 4 fils (504, 514)"]
+points_cm = "3 à 4"
+temps = "3 h"
+
+[matieres]
+defaut = "Éponge"
+
+[coupe]
+laize = [140, 150, 160]
+texte = """Les valeurs de couture sont comprises dans le patron : {couture} cm sur les coutures, \
+3 cm à l'ourlet du bas et des manches, 3,5 cm au bord du visage de la capuche (coulisse) et 2,5 cm \
+aux entrées de la poche, comme le rappelle le plan des valeurs de couture. Le devant et le dos \
+portent trois longueurs : le bas de la pièce pour la longueur grand, les deux traits intérieurs pour \
+normal et petit. Choisissez la vôtre et coupez sur ce trait, l'ourlet est compris. Coupez l'éponge \
+pliée en deux endroit contre endroit, le droit-fil parallèle à la lisière ; le devant, le dos, les \
+manches et la poche se posent contre la pliure. Marquez chaque cran d'une petite entaille de 3 mm au \
+plus, et reportez l'emplacement de la poche sur l'endroit du devant à la craie."""
+
+[[materiel]]
+nom = "Machine à coudre, avec point zigzag pour surfiler (ou surjeteuse)"
+[[materiel]]
+nom = "Aiguilles 90 à 100 pour l'éponge"
+[[materiel]]
+nom = "Fer à repasser"
+[[materiel]]
+nom = "Ciseaux de coupe, épingles ou pinces"
+[[materiel]]
+nom = "Craie ou feutre effaçable, mètre ruban, épingle à nourrice"
+
+[[fournitures]]
+designation = "Éponge"
+renseignement = "éponge de coton bouclée, 350 à 450 g/m², pour la longueur grand (un peu moins pour normal et petit)"
+metrage = true
+[[fournitures]]
+designation = "Cordon"
+renseignement = "cordon plat ou rond de 8 à 10 mm, pour la coulisse de la capuche"
+quantite = "1,30 m"
+[[fournitures]]
+designation = "Biais"
+renseignement = "biais de coton de 20 mm, pour couvrir la couture d'encolure"
+quantite = "70 cm"
+[[fournitures]]
+designation = "Fil"
+renseignement = "polyester, assorti à l'éponge"
+quantite = "2 bobines (4 avec une surjeteuse)"
+
+# Gamme de montage : une opération par entrée (schema : voir dossier.py, s_<nom>).
+[[gamme]]
+operation = "Décatir l'éponge."
+outil = "Lave-linge, sèche-linge"
+commentaire = "Laver et sécher comme le poncho le sera ensuite : l'éponge rétrécit au premier lavage."
+controle = "Le tissu est sec et à plat."
+titre = "Préparer le tissu"
+texte = [
+  "Lavez et séchez l'éponge comme vous laverez le poncho : elle rétrécit maintenant plutôt qu'après la couture.",
+]
+
+[[gamme]]
+operation = "Couper les pièces à la longueur choisie."
+schema = "coupe"
+outil = "Ciseaux, craie"
+commentaire = "Éponge pliée endroit contre endroit. Devant et dos coupés au trait de la longueur choisie. Report de l'emplacement de la poche."
+controle = "Toutes les pièces de la nomenclature sont coupées, crans marqués, bords surfilés."
+titre = "Couper"
+texte = [
+  "Choisissez votre longueur : le bas du devant et du dos pour grand, l'un des deux traits intérieurs pour normal ou petit. L'ourlet est compris dans chacun.",
+  "Pliez l'éponge en deux, endroit contre endroit, lisières ensemble. Posez le devant, le dos, la manche et la poche contre la pliure, la capuche à côté : vous obtenez les deux moitiés de capuche d'un seul coup.",
+  "Coupez, marquez les crans par une petite entaille et reportez à la craie l'emplacement de la poche sur l'endroit du devant.",
+  "L'éponge s'effiloche beaucoup : surfilez tout de suite le tour de chaque pièce au zigzag ou à la surjeteuse.",
+]
+
+[[gamme]]
+operation = "Préparer et poser la poche kangourou."
+schema = "poche"
+outil = "Piqueuse, fer"
+commentaire = "Entrées de main : rentrer 2,5 cm sur l'envers, surpiquer à 2 cm. Haut, côtés et bas : rentrer {couture} cm, poser sur le report, surpiquer à 3 mm du bord."
+controle = "La poche est centrée sur le devant, les entrées de main sont libres et symétriques."
+titre = "Coudre la poche"
+texte = [
+  "Sur les deux bords en biais de la poche (les entrées de main), repliez 2,5 cm sur l'envers, repassez et surpiquez à 2 cm du pli.",
+  "Repliez {couture} cm sur l'envers en haut, sur les côtés et en bas, et repassez.",
+  "Posez la poche sur l'endroit du devant, sur l'emplacement reporté, et épinglez. Surpiquez à 3 mm du bord le haut, puis un côté, le bas et l'autre côté, en laissant libres les deux bords en biais.",
+  "Renforcez la piqûre par quelques points arrière en haut de chaque entrée de main : c'est là que la poche tire.",
+]
+
+[[gamme]]
+operation = "Assembler les épaules."
+schema = "surjet"
+outil = "Piqueuse ou surjeteuse"
+commentaire = "Devant sur dos, endroit contre endroit, à {couture} cm. Couchage vers le dos."
+controle = "Les deux épaules ont la même longueur."
+titre = "Coudre les épaules"
+texte = [
+  "Posez le devant sur le dos, endroit contre endroit, et épinglez les épaules.",
+  "Piquez à {couture} cm du bord et couchez les coutures vers le dos.",
+]
+
+[[gamme]]
+operation = "Monter les manches à plat."
+schema = "manche"
+outil = "Piqueuse ou surjeteuse"
+commentaire = "Pli de la manche (haut du bras) sur la couture d'épaule ; bords de la manche jusqu'aux crans de dessous de bras du devant et du dos."
+controle = "La manche arrive exactement aux crans de dessous de bras."
+titre = "Monter les manches"
+texte = [
+  "Ouvrez le poncho à plat, endroit vers vous. Posez la manche sur le bord du devant et du dos, endroit contre endroit : le milieu de la manche (la pliure de coupe) sur la couture d'épaule, ses deux coins sur les crans de dessous de bras.",
+  "Piquez à {couture} cm, couchez la couture vers le poncho.",
+]
+
+[[gamme]]
+operation = "Fermer côtés et dessous de manche, en laissant l'ouverture."
+schema = "ouverture"
+outil = "Piqueuse ou surjeteuse"
+commentaire = "Du bas de manche au cran haut de l'ouverture, puis du cran bas au bas du poncho. Ouverture : coutures ouvertes au fer, surpiquées de chaque côté, arrêts renforcés."
+controle = "Les ouvertures sont à la même hauteur des deux côtés et laissent passer la main à plat."
+titre = "Fermer les côtés"
+texte = [
+  "Pliez le poncho endroit contre endroit, devant sur dos. Épinglez le dessous de manche et le côté, coutures de manche face à face.",
+  "Piquez à {couture} cm du bas de la manche jusqu'au premier cran du côté, arrêtez par quelques points arrière. Reprenez au second cran et piquez jusqu'au bas.",
+  "Entre les crans, l'ouverture reste libre : ouvrez les valeurs de couture au fer sur toute la longueur du côté et surpiquez-les à 7 mm de chaque côté de l'ouverture, en piquant en travers au-dessus et au-dessous pour la renforcer.",
+]
+
+[[gamme]]
+operation = "Assembler la capuche."
+schema = "surjet"
+outil = "Piqueuse ou surjeteuse"
+commentaire = "Les deux moitiés endroit contre endroit, couture du milieu dos du sommet à l'encolure."
+controle = "La couture du sommet est régulière, sans pointe."
+titre = "Assembler la capuche"
+texte = [
+  "Posez les deux moitiés de capuche endroit contre endroit et piquez à {couture} cm la couture arrondie, du bord du visage jusqu'à l'encolure.",
+]
+
+[[gamme]]
+operation = "Faire la coulisse du bord du visage."
+schema = "coulisse_capuche"
+outil = "Piqueuse, fer"
+commentaire = "Rentrer 1 cm, puis 2,5 cm sur l'envers ; surpiquer au ras du premier pli. Laisser les deux bouts ouverts en bas."
+controle = "Le cordon glisse librement dans toute la coulisse."
+titre = "Coudre la coulisse de capuche"
+texte = [
+  "Sur le bord du visage, repliez 1 cm sur l'envers, puis encore 2,5 cm, et repassez.",
+  "Surpiquez au ras du premier pli : la coulisse reste ouverte à ses deux bouts, en bas de la capuche.",
+]
+
+[[gamme]]
+operation = "Monter la capuche sur l'encolure."
+outil = "Piqueuse"
+commentaire = "Endroit contre endroit, milieu dos sur milieu dos, crans sur les coutures d'épaule ; les bouts de la coulisse se rejoignent au milieu devant. Couvrir la couture d'un biais."
+controle = "L'encolure est à plat, les deux bouts de la coulisse bord à bord au milieu devant."
+titre = "Monter la capuche"
+texte = [
+  "Épinglez la capuche sur l'encolure, endroit contre endroit : la couture du milieu de la capuche sur le milieu du dos, les crans sur les coutures d'épaule. Au milieu devant, les deux bouts de la coulisse se touchent.",
+  "Piquez à {couture} cm. Posez le biais sur la couture, côté envers, piquez-le, rabattez-le sur la couture et surpiquez-le sur le poncho : l'éponge ne gratte pas le cou.",
+]
+
+[[gamme]]
+operation = "Ourler le bas et les manches."
+schema = "ourlet"
+outil = "Piqueuse, fer"
+commentaire = "Rentrer 1 cm, puis 2 cm sur l'envers ; surpiquer à 1,8 cm du bas."
+controle = "L'ourlet est droit et ne vrille pas."
+titre = "Ourler"
+texte = [
+  "Au bas du poncho et des manches, repliez 1 cm sur l'envers, puis encore 2 cm, et repassez.",
+  "Surpiquez sur l'envers au ras du premier pli.",
+]
+
+[[gamme]]
+operation = "Passer le cordon, finir."
+outil = "Épingle à nourrice"
+commentaire = "Cordon dans la coulisse, un nœud à chaque bout. Couper les fils, contrôler."
+controle = "Capuche serrée, elle reste sur la tête quand on se penche."
+titre = "Finir"
+texte = [
+  "Glissez le cordon dans la coulisse avec une épingle à nourrice, et faites un nœud à chaque bout pour qu'il ne reparte pas.",
+  "Coupez les fils et comparez les deux côtés : manches et ouvertures à la même hauteur.",
+]

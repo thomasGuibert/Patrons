@@ -292,3 +292,74 @@ def haut_pyjama(p):
         d.piqure([(xa + 0.3, yb), (-xa - 0.3, yb)])
         vues.append(d)
     return vues
+
+
+# ---------------- poncho de bain ----------------
+def poncho(p):
+    """Devant et dos du poncho cousu, à la longueur normal : capuche, manches au coude, poche kangourou."""
+    N = {n: q for n, q in p.points.values()}
+    ourlet = p.vars.get('#ourlet', 3)
+    haut_cap = math.dist(N['cA'], N['cF'])
+    larg_cap = math.dist(N['cA'], N['cR0'])
+    manche = math.dist(N['mA'], N['mC'])
+    resserre = math.dist(N['mA'], N['mB']) - math.dist(N['mC'], N['mD'])
+    vues = []
+    for s in ('', 'd'):
+        R = lambda q, s=s: (q[0] - N['O' + s][0], q[1] - N['O' + s][1])   # milieu en x = 0, épaule en y = 0
+        # points du dos : mêmes noms que le devant, suffixés « d »
+        P = {n[:-1]: R(q) for n, q in N.items() if n.endswith('d')} if s else {n: R(q) for n, q in N.items()}
+        Fn, E, Ep, Em = P['Fn'], P['E'], P['Ep'], P['Em']
+        bas_c = (P['Cn'][0], P['Cn'][1] + ourlet)
+        bas_s = (P['Cns'][0], P['Cns'][1] + ourlet)
+        # côté : de Em au bas normal, sur la droite Em H
+        demi = [Fn, (E[0] * 0.55, Fn[1] * 0.25), E, Ep, Em, bas_s, bas_c]
+        demi = [(-x, y) for x, y in demi]                 # moitié gauche (x < 0)
+        corps = demi + list(reversed(miroir(demi)))[1:-1]
+        d = Dessin()
+        # manches, un peu tombantes, avant le corps
+        a = math.radians(200)
+        u = (math.cos(a), math.sin(a))
+        for f in (lambda L: L, miroir):
+            g = [(-Ep[0], Ep[1]), (-Em[0], Em[1])]
+            b1 = (g[0][0] + manche * u[0], g[0][1] + manche * u[1])
+            b2 = (g[1][0] + manche * u[0] + resserre * 0.3, g[1][1] + manche * u[1] + resserre)
+            d.forme(f([g[0], b1, b2, g[1]]))
+            d.piqure(f([(b1[0] + 2.2 * math.cos(a + math.pi), b1[1] + 2.2 * math.sin(a + math.pi)),
+                        (b2[0] + 2.2 * math.cos(a + math.pi), b2[1] + 2.2 * math.sin(a + math.pi))]))
+        if not s:
+            # capuche relevée, derrière la tête, vue de face
+            cap = lisse([(-E[0], E[1]), (-E[0] - 6, haut_cap * 0.4), (-larg_cap * 0.58, haut_cap * 0.88),
+                         (0, haut_cap * 0.95)], 12)
+            d.forme(cap + list(reversed(miroir(cap)))[1:])
+            vis = lisse([(0, Fn[1]), (-E[0] * 0.9, Fn[1] + 6), (-E[0] * 1.3, haut_cap * 0.45),
+                         (-E[0] * 0.95, haut_cap * 0.8), (0, haut_cap * 0.86)], 12)
+            d.ligne(vis + list(reversed(miroir(vis)))[1:])
+            d.piqure(decale(vis, -2.5)[2:-2])
+            d.piqure(miroir(decale(vis, -2.5)[2:-2]))
+        d.forme(corps)
+        if not s:
+            # cordon de la capuche
+            for sg in (-1, 1):
+                d.ligne([(sg * 1, Fn[1]), (sg * 1.6, Fn[1] - 8), (sg * 1.2, Fn[1] - 14)])
+            q = [P['Q0'], P['Q1'], P['Q2'], P['Q3'], P['Q4']]
+            poche = [(-x, y) for x, y in q]
+            d.forme(poche + list(reversed(miroir(poche)))[1:-1])
+            for f in (lambda L: L, miroir):
+                d.piqure(f(decale([(-q[1][0], q[1][1] - 0.6), (-q[2][0] + 0.6, q[2][1])], 0)))
+                d.piqure(f([(-q[2][0] + 0.6, q[2][1]), (-q[3][0] + 0.6, q[3][1] + 0.6), (0, q[3][1] + 0.6)]))
+            d.piqure([(-q[1][0] + 1.5, q[0][1] - 0.6), (q[1][0] - 1.5, q[0][1] - 0.6)])
+        else:
+            # capuche rabattue dans le dos
+            cap = lisse([(-E[0], E[1]), (-E[0] - 5, -haut_cap * 0.35), (-larg_cap * 0.42, -haut_cap * 0.75),
+                         (0, -haut_cap * 0.85)], 12)
+            d.forme(cap + list(reversed(miroir(cap)))[1:])
+            d.ligne([(0, Fn[1]), (0, -haut_cap * 0.85)])
+        # ouvertures de côté : surpiqûres le long du côté entre les crans
+        for f in (lambda L: L, miroir):
+            o1, o2 = P['Ou1'], P['Ou2']
+            d.piqure(f([(-o1[0] + 0.9, o1[1]), (-o2[0] + 0.9, o2[1])]))
+            d.ligne(f([(-o1[0], o1[1]), (-o1[0] + 1.8, o1[1])]))
+            d.ligne(f([(-o2[0], o2[1]), (-o2[0] + 1.8, o2[1])]))
+        d.piqure([(bas_s[0] * -1 + 0.4, bas_c[1] + 2), (-bas_s[0] * -1 - 0.4, bas_c[1] + 2)])
+        vues.append(d)
+    return vues

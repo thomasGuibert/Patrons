@@ -87,13 +87,14 @@ tracés identiques au PC, seule la police des étiquettes diffère.
 
 ## Dossier technique (devant les pièces)
 
-Un patron qui a `patrons/<nom>.dossier.toml` (pyjama haut et bas pour l'instant) reçoit un dossier
+Un patron qui a `patrons/<nom>.dossier.toml` (pyjama haut et bas, boléro, poncho de bain) reçoit un dossier
 A4 de 6 pages environ : informations (dessin `vignettes/<gamme>/<nom>_dessin.png`, tableau des
 mesures de la gamme ou « Vos mesures »), coupe, matériel, fournitures avec métrage calculé sur les
 pièces de la taille, plan des valeurs de couture (lu sur le SVG : écart couture / coupe),
 nomenclature (quantités et « au pli » du `.sm2d`), puis la gamme de montage **pro** (tableau
 opération / schéma / outil / commentaire / point de contrôle) ou **amateur** (pas à pas illustré).
 Le texte vient du `.toml` ; `{couture}` et `{ourlet}` y sont remplacés par les valeurs du `.sm2d`.
+Une table `[tailles]` donne le nom public de chaque taille (poncho : `40 = "M (40)"`).
 Les schémas sont dessinés par `dossier.py` (`Schema.s_<nom>`). Texte public : ni Seamly, ni livre.
 
 - `mesures_vers_pdf.py ... --montage pro|amateur` : PDF final = dossier + pièces.

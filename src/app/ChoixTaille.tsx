@@ -43,11 +43,13 @@ const ATTENTE_MAX = 10 * 60 * 1000;
 const pause = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export function ChoixTaille({
-  gamme, slug, mesures, dossier, surMesure: surMesureOuvert = true, choixMontage = true, tailleUnique,
+  gamme, slug, mesures, dossier, surMesure: surMesureOuvert = true, choixMontage = true, tailleUnique, nomsTailles,
 }: {
   gamme: Gamme; slug: string; mesures: Mesure[]; dossier: boolean; surMesure?: boolean; choixMontage?: boolean;
   /** Un seul patron pour tous (« Tour de tête 52 à 60 cm ») : pas de choix de taille, PDF <slug>-unique. */
   tailleUnique?: string;
+  /** Nom public de chaque taille (« XS » pour 36), à la place du numéro. */
+  nomsTailles?: Record<number, string>;
 }) {
   const { tailles, parDefaut } = gammes[gamme];
   const [taille, setTaille] = useState<Choix>(parDefaut);
@@ -170,7 +172,7 @@ export function ChoixTaille({
                   setMessage("");
                 }}
               />
-              <span className={t === "sur-mesure" ? "large" : undefined}>{t === "sur-mesure" ? "Sur mesure" : t}</span>
+              <span className={t === "sur-mesure" ? "large" : undefined}>{t === "sur-mesure" ? "Sur mesure" : (nomsTailles?.[t] ?? t)}</span>
             </label>
           ))}
         </div>

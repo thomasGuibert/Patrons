@@ -153,6 +153,8 @@ class Bloc:
         px, py = info.get('pinfo', (0, 0))
         gx, gy, gl = info.get('grain', (0, 0, 10))
         matiere = info.get('matiere', 'Tissu')
+        lignes = ''.join(f'<line alignment="4" bold="false" italic="false" sfIncrement="0" text={quoteattr(t)}/>'
+                         for t in info.get('lignes', ()))
         dw, dh = info.get('data_dim', (7, 2.5))
         pw, ph = info.get('pinfo_dim', (7, 3))
         i = self.f.nid()
@@ -164,7 +166,7 @@ class Bloc:
             f'onFold="{"true" if pli else "false"}" orientation="Indéfini" quantity="{qte}" rotation="0" rotationWay="Aucun" '
             f'tilt="Aucun" visible="true" width="{dw}">'
             f'<line alignment="4" bold="true" italic="false" sfIncrement="3" text="%pName%"/>'
-            f'<line alignment="4" bold="false" italic="true" sfIncrement="0" text="x%pQuantity% {matiere}"/></data>'
+            f'<line alignment="4" bold="false" italic="true" sfIncrement="0" text="x%pQuantity% {matiere}"/>{lignes}</data>'
             f'<patternInfo fontSize="0" height="{ph}" mx="{px * 37.795:.3f}" my="{py * 37.795:.3f}" rotation="0" visible="true" width="{pw}"/>'
             f'<grainline arrowLength="1" arrows="0" length="{gl}" mx="{gx * 37.795:.3f}" my="{gy * 37.795:.3f}" rotation="90" visible="true"/>'
             f'<nodes>{nodes}</nodes>{ipaths}</piece>')
