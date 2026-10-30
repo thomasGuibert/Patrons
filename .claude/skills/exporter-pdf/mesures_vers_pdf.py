@@ -10,7 +10,7 @@ Mesures (sans option : celles liées au .sm2d, ex. T44) :
                             certaines remplacées ; répétable. Noms : ceux du .smms (waist_circ…)
   --mesures <fichier>       fichier de mesures existant (.vit individuel SeamlyMe ou .smms)
   --nom Thomas              nom de la taille sur mesure : « T-Thomas » sur l'étiquette du patron
-                            et la notice (sans nom : « Sur mesure » au lieu du « T0 » de Seamly)
+                            et la notice (sans nom : « Sur mesure <date> » au lieu du « T0 » de Seamly, #88)
 
 Dossier technique (patrons/<nom>.dossier.toml requis) :
   --montage pro|amateur     PDF final = dossier (gamme de montage en tableau, ou pas à pas) + pièces
@@ -124,7 +124,8 @@ def main():
             taille = 'T-' + a.nom.strip() if a.nom else libelle
             txt = open(copie, encoding='utf-8').read()
             open(copie, 'w', encoding='utf-8').write(
-                txt.replace('T%size%', taille if a.nom else 'Sur mesure').replace('%size%', taille))
+                txt.replace('T%size%', taille if a.nom else 'Sur mesure ' + time.strftime('%d/%m/%Y'))
+                .replace('%size%', taille))
 
         svgs = os.path.join(tmp, 'svg')
         debut = time.time()

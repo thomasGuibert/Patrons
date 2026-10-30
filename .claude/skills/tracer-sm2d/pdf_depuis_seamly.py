@@ -20,9 +20,10 @@ from reportlab.lib.utils import simpleSplit
 NS = '{http://www.w3.org/2000/svg}'
 PT_PX = 72 / 96          # Seamly exporte en pixels à 96 ppp
 CM = 72 / 2.54           # points PDF par cm
-MARGE = 0.5              # marge de page à gauche et en haut (cm)
+MARGE = 1.0              # marge blanche à gauche et en haut (cm) : 1 cm partout (Amélie, #88)
 MARGE_DB = 1.0           # à droite et en bas (cm) : certaines imprimantes y rognent davantage
 REPERE = 0.7             # demi-longueur (cm) des repères en biais posés sur les raccords de feuilles
+LOSANGE = 0.5            # demi-diagonale (cm) du losange noir posé sur chaque raccord
 JEU = 0.2                # jeu minimal entre une grande pièce et le bord de son assemblage (cm)
 ECART = 0.5              # écart autour des petites pièces logées dans la place libre (cm)
 PX_CM = 96 / 2.54
@@ -68,7 +69,7 @@ def lire_svg(path):
             tx, ty = translation(el.get('transform'))
             dx, dy = dx + tx, dy + ty
             style = dict(style)
-            for k in ('fill', 'stroke', 'stroke-width', 'fill-rule'):
+            for k in ('fill', 'stroke', 'stroke-width', 'fill-rule', 'stroke-dasharray'):
                 if el.get(k) is not None:
                     style[k] = el.get(k)
             if el.tag == NS + 'path' and el.get('d'):
@@ -210,7 +211,11 @@ def dessiner(c, pieces, ox, oy, e=1.0, detail=True):
             if remplir:
                 c.drawPath(p, stroke=0, fill=1, fillMode=0 if style.get('fill-rule') == 'evenodd' else 1)
             else:
+                # tirets de Seamly (chemins internes en tirets : ligne du short, #88)
+                tirets = [float(t) * PT_PX * e for t in re.split(r'[ ,]+', style.get('stroke-dasharray', '').strip()) if t]
+                c.setDash(tirets) if tirets else c.setDash()
                 c.drawPath(p, stroke=1, fill=0)
+                c.setDash()
 
 
 def touchees(bloc):
@@ -266,8 +271,12 @@ def exporter(svg, dst, titre, sm2d=None, format='A4', taille=None):
               "contrôle ci-contre : 5 cm de côté. Chaque pièce a ses propres feuilles : couper chaque "
               "feuille sur le cadre gris là où elle touche une voisine, puis scotcher bord à bord selon "
               "le plan (lettre = rangée, chiffre = colonne), en prolongeant les repères en biais d'une "
-              "feuille à l'autre. Tracé extérieur : ligne de coupe, coutures%s comprises ; tracé "
+              "feuille à l'autre ; les deux moitiés de losange noir doivent former un losange entier"
+              ". Tracé extérieur : ligne de coupe, coutures%s comprises ; tracé "
               "intérieur : ligne de couture.").replace('coutures%s', 'coutures' + (' de %s cm' % couture if couture else ''))
+    if any(st.get('stroke-dasharray') for pc in pieces for st, _ in pc['chemins']):
+        notice += " Trait en tirets : coupe de la version courte (short), ourlet compris."
+
     c.setFont('Helvetica', 10)
     for t in simpleSplit(notice, 'Helvetica', 10, 12 * CM):
         c.drawString(1.8 * CM, y, t); y -= 13
@@ -324,6 +333,12 @@ def exporter(svg, dst, titre, sm2d=None, format='A4', taille=None):
         x0, y0 = MARGE, MARGE_DB          # coin bas-gauche du cadre (cm)
         p = c.beginPath(); p.rect(x0 * CM, y0 * CM, uw * CM, uh * CM)
         c.clipPath(p, stroke=0, fill=0)
+        # nom de la feuille en gros, en gris clair sous le tracé, pour s'y retrouver d'un coup d'œil
+        c.setFillGray(0.82); c.setFont('Helvetica-Bold', 60)
+        c.drawRightString((x0 + uw) * CM - 10, ph - MARGE * CM - 62, nomp(r, k))
+        c.setFont('Helvetica-Bold', 20)
+        c.drawRightString((x0 + uw) * CM - 10, ph - MARGE * CM - 86, 'page %d/%d' % (i + 2, len(pages) + 1))
+        c.setFillGray(0)
         dessiner(c, b['pieces'], (MARGE - k * uw) * CM, ph - (MARGE - r * uh) * CM)
         # repères en biais à cheval sur chaque bord à raccorder : chaque feuille en porte une
         # moitié, les deux moitiés se prolongent une fois les feuilles scotchées
@@ -338,6 +353,17 @@ def exporter(svg, dst, titre, sm2d=None, format='A4', taille=None):
                 else:
                     X, Y = (x0 + (0 if bord == 'gauche' else uw)) * CM, (y0 + (1 - f) * uh) * CM
                 c.line(X - d, Y - d, X + d, Y + d)
+            # demi-losange noir aux 3/8 du bord (le milieu porte le nom de la voisine) : les deux
+            # moitiés forment un losange une fois les feuilles bord à bord (Amélie, #88)
+            q = LOSANGE * CM
+            if bord in ('haut', 'bas'):
+                X, Y, sg = (x0 + 0.375 * uw) * CM, (y0 + (uh if bord == 'haut' else 0)) * CM, (-1 if bord == 'haut' else 1)
+                pts = [(X - q, Y), (X + q, Y), (X, Y + sg * q)]
+            else:
+                X, Y, sg = (x0 + (0 if bord == 'gauche' else uw)) * CM, (y0 + 0.625 * uh) * CM, (1 if bord == 'gauche' else -1)
+                pts = [(X, Y - q), (X, Y + q), (X + sg * q, Y)]
+            t = c.beginPath(); t.moveTo(*pts[0]); t.lineTo(*pts[1]); t.lineTo(*pts[2]); t.close()
+            c.drawPath(t, stroke=0, fill=1)
         c.restoreState()
         c.setLineWidth(0.3); c.setStrokeGray(0.55)
         c.rect(x0 * CM, y0 * CM, uw * CM, uh * CM)
