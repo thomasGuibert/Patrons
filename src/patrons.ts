@@ -119,7 +119,8 @@ export const patrons: Patron[] = [
     saisie: mesuresBas,
     dossier: true,
     caracteristiques: [
-      { libelle: "Pièces", valeur: "Devant ×2, dos ×2, ceinture" },
+      { libelle: "Pièces", valeur: "Devant ×2, dos ×2, taille repliée sur l'élastique" },
+      { libelle: "Variante", valeur: "Short : ligne de coupe en tirets" },
     ],
   },
   {

@@ -1,4 +1,4 @@
-# Bas de pyjama (pantalon souple, ceinture jersey) : étapes
+# Bas de pyjama (pantalon souple, taille élastiquée repliée) : étapes
 
 Sources (transcriptions à côté des photos) :
 - `doc/sources/pantalon/fond-pantalon-droit/` : fond tracé dans `patrons/fond_pantalon_droit.sm2d` ;
@@ -116,8 +116,23 @@ Valeurs T44 mesurées hors Seamly :
   dsE*, dsP* depuis C1e / C4e, cbE*, cbF* depuis le pli) pour rester hors du milieu de la pièce,
   où tombe le raccord de feuilles.
 
+- 2026-10-30 (essai 1 d'Amélie, issue #88) :
+  - **plus de ceinture rapportée** : la pièce « Ceinture » est supprimée ; le haut du devant et
+    du dos (cA3t–cA2et, cB5et–cA5t, taille descendue relevée) porte un repli de
+    `#haut_elastique` = 3 cm, en symétrie de la taille (angles 2/3). L'élastique est surjeté sur
+    l'envers du haut, replié une fois et surpiqué. Les sections « Ceinture » ci-dessus sont
+    l'historique.
+  - longueur + 3 cm : `#garde_sol` 12 → 9 (ourlets déplacés de 3 cm, seuls points bougés) ;
+  - droit-fil sur 95 % de la hauteur : de gHaut (5 cm sous A, sur AE) à E ;
+  - short associé : trait en tirets à `#short_entrejambe` = 10 cm d'entrejambe fini, plus
+    `#short_ourlet` = 2,5 (trait = ligne de coupe, ourlet compris), sur le devant et le dos ;
+  - montage : côtés et entrejambes (2 jambes), une jambe dans l'autre, enfourchure, taille
+    élastiquée, ourlets ; métrage donné pour des laizes de 140, 150 et 160 cm.
+
 ## Questions ouvertes
 1. ~~Fichier cible~~, 2. ~~Poches~~ : tranchées (voir Décisions).
 3. ~~Valeurs d'élargissement~~ : tranchée (voir Décisions).
 4. ~~Entrejambe~~ : tranchée (voir Décisions).
 5. ~~Hauteur de l'élastique~~ : tranchée (voir Décisions).
+6. Finition du haut (issue #88) : surpiqûre à la recouvreuse ou au zigzag, à confirmer à
+   l'essai 2.

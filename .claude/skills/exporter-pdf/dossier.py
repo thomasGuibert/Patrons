@@ -99,7 +99,9 @@ def largeurs(sm2d):
         if pc.get('seamAllowance') != 'true':
             continue
         courantes.append(float(pc.get('width') or 0))
-        bords += [float(n.get(k)) for n in pc.iter('node') for k in ('before', 'after') if n.get(k)]
+        # une formule (ex. #haut_elastique, repli de coulisse) n'est pas un ourlet : ignorée
+        bords += [float(n.get(k)) for n in pc.iter('node') for k in ('before', 'after')
+                  if re.fullmatch(r'[\d.]+', n.get(k) or '')]
     couture = max(set(courantes), key=courantes.count) if courantes else 1
     return {'couture': cm(couture), 'ourlet': cm(max(bords + [couture]))}
 
@@ -540,6 +542,20 @@ class Schema(Flowable):
         c.drawPath(ch, stroke=1, fill=0)
         c.setFillColor(GRIS); c.drawCentredString(ex, cy - 18, 'élastique, 2 cm')
 
+    def s_coulisse(self, L, H):
+        """Haut du pantalon : élastique surjeté sur l'envers du bord, replié une fois et surpiqué."""
+        c, x0, x1, ym = self.canv, 16, L - 10, H / 2
+        self.couche(x0, x1, ym + 5, endroit_dessus=True)
+        self.couche(x0, x0 + (x1 - x0) * 0.55, ym - 9, endroit_dessus=False)
+        c.setStrokeColor(BLEU); c.setLineWidth(4.2); c.arc(x0 - 8, ym - 11, x0 + 8, ym + 7, 90, 270)
+        c.setStrokeColor(ENCRE); c.setFillColor(colors.white); c.setLineWidth(0.6)
+        c.rect(x0 + 3, ym - 5, (x1 - x0) * 0.5, 7, stroke=1, fill=1)
+        self.surjet(x0 + (x1 - x0) * 0.55, ym - 9, ym + 2)
+        self.piqure(x0 + (x1 - x0) * 0.55 + 6, ym - 13, ym + 10)
+        self.cote(x0, x0 + (x1 - x0) * 0.55, ym - 21, '3')
+        c.setFillColor(GRIS); c.setFont('Texte-Italique', 7)
+        c.drawString(x0, ym + 13, 'pli de la taille, élastique dans le repli')
+
     def s_ceinture(self, L, H):
         """Ceinture pliée, élastique dans le pli, posée sur l'endroit du pantalon."""
         c, x0, x1, ym = self.canv, 10, L - 18, H / 2 - 8
@@ -650,12 +666,15 @@ def dossier(svg, sm2d, dst, montage='pro', mesures=None, taille=None, gamme=None
     E += [Paragraph('Le matériel', S['h'])]
     E += [Paragraph(m['nom'], S['liste'], bulletText='·') for m in D.get('materiel', [])]
     E += [Paragraph('Les fournitures', S['h'])]
-    laize = D['coupe'].get('laize', 150)
+    # laize : une largeur de tissu, ou une liste (un métrage par largeur, Amélie #88)
+    laizes = D['coupe'].get('laize', 150)
+    laizes = laizes if isinstance(laizes, list) else [laizes]
     for f in D.get('fournitures', []):
         if f.get('metrage'):
             # « matiere » : métrage des seules pièces de cette matière (tissu et doublure se coupent à part)
             garde = (lambda n, m=f['matiere']: D['matieres'].get(n, D['matieres']['defaut']) == m) if f.get('matiere') else None
-            q = '%s m en %d cm de large' % (('%.2f' % (metrage(pieces, infos, laize, garde) / 100)).replace('.', ','), laize)
+            q = ', '.join('%s m en %d cm' % (('%.2f' % (metrage(pieces, infos, l, garde) / 100)).replace('.', ','), l)
+                          for l in laizes) + ' de large'
         elif f.get('mesure') and f['mesure'] in valeurs:
             q = '%s cm' % cm(round(valeurs[f['mesure']] * f.get('coef', 1) + f.get('ajout', 0)))
         else:

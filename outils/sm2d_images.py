@@ -308,8 +308,8 @@ class Patron:
                         pts = list(self.courbes[obj]['pts'])
                         if n.get('reverse') == '1':
                             pts.reverse()
-                    av = float(n.get('before')) if n.get('before') not in (None, '') else largeur
-                    ap = float(n.get('after')) if n.get('after') not in (None, '') else largeur
+                    av = self.eval(n.get('before')) if n.get('before') not in (None, '') else largeur
+                    ap = self.eval(n.get('after')) if n.get('after') not in (None, '') else largeur
                     contour.append((n.get('type'), pts, av, ap))
                 yield bloc.get('name'), piece, rogner(contour), largeur
 

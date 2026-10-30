@@ -18,7 +18,7 @@
         <variable description="Aisance au tour de hanches (p. 238)" formula="2" name="#aisance_hanches"/>
         <variable description="Tour de taille avec aisance" formula="waist_circ + #aisance_taille" name="#taille_ais"/>
         <variable description="Tour de hanches avec aisance" formula="hip_circ + #aisance_hanches" name="#hanches_ais"/>
-        <variable description="Espace entre le bas du pantalon et le sol" formula="12" name="#garde_sol"/>
+        <variable description="Espace entre le bas du pantalon et le sol (12 au livre ; 9 après l'essai d'Amélie, issue #88)" formula="9" name="#garde_sol"/>
         <variable description="Hauteur totale du pantalon AE" formula="height_waist_side - #garde_sol" name="#haut_pantalon"/>
         <variable description="Largeur du genou (valeur de mode, p. 238)" formula="48" name="#larg_genou"/>
         <variable description="Largeur du bas de pantalon (valeur de mode, p. 238)" formula="40" name="#larg_bas_pant"/>
@@ -30,6 +30,8 @@
         <variable description="Élargissement C : bas, côté et entrejambe (p. 245, valeur choisie)" formula="1.5" name="#el_C"/>
         <variable description="Taille descendue du modèle souple (p. 247, lu sur le schéma)" formula="2" name="#desc_taille_pyj"/>
         <variable description="Largeur de l'élastique de taille (décision ; 4 au livre)" formula="3" name="#haut_elastique"/>
+        <variable description="Short associé : longueur d'entrejambe finie (issue #88)" formula="10" name="#short_entrejambe"/>
+        <variable description="Ourlet du short" formula="2.5" name="#short_ourlet"/>
     </variables>
     <draftBlock name="Pantalon">
         <calculation>
@@ -175,6 +177,26 @@
             <point id="525" name="dsP1" type="endLine" basePoint="524" angle="90" length="6.5" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
             <point id="527" name="dsP2h" type="endLine" basePoint="409" angle="0" length="11.5" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
             <point id="528" name="dsP2" type="endLine" basePoint="527" angle="90" length="1.5" lineColor="black" lineType="none" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <line id="530" firstPoint="434" secondPoint="13" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <point id="531" name="cA3t" type="alongLine" firstPoint="434" secondPoint="13" length="#haut_elastique" lineType="none" lineColor="black" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="532" name="cPlatA3t" type="normal" firstPoint="531" secondPoint="434" length="0.5" angle="180" lineType="solidLine" lineColor="black" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <line id="533" firstPoint="436" secondPoint="404" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <point id="534" name="cA2et" type="endLine" basePoint="436" angle="AngleLine_cA2e_A2e" length="#haut_elastique" lineType="solidLine" lineColor="black" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <spline id="535" type="simpleInteractive" point1="532" point4="534" angle1="185.3322" length1="7.1020" angle2="357.6924" length2="7.1020" color="darkBlue" lineWeight="0.35" penStyle="solidLine"/>
+            <line id="536" firstPoint="438" secondPoint="34" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <point id="537" name="cA5t" type="alongLine" firstPoint="438" secondPoint="34" length="#haut_elastique" lineType="none" lineColor="black" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <line id="538" firstPoint="439" secondPoint="405" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <point id="539" name="cB5et" type="endLine" basePoint="439" angle="AngleLine_cB5e_B5e" length="#haut_elastique" lineType="solidLine" lineColor="black" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <line id="540" firstPoint="537" secondPoint="539" lineColor="black" lineType="none" lineWeight="0.35"/>
+            <point id="541" name="cMilt" type="alongLine" firstPoint="537" secondPoint="539" length="Line_cA5t_cB5et/2" lineType="none" lineColor="black" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="542" name="cRent" type="normal" firstPoint="541" secondPoint="539" length="0.5" angle="0" lineType="none" lineColor="black" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <spline id="543" type="pathInteractive" color="darkBlue" lineWeight="0.35" penStyle="solidLine"><pathPoint pSpline="537" angle1="19.5391" length1="0.0000" angle2="199.5391" length2="3.3513"/><pathPoint pSpline="542" angle1="8.9175" length1="3.3513" angle2="188.9175" length2="3.3513"/><pathPoint pSpline="539" angle1="2.9067" length1="3.3513" angle2="182.9067" length2="0.0000"/></spline>
+            <point id="544" name="gHaut" type="alongLine" firstPoint="1" secondPoint="5" length="5" lineType="none" lineColor="black" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="545" name="shA" type="alongLine" firstPoint="1" secondPoint="5" length="Line_A_C+#el_enf_v+#short_entrejambe+#short_ourlet" lineType="none" lineColor="black" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="546" name="shCd" type="lineIntersectAxis" basePoint="545" angle="180" p1Line="407" p2Line="406" lineType="none" lineColor="black" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="547" name="shEd" type="curveIntersectAxis" basePoint="545" angle="0" curve="428" lineType="none" lineColor="black" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="548" name="shCb" type="lineIntersectAxis" basePoint="545" angle="180" p1Line="410" p2Line="409" lineType="none" lineColor="black" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="549" name="shEb" type="curveIntersectAxis" basePoint="545" angle="0" curve="429" lineType="none" lineColor="black" lineWeight="0.35" mx="0.132292" my="0.264583" showPointName="true"/>
         </calculation>
         <modeling>
             <point id="456" idObject="434" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
@@ -212,6 +234,23 @@
             <point id="523" idObject="522" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
             <point id="526" idObject="525" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
             <point id="529" idObject="528" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="550" idObject="534" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+            <spline id="551" idObject="535" inUse="true" type="modelingSpline"/>
+            <point id="552" idObject="532" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="553" idObject="531" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="554" idObject="544" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="555" idObject="5" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="556" idObject="546" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="557" idObject="547" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+            <path id="558" name="shortDevant" type="2" lineType="dashLine" inUse="true" cut="false"><nodes><node idObject="556" type="NodePoint"/><node idObject="557" type="NodePoint"/></nodes></path>
+            <point id="559" idObject="537" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+            <spline id="560" idObject="543" inUse="true" type="modelingPath"/>
+            <point id="561" idObject="539" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="562" idObject="544" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="563" idObject="5" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="564" idObject="548" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+            <point id="565" idObject="549" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+            <path id="566" name="shortDos" type="2" lineType="dashLine" inUse="true" cut="false"><nodes><node idObject="564" type="NodePoint"/><node idObject="565" type="NodePoint"/></nodes></path>
         </modeling>
         <pieces>
             <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="470" inLayout="true" locked="false" mx="0" my="0" name="Devant" seamAllowance="true" united="false" version="2" width="0.6">
@@ -220,7 +259,7 @@
                     <line alignment="4" bold="false" italic="true" sfIncrement="4" text="x%pQuantity% %mFabric%"/>
                 </data>
                 <patternInfo topLeftAnchor="514" bottomRightAnchor="517" fontSize="40" height="5" mx="44.715" my="1912.427" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="74.4" mx="6.159" my="3432.016" rotation="90" visible="true"/>
+                <grainline topAnchor="554" bottomAnchor="555" arrowLength="1.27" arrows="0" length="74.4" mx="6.159" my="3432.016" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="469" type="NodePoint"/>
                     <node idObject="468" reverse="1" type="NodeSpline"/>
@@ -233,15 +272,22 @@
                     <node idObject="461" type="NodePoint"/>
                     <node idObject="460" reverse="0" type="NodeSpline"/>
                     <node idObject="459" type="NodePoint"/>
-                    <node idObject="458" reverse="1" type="NodeSpline"/>
-                    <node idObject="457" type="NodePoint"/>
+                    <node idObject="550" after="#haut_elastique" angle="3" type="NodePoint"/>
+                    <node idObject="551" reverse="1" type="NodeSpline"/>
+                    <node idObject="552" before="#haut_elastique" after="#haut_elastique" type="NodePoint"/>
+                    <node idObject="553" before="#haut_elastique" angle="2" type="NodePoint"/>
                     <node idObject="456" type="NodePoint"/>
                 </nodes>
+                <iPaths>
+                    <record path="558"/>
+                </iPaths>
                 <anchors>
                     <record>508</record>
                     <record>511</record>
                     <record>514</record>
                     <record>517</record>
+                    <record>554</record>
+                    <record>555</record>
                 </anchors>
             </piece>
             <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="484" inLayout="true" locked="false" mx="0" my="0" name="Dos" seamAllowance="true" united="false" version="2" width="0.6">
@@ -250,7 +296,7 @@
                     <line alignment="4" bold="false" italic="true" sfIncrement="4" text="x%pQuantity% %mFabric%"/>
                 </data>
                 <patternInfo topLeftAnchor="526" bottomRightAnchor="529" fontSize="40" height="5" mx="31.241" my="1855.734" rotation="0" visible="true" width="8"/>
-                <grainline arrowLength="1.27" arrows="0" length="77.4" mx="-10.836" my="3417.612" rotation="90" visible="true"/>
+                <grainline topAnchor="562" bottomAnchor="563" arrowLength="1.27" arrows="0" length="77.4" mx="-10.836" my="3417.612" rotation="90" visible="true"/>
                 <nodes>
                     <node idObject="483" type="NodePoint"/>
                     <node idObject="482" reverse="1" type="NodeSpline"/>
@@ -263,14 +309,21 @@
                     <node idObject="475" type="NodePoint"/>
                     <node idObject="474" reverse="0" type="NodeSpline"/>
                     <node idObject="473" type="NodePoint"/>
-                    <node idObject="472" reverse="1" type="NodeSplinePath"/>
+                    <node idObject="561" after="#haut_elastique" angle="3" type="NodePoint"/>
+                    <node idObject="560" reverse="1" type="NodeSplinePath"/>
+                    <node idObject="559" before="#haut_elastique" angle="2" type="NodePoint"/>
                     <node idObject="471" type="NodePoint"/>
                 </nodes>
+                <iPaths>
+                    <record path="566"/>
+                </iPaths>
                 <anchors>
                     <record>520</record>
                     <record>523</record>
                     <record>526</record>
                     <record>529</record>
+                    <record>562</record>
+                    <record>563</record>
                 </anchors>
             </piece>
         </pieces>
@@ -315,27 +368,7 @@
             <point id="505" idObject="501" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
         </modeling>
         <pieces>
-            <piece color="#ffffff" fill="nobrush" forbidFlipping="false" hideMainPath="false" id="492" inLayout="true" locked="false" mx="0" my="0" name="Ceinture" seamAllowance="true" united="false" version="2" width="0.6">
-                <data topLeftAnchor="502" bottomRightAnchor="503" annotation="" foldPosition="" fontSize="40" height="4.6" letter="" mx="1889.750" my="-899.521" onFold="true" orientation="Indéfini" quantity="1" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="9">
-                    <line alignment="4" bold="false" italic="false" sfIncrement="6" text="%pName%"/>
-                    <line alignment="4" bold="false" italic="true" sfIncrement="2" text="x%pQuantity% %mFabric%, au pli"/>
-                </data>
-                <patternInfo fontSize="40" height="5.6" mx="1247.235" my="-918.419" rotation="0" visible="true" width="14"/>
-                <grainline topAnchor="504" bottomAnchor="505" arrowLength="0.6" arrows="0" length="6" mx="2418.880" my="-699.207" rotation="90" visible="true"/>
-                <nodes>
-                    <node idObject="493" after="0" type="NodePoint"/>
-                    <node idObject="488" before="0" type="NodePoint"/>
-                    <node idObject="487" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.6" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true" type="NodePoint"/>
-                    <node idObject="486" type="NodePoint"/>
-                    <node idObject="485" type="NodePoint"/>
-                </nodes>
-                <anchors>
-                    <record>502</record>
-                    <record>503</record>
-                    <record>504</record>
-                    <record>505</record>
-                </anchors>
-            </piece>
+            
         </pieces>
         <groups/>
         <images/>

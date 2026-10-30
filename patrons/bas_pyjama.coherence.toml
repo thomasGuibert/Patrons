@@ -12,8 +12,8 @@ nom = "Fourche"
 troncons = [["Devant", "cA3", "C2e"], ["Dos", "C5e", "cA5"]]   # se raccorde à l'entrejambe
 
 [[courbe]]
-nom = "Taille"
-troncons = [["Devant", "cA3", "cA2e"], ["Dos", "cB5e", "cA5"]]
+nom = "Taille (pli de la ceinture repliée)"
+troncons = [["Devant", "cA3t", "cA2et"], ["Dos", "cB5et", "cA5t"]]
 pli_debut = true    # milieux devant et dos : la jambe gauche est le reflet de la droite
 pli_fin = true
 
@@ -44,11 +44,5 @@ b = [["Dos", "C5e", "E4e"]]
 
 [[couture]]
 nom = "Côté"
-a = [["Devant", "E1e", "cA2e"]]
-b = [["Dos", "E3e", "cB5e"]]
-
-[[couture]]
-nom = "Ceinture"
-# ceinture coupée au pli (milieu devant) : demi-tour de taille, du milieu dos au milieu devant
-a = [["Dos", "cA5", "cB5e"], ["Devant", "cA2e", "cA3"]]
-b = [["Ceinture", "cbC", "cbD"]]
+a = [["Devant", "E1e", "cA2et"]]
+b = [["Dos", "E3e", "cB5et"]]
