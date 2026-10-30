@@ -69,11 +69,11 @@ texte = [
 operation = "Couper les pièces."
 schema = "coupe"
 outil = "Ciseaux"
-commentaire = "Jersey plié endroit contre endroit, droit-fil parallèle aux côtes. Voir le plan des valeurs de couture."
+commentaire = "Jersey plié endroit contre endroit, droit-fil parallèle aux côtes. Devant (1), dos (2) et bande (4) au pli. Voir le plan des valeurs de couture."
 controle = "Toutes les pièces de la nomenclature sont coupées, crans marqués."
 titre = "Couper"
 texte = [
-  "Pliez le jersey en deux, endroit contre endroit, lisières ensemble. Posez le devant, le dos et la bande d'encolure contre la pliure, la manche à côté : vous obtenez deux manches symétriques d'un seul coup.",
+  "Pliez le jersey en deux, endroit contre endroit, lisières ensemble. Posez le devant (1), le dos (2) et la bande d'encolure (4) contre la pliure, la manche (3) à côté : vous obtenez deux manches symétriques d'un seul coup.",
   "Gardez la flèche de droit-fil bien parallèle aux côtes du tricot, puis coupez sur le trait extérieur. Marquez les crans par une petite entaille.",
 ]
 
