@@ -205,6 +205,25 @@ courbe aussi). Correction :
 
 Avec les mesures de Thomas : emmanchure 57,2, tête 53,1, embu −4,1.
 
+## Emmanchure devant moins creusée (issue #90, 2026-10-30)
+
+Amélie : « emmanchures trop larges, trop creusées sur le devant ». Choix de Thomas : courbe seule,
+manche intacte. Aucun point ne bouge : seules les deux poignées du bas de l'emmanchure **devant**
+s'allongent vers le coin vD1c (`#rond_emm_dev` 0,6 → 0,8 au point de carrure,
+`#rond_emm_bas_dev` 0,2 → 0,5 au dessous de bras). Le dos garde `#rond_emm` / `#rond_emm_bas`.
+
+| Creux devant (coin vD1c → courbe) | f36 | f40 | f44 | h44 | h54 |
+|---|---|---|---|---|---|
+| Avant | 2,33 | 2,76 | 3,11 | 3,02 | 3,82 |
+| Après | 1,70 | 2,03 | 2,30 | 2,21 | 2,81 |
+| Dos (inchangé) | 2,28 | 2,73 | 3,09 | 2,33 | 3,35 |
+
+Contreparties : l'emmanchure devant s'allonge de 0,46 (f36) à 0,83 (h54) ; la manche ne change
+pas, donc l'écart tête − emmanchure baisse d'autant (f40 −0,18 → −0,73). Les crans glissent avec
+la longueur (vCr8 / vCr9 de 5 à 11 mm, crans de manche de 2 à 4 mm), références mises à jour.
+Le virage brusque au dessous de bras devant (vC3d) disparaît sauf en f36, h44 et sur mesure
+menue / longiligne (16 à 18°, 29 à 31° avant).
+
 ## Contrôles
 - Épaules devant et dos de même longueur (vHpvKp = vHppvKpp).
 - Emmanchure devant + dos (après déplacement d'épaule) = tour lu par la manche ; embu 0,5 à 1.

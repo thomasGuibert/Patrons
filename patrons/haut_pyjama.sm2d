@@ -37,6 +37,8 @@
         <variable description="Prolongement du milieu devant vers le bas (p. 60, 1 à 1,5)" formula="1.5" name="#prolong_devant"/>
         <variable description="Bas d'emmanchure, poignée au point de carrure (tangente verticale, en fraction de la descente carrure / platitude) : longue pour que la courbe tourne sans coin au point de carrure" formula="0.6" name="#rond_emm"/>
         <variable description="Bas d'emmanchure, poignée au dessous de bras (en fraction de la largeur jusqu'au coin) : courte pour garder le creux d'origine" formula="0.2" name="#rond_emm_bas"/>
+        <variable description="Bas d'emmanchure DEVANT, poignée au point de carrure (issue #90 : devant trop creusé ; 0,6 avant)" formula="0.8" name="#rond_emm_dev"/>
+        <variable description="Bas d'emmanchure DEVANT, poignée au dessous de bras (issue #90 : devant trop creusé ; 0,2 avant)" formula="0.5" name="#rond_emm_bas_dev"/>
     </variables>
     <draftBlock name="Corps">
         <calculation>
@@ -151,8 +153,8 @@
             <line id="625" firstPoint="437" secondPoint="403" lineColor="black" lineType="none" lineWeight="0.35"/>
             <spline id="411" type="pathInteractive" color="darkBlue" lineWeight="0.35" penStyle="solidLine">
                 <pathPoint pSpline="431" angle1="AngleLine_vH2_vK-90" length1="0" angle2="AngleLine_vH2_vK+90" length2="Line_vKp_vD1/3"/>
-                <pathPoint pSpline="402" angle1="90" length1="Line_vKp_vD1/3" angle2="270" length2="Line_vD1_vD1c*#rond_emm"/>
-                <pathPoint pSpline="410" angle1="AngleLine_vC2_vC3d" length1="Line_vC3d_vD1c*#rond_emm_bas" angle2="AngleLine_vC2_vC3d+180" length2="0"/>
+                <pathPoint pSpline="402" angle1="90" length1="Line_vKp_vD1/3" angle2="270" length2="Line_vD1_vD1c*#rond_emm_dev"/>
+                <pathPoint pSpline="410" angle1="AngleLine_vC2_vC3d" length1="Line_vC3d_vD1c*#rond_emm_bas_dev" angle2="AngleLine_vC2_vC3d+180" length2="0"/>
             </spline>
             <spline id="440" type="pathInteractive" color="darkBlue" lineWeight="0.35" penStyle="solidLine">
                 <pathPoint pSpline="437" angle1="AngleLine_vH2_vK-90" length1="0" angle2="AngleLine_vH2_vK+90" length2="Line_vKpp_vD2/3"/>
