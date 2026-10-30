@@ -572,6 +572,61 @@ class Schema(Flowable):
         self.cote(x1 - 14, x1, ym - 22, self.v['couture'])
 
 
+    def s_poche(self, L, H):
+        """Poche kangourou posée sur le devant : entrées de mains en biais libres, le reste surpiqué."""
+        c = self.canv
+        cx, y0, y1 = L / 2, 8, 50
+        c.setStrokeColor(ENCRE); c.setFillColor(FOND); c.setLineWidth(0.8)
+        c.rect(cx - 50, 2, 100, H - 4, stroke=1, fill=1)
+        c.setFillColor(GRIS); c.setFont('Texte-Italique', 7); c.drawString(cx - 48, H - 10, 'devant')
+        haut, bas, ouv = 18, 32, 20
+        pts = [(cx - haut, y1), (cx + haut, y1), (cx + bas, y1 - ouv), (cx + bas, y0), (cx - bas, y0), (cx - bas, y1 - ouv)]
+        ch = c.beginPath(); ch.moveTo(*pts[0])
+        for q in pts[1:]:
+            ch.lineTo(*q)
+        ch.close()
+        c.setFillColor(colors.white); c.setStrokeColor(ENCRE); c.drawPath(ch, stroke=1, fill=1)
+        c.setStrokeColor(BLEU); c.setLineWidth(1.6)
+        c.line(cx + haut, y1, cx + bas, y1 - ouv); c.line(cx - haut, y1, cx - bas, y1 - ouv)
+        c.setStrokeColor(GARANCE); c.setLineWidth(1.1); c.setDash(2, 1.5)
+        d = 2
+        ch = c.beginPath(); ch.moveTo(cx + bas - d, y1 - ouv); ch.lineTo(cx + bas - d, y0 + d); ch.lineTo(cx - bas + d, y0 + d)
+        ch.lineTo(cx - bas + d, y1 - ouv); c.drawPath(ch, stroke=1, fill=0)
+        c.line(cx - haut, y1 - d, cx + haut, y1 - d); c.setDash()
+        c.setFillColor(GRIS); c.setFont('Texte-Italique', 7)
+        c.drawString(cx + haut - 4, y1 + 4, 'entrée de main'); c.drawCentredString(cx, y0 + 6, 'surpiqûre')
+
+    def s_ouverture(self, L, H):
+        """Couture de côté interrompue entre les deux crans : l'ouverture pour passer les mains."""
+        c = self.canv
+        x, y0, y1 = L / 2, 4, H - 4
+        c.setStrokeColor(ENCRE); c.setFillColor(FOND); c.setLineWidth(0.8)
+        c.rect(x - 22, y0, 22, y1 - y0, stroke=1, fill=1); c.rect(x, y0, 22, y1 - y0, stroke=1, fill=1)
+        o1, o2 = y1 - 22, y0 + 22
+        c.setStrokeColor(GARANCE); c.setLineWidth(1.2); c.setDash(2, 1.5)
+        c.line(x, y1, x, o1); c.line(x, o2, x, y0); c.setDash()
+        c.setStrokeColor(BLEU); c.setLineWidth(1)
+        for xx in (x - 3, x + 3):
+            c.line(xx, o1, xx, o2)
+        c.setStrokeColor(GARANCE); c.setLineWidth(1.4)
+        for yy in (o1, o2):
+            c.line(x - 5, yy, x + 5, yy)
+        c.setFillColor(GRIS); c.setFont('Texte-Italique', 7)
+        c.drawString(x + 25, o1 - 2, 'cran'); c.drawString(x + 25, o2 - 2, 'cran')
+        c.drawRightString(x - 25, (o1 + o2) / 2, 'surpiqûres')
+
+    def s_coulisse_capuche(self, L, H):
+        """Bord de capuche replié deux fois en coulisse, cordon glissé dedans."""
+        c, x0, x1, ym = self.canv, 16, L - 10, H / 2
+        self.couche(x0, x1, ym + 7, endroit_dessus=True, label=None)
+        self.couche(x0, x0 + (x1 - x0) * 0.45, ym - 7, endroit_dessus=False)
+        c.setStrokeColor(BLEU); c.setLineWidth(4.2); c.arc(x0 - 8, ym - 9, x0 + 8, ym + 9, 90, 270)
+        c.setFillColor(GARANCE); c.setStrokeColor(GARANCE); c.circle(x0 + 6, ym, 2.4, stroke=0, fill=1)
+        self.piqure(x0 + (x1 - x0) * 0.42, ym - 11, ym + 12)
+        c.setFillColor(GRIS); c.setFont('Texte-Italique', 7)
+        c.drawString(x0, ym + 15, 'bord du visage'); c.drawString(x0 + 12, ym - 20, 'cordon')
+
+
 # ---------------------------------------------------------------- document
 def paragraphe(texte, style='texte'):
     return Paragraph(texte.replace('\n', ' '), S[style])
@@ -603,7 +658,9 @@ def dossier(svg, sm2d, dst, montage='pro', mesures=None, taille=None, gamme=None
     if gamme is None and mesures and os.path.basename(os.path.dirname(os.path.abspath(mesures))) in ('femme', 'homme'):
         gamme = os.path.basename(os.path.dirname(os.path.abspath(mesures)))
     sur_mesure = not (taille or '').isdigit()
-    libelle = ('Taille %s' % taille) if taille and taille != 'sur-mesure' else 'Sur mesure'
+    # [tailles] du .toml : nom public de chaque taille (XS, S…) ; sinon le numéro
+    noms_tailles = D.get('tailles', {})
+    libelle = ('Taille %s' % noms_tailles.get(str(taille), taille)) if taille and taille != 'sur-mesure' else 'Sur mesure'
 
     pages_total = {'n': 0}
 
@@ -643,7 +700,7 @@ def dossier(svg, sm2d, dst, montage='pro', mesures=None, taille=None, gamme=None
     if not sur_mesure and gamme:
         tab = tableau_gamme(gamme)
         tailles = list(tab)
-        lignes = [['Taille'] + [str(t) for t in tailles]]
+        lignes = [['Taille'] + [noms_tailles.get(str(t), str(t)) for t in tailles]]
         lignes += [[LIBELLES.get(m, m)] + [cm(tab[t].get(m, 0)) for t in tailles] for m in noms]
         col = tailles.index(int(taille)) + 1 if int(taille) in tailles else None
     else:

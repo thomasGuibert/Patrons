@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pattern>
+<!--Généré par un script (issue #89, poncho de bain), puis modifiable dans Seamly2D.-->
+<version>0.7.4</version><unit>cm</unit><description/><notes/><patternLabel><line alignment="1" bold="true" italic="false" sfIncrement="3" text="PONCHO DE BAIN"/><line alignment="4" bold="false" italic="true" sfIncrement="0" text="T%size%"/><line alignment="4" bold="false" italic="false" sfIncrement="0" text="%pName%"/></patternLabel><measurements>../mesures/femme/T40.smms</measurements><variables><variable description="Le plus fort des tours de poitrine et de hanches" formula="(bust_circ+hip_circ)/2+abs(hip_circ-bust_circ)/2" name="#tour_max"/>
+<variable description="Aisance du poncho : de quoi se changer dessous, bras rentrés" formula="64" name="#aisance"/>
+<variable description="Demi-largeur du devant (et du dos) en haut, au pli" formula="(#tour_max+#aisance)/4" name="#demi_larg"/>
+<variable description="Évasement du côté, du dessous de bras au bas" formula="4" name="#evase"/>
+<variable description="Pente d'épaule, de l'encolure au bord du devant" formula="3" name="#pente"/>
+<variable description="Demi-largeur d'encolure, élargie pour la capuche" formula="neck_circ/6+2.5" name="#larg_enc"/>
+<variable description="Profondeur d'encolure devant" formula="neck_circ/6+4" name="#prof_enc_dev"/>
+<variable description="Profondeur d'encolure dos" formula="4.5" name="#prof_enc_dos"/>
+<variable description="Hauteur de l'emmanchure sur le côté : la demi-largeur de manche" formula="bust_circ/8+13.5" name="#emman"/>
+<variable description="Du bout d'épaule au coude" formula="arm_shoulder_tip_to_wrist*0.55" name="#long_coude"/>
+<variable description="Manche : du bord du devant au coude, le devant couvrant déjà le haut du bras" formula="#long_coude+2-(#demi_larg-#larg_enc-shoulder_length)" name="#long_manche"/>
+<variable description="La manche se resserre un peu au coude (sur la demi-largeur)" formula="2" name="#resserre"/>
+<variable description="De la nuque au genou" formula="height_neck_back-height_waist_side+height_waist_side_to_knee" name="#long_genou"/>
+<variable description="Longueur petit : mi-cuisse" formula="#long_genou-22" name="#long_petit"/>
+<variable description="Longueur normal : au-dessus du genou" formula="#long_genou-8" name="#long_normal"/>
+<variable description="Longueur grand : sous le genou" formula="#long_genou+8" name="#long_grand"/>
+<variable description="Ourlet du bas" formula="3" name="#ourlet"/>
+<variable description="Haut de l'ouverture de côté, depuis l'épaule" formula="neck_back_to_waist_b-4" name="#ouv_haut"/>
+<variable description="Longueur de l'ouverture de côté, pour passer les mains" formula="24" name="#ouv_long"/>
+<variable description="Haut de la poche kangourou, depuis l'épaule" formula="neck_back_to_waist_b+1" name="#poche_y"/>
+<variable description="Hauteur de la poche" formula="26" name="#poche_h"/>
+<variable description="Demi-largeur de la poche, en bas" formula="#demi_larg*0.5" name="#poche_demi"/>
+<variable description="Demi-largeur du haut de la poche, entre les deux entrées de mains" formula="#poche_demi*0.6" name="#poche_haut_demi"/>
+<variable description="Hauteur des entrées de mains, en biais" formula="17" name="#poche_ouv"/>
+<variable description="Hauteur de capuche, de l'encolure au sommet" formula="height*0.21" name="#haut_cap"/>
+<variable description="Profondeur de capuche, du bord du visage à l'arrière de la tête" formula="neck_circ*0.75" name="#prof_cap"/></variables>
+<draftBlock name="Poncho de bain"><calculation><point id="1" name="O" type="single" mx="0.132292" my="0.264583" showPointName="true" x="0" y="0"/>
+<point id="2" name="Fn" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="1" angle="270" length="#prof_enc_dev" lineColor="black" lineType="dashLine" lineWeight="0.35"/>
+<point id="3" name="E" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="1" angle="0" length="#larg_enc" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="4" name="X" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="1" angle="0" length="#demi_larg" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="5" name="Ep" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="4" angle="270" length="#pente" lineColor="black" lineType="none" lineWeight="0.35"/>
+<line id="6" firstPoint="3" secondPoint="5" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<point id="7" name="Em" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="5" angle="270" length="#emman" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<point id="8" name="Hc" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="2" angle="270" length="#long_grand-#prof_enc_dev" lineColor="black" lineType="dashLine" lineWeight="0.35"/>
+<point id="9" name="H" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="8" angle="0" length="#demi_larg+#evase" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<line id="10" firstPoint="7" secondPoint="9" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<point id="11" name="Ou1" type="alongLine" mx="0.132292" my="0.264583" showPointName="true" firstPoint="7" secondPoint="9" length="#ouv_haut-#pente-#emman" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="12" name="Ou2" type="alongLine" mx="0.132292" my="0.264583" showPointName="true" firstPoint="7" secondPoint="9" length="#ouv_haut-#pente-#emman+#ouv_long" lineColor="black" lineType="none" lineWeight="0.35"/>
+<spline id="13" type="simpleInteractive" point1="2" point4="3" angle1="0" length1="#larg_enc*0.6" angle2="AngleLine_E_Ep-90" length2="#prof_enc_dev*0.55" color="black" lineWeight="0.35" penStyle="solidLine"/>
+<point id="14" name="Cn" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="2" angle="270" length="#long_normal+#ourlet-#prof_enc_dev" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="15" name="Cns" type="lineIntersectAxis" mx="0.132292" my="0.264583" showPointName="true" basePoint="14" angle="0" p1Line="7" p2Line="9" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="19" name="Cp" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="2" angle="270" length="#long_petit+#ourlet-#prof_enc_dev" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="20" name="Cps" type="lineIntersectAxis" mx="0.132292" my="0.264583" showPointName="true" basePoint="19" angle="0" p1Line="7" p2Line="9" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="24" name="Q0" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="1" angle="270" length="#poche_y" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="25" name="Q1" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="24" angle="0" length="#poche_haut_demi" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="26" name="Q2a" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="24" angle="270" length="#poche_ouv" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="27" name="Q2" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="26" angle="0" length="#poche_demi" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="28" name="Q4" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="24" angle="270" length="#poche_h" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="29" name="Q3" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="28" angle="0" length="#poche_demi" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="46" name="Od" type="single" mx="0.132292" my="0.264583" showPointName="true" x="60" y="0"/>
+<point id="47" name="Fnd" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="46" angle="270" length="#prof_enc_dos" lineColor="black" lineType="dashLine" lineWeight="0.35"/>
+<point id="48" name="Ed" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="46" angle="0" length="#larg_enc" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="49" name="Xd" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="46" angle="0" length="#demi_larg" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="50" name="Epd" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="49" angle="270" length="#pente" lineColor="black" lineType="none" lineWeight="0.35"/>
+<line id="51" firstPoint="48" secondPoint="50" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<point id="52" name="Emd" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="50" angle="270" length="#emman" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<point id="53" name="Hcd" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="47" angle="270" length="#long_grand-#prof_enc_dos" lineColor="black" lineType="dashLine" lineWeight="0.35"/>
+<point id="54" name="Hd" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="53" angle="0" length="#demi_larg+#evase" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<line id="55" firstPoint="52" secondPoint="54" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<point id="56" name="Ou1d" type="alongLine" mx="0.132292" my="0.264583" showPointName="true" firstPoint="52" secondPoint="54" length="#ouv_haut-#pente-#emman" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="57" name="Ou2d" type="alongLine" mx="0.132292" my="0.264583" showPointName="true" firstPoint="52" secondPoint="54" length="#ouv_haut-#pente-#emman+#ouv_long" lineColor="black" lineType="none" lineWeight="0.35"/>
+<spline id="58" type="simpleInteractive" point1="47" point4="48" angle1="0" length1="#larg_enc*0.6" angle2="AngleLine_Ed_Epd-90" length2="#prof_enc_dos*0.55" color="black" lineWeight="0.35" penStyle="solidLine"/>
+<point id="59" name="Cnd" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="47" angle="270" length="#long_normal+#ourlet-#prof_enc_dos" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="60" name="Cnsd" type="lineIntersectAxis" mx="0.132292" my="0.264583" showPointName="true" basePoint="59" angle="0" p1Line="52" p2Line="54" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="64" name="Cpd" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="47" angle="270" length="#long_petit+#ourlet-#prof_enc_dos" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="65" name="Cpsd" type="lineIntersectAxis" mx="0.132292" my="0.264583" showPointName="true" basePoint="64" angle="0" p1Line="52" p2Line="54" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="79" name="mA" type="single" mx="0.132292" my="0.264583" showPointName="true" x="120" y="0"/>
+<point id="80" name="mB" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="79" angle="0" length="#emman" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<point id="81" name="mC" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="79" angle="270" length="#long_manche" lineColor="black" lineType="dashLine" lineWeight="0.35"/>
+<point id="82" name="mD" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="81" angle="0" length="#emman-#resserre" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<line id="83" firstPoint="80" secondPoint="82" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<point id="89" name="cA" type="single" mx="0.132292" my="0.264583" showPointName="true" x="160" y="0"/>
+<point id="90" name="cB" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="89" angle="0" length="(Spl_Fn_E+Spl_Fnd_Ed)" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<point id="91" name="cF" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="89" angle="90" length="#haut_cap" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<point id="92" name="cR0" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="89" angle="0" length="#prof_cap" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="93" name="cR" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="92" angle="90" length="#haut_cap*0.5" lineColor="black" lineType="none" lineWeight="0.35"/>
+<point id="94" name="cE" type="alongLine" mx="0.132292" my="0.264583" showPointName="true" firstPoint="89" secondPoint="90" length="Spl_Fn_E" lineColor="black" lineType="none" lineWeight="0.35"/>
+<spline id="95" type="pathInteractive" color="black" lineWeight="0.35" penStyle="solidLine"><pathPoint pSpline="91" angle1="(0)+180" length1="0" angle2="0" length2="#prof_cap*0.55"/><pathPoint pSpline="93" angle1="(270)+180" length1="#haut_cap*0.32" angle2="270" length2="#haut_cap*0.22"/><pathPoint pSpline="90" angle1="(235)+180" length1="(#prof_cap-(Spl_Fn_E+Spl_Fnd_Ed))*0.8+2" angle2="235" length2="0"/></spline>
+<point id="102" name="pK0" type="single" mx="0.132292" my="0.264583" showPointName="true" x="210" y="0"/>
+<point id="103" name="pK1" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="102" angle="0" length="#poche_haut_demi" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<point id="104" name="pK4" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="102" angle="270" length="#poche_h" lineColor="black" lineType="dashLine" lineWeight="0.35"/>
+<point id="105" name="pK3" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="104" angle="0" length="#poche_demi" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<point id="106" name="pK2" type="endLine" mx="0.132292" my="0.264583" showPointName="true" basePoint="105" angle="90" length="#poche_h-#poche_ouv" lineColor="black" lineType="solidLine" lineWeight="0.35"/>
+<line id="107" firstPoint="103" secondPoint="106" lineColor="black" lineType="solidLine" lineWeight="0.35"/></calculation><modeling><point id="17" idObject="14" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="18" idObject="15" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<path id="16" name="coupe_normal" type="2" lineType="solidLine" inUse="true" cut="false"><nodes><node idObject="17" type="NodePoint"/><node idObject="18" type="NodePoint"/></nodes></path>
+<point id="22" idObject="19" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="23" idObject="20" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<path id="21" name="coupe_petit" type="2" lineType="solidLine" inUse="true" cut="false"><nodes><node idObject="22" type="NodePoint"/><node idObject="23" type="NodePoint"/></nodes></path>
+<point id="31" idObject="24" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="32" idObject="25" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="33" idObject="27" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="34" idObject="29" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="35" idObject="28" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<path id="30" name="place_poche" type="2" lineType="solidLine" inUse="true" cut="false"><nodes><node idObject="31" type="NodePoint"/><node idObject="32" type="NodePoint"/><node idObject="33" type="NodePoint"/><node idObject="34" type="NodePoint"/><node idObject="35" type="NodePoint"/></nodes></path>
+<point id="36" idObject="2" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<spline id="37" idObject="13" inUse="true" type="modelingSpline"/>
+<point id="38" idObject="3" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="39" idObject="5" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="40" idObject="7" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="41" idObject="11" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="42" idObject="12" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="43" idObject="9" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="44" idObject="8" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="62" idObject="59" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="63" idObject="60" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<path id="61" name="coupe_normald" type="2" lineType="solidLine" inUse="true" cut="false"><nodes><node idObject="62" type="NodePoint"/><node idObject="63" type="NodePoint"/></nodes></path>
+<point id="67" idObject="64" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="68" idObject="65" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<path id="66" name="coupe_petitd" type="2" lineType="solidLine" inUse="true" cut="false"><nodes><node idObject="67" type="NodePoint"/><node idObject="68" type="NodePoint"/></nodes></path>
+<point id="69" idObject="47" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<spline id="70" idObject="58" inUse="true" type="modelingSpline"/>
+<point id="71" idObject="48" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="72" idObject="50" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="73" idObject="52" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="74" idObject="56" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="75" idObject="57" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="76" idObject="54" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="77" idObject="53" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="84" idObject="79" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="85" idObject="80" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="86" idObject="82" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="87" idObject="81" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="96" idObject="89" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="97" idObject="91" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<spline id="98" idObject="95" inUse="true" type="modelingPath"/>
+<point id="99" idObject="90" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="100" idObject="94" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="108" idObject="102" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="109" idObject="103" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="110" idObject="106" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="111" idObject="105" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/>
+<point id="112" idObject="104" inUse="true" type="modeling" mx="0.132292" my="0.264583" showPointName="true"/></modeling><pieces><piece id="45" name="Devant" seamAllowance="true" width="1" version="2" inLayout="true" united="false" locked="false" forbidFlipping="false" hideMainPath="false" color="#ffffff" fill="nobrush" mx="0" my="0"><data annotation="" foldPosition="" fontSize="0" height="4.4" letter="" mx="151.180" my="831.490" onFold="true" orientation="Indéfini" quantity="1" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="16"><line alignment="4" bold="true" italic="false" sfIncrement="3" text="%pName%"/><line alignment="4" bold="false" italic="true" sfIncrement="0" text="x%pQuantity% Éponge, au pli"/><line alignment="4" bold="false" italic="false" sfIncrement="0" text="Bas : grand."/><line alignment="4" bold="false" italic="false" sfIncrement="0" text="Traits : normal, petit."/></data><patternInfo fontSize="0" height="4" mx="151.180" my="1133.850" rotation="0" visible="true" width="14"/><grainline arrowLength="1" arrows="0" length="30" mx="1133.850" my="2834.625" rotation="90" visible="true"/><nodes><node idObject="36" type="NodePoint" before="0" after="1"/><node idObject="37" reverse="0" type="NodeSpline"/><node idObject="38" type="NodePoint"/><node idObject="39" type="NodePoint"/><node idObject="40" type="NodePoint" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.6" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true"/><node idObject="41" type="NodePoint" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.6" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true"/><node idObject="42" type="NodePoint" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.6" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true"/><node idObject="43" type="NodePoint" before="1" after="3"/><node idObject="44" type="NodePoint" before="3" after="0"/></nodes><iPaths><record path="30"/><record path="16"/><record path="21"/></iPaths></piece>
+<piece id="78" name="Dos" seamAllowance="true" width="1" version="2" inLayout="true" united="false" locked="false" forbidFlipping="false" hideMainPath="false" color="#ffffff" fill="nobrush" mx="0" my="0"><data annotation="" foldPosition="" fontSize="0" height="4.4" letter="" mx="2418.880" my="831.490" onFold="true" orientation="Indéfini" quantity="1" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="16"><line alignment="4" bold="true" italic="false" sfIncrement="3" text="%pName%"/><line alignment="4" bold="false" italic="true" sfIncrement="0" text="x%pQuantity% Éponge, au pli"/><line alignment="4" bold="false" italic="false" sfIncrement="0" text="Bas : grand."/><line alignment="4" bold="false" italic="false" sfIncrement="0" text="Traits : normal, petit."/></data><patternInfo fontSize="0" height="4" mx="2418.880" my="1133.850" rotation="0" visible="true" width="14"/><grainline arrowLength="1" arrows="0" length="30" mx="3401.550" my="1889.750" rotation="90" visible="true"/><nodes><node idObject="69" type="NodePoint" before="0" after="1"/><node idObject="70" reverse="0" type="NodeSpline"/><node idObject="71" type="NodePoint"/><node idObject="72" type="NodePoint"/><node idObject="73" type="NodePoint" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.6" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true"/><node idObject="74" type="NodePoint" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.6" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true"/><node idObject="75" type="NodePoint" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.6" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true"/><node idObject="76" type="NodePoint" before="1" after="3"/><node idObject="77" type="NodePoint" before="3" after="0"/></nodes><iPaths><record path="61"/><record path="66"/></iPaths></piece>
+<piece id="88" name="Manche" seamAllowance="true" width="1" version="2" inLayout="true" united="false" locked="false" forbidFlipping="false" hideMainPath="false" color="#ffffff" fill="nobrush" mx="0" my="0"><data annotation="" foldPosition="" fontSize="0" height="3.2" letter="" mx="4592.093" my="75.590" onFold="true" orientation="Indéfini" quantity="2" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="13"><line alignment="4" bold="true" italic="false" sfIncrement="3" text="%pName%"/><line alignment="4" bold="false" italic="true" sfIncrement="0" text="x%pQuantity% Éponge, au pli"/></data><patternInfo fontSize="0" height="4" mx="4592.093" my="245.668" rotation="0" visible="true" width="13"/><grainline arrowLength="1" arrows="0" length="9" mx="5253.505" my="302.360" rotation="90" visible="true"/><nodes><node idObject="84" type="NodePoint" before="0" after="1"/><node idObject="85" type="NodePoint"/><node idObject="86" type="NodePoint" before="1" after="3"/><node idObject="87" type="NodePoint" before="3" after="0"/></nodes></piece>
+<piece id="101" name="Capuche" seamAllowance="true" width="1" version="2" inLayout="true" united="false" locked="false" forbidFlipping="false" hideMainPath="false" color="#ffffff" fill="nobrush" mx="0" my="0"><data annotation="" foldPosition="" fontSize="0" height="3.2" letter="" mx="6198.380" my="-1020.465" onFold="false" orientation="Indéfini" quantity="2" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="14"><line alignment="4" bold="true" italic="false" sfIncrement="3" text="%pName%"/><line alignment="4" bold="false" italic="true" sfIncrement="0" text="x%pQuantity% Éponge"/></data><patternInfo fontSize="0" height="4" mx="6198.380" my="-774.798" rotation="0" visible="true" width="14"/><grainline arrowLength="1" arrows="0" length="10" mx="6878.690" my="-680.310" rotation="90" visible="true"/><nodes><node idObject="96" type="NodePoint" before="1" after="3.5"/><node idObject="97" type="NodePoint" before="3.5" after="1"/><node idObject="98" reverse="0" type="NodeSplinePath"/><node idObject="99" type="NodePoint"/><node idObject="100" type="NodePoint" notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.6" notchWidth="0.25" notchAngle="0" notchCount="1" showNotch="true" showSecondNotch="true"/></nodes></piece>
+<piece id="113" name="Poche" seamAllowance="true" width="1" version="2" inLayout="true" united="false" locked="false" forbidFlipping="false" hideMainPath="false" color="#ffffff" fill="nobrush" mx="0" my="0"><data annotation="" foldPosition="" fontSize="0" height="3.2" letter="" mx="7974.745" my="226.770" onFold="true" orientation="Indéfini" quantity="1" rotation="0" rotationWay="Aucun" tilt="Aucun" visible="true" width="12"><line alignment="4" bold="true" italic="false" sfIncrement="3" text="%pName%"/><line alignment="4" bold="false" italic="true" sfIncrement="0" text="x%pQuantity% Éponge, au pli"/></data><patternInfo fontSize="0" height="4" mx="7974.745" my="415.745" rotation="0" visible="true" width="12"/><grainline arrowLength="1" arrows="0" length="8" mx="8277.105" my="774.798" rotation="90" visible="true"/><nodes><node idObject="108" type="NodePoint" before="0" after="1"/><node idObject="109" type="NodePoint" before="1" after="2.5"/><node idObject="110" type="NodePoint" before="2.5" after="1"/><node idObject="111" type="NodePoint"/><node idObject="112" type="NodePoint" before="1" after="0"/></nodes></piece></pieces><groups/><images/></draftBlock>
+</pattern>

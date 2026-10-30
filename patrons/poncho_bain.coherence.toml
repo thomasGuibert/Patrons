@@ -1,0 +1,47 @@
+# Contrôles de cohérence du poncho de bain : python3 outils/coherence/coherence.py poncho_bain
+# Un tronçon = [pièce, point de départ, point d'arrivée], le long de la ligne de couture, par le
+# plus court des deux chemins. Points de chaque pièce : python3 outils/coherence/pieces.py patrons/poncho_bain.sm2d
+
+gammes = ["femme"]
+profils = true      # jeux sur mesure de mesures/profils-essai.toml
+
+# --- 1. Courbes sans angle (raccords entre tronçons : une fois cousus)
+
+[[courbe]]
+nom = "Encolure"
+troncons = [["Devant", "Fn", "E"], ["Dos", "Ed", "Fnd"]]
+pli_debut = true    # milieux devant et dos au pli
+pli_fin = true
+
+[[courbe]]
+nom = "Milieu dos de capuche"
+troncons = [["Capuche", "cF", "cB"]]
+
+# --- 3 et 4. Coutures (a et b se cousent ensemble, du premier point au dernier)
+
+[[couture]]
+nom = "Épaule"
+a = [["Devant", "E", "Ep"]]
+b = [["Dos", "Ed", "Epd"]]
+
+[[couture]]
+nom = "Côté, avec l'ouverture pour les mains"
+a = [["Devant", "Em", "H"]]
+b = [["Dos", "Emd", "Hd"]]
+
+[[couture]]
+nom = "Manche, côté devant"
+# manche au pli : chaque moitié de son bord d'emmanchure va sur le devant ou sur le dos
+a = [["Devant", "Ep", "Em"]]
+b = [["Manche", "mA", "mB"]]
+
+[[couture]]
+nom = "Manche, côté dos"
+a = [["Dos", "Epd", "Emd"]]
+b = [["Manche", "mA", "mB"]]
+
+[[couture]]
+nom = "Capuche et encolure"
+# demi-capuche : du milieu devant au milieu dos
+a = [["Devant", "Fn", "E"], ["Dos", "Ed", "Fnd"]]
+b = [["Capuche", "cA", "cB"]]

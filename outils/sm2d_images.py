@@ -724,6 +724,8 @@ def vues_dessin(p):
         return dessin.haut(p)
     if {'A5', 'B5', 'E3', 'E4'} <= noms:
         return dessin.pantalon(p)
+    if {'Q0', 'cA', 'mA', 'Fnd'} <= noms:
+        return dessin.poncho(p)
     return None
 
 

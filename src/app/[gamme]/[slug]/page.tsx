@@ -67,6 +67,7 @@ export default async function FichePatron({ params }: Props) {
               surMesure={!patron.sansSurMesure}
               choixMontage={patron.choixMontage ?? true}
               tailleUnique={patron.tailleUnique}
+              nomsTailles={patron.nomsTailles}
             />
           </div>
         </div>
@@ -82,7 +83,7 @@ export default async function FichePatron({ params }: Props) {
                 <th scope="col">Mesure du corps</th>
                 {tailles.map((t) => (
                   <th scope="col" key={t}>
-                    {t}
+                    {patron.nomsTailles?.[t] ? `${patron.nomsTailles[t]} (${t})` : t}
                   </th>
                 ))}
               </tr>
