@@ -14,7 +14,7 @@ import fondPantalonDroitH from "../vignettes/homme/fond_pantalon_droit_fiche.png
 import fondPantalonDroitPlancheH from "../vignettes/homme/fond_pantalon_droit_planche.png";
 import hautPyjamaH from "../vignettes/homme/haut_pyjama_fiche.png";
 import basPyjamaH from "../vignettes/homme/bas_pyjama_fiche.png";
-import { mesuresBas, mesuresHaut, type Gamme, type Mesure } from "./tailles";
+import { mesuresBas, mesuresBolero, mesuresHaut, mesuresPoncho, type Gamme, type Mesure } from "./tailles";
 
 export type Famille = "vetement" | "base";
 
@@ -64,7 +64,7 @@ export const patrons: Patron[] = [
     description:
       "Une veste courte à manches, bord à bord, à col officier, doublée. Le patron comprend la parementure et la doublure, avec leur nomenclature.",
     mesures: ["poitrine", "taille", "hanches"],
-    saisie: mesuresHaut,
+    saisie: mesuresBolero,
     dossier: true,
     choixMontage: false,
     caracteristiques: [
@@ -101,13 +101,12 @@ export const patrons: Patron[] = [
     ref: "Réf. 105",
     resume: "Poncho ample en éponge à capuche, pour se sécher et se changer à l'abri des regards.",
     gammes: ["femme"],
-    sansSurMesure: true,
     nomsTailles: { 36: "XS", 38: "S", 40: "M", 42: "L", 44: "XL" },
     vignette: { femme: ponchoBainF },
     description:
       "Un poncho ample en éponge, pour se sécher et se changer sur la plage ou sur un bateau. Capuche à coulisse qui reste en place, manches au coude, poche kangourou, et une ouverture de chaque côté pour passer les mains et s'habiller dessous. Trois longueurs dans le même patron.",
     mesures: ["poitrine", "hanches", "encolure", "bras"],
-    saisie: [],
+    saisie: mesuresPoncho,
     dossier: true,
     caracteristiques: [
       { libelle: "Pièces", valeur: "Devant et dos au pli, manche ×2, capuche ×2, poche kangourou" },
