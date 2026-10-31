@@ -17,6 +17,9 @@ export type Mesure =
   | "taille"
   | "hanches"
   | "encolure"
+  | "hauteurPoitrine"
+  | "ecartPoitrine"
+  | "hauteurNuqueSol"
   | "longueurDos"
   | "longueurDevant"
   | "carrureDos"
@@ -52,6 +55,16 @@ export const mesuresCorps: Record<Mesure, MesureCorps> = {
   encolure: { libelle: "Tour d'encolure", seamly: "neck_circ",
     cm: { femme: [35, 36, 37, 38, 39], homme: [38, 39, 40, 41, 42, 43] },
     conseil: "Autour de la base du cou, en passant sur l'os saillant de la nuque." },
+  hauteurPoitrine: { libelle: "Hauteur de poitrine", seamly: "bustpoint_to_neck_front",
+    // patron femme seulement : pas de valeurs pour la gamme homme
+    cm: { femme: [21.5, 22, 22.5, 23, 23.5], homme: [] },
+    conseil: "Du creux à la base du cou jusqu'à la pointe de la poitrine, en suivant le corps." },
+  ecartPoitrine: { libelle: "Demi-écart de poitrine", seamly: "bustpoint_to_bustpoint_half",
+    cm: { femme: [9, 9.25, 9.5, 9.75, 10], homme: [] },
+    conseil: "Entre les deux pointes de poitrine, mesurez la distance puis notez-en la moitié." },
+  hauteurNuqueSol: { libelle: "Hauteur nuque-sol", seamly: "height_neck_back",
+    cm: { femme: [153.6, 153.8, 154, 154.2, 154.4], homme: [154.4, 154.6, 154.8, 155, 155.2, 155.4] },
+    conseil: "De l'os saillant de la nuque jusqu'au sol, pieds nus, debout bien droite." },
   longueurDos: { libelle: "Longueur taille dos", seamly: "neck_back_to_waist_b",
     cm: { femme: [40.5, 41, 41.5, 42, 42.5], homme: [44.1, 44.4, 44.7, 45, 45.3, 45.6] },
     conseil: "Au milieu du dos, de l'os saillant de la nuque jusqu'au cordon de taille." },
@@ -91,6 +104,15 @@ export const mesuresCorps: Record<Mesure, MesureCorps> = {
 export const mesuresHaut: Mesure[] = [
   "poitrine", "taille", "hanches", "encolure", "longueurDos", "longueurDevant",
   "carrureDos", "carrureDevant", "epaule", "bras", "poignet", "tailleHanches",
+];
+/** Le boléro demande en plus la hauteur et l'écart de poitrine. */
+export const mesuresBolero: Mesure[] = [
+  "poitrine", "taille", "hanches", "encolure", "hauteurPoitrine", "ecartPoitrine", "longueurDos",
+  "longueurDevant", "carrureDos", "carrureDevant", "epaule", "bras", "tailleHanches",
+];
+/** Le poncho : tours, longueurs du haut du corps, et hauteurs jusqu'au genou pour la longueur du poncho. */
+export const mesuresPoncho: Mesure[] = [
+  "poitrine", "hanches", "encolure", "epaule", "bras", "longueurDos", "hauteurNuqueSol", "tailleSol", "tailleGenou",
 ];
 export const mesuresBas: Mesure[] = [
   "taille", "hanches", "tailleSol", "tailleHanches", "tailleGenou", "entrejambeSol",

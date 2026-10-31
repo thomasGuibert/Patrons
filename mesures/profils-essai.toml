@@ -3,6 +3,9 @@
 # Des silhouettes loin du tableau des tailles : c'est là que les tracés cassent.
 
 [forte]
+bustpoint_to_neck_front = 27
+bustpoint_to_bustpoint_half = 11.5
+height_neck_back = 150
 bust_circ = 118
 waist_circ = 102
 hip_circ = 122
@@ -20,6 +23,9 @@ height_waist_side_to_knee = 58
 leg_crotch_to_floor = 76
 
 [menue]
+bustpoint_to_neck_front = 20
+bustpoint_to_bustpoint_half = 8
+height_neck_back = 148
 bust_circ = 80
 waist_circ = 61
 hip_circ = 86
@@ -37,6 +43,9 @@ height_waist_side_to_knee = 55
 leg_crotch_to_floor = 74
 
 [longiligne]
+bustpoint_to_neck_front = 24
+bustpoint_to_bustpoint_half = 9.5
+height_neck_back = 162
 bust_circ = 88
 waist_circ = 70
 hip_circ = 94
