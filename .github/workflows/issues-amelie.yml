@@ -49,8 +49,13 @@ jobs:
       - uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          # Amélie n'est pas collaboratrice du dépôt : l'autoriser explicitement
+          # Amélie n'est pas collaboratrice du dépôt : l'autoriser explicitement.
+          # L'app Claude refuse son jeton à qui n'a pas les droits d'écriture (« User does
+          # not have write access »), d'où le jeton du workflow. Pour que `gh pr create`
+          # marche avec lui : Settings > Actions > General > « Allow GitHub Actions to
+          # create and approve pull requests ».
           allowed_non_write_users: Lilie145075
+          github_token: ${{ github.token }}
           claude_args: >-
             --max-turns 80
             --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebFetch"
