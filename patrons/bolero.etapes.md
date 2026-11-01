@@ -71,7 +71,7 @@ calcul hors Seamly identique à Seamly (0,2 mm).
 | T42 | 49,30 | 24,18 + 23,84 | 1,28 | 17,89 |
 | T44 | 50,45 | 24,96 + 24,66 | 0,84 | 18,07 |
 
-Livre : embu 3,5 cm en lainage souple, 2 cm en tissu sec. T38 est dans la cible ; l'embu baisse
+Tableau du 2026-10-27 (AC = 7/8). Livre : embu 3,5 cm en lainage souple, 2 cm en tissu sec. T38 est dans la cible ; l'embu baisse
 avec la taille (la hauteur de tête suit la profondeur, la largeur suit l'emmanchure). JK et HL ne
 le corrigent presque pas (T44 : HL 4 → 0,92). À revoir avec la toile avant de grader.
 
@@ -81,9 +81,14 @@ Défauts restants (contrôle « virages brusques », angle sur 1,5 cm) :
 - **Corrigé le 2026-10-27** (poignées des courbes seulement, aucun point déplacé) : dessous de manche entre V et K
   (44° → 12°) et dessus de manche (30° → 9°). Les poignées sont les paramètres `k('…')` de `build.py`.
   Les crans (cran de tête, devant) glissent d'1 mm au plus, la longueur de tête change de moins d'1 mm.
-- Reste : emmanchure devant en I2tp (15 à 18° en T36-T38) et dos près de J2tp (16° en T36). Les corriger demande de
-  changer la longueur de l'emmanchure de 1 à 2 mm, donc de déplacer d'autant les points de la manche calculés sur elle :
-  à décider avec Thomas.
+- **Corrigé le 2026-11-01** (retouche de forme demandée par Amélie, #97, autorisée par Thomas le 2026-11-01) :
+  - hauteur de tête de manche : `AC` = 0,91 × la profondeur d'emmanchure au lieu de 7/8 (0,875). Le livre donne 7/8 ; en
+    T42 et T44 l'embu tombait à 1,22 et 0,75 cm (cible 1,5 à 3,5). Embu maintenant de 1,61 à 3,14 cm sur T36-T44. La
+    manche monte de 0,3 à 0,6 cm en tête : tous les points de la manche (et les crans qui en dépendent) bougent de 0,1 à 6,4 mm ;
+    ceux du corsage (devant, dos, fond tailleur) ne bougent pas ;
+  - emmanchure devant en I2tp (18° → 14°) et dos près de J2tp (16° → moins de 15°) : poignées seulement
+    (`dd1` 0,5 → 0,6, `dd2` 0,35 → 0,3, `ed1` 0,55 → 0,65, `ed2` 0,3 → 0,25). Les crans d'emmanchure glissent de 1,8 mm au plus.
+  Plus aucun défaut au contrôle de cohérence. À confirmer sur la toile.
 
 ## Étapes (générées avec le tracé, formule et page du livre)
 
@@ -210,7 +215,7 @@ Défauts restants (contrôle « virages brusques », angle sur 1,5 cm) :
 119. **cBasDev** : courbe bFc–bR2 (modèle : bas d'équerre avec le côté, raccordé à l'arrondi)
 120. **mA** : Point de départ = `(75, -72)` (p. 150 : droit fil milieu de manche)
 121. **mB** : depuis mA, angle 270 = `#long_manche+#epaulette` (p. 150 : AB = longueur de manche + épaulette)
-122. **mC** : depuis mA, angle 270 = `Line_Cemm_J2t*7/8` (p. 150 : AC = hauteur d'emmanchure − son 1/8)
+122. **mC** : depuis mA, angle 270 = `Line_Cemm_J2t*0.91` (p. 150 : AC = hauteur d'emmanchure − son 1/8 ; porté à 0,91 le 2026-11-01 pour l'embu en T42-T44)
 123. **mD** : depuis mA, angle 270 = `#haut_coude+#epaulette` (p. 150 : AD = 35 + épaulette)
 124. **mE** : depuis mA, angle 180 = `0.7*(Line_J2t_J2tp+SplPath_J2tp_L3t)/2` (p. 150 : AE = 7/10 emmanchure dos : 2)
 125. **mF** : depuis mA, angle 0 = `0.7*(Line_I2t_I2tp+SplPath_I2tp_C5t)/2` (p. 150 : AF = 7/10 emmanchure devant : 2)

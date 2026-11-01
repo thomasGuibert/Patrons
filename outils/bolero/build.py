@@ -216,9 +216,9 @@ b.chemin('cCoteDev', [('I2t', '270', '0', 'Line_I2t_M2t*0.4'), ('M2t', 'AngleLin
 b.end('J2tp', 'J2t', 180, '#plat_emm_dos', 'platitude 1 cm (comme la base)', 'solidLine')
 b.end('I2tp', 'I2t', 0, '#plat_emm_dev', 'platitude 2 cm (comme la base)', 'solidLine')
 b.ligne('J2tp', 'L1t'); b.ligne('L1t', 'L3t'); b.ligne('I2tp', 'K1t'); b.ligne('K1t', 'C5t')
-b.chemin('cEmmDosT', [('J2tp', str(180 + k('dA', 0)), '0', f"Line_J2tp_L1t*{k('dd1', 0.5)}"), ('L1t', '90', f"Line_J2tp_L1t*{k('dd2', 0.35)}", f"Line_L1t_L3t*{k('dd3', 0.4)}"),
+b.chemin('cEmmDosT', [('J2tp', str(180 + k('dA', 0)), '0', f"Line_J2tp_L1t*{k('dd1', 0.6)}"), ('L1t', '90', f"Line_J2tp_L1t*{k('dd2', 0.3)}", f"Line_L1t_L3t*{k('dd3', 0.4)}"),
                       ('L3t', 'AngleLine_L4_L3+90', f"Line_L1t_L3t*{k('dd4', 0.3)}", '0')], 'p. 80 : emmanchure dos retracée par les nouveaux points')
-b.chemin('cEmmDevT', [('I2tp', str(k('eA', 0)), '0', f"Line_I2tp_K1t*{k('ed1', 0.55)}"), ('K1t', '90', f"Line_I2tp_K1t*{k('ed2', 0.3)}", f"Line_K1t_C5t*{k('ed3', 0.4)}"),
+b.chemin('cEmmDevT', [('I2tp', str(k('eA', 0)), '0', f"Line_I2tp_K1t*{k('ed1', 0.65)}"), ('K1t', '90', f"Line_I2tp_K1t*{k('ed2', 0.25)}", f"Line_K1t_C5t*{k('ed3', 0.4)}"),
                       ('C5t', 'AngleLine_P2_C5-90', f"Line_K1t_C5t*{k('ed4', 0.3)}", '0')], 'p. 80 : emmanchure devant retracée')
 b.end('Dtp', 'Dt', 0, '#plat_enc_dos', 'platitude 2 cm au milieu dos', 'solidLine')
 b.end('Ctp', 'Ct', 180, '#plat_enc_dev', 'platitude 1 cm au milieu devant', 'solidLine')
@@ -267,7 +267,7 @@ b.spl('cBasDev', 'bFc', 'bR2', 'AngleLine_bFc1_bFc2+90', 'Line_bFc_bR2/3', '180'
 m = b   # même bloc : les crans d'emmanchure lisent la tête de manche
 m.single('mA', 75, -72, 'p. 150 : droit fil milieu de manche')
 m.end('mB', 'mA', 270, '#long_manche+#epaulette', 'p. 150 : AB = longueur de manche + épaulette', 'dashLine')
-m.end('mC', 'mA', 270, PROF + '*7/8', 'p. 150 : AC = hauteur d\'emmanchure − son 1/8')
+m.end('mC', 'mA', 270, PROF + '*0.91', 'p. 150 : AC = hauteur d\'emmanchure − son 1/8 ; porté à 0,91 le 2026-11-01 pour l\'embu en T42-T44')
 m.end('mD', 'mA', 270, '#haut_coude+#epaulette', 'p. 150 : AD = 35 + épaulette')
 m.end('mE', 'mA', 180, '0.7*' + EMM_DOS + '/2', 'p. 150 : AE = 7/10 emmanchure dos : 2', 'dotLine')
 m.end('mF', 'mA', 0, '0.7*' + EMM_DEV + '/2', 'p. 150 : AF = 7/10 emmanchure devant : 2', 'dotLine')
