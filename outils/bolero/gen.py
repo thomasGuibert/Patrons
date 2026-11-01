@@ -68,7 +68,10 @@ class Bloc:
         return self._pt(n, 'curveIntersectAxis', src, f'depuis {base}, angle {angle}, jusqu\'à la courbe {courbe}', '', ligne,
                         basePoint=self.I(base), angle=angle, curve=self.f.ids[courbe])
 
-    def coupe(self, n, chemin, longueur, src=''):
+    def coupe(self, n, chemin, longueur, src='', simple=False):
+        """Point à `longueur` du début de la courbe ; simple=True pour une courbe simple (spl), sinon un chemin."""
+        if simple:
+            return self._pt(n, 'cutSpline', src, f'sur la courbe {chemin}', longueur, spline=self.f.ids[chemin], length=longueur)
         return self._pt(n, 'cutSplinePath', src, f'sur la courbe {chemin}', longueur, splinePath=self.f.ids[chemin], length=longueur)
 
     def ligne(self, a, b, typ='none'):
@@ -133,8 +136,8 @@ class Bloc:
                                 f'mx="0.132292" my="0.264583" showPointName="true"/>')
                 extra = ''
                 if len(nd) > 2 and nd[2].get('notch'):
-                    extra = (' notch="true" notchType="slit" notchSubtype="straightforward" notchLength="0.6" '
-                             f'notchWidth="0.25" notchAngle="0" notchCount="{nd[2].get("count", 1)}" showNotch="true" showSecondNotch="true"')
+                    extra = (f' notch="true" notchType="{nd[2].get("type", "slit")}" notchSubtype="straightforward" '
+                             f'notchLength="{nd[2].get("long", 0.6)}" notchWidth="{nd[2].get("larg", 0.25)}" notchAngle="0" notchCount="{nd[2].get("count", 1)}" showNotch="true" showSecondNotch="true"')
                 if len(nd) > 2 and nd[2].get('sa'):
                     av, ap = nd[2]['sa']
                     extra += f' before="{av}" after="{ap}"'
@@ -158,6 +161,11 @@ class Bloc:
         dw, dh = info.get('data_dim', (7, 2.5))
         pw, ph = info.get('pinfo_dim', (7, 3))
         i = self.f.nid()
+        if info.get('nu'):      # pièce de contrôle : ni cartouche d'information ni droit-fil
+            etiq = ''
+        else:
+            etiq = (f'<patternInfo fontSize="0" height="{ph}" mx="{px * 37.795:.3f}" my="{py * 37.795:.3f}" rotation="0" visible="true" width="{pw}"/>'
+                    f'<grainline arrowLength="1" arrows="0" length="{gl}" mx="{gx * 37.795:.3f}" my="{gy * 37.795:.3f}" rotation="90" visible="true"/>')
         self.pieces.append(
             f'<piece id="{i}" name={quoteattr(nom)} seamAllowance="{"true" if couture else "false"}" width="{couture}" '
             f'version="2" inLayout="{"true" if inlayout else "false"}" united="false" locked="false" forbidFlipping="false" '
@@ -167,9 +175,7 @@ class Bloc:
             f'tilt="Aucun" visible="true" width="{dw}">'
             f'<line alignment="4" bold="true" italic="false" sfIncrement="3" text="%pName%"/>'
             f'<line alignment="4" bold="false" italic="true" sfIncrement="0" text="x%pQuantity% {matiere}"/>{lignes}</data>'
-            f'<patternInfo fontSize="0" height="{ph}" mx="{px * 37.795:.3f}" my="{py * 37.795:.3f}" rotation="0" visible="true" width="{pw}"/>'
-            f'<grainline arrowLength="1" arrows="0" length="{gl}" mx="{gx * 37.795:.3f}" my="{gy * 37.795:.3f}" rotation="90" visible="true"/>'
-            f'<nodes>{nodes}</nodes>{ipaths}</piece>')
+            f'{etiq}<nodes>{nodes}</nodes>{ipaths}</piece>')
 
     def chemin_interne(self, nom, points):
         i = self.f.nid()

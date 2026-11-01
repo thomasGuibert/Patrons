@@ -40,24 +40,51 @@ b.chemin('cArriere', [('S', '0', '0', '(#bas_cote-#pos_sommet+#volume)*0.55'),
                       ('B', '270', '#haut_volume*0.6', '0')],
          'courbe S–R–B : horizontale en S, verticale en R, d\'équerre sur le bord en B')
 
-COUTURE, BORD = 0.6, 1
-b.piece('Côté', [('p', 'A', dict(sa=(BORD, COUTURE))), ('c', 'cAvant', 0), ('p', 'S', dict(notch=True)),
-                 ('cp', 'cArriere', 0), ('p', 'B', dict(sa=(COUTURE, BORD)))],
-        qte=2, couture=COUTURE,
-        info=dict(data=(3.2, -8.4), pinfo=(3.2, -5.2), grain=(12.5, -1.2, 7), data_dim=(7, 2.6), pinfo_dim=(7, 3.4)))
-
-# ---- Bande centrale, au pli dans sa longueur ; longueur = couture du côté (A–S–B)
+# crans de montage : triangles vers l'extérieur au quart, à la moitié et aux trois quarts de la couture A–S–B
+# (le cran S reste un petit trait : c'est le repère de construction du sommet)
 LONG = '(Spl_A_S+SplPath_S_B)'
+b.coupe('M1', 'cAvant', LONG + '/4', 'cran de montage M1 : au quart de la couture A–S–B depuis A', simple=True)
+b.coupe('M2', 'cArriere', LONG + '/2-Spl_A_S', 'cran de montage M2 : à la moitié de la couture A–S–B depuis A')
+b.coupe('M3', 'cArriere', LONG + '*3/4-Spl_A_S', 'cran de montage M3 : aux trois quarts de la couture A–S–B depuis A')
+TRI = dict(notch=True, type='vExternal', long=0.5, larg=0.5)
+
+COUTURE, BORD = 0.6, 1
+ELASTIQUE = ('Élasticité : sens de la largeur',)
+b.piece('Côté', [('p', 'A', dict(sa=(BORD, COUTURE))), ('c', 'cAvant', 0), ('p', 'M1', TRI), ('c', 'cAvant', 0),
+                 ('p', 'S', dict(notch=True)),
+                 ('cp', 'cArriere', 0), ('p', 'M2', TRI), ('cp', 'cArriere', 0), ('p', 'M3', TRI), ('cp', 'cArriere', 0),
+                 ('p', 'B', dict(sa=(COUTURE, BORD)))],
+        qte=2, couture=COUTURE,
+        info=dict(data=(3.2, -8.4), pinfo=(3.2, -4.9), grain=(12.5, -1.2, 7), data_dim=(8, 3.3), pinfo_dim=(8, 3.3),
+                  lignes=ELASTIQUE))
+
+# ---- Bande centrale, au pli dans sa longueur (pli à droite) ; longueur = couture du côté (A–S–B)
 b.single('bA', 28, -16, 'bA : bande, bout du front, sur le pli')
 b.end('bB', 'bA', 270, LONG, 'bA bB = longueur de la couture du côté (A–S–B), au pli', 'dashLine')
-b.end('bA2', 'bA', 0, '#larg_bande/2', 'bA bA2 = demi-largeur de bande (bord du front)', 'solidLine')
-b.end('bB2', 'bB', 0, '#larg_bande/2', 'bB bB2 = demi-largeur de bande (bord de la nuque)', 'solidLine')
+b.end('bA2', 'bA', 180, '#larg_bande/2', 'bA bA2 = demi-largeur de bande (bord du front)', 'solidLine')
+b.end('bB2', 'bB', 180, '#larg_bande/2', 'bB bB2 = demi-largeur de bande (bord de la nuque)', 'solidLine')
 b.end('bS', 'bA2', 270, 'Spl_A_S', 'cran bS : sommet du côté, à la longueur de la courbe A–S depuis le front', 'none')
-b.ligne('bA2', 'bS', 'solidLine'); b.ligne('bS', 'bB2', 'solidLine')
-b.piece('Bande centrale', [('p', 'bA', dict(sa=(0, BORD))), ('p', 'bA2', dict(sa=(BORD, COUTURE))), ('p', 'bS', N),
-                           ('p', 'bB2', dict(sa=(COUTURE, BORD))), ('p', 'bB', dict(sa=(BORD, 0)))],
+b.along('bM1', 'bA2', 'bB2', LONG + '/4', 'cran de montage bM1 : en face de M1')
+b.along('bM2', 'bA2', 'bB2', LONG + '/2', 'cran de montage bM2 : en face de M2')
+b.along('bM3', 'bA2', 'bB2', LONG + '*3/4', 'cran de montage bM3 : en face de M3')
+b.ligne('bA2', 'bB2', 'solidLine')
+# contour dans le sens des aiguilles d'une montre (couture à l'extérieur) : le pli est à droite
+b.piece('Bande centrale', [('p', 'bA', dict(sa=(BORD, 0))), ('p', 'bB', dict(sa=(0, BORD))), ('p', 'bB2', dict(sa=(BORD, COUTURE))),
+                           ('p', 'bM3', TRI), ('p', 'bM2', TRI), ('p', 'bS', N), ('p', 'bM1', TRI),
+                           ('p', 'bA2', dict(sa=(COUTURE, BORD)))],
         qte=1, pli=True, couture=COUTURE,
-        info=dict(data=(28.3, -12.5), pinfo=(28.3, -8.5), grain=(30.5, 13, 8), data_dim=(4.4, 3.2), pinfo_dim=(4.4, 4), matiere='Tissu, au pli'))
+        info=dict(data=(23.3, -12.5), pinfo=(23.3, -9.2), grain=(25.5, 13, 8), data_dim=(4.4, 4.4), pinfo_dim=(4.4, 4),
+                  matiere='Tissu, au pli', lignes=('Élasticité :', 'largeur')))
+
+# ---- Carré de contrôle 5 x 5 cm (imprimé sur la notice du PDF, à l'échelle 1)
+c = f.bloc('Carré 5x5')
+c.single('Z', 38, -4, 'Z : coin du carré de contrôle')
+c.end('Z1', 'Z', 0, 5, 'ZZ1 = 5 cm', 'solidLine')
+c.normal('Z2', 'Z1', 'Z', 5, 0, 'Z1Z2 = 5 cm, perpendiculaire à ZZ1', 'solidLine')
+c.normal('Z3', 'Z2', 'Z1', 5, 0, 'Z2Z3 = 5 cm, perpendiculaire à Z1Z2', 'solidLine')
+c.ligne('Z', 'Z3', 'solidLine')
+c.piece('Carré 5x5', [('p', 'Z'), ('p', 'Z1'), ('p', 'Z2'), ('p', 'Z3')], couture=0,
+        info=dict(nu=True, data=(38.2, -2.5), data_dim=(4.6, 1.5), matiere=''))
 
 with open(sys.argv[2] if len(sys.argv) > 2 else os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'patrons', 'bonnet_bain.sm2d'), 'w') as out:
     out.write(f.xml('BONNET DE BAIN').replace('text="T%size%"', 'text="Taille unique"').replace('fil Bases chaîne et trame femme', 'issue #83, bonnet de bain'))
