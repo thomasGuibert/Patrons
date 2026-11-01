@@ -98,7 +98,10 @@ jobs:
             3. Lis CLAUDE.md, GLOSSARY.md et docs/ pour respecter les conventions du dépôt. En
                particulier : ne jamais utiliser une base de maille pour un vêtement en chaîne et
                trame (ni l'inverse) ; étiquettes et droit-fil entiers dans la pièce ; coutures à
-               l'extérieur du contour ; ne jamais déplacer des points existants d'un tracé.
+               l'extérieur du contour. Ne déplace des points existants d'un tracé que si la
+               demande d'Amélie le justifie (retouche de forme, bon tombé, « fais ce qui est
+               nécessaire ») : Thomas l'a autorisée à le décider (2026-11-01). Dis alors dans la
+               PR quels points ont bougé et de combien.
             Seamly2D est installé : lance-le toujours sous `xvfb-run -a`, le chemin est dans
             la variable SEAMLY2D (déjà réglée, avec LANG=fr_FR.UTF-8). Tu peux donc exporter les
             pièces et refaire les PDF toi-même, sans attendre le PC, par exemple
@@ -112,16 +115,20 @@ jobs:
                `claude/issue-<n>-<court-nom>`, historique linéaire (rebase, jamais de merge),
                pousse-la et ouvre une PR avec `gh pr create` qui référence l'issue
                (« Closes #<n> » seulement si la demande est entièrement traitée), assignée à
-               thomasGuibert. Relis ensuite ta PR de façon critique et attends la fin des
-               vérifications (`gh pr checks <pr> --watch`). S'il n'y a aucun problème (vérifications
-               vertes, pas de conflit, rien de douteux dans le tracé), fusionne-la toi-même avec
-               `gh pr merge <pr> --rebase` (jamais de commit de merge). Sinon ne la fusionne pas,
-               demande la relecture de thomasGuibert et explique le problème dans la PR.
+               thomasGuibert. Refais les PDF touchés avec Seamly, regarde-les et corrige
+               toi-même les petits défauts (étiquette trop près d'un cran, texte qui déborde…).
+               Relis ta PR de façon critique et attends la fin des vérifications
+               (`gh pr checks <pr> --watch`) ; si une vérification échoue (ex. déploiement
+               Vercel), trouve la cause et corrige-la. Puis fusionne-la toi-même avec
+               `gh pr merge <pr> --rebase` (jamais de commit de merge). N'attends PAS la relecture
+               de Thomas (consigne de Thomas, 2026-11-01) : ne laisse une PR ouverte que si une
+               vérification reste rouge après correction ou s'il manque une information
+               d'Amélie, et explique pourquoi dans l'issue.
             5. S'il manque une information indispensable (mesure, matière, taille…), ne devine
                pas : pose la question à Amélie dans l'issue et ajoute le label `needs-info`.
             6. Termine par un commentaire sur l'issue qui résume, en mots simples pour une
                couturière (pas de jargon informatique), ce qui a été fait, le lien de la PR et ce
-               qu'il reste à vérifier sur le PC avec Seamly2D.
+               ce qu'Amélie peut regarder (PDF publiés, fiche du site).
 
             Tout commentaire GitHub finit par :
 
