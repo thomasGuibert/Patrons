@@ -33,9 +33,27 @@ tête de 56 cm, il va de 52 à 60 cm grâce à la maille. Aucune mesure du corps
 
 ## Bande centrale (×1, au pli)
 
-1. bA bB, au pli = longueur de la couture du côté (A–S–B).
-2. Demi-largeur `#larg_bande / 2` aux deux bouts.
+1. bA bB, au pli = longueur de la couture du côté (A–S–B). Le pli est **à droite** de la pièce
+   (issue #94 : il était à gauche).
+2. Demi-largeur `#larg_bande / 2` aux deux bouts, vers la gauche (angle 180).
 3. Cran bS à la longueur de A–S depuis le front : il tombe sur le cran S du côté.
+
+## Crans de montage (issue #94)
+
+Triangles vers l'extérieur (`notchType="vExternal"`) au quart, à la moitié et aux trois quarts de
+la couture A–S–B : M1, M2, M3 sur le côté (points coupés sur les courbes), bM1, bM2, bM3 en face
+sur la bande (`#long / 4`, `/ 2`, `× 3 / 4` depuis bA2). Le cran S / bS reste un petit trait.
+
+## Sens d'élasticité (issue #94)
+
+Le droit-fil est vertical sur les deux pièces ; la maille s'étire donc dans le sens de la largeur,
+autour de la tête (le bord du bonnet est horizontal sur le côté, et aux bouts de la bande).
+Ligne « Élasticité : sens de la largeur » dans l'étiquette de chaque pièce.
+
+## Carré de contrôle
+
+Bloc « Carré 5x5 » (pièce sans marge de couture, sans cartouche), à droite des pièces ;
+`pdf_depuis_seamly.py` l'imprime sur la notice, à l'échelle 1.
 
 ## Coutures
 
