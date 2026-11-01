@@ -42,12 +42,15 @@ const TRACES: Record<Mesure, ReactNode> = {
   epaule: fleche(92, 60, 63, 70),
   bras: <polyline points="57,72 45,100 39,180 37,236" />,
   longueurDevant: fleche(100, 64, 100, 152),
+  hauteurPoitrine: fleche(92, 63, 82, 114),
+  ecartPoitrine: fleche(82, 122, 100, 122),
   entrejambeSol: fleche(100, 220, 100, 420),
   longueurDos: fleche(300, 52, 300, 152),
   carrureDos: fleche(270, 96, 330, 96),
   tailleHanches: hauteur(352, 192),
   tailleGenou: hauteur(364, 300),
   tailleSol: hauteur(376, 422),
+  hauteurNuqueSol: fleche(390, 52, 390, 422),
 };
 
 export function Silhouette({ mesures, actif }: { mesures: Mesure[]; actif: Mesure | null }) {
