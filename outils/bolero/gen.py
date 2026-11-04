@@ -155,6 +155,7 @@ class Bloc:
         dx, dy = info.get('data', (0, 0))
         px, py = info.get('pinfo', (0, 0))
         gx, gy, gl = info.get('grain', (0, 0, 10))
+        grot = info.get('grain_rot', 90)
         matiere = info.get('matiere', 'Tissu')
         lignes = ''.join(f'<line alignment="4" bold="false" italic="false" sfIncrement="0" text={quoteattr(t)}/>'
                          for t in info.get('lignes', ()))
@@ -165,7 +166,7 @@ class Bloc:
             etiq = ''
         else:
             etiq = (f'<patternInfo fontSize="0" height="{ph}" mx="{px * 37.795:.3f}" my="{py * 37.795:.3f}" rotation="0" visible="true" width="{pw}"/>'
-                    f'<grainline arrowLength="1" arrows="0" length="{gl}" mx="{gx * 37.795:.3f}" my="{gy * 37.795:.3f}" rotation="90" visible="true"/>')
+                    f'<grainline arrowLength="1" arrows="0" length="{gl}" mx="{gx * 37.795:.3f}" my="{gy * 37.795:.3f}" rotation="{grot}" visible="true"/>')
         self.pieces.append(
             f'<piece id="{i}" name={quoteattr(nom)} seamAllowance="{"true" if couture else "false"}" width="{couture}" '
             f'version="2" inLayout="{"true" if inlayout else "false"}" united="false" locked="false" forbidFlipping="false" '
