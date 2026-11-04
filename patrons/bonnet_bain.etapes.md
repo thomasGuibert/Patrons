@@ -40,15 +40,16 @@ tête de 56 cm, il va de 52 à 60 cm grâce à la maille. Aucune mesure du corps
 
 ## Crans de montage (issue #94)
 
-Triangles vers l'extérieur (`notchType="vExternal"`) au quart, à la moitié et aux trois quarts de
+Triangles vers l'extérieur (`notchType="vInternal"` : dans Seamly, `vExternal` les tournait vers l'intérieur de la pièce, issue #103) au quart, à la moitié et aux trois quarts de
 la couture A–S–B : M1, M2, M3 sur le côté (points coupés sur les courbes), bM1, bM2, bM3 en face
 sur la bande (`#long / 4`, `/ 2`, `× 3 / 4` depuis bA2). Le cran S / bS reste un petit trait.
 
-## Sens d'élasticité (issue #94)
+## Sens d'élasticité (issues #94 et #103)
 
-Le droit-fil est vertical sur les deux pièces ; la maille s'étire donc dans le sens de la largeur,
-autour de la tête (le bord du bonnet est horizontal sur le côté, et aux bouts de la bande).
-Ligne « Élasticité : sens de la largeur » dans l'étiquette de chaque pièce.
+La flèche de chaque pièce (celle que Seamly appelle droit-fil) est **horizontale** : elle indique
+le sens où la maille s'étire, autour de la tête. Le PDF la légende « Élasticité » au lieu de
+« Droit fil » (`outils/bonnet/pdf.py`, qui lance `pdf_depuis_seamly.py` en changeant cette légende).
+Aucune ligne de texte en plus dans l'étiquette.
 
 ## Carré de contrôle
 

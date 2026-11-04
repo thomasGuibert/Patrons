@@ -46,17 +46,15 @@ LONG = '(Spl_A_S+SplPath_S_B)'
 b.coupe('M1', 'cAvant', LONG + '/4', 'cran de montage M1 : au quart de la couture A–S–B depuis A', simple=True)
 b.coupe('M2', 'cArriere', LONG + '/2-Spl_A_S', 'cran de montage M2 : à la moitié de la couture A–S–B depuis A')
 b.coupe('M3', 'cArriere', LONG + '*3/4-Spl_A_S', 'cran de montage M3 : aux trois quarts de la couture A–S–B depuis A')
-TRI = dict(notch=True, type='vExternal', long=0.5, larg=0.5)
+TRI = dict(notch=True, type='vInternal', long=0.5, larg=0.5)
 
 COUTURE, BORD = 0.6, 1
-ELASTIQUE = ('Élasticité : sens de la largeur',)
 b.piece('Côté', [('p', 'A', dict(sa=(BORD, COUTURE))), ('c', 'cAvant', 0), ('p', 'M1', TRI), ('c', 'cAvant', 0),
                  ('p', 'S', dict(notch=True)),
                  ('cp', 'cArriere', 0), ('p', 'M2', TRI), ('cp', 'cArriere', 0), ('p', 'M3', TRI), ('cp', 'cArriere', 0),
                  ('p', 'B', dict(sa=(COUTURE, BORD)))],
         qte=2, couture=COUTURE,
-        info=dict(data=(3.2, -8.4), pinfo=(3.2, -4.9), grain=(12.5, -1.2, 7), data_dim=(8, 3.3), pinfo_dim=(8, 3.3),
-                  lignes=ELASTIQUE))
+        info=dict(data=(3.2, -8.0), pinfo=(3.2, -5.0), grain=(1.8, -1.2, 11.5), grain_rot=0, data_dim=(8, 2.6), pinfo_dim=(8, 2.6)))
 
 # ---- Bande centrale, au pli dans sa longueur (pli à droite) ; longueur = couture du côté (A–S–B)
 b.single('bA', 28, -16, 'bA : bande, bout du front, sur le pli')
@@ -73,8 +71,8 @@ b.piece('Bande centrale', [('p', 'bA', dict(sa=(BORD, 0))), ('p', 'bB', dict(sa=
                            ('p', 'bM3', TRI), ('p', 'bM2', TRI), ('p', 'bS', N), ('p', 'bM1', TRI),
                            ('p', 'bA2', dict(sa=(COUTURE, BORD)))],
         qte=1, pli=True, couture=COUTURE,
-        info=dict(data=(23.3, -12.5), pinfo=(23.3, -9.2), grain=(25.5, 13, 8), data_dim=(4.4, 4.4), pinfo_dim=(4.4, 4),
-                  matiere='Tissu, au pli', lignes=('Élasticité :', 'largeur')))
+        info=dict(data=(23.3, -12.5), pinfo=(23.3, -9.2), grain=(23.5, -6, 4), grain_rot=0, data_dim=(4.4, 4.4), pinfo_dim=(4.4, 4),
+                  matiere='Tissu, au pli'))
 
 # ---- Carré de contrôle 5 x 5 cm (imprimé sur la notice du PDF, à l'échelle 1)
 c = f.bloc('Carré 5x5')
