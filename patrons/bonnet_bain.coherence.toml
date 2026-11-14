@@ -9,11 +9,15 @@ profils = false     # taille unique : le tracé ne lit aucune mesure
 
 [[courbe]]
 nom = "Couture de bande du côté"
-troncons = [["Côté", "A", "B"]]
+troncons = [["Côté", "F", "B"]]
+
+[[courbe]]
+nom = "Bord du côté (rallonge de 2 cm au front)"
+troncons = [["Côté", "B", "F"]]
 
 # --- 3 et 4. Coutures (a et b se cousent ensemble, du premier point au dernier)
 
 [[couture]]
 nom = "Côté et bande centrale"
-a = [["Côté", "A", "S"], ["Côté", "S", "B"]]
+a = [["Côté", "F", "S"], ["Côté", "S", "B"]]
 b = [["Bande centrale", "bA2", "bS"], ["Bande centrale", "bS", "bB2"]]
