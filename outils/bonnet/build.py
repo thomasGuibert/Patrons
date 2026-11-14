@@ -21,17 +21,21 @@ V('haut_cote', '#tour_tete*0.19', "Hauteur du côté, du bord au sommet (couture
 V('volume', 4, "Cheveux longs : débord du côté en arrière de la nuque, pour loger les cheveux relevés")
 V('haut_volume', '#haut_cote*0.45', "Hauteur du point de volume arrière au-dessus du bord")
 V('pos_sommet', '#bas_cote*0.4', "Sommet du côté depuis le front, sur le bas")
+V('rallonge_front', 2, "Essayage (Thomas, 2026-11-14) : le bonnet s'arrêtait à la racine des cheveux, il descend 2 cm plus bas sur le front")
 
 b = f.bloc('Bonnet de bain')
 N = dict(notch=True)
 
 # ---- Côté
 b.single('A', 0, 0, 'A : bord, côté front (tempe)')
-b.end('B', 'A', 0, '#bas_cote', 'AB = bas du côté, bord du bonnet jusqu\'à la nuque', 'solidLine')
+b.end('B', 'A', 0, '#bas_cote', 'AB = bas du côté (ligne de construction : le bord est la courbe F–B)', 'dashLine')
 b.along('S0', 'A', 'B', '#pos_sommet', 'S0 sur AB, sous le sommet')
 b.end('S', 'S0', 90, '#haut_cote', 'S : sommet du côté, au-dessus de S0')
 b.end('R0', 'B', 0, '#volume', 'R0 : prolongement de AB en arrière de la nuque')
 b.end('R', 'R0', 90, '#haut_volume', 'R : volume arrière pour les cheveux longs')
+b.end('F', 'A', 270, '#rallonge_front', 'F : bord au front, sous A (rallonge de l\'essayage)', 'solidLine')
+# bord du bonnet : d'équerre sur la couture en F et en B, remonte doucement du front vers la nuque
+b.spl('cBord', 'F', 'B', '0', '#bas_cote*0.4', '180', '#bas_cote*0.4', 'courbe F–B : bord du bonnet, horizontale en F et en B')
 # devant du côté : part d'équerre du bord, arrive à l'horizontale au sommet
 b.spl('cAvant', 'A', 'S', '90', '#haut_cote*0.55', '180', '#pos_sommet*0.6', 'courbe A–S, d\'équerre en A, horizontale en S')
 # arrière : horizontale au sommet, verticale au volume, d'équerre sur le bord en B
@@ -40,28 +44,28 @@ b.chemin('cArriere', [('S', '0', '0', '(#bas_cote-#pos_sommet+#volume)*0.55'),
                       ('B', '270', '#haut_volume*0.6', '0')],
          'courbe S–R–B : horizontale en S, verticale en R, d\'équerre sur le bord en B')
 
-# crans de montage : triangles vers l'extérieur au quart, à la moitié et aux trois quarts de la couture A–S–B
+# crans de montage : triangles vers l'extérieur au quart, à la moitié et aux trois quarts de la couture F–A–S–B
 # (le cran S reste un petit trait : c'est le repère de construction du sommet)
-LONG = '(Spl_A_S+SplPath_S_B)'
-b.coupe('M1', 'cAvant', LONG + '/4', 'cran de montage M1 : au quart de la couture A–S–B depuis A', simple=True)
-b.coupe('M2', 'cArriere', LONG + '/2-Spl_A_S', 'cran de montage M2 : à la moitié de la couture A–S–B depuis A')
-b.coupe('M3', 'cArriere', LONG + '*3/4-Spl_A_S', 'cran de montage M3 : aux trois quarts de la couture A–S–B depuis A')
+LONG = '(#rallonge_front+Spl_A_S+SplPath_S_B)'
+b.coupe('M1', 'cAvant', LONG + '/4-#rallonge_front', 'cran de montage M1 : au quart de la couture F–A–S–B depuis F', simple=True)
+b.coupe('M2', 'cArriere', LONG + '/2-#rallonge_front-Spl_A_S', 'cran de montage M2 : à la moitié de la couture F–A–S–B depuis F')
+b.coupe('M3', 'cArriere', LONG + '*3/4-#rallonge_front-Spl_A_S', 'cran de montage M3 : aux trois quarts de la couture F–A–S–B depuis F')
 TRI = dict(notch=True, type='vInternal', long=0.5, larg=0.5)
 
 COUTURE, BORD = 0.6, 1
-b.piece('Côté', [('p', 'A', dict(sa=(BORD, COUTURE))), ('c', 'cAvant', 0), ('p', 'M1', TRI), ('c', 'cAvant', 0),
+b.piece('Côté', [('p', 'F', dict(sa=(BORD, COUTURE))), ('p', 'A'), ('c', 'cAvant', 0), ('p', 'M1', TRI), ('c', 'cAvant', 0),
                  ('p', 'S', dict(notch=True)),
                  ('cp', 'cArriere', 0), ('p', 'M2', TRI), ('cp', 'cArriere', 0), ('p', 'M3', TRI), ('cp', 'cArriere', 0),
-                 ('p', 'B', dict(sa=(COUTURE, BORD)))],
+                 ('p', 'B', dict(sa=(COUTURE, BORD))), ('c', 'cBord', 1)],
         qte=2, couture=COUTURE,
         info=dict(data=(3.2, -8.0), pinfo=(3.2, -5.0), grain=(1.8, -1.2, 11.5), grain_rot=0, data_dim=(8, 2.6), pinfo_dim=(8, 2.6)))
 
-# ---- Bande centrale, au pli dans sa longueur (pli à droite) ; longueur = couture du côté (A–S–B)
+# ---- Bande centrale, au pli dans sa longueur (pli à droite) ; longueur = couture du côté (F–A–S–B)
 b.single('bA', 28, -16, 'bA : bande, bout du front, sur le pli')
-b.end('bB', 'bA', 270, LONG, 'bA bB = longueur de la couture du côté (A–S–B), au pli', 'dashLine')
+b.end('bB', 'bA', 270, LONG, 'bA bB = longueur de la couture du côté (F–A–S–B), au pli', 'dashLine')
 b.end('bA2', 'bA', 180, '#larg_bande/2', 'bA bA2 = demi-largeur de bande (bord du front)', 'solidLine')
 b.end('bB2', 'bB', 180, '#larg_bande/2', 'bB bB2 = demi-largeur de bande (bord de la nuque)', 'solidLine')
-b.end('bS', 'bA2', 270, 'Spl_A_S', 'cran bS : sommet du côté, à la longueur de la courbe A–S depuis le front', 'none')
+b.end('bS', 'bA2', 270, '#rallonge_front+Spl_A_S', 'cran bS : sommet du côté, à la longueur de la courbe A–S depuis le front', 'none')
 b.along('bM1', 'bA2', 'bB2', LONG + '/4', 'cran de montage bM1 : en face de M1')
 b.along('bM2', 'bA2', 'bB2', LONG + '/2', 'cran de montage bM2 : en face de M2')
 b.along('bM3', 'bA2', 'bB2', LONG + '*3/4', 'cran de montage bM3 : en face de M3')

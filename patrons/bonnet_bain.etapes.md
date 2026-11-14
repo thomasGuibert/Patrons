@@ -22,26 +22,31 @@ tête de 56 cm, il va de 52 à 60 cm grâce à la maille. Aucune mesure du corps
 | `#volume` | 4 cm | Cheveux longs : le côté déborde en arrière de la nuque. |
 | `#haut_volume` | 0,45 × hauteur | Hauteur du volume arrière. |
 | `#pos_sommet` | 0,4 × bas | Sommet du côté, plus près du front que de la nuque. |
+| `#rallonge_front` | 2 cm | Essayage (Thomas, 2026-11-14) : le bonnet s'arrêtait à la racine des cheveux ; il descend 2 cm plus bas sur le front. |
 
 ## Côté (×2, en symétrie)
 
-1. A : bord, côté front. AB = `#bas_cote`, bord du bonnet jusqu'à la nuque.
+1. A : ancien bord, côté front. AB = `#bas_cote` (ligne de construction).
 2. S0 sur AB à `#pos_sommet` ; S au-dessus de S0 à `#haut_cote` (sommet, cran).
 3. R0 : AB prolongé de `#volume` ; R au-dessus de R0 à `#haut_volume`.
 4. Courbe A–S : part d'équerre du bord en A, arrive à l'horizontale en S.
 5. Courbe S–R–B : horizontale en S, verticale en R, d'équerre sur le bord en B.
+6. F : `#rallonge_front` sous A (rallonge de l'essayage). La couture de bande part de F, tout droit
+   jusqu'à A, puis suit A–S–B. Aucun point existant n'a bougé.
+7. Bord du bonnet : courbe F–B, horizontale en F et en B (d'équerre sur la couture aux deux bouts) ;
+   le côté a 2 cm de plus au front et rien de plus à la nuque.
 
 ## Bande centrale (×1, au pli)
 
-1. bA bB, au pli = longueur de la couture du côté (A–S–B). Le pli est **à droite** de la pièce
+1. bA bB, au pli = longueur de la couture du côté (F–A–S–B). Le pli est **à droite** de la pièce
    (issue #94 : il était à gauche).
 2. Demi-largeur `#larg_bande / 2` aux deux bouts, vers la gauche (angle 180).
-3. Cran bS à la longueur de A–S depuis le front : il tombe sur le cran S du côté.
+3. Cran bS à la longueur de F–A–S depuis le front : il tombe sur le cran S du côté.
 
 ## Crans de montage (issue #94)
 
 Triangles vers l'extérieur (`notchType="vInternal"` : dans Seamly, `vExternal` les tournait vers l'intérieur de la pièce, issue #103) au quart, à la moitié et aux trois quarts de
-la couture A–S–B : M1, M2, M3 sur le côté (points coupés sur les courbes), bM1, bM2, bM3 en face
+la couture F–A–S–B : M1, M2, M3 sur le côté (points coupés sur les courbes), bM1, bM2, bM3 en face
 sur la bande (`#long / 4`, `/ 2`, `× 3 / 4` depuis bA2). Le cran S / bS reste un petit trait.
 
 ## Sens d'élasticité (issues #94 et #103)
@@ -64,5 +69,5 @@ recouvreuse, avec ou sans élastique fin) ; 0 au pli.
 ## Contrôles
 
 - Couture côté / bande : 0,00 cm d'écart (`python3 outils/coherence/coherence.py bonnet_bain`).
-- Couture A–S–B sans angle ; angles droits au bord en A et B, et aux bouts de bande.
-- Bande 35,1 cm de long, côté 18,5 × 10,6 cm, bord du bonnet 49 cm.
+- Couture F–A–S–B et bord F–B sans angle ; angles droits au bord en F et B, et aux bouts de bande.
+- Bande 37,05 cm de long (35,05 avant l'essayage), côté 18,5 × 12,6 cm (10,6 avant), bord du bonnet ≈ 49 cm.
