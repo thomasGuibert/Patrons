@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Courier_Prime, IM_Fell_French_Canon, Pinyon_Script, Sorts_Mill_Goudy } from "next/font/google";
 import Link from "next/link";
 import { Ecusson } from "./Ecusson";
@@ -66,6 +67,7 @@ export default function RootLayout({
             <span>Patrons à imprimer chez soi</span>
           </div>
         </footer>
+        <Analytics />
       </body>
     </html>
   );
